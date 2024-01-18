@@ -64,7 +64,7 @@ const getTouchTrue = computed(() => {
 function selectTypeChange(item: string) {
   pwdType.value = item
   resetPassword()
-  emit('update:modelValue', item)
+  emit('update:modelType', item)
 }
 
 watch(() => pwdOptions.value, () => {

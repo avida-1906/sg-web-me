@@ -8,6 +8,7 @@ interface Props {
   vipBonusId?: string
   /** 奖金类型 */
   bonusType?: string
+  callBack?: () => void
 }
 
 const props = defineProps<Props>()
@@ -16,6 +17,7 @@ const { t } = useI18n()
 const { openNotify } = useNotify()
 const { getRate } = useExchangeRate()
 const { isLogin } = storeToRefs(useAppStore())
+// const { bool: isReceive, setBool: setShowWalletBool } = useBoolean(true)
 const amountMax = ref('0')
 const {
   value: amount,
@@ -60,6 +62,7 @@ const getBit = computed(() => {
 const {
   runAsync: runAsyncVipBonusApply,
   loading: loadVipBonusApply,
+  data: applyResult,
 } = useRequest(ApiMemberVipBonusApply)
 const rate = computed(() => {
   return activeCurrency.value?.type === 'USDT' ? '1.00' : getRate('USDT', activeCurrency.value?.type ?? 'USDT', 8)?.targetNum
@@ -138,6 +141,10 @@ onMounted(() => {
     setAmount(props.vipBonus ?? '', false)
     amountMax.value = props.vipBonus ?? '0'
   }
+})
+
+onUnmounted(() => {
+  applyResult.value && props.callBack && props.callBack()
 })
 </script>
 

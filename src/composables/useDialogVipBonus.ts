@@ -1,6 +1,6 @@
 import AppVipBonusDialog from '~/components/AppVipBonusDialog.vue'
 
-export function useDialogVipBonus(cb?: () => void) {
+export function useDialogVipBonus(callBack?: () => void) {
   const { t } = useI18n()
   const title = computed(() => t('receive_bonus'))
   const {
@@ -13,10 +13,8 @@ export function useDialogVipBonus(cb?: () => void) {
       h(AppVipBonusDialog, {
         vipBonus,
         vipBonusId,
+        callBack,
       }),
-    onDialogClose: () => {
-      cb && cb()
-    },
   })
 
   return {
