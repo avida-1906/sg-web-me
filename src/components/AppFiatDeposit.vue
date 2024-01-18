@@ -454,18 +454,15 @@ await application.allSettled([awaitHandle()])
               />
             </BaseLabel>
             <BaseLabel v-else :label="t('deposit_amount')" must-small>
-              <div style="position: relative;">
-                <BaseSelect
-                  v-if="fixedAmount && fixedAmount.length"
-                  v-model="amount"
-                  :options="fixedAmount"
-                  :msg="amountError"
-                  small
-                />
-                <div v-if="!amount" class="placeholder-text">
-                  {{ t('select_deposit_amount') }}
-                </div>
-              </div>
+              <BaseSelect
+                v-if="fixedAmount && fixedAmount.length"
+                v-model="amount"
+                :placeholder="t('select_deposit_amount')"
+                :options="fixedAmount"
+                :msg="amountError"
+                small
+                show-placeholder
+              />
             </BaseLabel>
             <BaseMoneyKeyboard
               v-if="oftenAmount && oftenAmount.length"
@@ -492,6 +489,7 @@ await application.allSettled([awaitHandle()])
 
 <style lang='scss' scoped>
 .app-fiat-currency-deposit{
+  --tg-select-placeholder-color: var(--tg-secondary-light);
   .deposit-wrap{
     display: flex;
       flex-direction: column;
@@ -582,11 +580,6 @@ await application.allSettled([awaitHandle()])
                 }
             }
           }
-        }
-        .placeholder-text{
-          position: absolute;
-          top: var(--tg-spacing-13);
-          left: var(--tg-spacing-9);
         }
       }
     }

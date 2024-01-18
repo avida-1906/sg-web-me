@@ -23,6 +23,7 @@ interface Props {
   distance?: number
   popperMaxHeight?: string
   showPlaceholder?: boolean
+  placeholder?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -39,8 +40,6 @@ const {
 const parent = ref<HTMLElement | null>(null)
 const { width } = useElementSize(parent)
 const { isMobile } = storeToRefs(useWindowStore())
-
-const placeholder = props.modelValue
 
 const error = computed(() => !!props.msg)
 const selectedOption = computed(() =>
@@ -151,12 +150,12 @@ function onPopperOpen() {
             disabled,
             small,
             error,
-            'placeholder-select': modelValue === placeholder,
+            'placeholder-select': showPlaceholder,
           }"
           :disabled="disabled"
           @change="onChange"
         >
-          <option v-if="showPlaceholder" selected disabled :value="placeholder">
+          <option v-if="showPlaceholder" disabled value="">
             {{ placeholder }}
           </option>
           <option
@@ -202,6 +201,7 @@ function onPopperOpen() {
   --tg-base-select-border: var(--tg-border-width-sm) solid var(--tg-border-color-main);
   --tg-base-select-box-shadow: var(--tg-box-shadow);
   --tg-base-select-icon-right: var(--tg-spacing-8);
+  --tg-select-placeholder-color: var(--tg-text-placeholder);
 }
 </style>
 
@@ -397,7 +397,7 @@ function onPopperOpen() {
       cursor: not-allowed;
     }
     &.placeholder-select{
-      color: var(--tg-text-placeholder) !important;
+      color: var(--tg-select-placeholder-color) !important;
       font-weight: var(--tg-font-weight-semibold);
     }
   }
