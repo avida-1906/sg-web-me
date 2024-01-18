@@ -69,7 +69,7 @@ async function deleteConfirm() {
       </div>
       <div class="type-right">
         {{ isBankcard ? bankcardItem.open_name
-          : getVirContractName(virtualCoinItem.contract_type.toString()) }}
+          : virtualCoinItem.contract_name }}
       </div>
     </div>
     <div class="currency-number">
