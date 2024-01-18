@@ -147,7 +147,12 @@ function onPopperOpen() {
       <div class="select-warp">
         <select
           :value="modelValue"
-          :class="{ disabled, small, error }"
+          :class="{
+            disabled,
+            small,
+            error,
+            'placeholder-select': modelValue === placeholder,
+          }"
           :disabled="disabled"
           @change="onChange"
         >
@@ -390,6 +395,10 @@ function onPopperOpen() {
     }
     &.disabled {
       cursor: not-allowed;
+    }
+    &.placeholder-select{
+      color: var(--tg-text-placeholder) !important;
+      font-weight: var(--tg-font-weight-semibold);
     }
   }
   .icon {
