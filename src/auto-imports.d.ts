@@ -163,6 +163,8 @@ declare global {
   const EnumsBetSlipHeadStatus: typeof import('./utils/enums')['EnumsBetSlipHeadStatus']
   const EnumsBetSlipMyBetsTabStatus: typeof import('./utils/enums')['EnumsBetSlipMyBetsTabStatus']
   const FEEDBACK_CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['FEEDBACK_CHAT_MESSAGE_BUS']
+  const Field: typeof import('vee-validate')['Field']
+  const From: typeof import('vee-validate')['From']
   const Local: typeof import('./utils/storage')['Local']
   const MQTT_CONNECT_SUCCESS_BUS: typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']
   const MQTT_DISCONNECT_BUS: typeof import('./utils/event-bus')['MQTT_DISCONNECT_BUS']
@@ -466,6 +468,7 @@ declare global {
   const useCssVars: typeof import('vue')['useCssVars']
   const useCurrencyData: typeof import('./composables/useCurrencyData')['useCurrencyData']
   const useCurrentElement: typeof import('@vueuse/core')['useCurrentElement']
+  const useCustomForm: typeof import('./composables/useCustomForm')['useCustomForm']
   const useCycleList: typeof import('@vueuse/core')['useCycleList']
   const useDark: typeof import('@vueuse/core')['useDark']
   const useDateFormat: typeof import('@vueuse/core')['useDateFormat']
@@ -1154,6 +1157,7 @@ declare module 'vue' {
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useCurrencyData: UnwrapRef<typeof import('./composables/useCurrencyData')['useCurrencyData']>
     readonly useCurrentElement: UnwrapRef<typeof import('@vueuse/core')['useCurrentElement']>
+    readonly useCustomForm: UnwrapRef<typeof import('./composables/useCustomForm')['useCustomForm']>
     readonly useCycleList: UnwrapRef<typeof import('@vueuse/core')['useCycleList']>
     readonly useDark: UnwrapRef<typeof import('@vueuse/core')['useDark']>
     readonly useDateFormat: UnwrapRef<typeof import('@vueuse/core')['useDateFormat']>
@@ -1836,6 +1840,7 @@ declare module '@vue/runtime-core' {
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useCurrencyData: UnwrapRef<typeof import('./composables/useCurrencyData')['useCurrencyData']>
     readonly useCurrentElement: UnwrapRef<typeof import('@vueuse/core')['useCurrentElement']>
+    readonly useCustomForm: UnwrapRef<typeof import('./composables/useCustomForm')['useCustomForm']>
     readonly useCycleList: UnwrapRef<typeof import('@vueuse/core')['useCycleList']>
     readonly useDark: UnwrapRef<typeof import('@vueuse/core')['useDark']>
     readonly useDateFormat: UnwrapRef<typeof import('@vueuse/core')['useDateFormat']>
