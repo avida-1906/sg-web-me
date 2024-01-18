@@ -43,18 +43,13 @@ function toAddBankcards() {
     isFirst = false
     openName = bankcardList.value[0].open_name
   }
-  const {
-    openAddBankcardsDialog,
-  } = useAddBankcardsDialog({
-    title: t('bind_bank_card'),
-    icon: 'fiat-bank',
-    openName,
+  const { openBindBankDialog } = useDialogBindBank({
     isFirst,
+    openName,
     currencyId: curCode.value,
-    callback: openWalletDialog,
   })
   closeDialog()
-  nextTick(() => openAddBankcardsDialog())
+  nextTick(() => openBindBankDialog())
 }
 function toAddPix() {
   let isFirst = true
