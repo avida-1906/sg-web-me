@@ -398,7 +398,7 @@ await application.allSettled([awaitHandle()])
         </div>
         <!-- 三方支付存款 -->
         <div v-else class="type-other">
-          <BaseLabel label="支付方式" must-small>
+          <BaseLabel :label="t('pay_methods')" must-small>
             <AppWithdrawalDepositType
               v-if="havePaymentMethod"
               v-model="currentType"
