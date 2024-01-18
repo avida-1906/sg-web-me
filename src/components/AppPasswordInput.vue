@@ -19,7 +19,7 @@ const {
 } = useBrandBaseDetail()
 
 const pwdOptions = computed(() => {
-  const check = brandBaseDetail.value.check
+  const check = brandBaseDetail?.value.check
   const code = { label: t('double_check_code'), value: '1' }
   const pwd = { label: t('menu_title_settings_update_safepwd'), value: '2' }
   const teg = []
