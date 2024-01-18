@@ -318,42 +318,43 @@ await application.allSettled([
     display: flex;
     flex-direction: column;
     gap: var(--tg-spacing-16);
-    .other-aisles{
-      display: flex;
-      justify-content: left;
-      align-items: center;
-      gap: var(--tg-spacing-12);
-      // overflow: hidden;
-      &::-webkit-scrollbar-thumb{
-          display: none;
-        }
-      .aisle{
-        flex-shrink: 0;
-        padding: var(--tg-spacing-4) var(--tg-spacing-8);
-        background-color: var(--tg-secondary-dark);
-        border-radius: var(--tg-radius-default);
-        box-shadow: var(--tg-box-shadow);
-        cursor: pointer;
-        font-size: var(--tg-font-size-xs);
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        line-height: 17px;
-        &:hover{
-          opacity: .9;
-        }
-        &.active{
-          background: var(--tg-text-blue);
-          color: var(--tg-text-white);
-        }
-        &:active{
-          span{
-            transform: scale(.96);
-          }
-        }
-      }
-    }
+    --tg-select-placeholder-color: var(--tg-secondary-light);
+    // .other-aisles{
+    //   display: flex;
+    //   justify-content: left;
+    //   align-items: center;
+    //   gap: var(--tg-spacing-12);
+    //   // overflow: hidden;
+    //   &::-webkit-scrollbar-thumb{
+    //       display: none;
+    //     }
+    //   .aisle{
+    //     flex-shrink: 0;
+    //     padding: var(--tg-spacing-4) var(--tg-spacing-8);
+    //     background-color: var(--tg-secondary-dark);
+    //     border-radius: var(--tg-radius-default);
+    //     box-shadow: var(--tg-box-shadow);
+    //     cursor: pointer;
+    //     font-size: var(--tg-font-size-xs);
+    //     display: inline-flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     flex-direction: column;
+    //     line-height: 17px;
+    //     &:hover{
+    //       opacity: .9;
+    //     }
+    //     &.active{
+    //       background: var(--tg-text-blue);
+    //       color: var(--tg-text-white);
+    //     }
+    //     &:active{
+    //       span{
+    //         transform: scale(.96);
+    //       }
+    //     }
+    //   }
+    // }
     .second-title{
       margin-bottom: var(--tg-spacing-4);
       color: var(--tg-text-lightgrey);

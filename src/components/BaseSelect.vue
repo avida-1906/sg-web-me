@@ -201,6 +201,7 @@ function onPopperOpen() {
   --tg-base-select-border: var(--tg-border-width-sm) solid var(--tg-border-color-main);
   --tg-base-select-box-shadow: var(--tg-box-shadow);
   --tg-base-select-icon-right: var(--tg-spacing-8);
+  --tg-select-placeholder-color: var(--tg-text-placeholder);
 }
 </style>
 
@@ -396,7 +397,7 @@ function onPopperOpen() {
       cursor: not-allowed;
     }
     &.placeholder-select{
-      color: var(--tg-text-placeholder) !important;
+      color: var(--tg-select-placeholder-color) !important;
       font-weight: var(--tg-font-weight-semibold);
     }
   }
