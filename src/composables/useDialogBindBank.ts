@@ -1,15 +1,23 @@
 import AppBindBankDialog from '~/components/AppBindBankDialog.vue'
+import { i18n } from '~/modules/i18n'
 
-export function useDialogBindBank() {
-  const { t } = useI18n()
-  const title = computed(() => t('wallet'))
+export function useDialogBindBank(config: {
+  isFirst?: boolean
+  openName?: string
+  currencyId: string
+}) {
+  const { t } = i18n.global
   const {
     openDialog: openBindBankDialog,
     closeDialog: closeBindBankDialog,
   } = useDialog({
-    title: title.value,
+    title: t('wallet'),
     icon: 'fiat-bank',
-    default: () => h(AppBindBankDialog),
+    default: () => h(AppBindBankDialog, {
+      isFirst: config.isFirst,
+      openName: config.openName,
+      currencyId: config.currencyId,
+    }),
   })
 
   return {

@@ -1,20 +1,11 @@
 <script setup lang="ts">
-import type { CurrencyData } from '~/composables/useCurrencyData'
 import type { BankCard, VirtualCoin } from '~/apis/types'
-
-type WalletCurrencyList = {
-  coin?: VirtualCoin[] // 绑定的虚拟币
-  bankcard?: BankCard[] // 绑定的银行卡
-  addressNum: number // 虚拟币已绑定地址的数量
-  showAdd: boolean // 是否可添加
-  shown: boolean // 控制展开关闭
-} & CurrencyData
 
 const { t } = useI18n()
 const closeDialog = inject('closeDialog', () => { })
 const { openDeleteConfirm } = useDeleteConfirmDialog()
 const { currentGlobalCurrency, userInfo } = storeToRefs(useAppStore())
-const { renderCurrencyList, getVirContractName } = useCurrencyData()
+const { renderCurrencyList } = useCurrencyData()
 const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
 const { push } = useLocalRouter()
 
@@ -45,27 +36,20 @@ const bankcardList = computed(() => {
   return []
 })
 
-function toAddBankcards(item: WalletCurrencyList) {
+function toAddBankcards() {
   let isFirst = true
   let openName = ''
-  if (item.bankcard?.length) {
+  if (bankcardList.value.length > 0) {
     isFirst = false
-    openName = item.bankcard[0].open_name
+    openName = bankcardList.value[0].open_name
   }
-  const {
-    openAddBankcardsDialog,
-  } = useAddBankcardsDialog({
-    title: t('bind_bank_card'),
-    icon: 'fiat-bank',
-    openName,
+  const { openBindBankDialog } = useDialogBindBank({
     isFirst,
-    activeCurrency: item,
-    /** 702 货币id */
-    currentType: '1',
-    callback: openWalletDialog,
+    openName,
+    currencyId: curCode.value,
   })
   closeDialog()
-  nextTick(() => openAddBankcardsDialog())
+  nextTick(() => openBindBankDialog())
 }
 function toAddPix() {
   let isFirst = true
@@ -125,6 +109,9 @@ function bind() {
 
   else if (curCode.value === '702')
     toAddPix()
+
+  else
+    toAddBankcards()
 }
 
 await application.allSettled([runAsyncWalletBankcardList()])
