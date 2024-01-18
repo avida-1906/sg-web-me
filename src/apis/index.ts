@@ -1819,6 +1819,7 @@ export function ApiAgencyCommissionScale() {
         id: string
         /** 1真人 2捕鱼 3电子 4体育 5棋牌 6电竞 */
         model_ids: string
+        ico: string[]
         levels: {
           id: string
           /** 佣金配置ID */

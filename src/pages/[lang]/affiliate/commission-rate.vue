@@ -5,10 +5,12 @@ const { t } = useI18n()
 const tab = ref('')
 const { isMobile } = storeToRefs(useWindowStore())
 
+const tabList = ref<{ label: string; value: string; icon: string }[]>([])
+
 const {
   data,
   loading,
-  run: runAgencyCommissionScale,
+  runAsync: runAsyncCommissionScale,
 } = useRequest(ApiAgencyCommissionScale)
 const {
   data: modelsList,
@@ -16,7 +18,16 @@ const {
 } = useRequest(ApiAgencyCommissionModelsList, {
   onSuccess(data) {
     tab.value = data[0].id
-    runAgencyCommissionScale()
+    runAsyncCommissionScale().then((res) => {
+      tabList.value = modelsList.value!.map((a, i) => {
+        return {
+          label: a.name,
+          value: a.id,
+          icon: res.conf[i].ico[0],
+          useCloudImg: true,
+        }
+      })
+    })
   },
 })
 
@@ -43,14 +54,6 @@ const columns: Column[] = [
   },
 ]
 
-const tabList = computed(() => {
-  return modelsList.value?.map((item) => {
-    return {
-      label: item.name,
-      value: item.id,
-    }
-  })
-})
 const list = computed(() => {
   const conf = data.value?.conf
   const currentSelected = tab.value
@@ -80,7 +83,7 @@ await application.allSettled([runAsyncModelsList()])
         v-model="tab"
         style="--tg-tab-style-color: var(--tg-text-lightgrey);"
         :list="tabList ?? []"
-        :center="false"
+        :center="false" use-cloud-img
       />
     </div>
     <BaseTable

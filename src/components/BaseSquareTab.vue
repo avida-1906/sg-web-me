@@ -58,7 +58,7 @@ await application.allSettled([loadIcon()])
             <div class="main">
               <div
                 v-if="tab.icon"
-                class="icon" style="--app-sport-image-error-icon-size:28px;"
+                class="icon" style="--app-sport-image-error-icon-size:16px;"
               >
                 <AppImage
                   v-if="tab.useCloudImg"
