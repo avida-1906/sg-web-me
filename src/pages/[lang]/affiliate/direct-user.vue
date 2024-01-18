@@ -117,14 +117,18 @@ onMounted(() => {
         {{ last_login_at ? timeToDateFormat(last_login_at) : '-' }}
       </template>
       <template #online="{ record }">
-        <span
-          :class="{
-            online: record.online === '2',
-            offline: record.online === '1',
-          }"
-        >
-          {{ record.online === '2' ? t('active_state') : t('offline') }}
-        </span>
+        <div class="center" style="justify-content: flex-end;">
+          <div
+            class="center"
+            :class="{
+              online: record.online === '2',
+              offline: record.online === '1',
+            }"
+          >
+            <BaseIcon v-if="record.online === '1'" name="uni-computer" />
+          </div>
+          <span>{{ record.online === '2' ? t('active_state') : t('offline') }}</span>
+        </div>
       </template>
     </BaseTable>
     <BasePagination
@@ -143,26 +147,19 @@ onMounted(() => {
 }
 
 .online {
-  &::before {
-    content: '';
-    display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     background-color: var(--tg-text-green);
     margin-right: var(--tg-spacing-2);
-  }
+    font-size: 8px;
 }
 .offline {
-  &::before {
-    content: '';
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: var(--tg-spacing-2);
-    background-color: var(--tg-text-grey-lighter);
-  }
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-right: var(--tg-spacing-2);
+  background-color: var(--tg-text-grey-lighter);
 }
 .page-all-data {
   --tg-app-amount-font-weight: var(--tg-font-weight-normal);

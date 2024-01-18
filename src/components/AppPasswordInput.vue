@@ -64,7 +64,7 @@ const getTouchTrue = computed(() => {
 function selectTypeChange(item: string) {
   pwdType.value = item
   resetPassword()
-  emit('update:modelValue', item)
+  emit('update:modelType', item)
 }
 
 watch(() => pwdOptions.value, () => {
@@ -79,7 +79,7 @@ defineExpose({ resetPassword, validatePassword, errPassword, setTouchTrue: getTo
   <div class="password-box">
     <BaseInput
       ref="passwordRef" v-model="password" :label="pwdLabel" :msg="errPassword || errPayPwd" :placeholder="placeholder"
-      type="password" max="6" must msg-after-touched
+      type="password" max="6" must :msg-after-touched="!errPayPwd"
       @blur="emit('update:modelValue', password)"
     >
       <template #right-button>

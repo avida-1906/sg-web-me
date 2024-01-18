@@ -3,6 +3,7 @@ import type { CurrencyData } from '~/composables/useCurrencyData'
 import type { availableCurrency } from '~/apis/types'
 
 interface Props {
+  modelValue?: string
   showBalance?: boolean // 是否展示货币余额
   network?: boolean // 是否显示协议类型
   type?: number
@@ -10,7 +11,6 @@ interface Props {
   placeholder?: string
   distance?: number
   activeCurrencyList?: availableCurrency[]
-  between?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
   distance: 6,
 })
 
-const emit = defineEmits(['change'])
+const emit = defineEmits(['change', 'update:modelValue'])
 
 const { t } = useI18n()
 // 下拉搜索是否显示
