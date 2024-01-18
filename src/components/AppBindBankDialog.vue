@@ -27,7 +27,7 @@ const validationSchema = yup.object({
   city: yup.string().trim().required(t('enter_your_content')),
   bank_name: yup.string().trim().required(t('enter_your_content')),
   address: yup.string().trim().required(t('enter_your_content')),
-  bank_account: yup.number().required(t('enter_your_content')).typeError('银行卡号必须是数字'),
+  bank_account: yup.number().required(t('enter_your_content')),
   pay_password: yup.string().trim().required(t('enter_your_content')),
 })
 // #endregion
@@ -170,12 +170,11 @@ watch(countryOptions, (val) => {
       </div>
       <div class="px-20 pt-14">
         <BaseLabel must label="银行卡号">
-          <BaseInput v-model="bank_account" :msg="bank_accountError" />
+          <BaseInput v-model="bank_account" type="number" :msg="bank_accountError" />
         </BaseLabel>
       </div>
       <div class="px-20 pt-14">
         <AppPasswordInput v-model="pay_password" v-model:modelType="auth_type" :err-pay-pwd="pay_passwordError" />
-        {{ auth_type }}
       </div>
       <div class="flex items-center px-20 py-14">
         <BaseCheckBox v-model="isDefaultAddress" />
