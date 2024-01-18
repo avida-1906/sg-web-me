@@ -1759,7 +1759,7 @@ type_select: 类型选择
 rule_text_one: 汇率会根据市场波动实时同步
 rule_text_two: 会在您注单结算时的汇率为准
 rule_text_three: 已经统计的有效投注不会受后续的汇率影响
-rule_text_title: VIP按照您的有效投注来计算
+rule_text_title: VIP积分将按照您的有效投注来计算
 after_transfer_withdraw_money: 转到钱包后需要1倍有效投注才可提款
 mini_manual_bet: '手动投注'
 mini_auto_bet: '自动投注'
