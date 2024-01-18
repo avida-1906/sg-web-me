@@ -186,7 +186,7 @@ function openLink(link: string) {
       </div>
       <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isMobile }">
         <div v-for="(item, index) in commission" :key="index">
-          <span>{{ item.label }} </span>
+          <span class="title-label">{{ item.label }} </span>
           <div>
             <BaseSkeleton v-if="loadMyData" height="14px" animated="ani-opacity" />
             <AppAmount v-else :amount="item.value" currency-type="USDT" />
@@ -202,7 +202,7 @@ function openLink(link: string) {
       </div>
       <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isMobile }">
         <div v-for="(item, index) in performance" :key="index">
-          <span>{{ item.label }} </span>
+          <span class="title-label">{{ item.label }} </span>
           <div>
             <BaseSkeleton v-if="loadMyData" height="14px" animated="ani-opacity" />
             <template v-else>
@@ -221,7 +221,7 @@ function openLink(link: string) {
       </div>
       <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isMobile }">
         <div v-for="(item, index) in bet" :key="index">
-          <span>{{ item.label }} </span>
+          <span class="title-label">{{ item.label }} </span>
           <div>
             <BaseSkeleton v-if="loadMyData" height="14px" animated="ani-opacity" />
             <span v-else-if="index === 1">{{ item.value }}</span>
@@ -239,7 +239,7 @@ function openLink(link: string) {
 <style lang="scss" scoped>
 .tg-affiliate-retention {
   font-size: var(--tg-font-size-default);
-  color: var(--tg-text-white);
+  // color: var(--tg-text-white);
   --tg-base-square-tab-font-weight: var(--tg-font-weight-normal);
   --tg-base-square-tab-padding-top: 18px;
   --tg-base-square-tab-padding-y: 18px;
@@ -262,6 +262,7 @@ function openLink(link: string) {
     border-radius: var(--tg-radius-default)  var(--tg-radius-default) 0 0;
     height: 36px;
     .title-left{
+      color: var(--tg-text-white);
       font-weight: var(--tg-font-weight-semibold);
     }
   }
@@ -368,6 +369,9 @@ function openLink(link: string) {
       flex-direction: column;
       border-radius: 8px;
       gap: 8px;
+    }
+    .title-label{
+      color: #fff;
     }
   }
 }

@@ -2229,7 +2229,7 @@ type_select: 'Type selection'
 rule_text_one: 'The exchange rate will be synchronized in real time according to market fluctuations'
 rule_text_two: 'The exchange rate will prevail when your bet is settled.'
 rule_text_three: 'Valid bets that have been counted will not be affected by subsequent exchange rates'
-rule_text_title: 'VIP is calculated based on your valid bets'
+rule_text_title: VIP points will be calculated based on your valid bets.
 after_transfer_withdraw_money: 'After transferring to the wallet,  you need 1 time rollover the valid bet before you can withdraw it.'
 mini_manual_bet: 'Manual betting'
 mini_auto_bet: 'Automatic betting'

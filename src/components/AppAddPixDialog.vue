@@ -26,8 +26,7 @@ const validationSchema = yup.object({
   country: yup.string().trim().required(t('enter_your_content')),
   city: yup.string().trim().required(t('enter_your_content')),
   bank_name: yup.string().trim().required(t('enter_your_content')),
-  address: yup.string().trim().required(t('enter_your_content')),
-  bank_account: yup.number().required(t('enter_your_content')).typeError('银行卡号必须是数字'),
+  bank_account: yup.string().required(t('enter_your_content')).matches(/^[a-zA-Z0-9]{4,30}$/, t('validate_msg_regexp_pix_account')),
   pay_password: yup.string().trim().required(t('enter_your_content')),
 })
 // #endregion
@@ -38,7 +37,6 @@ const { value: xing, errorMessage: xingError } = useField<string>('xing')
 const { value: ming, errorMessage: mingError } = useField<string>('ming')
 const { value: country, errorMessage: countryError } = useField<string>('country')
 const { value: city, errorMessage: cityError } = useField<string>('city')
-const { value: address, errorMessage: addressError } = useField<string>('address')
 const { value: bank_name, errorMessage: bank_nameError } = useField<string>('bank_name')
 const { value: bank_account, errorMessage: bank_accountError } = useField<number>('bank_account')
 const { value: pay_password, errorMessage: pay_passwordError } = useField<string>('pay_password')
@@ -112,7 +110,7 @@ const onSubmit = handleSubmit((values) => {
     pay_password: values.pay_password,
     country: values.country,
     city: values.city,
-    address: values.address,
+    address: '',
     auth_type: +auth_type.value as any,
   })
   // resetForm() // 重置表单
@@ -131,7 +129,7 @@ watch(countryOptions, (val) => {
     <form class="border-tg-secondary border rounded-[4px] border-solid" @submit="onSubmit">
       <div class="px-20">
         <div class="border-tg-secondary border-b border-solid pb-15 pt-19 text-[18px] font-[600]">
-          绑定银行卡
+          绑定PIX
         </div>
       </div>
       <div class="flex gap-14 px-20 pt-14">
@@ -159,23 +157,17 @@ watch(countryOptions, (val) => {
         </div>
       </div>
       <div class="px-20 pt-14">
-        <BaseLabel must label="银行">
+        <BaseLabel must label="PIX账号类型">
           <BaseSelect v-model="bank_name" small :options="bank_nameOptions" :msg="bank_nameError" />
         </BaseLabel>
       </div>
       <div class="px-20 pt-14">
-        <BaseLabel label="开户行地址">
-          <BaseInput v-model="address" :msg="addressError" />
-        </BaseLabel>
-      </div>
-      <div class="px-20 pt-14">
-        <BaseLabel must label="银行卡号">
+        <BaseLabel must label="PIX账号">
           <BaseInput v-model="bank_account" :msg="bank_accountError" />
         </BaseLabel>
       </div>
       <div class="px-20 pt-14">
         <AppPasswordInput v-model="pay_password" v-model:modelType="auth_type" :err-pay-pwd="pay_passwordError" />
-        {{ auth_type }}
       </div>
       <div class="flex items-center px-20 py-14">
         <BaseCheckBox v-model="isDefaultAddress" />

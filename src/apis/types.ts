@@ -47,6 +47,7 @@ export interface VirtualCoin {
   state: number
   /** 合约类型 */
   contract_type: string
+  contract_name: string
   /** 货币名称 */
   currency_name: string
   created_at: number

@@ -91,6 +91,7 @@ async function handleBindAddress() {
       address: address.value,
       is_default: isDefault.value ? 1 : 2,
       pay_password: password.value,
+      auth_type: +passwordRef.value.authType,
     })
   }
 }

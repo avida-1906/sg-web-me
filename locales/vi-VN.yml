@@ -2214,7 +2214,7 @@ type_select: 'Loại hình lựa chọn'
 rule_text_one: 'Tỷ giá sẽ được đồng bộ theo thời gian biến động của thị trường'
 rule_text_two: 'Tỷ giá sẽ được áp dụng khi đơn cược của bạn được giải quyết'
 rule_text_three: 'Các cược hợp lệ đã được tính sẽ không bị ảnh hưởng bởi tỷ giá tiếp theo'
-rule_text_title: 'VIP được tính dựa trên số lần đặt cược hợp lệ của bạn'
+rule_text_title: Điểm VIP sẽ được tính dựa trên mức cược hợp lệ của bạn.
 after_transfer_withdraw_money: 'Sau khi chuyển vào ví, bạn cần gấp đôi số tiền đặt cược hợp lệ trước khi có thể rút tiền'
 mini_manual_bet: 'Cược thủ công'
 mini_auto_bet: 'Cược tự động'

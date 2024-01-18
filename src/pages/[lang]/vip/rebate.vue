@@ -5,7 +5,7 @@ const { t } = useI18n()
 // const appStore = useAppStore()
 // const { vipConfigData } = storeToRefs(appStore)
 const { providerList } = storeToRefs(useSportsStore())
-const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
+// const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
 const { bigPlats: platformList } = storeToRefs(useCasinoStore())
 const { isMobile } = storeToRefs(useWindowStore())
 const { run: runVipRebateConfig, data: vipRebateConfig, loading: loadVipRebateConfig } = useRequest(ApiMemberVipRebateConfig)
@@ -37,8 +37,8 @@ for (const key in currencyConfig) {
 // })
 const squareVal = ref(squareTabList.value[0].value)
 
-const prefix = computed(() =>
-  AllLanguages.value.filter(a => a.value === userLanguage.value)[0].prefix)
+// const prefix = computed(() =>
+//   AllLanguages.value.filter(a => a.value === userLanguage.value)[0].prefix)
 const allPlatforms = computed(() =>
   platformList.value.sort((a, b) => b.seq - a.seq).concat(providerList.value.sort((a, b) => b.seq - a.seq)))
 const tabList = computed(() => [
@@ -51,8 +51,9 @@ const tabList = computed(() => [
 // .filter(item => allPlatforms.value.filter(p => p.game_type === item.value).length))
 const filteredPlatforms = computed(() =>
   allPlatforms.value.filter(p => p.game_type === tab.value))
+console.log(allPlatforms.value)
 const filterPlatformColumn = computed<Column[]>(() => filteredPlatforms.value.map(p =>
-  ({ title: p[prefix.value ? `${prefix.value}_name` : 'name'], dataIndex: `${p.id}rate`, align: 'center' })))
+  ({ title: p.name, dataIndex: `${p.id}rate`, align: 'center' })))
 // const data = computed(() => {
 //   return vipConfigData.value
 //     ? Object.values(vipConfigData.value).sort((a, b) => +a.level - +b.level)

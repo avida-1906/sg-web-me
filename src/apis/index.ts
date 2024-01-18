@@ -459,12 +459,21 @@ export function ApiMemberBankcardInsert(data: {
   bank_name: string
   bank_account: string
   bank_area_cpf?: string
+  /**
+   * 1:是
+   *
+   * 2:否
+   */
   is_default?: number
   pay_password: string
   country: string
   city: string
   address: string
-  /** 1:谷歌 2:资金密码 */
+  /**
+   * 1:谷歌
+   *
+   * 2:资金密码
+   */
   auth_type: 1 | 2
 }) {
   return httpClient.post<string>('/member/bankcard/insert', data)
@@ -485,6 +494,7 @@ export function ApiMemberWalletInsert(data: {
   is_default?: number
   /** 资金密码 */
   pay_password: string
+  auth_type: number
 }) {
   return httpClient.post<string>('/member/wallet/insert', data)
 }
@@ -656,6 +666,7 @@ export function ApiMemberFrontLoginLogList(params?: {
 export function ApiMemberWalletDelete(data: {
   id: string
   pay_password: string
+  auth_type: number
 }) {
   return httpClient.post<string>('/member/wallet/delete', data)
 }
@@ -667,6 +678,7 @@ export function ApiMemberWalletDelete(data: {
 export function ApiMemberBankcardDelete(data: {
   id: string
   pay_password: string
+  auth_type: number
 }) {
   return httpClient.post<string>('/member/bankcard/delete', data)
 }
@@ -2228,4 +2240,24 @@ export function ApiMemberVipRebateConfig(params: {
     'name': string
     'rate': string
   }[]>('/member/vip/rebate/config', { params })
+}
+
+/**
+ * 按货币取银行列表 member/bankcard/bank
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=eda66e11-97ad-409d-b4f1-af753a74f5e2
+ */
+export function ApiMemberBankcardBank(params: {
+  currency_id: CurrencyCode
+}) {
+  return httpClient.get<{
+    country_id: string
+    country_name: string
+    bank_list: {
+      currency_id: CurrencyCode
+      id: string
+      name: string
+      sort_level: string
+      country_id: string
+    }[]
+  }[]>('/member/bankcard/bank', { params })
 }

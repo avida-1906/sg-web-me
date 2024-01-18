@@ -185,6 +185,7 @@ await application.allSettled([
             :options="paymentMethodCoinList"
             :msg="amountError"
             small
+            :show-placeholder="false"
             @select="payMethodCoinselect"
           />
           <!-- <div class="other-aisles scroll-x">
@@ -211,19 +212,15 @@ await application.allSettled([
           />
         </BaseLabel>
         <BaseLabel v-else :label="t('deposit_amount')" must-small>
-          <div style="position: relative;">
-            <BaseSelect
-              v-if="oftenAmount && oftenAmount.length"
-              v-model="amount"
-              :placeholder="t('select_deposit_amount')"
-              :options="oftenAmount"
-              :msg="amountError"
-              small
-            />
-            <div v-if="!amount" class="placeholder-text">
-              {{ t('select_deposit_amount') }}
-            </div>
-          </div>
+          <BaseSelect
+            v-if="oftenAmount && oftenAmount.length"
+            v-model="amount"
+            :placeholder="t('select_deposit_amount')"
+            :options="oftenAmount"
+            :msg="amountError"
+            small
+            show-placeholder
+          />
         </BaseLabel>
         <BaseMoneyKeyboard
           v-if="oftenAmount && oftenAmount.length"
@@ -321,42 +318,43 @@ await application.allSettled([
     display: flex;
     flex-direction: column;
     gap: var(--tg-spacing-16);
-    .other-aisles{
-      display: flex;
-      justify-content: left;
-      align-items: center;
-      gap: var(--tg-spacing-12);
-      // overflow: hidden;
-      &::-webkit-scrollbar-thumb{
-          display: none;
-        }
-      .aisle{
-        flex-shrink: 0;
-        padding: var(--tg-spacing-4) var(--tg-spacing-8);
-        background-color: var(--tg-secondary-dark);
-        border-radius: var(--tg-radius-default);
-        box-shadow: var(--tg-box-shadow);
-        cursor: pointer;
-        font-size: var(--tg-font-size-xs);
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        line-height: 17px;
-        &:hover{
-          opacity: .9;
-        }
-        &.active{
-          background: var(--tg-text-blue);
-          color: var(--tg-text-white);
-        }
-        &:active{
-          span{
-            transform: scale(.96);
-          }
-        }
-      }
-    }
+    --tg-select-placeholder-color: var(--tg-secondary-light);
+    // .other-aisles{
+    //   display: flex;
+    //   justify-content: left;
+    //   align-items: center;
+    //   gap: var(--tg-spacing-12);
+    //   // overflow: hidden;
+    //   &::-webkit-scrollbar-thumb{
+    //       display: none;
+    //     }
+    //   .aisle{
+    //     flex-shrink: 0;
+    //     padding: var(--tg-spacing-4) var(--tg-spacing-8);
+    //     background-color: var(--tg-secondary-dark);
+    //     border-radius: var(--tg-radius-default);
+    //     box-shadow: var(--tg-box-shadow);
+    //     cursor: pointer;
+    //     font-size: var(--tg-font-size-xs);
+    //     display: inline-flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     flex-direction: column;
+    //     line-height: 17px;
+    //     &:hover{
+    //       opacity: .9;
+    //     }
+    //     &.active{
+    //       background: var(--tg-text-blue);
+    //       color: var(--tg-text-white);
+    //     }
+    //     &:active{
+    //       span{
+    //         transform: scale(.96);
+    //       }
+    //     }
+    //   }
+    // }
     .second-title{
       margin-bottom: var(--tg-spacing-4);
       color: var(--tg-text-lightgrey);
@@ -384,11 +382,6 @@ await application.allSettled([
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap:  var(--tg-spacing-12);
-    }
-    .placeholder-text{
-      position: absolute;
-      top: var(--tg-spacing-13);
-      left: var(--tg-spacing-9);
     }
 }
 </style>

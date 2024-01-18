@@ -44,7 +44,7 @@ const columns: Column[] = [
   },
   {
     title: t('sub_count'),
-    dataIndex: 'direct_user_count',
+    dataIndex: 'sub_user_count',
     align: 'center',
     sort: true,
     sortDirections: 'descend',
@@ -52,14 +52,15 @@ const columns: Column[] = [
   {
     title: t('performance'),
     dataIndex: 'valid_bet_amount_direct',
+    slot: 'valid_bet_amount_direct',
     align: 'center',
     sort: true,
   },
   {
     title: t('label_contribute_commission'),
-    dataIndex: 'commission_amount_direct',
+    dataIndex: 'contribution_amount',
     align: 'center',
-    slot: 'commission_amount_direct',
+    slot: 'contribution_amount',
     sort: true,
   },
 ]
@@ -114,11 +115,26 @@ onMounted(() => {
       @sort="setSortMap"
     >
       <template #time="{ record }">
-        {{ `${timeToDateFormat(record.reg_time)} ${timeToCustomizeFormat(
-          record.reg_time, 'HH:mm:ss')}` }}
+        {{ `${timeToDateFormat(record.reg_time)} ${timeToCustomizeFormat(record.reg_time, 'HH:mm:ss')}` }}
       </template>
       <template #username="{ record }">
         <AppReportUserName :username="record.username" :level="`${record.vip}`" />
+      </template>
+      <template #valid_bet_amount_direct="{ record }">
+        <div class="center">
+          <AppAmount
+            :amount="record.valid_bet_amount_direct"
+            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+          />
+        </div>
+      </template>
+      <template #contribution_amount="{ record }">
+        <div class="center">
+          <AppAmount
+            :amount="record.contribution_amount"
+            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+          />
+        </div>
       </template>
     </BaseTable>
     <BasePagination

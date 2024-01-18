@@ -1,20 +1,11 @@
 <script setup lang="ts">
-import type { CurrencyData } from '~/composables/useCurrencyData'
 import type { BankCard, VirtualCoin } from '~/apis/types'
-
-type WalletCurrencyList = {
-  coin?: VirtualCoin[] // 绑定的虚拟币
-  bankcard?: BankCard[] // 绑定的银行卡
-  addressNum: number // 虚拟币已绑定地址的数量
-  showAdd: boolean // 是否可添加
-  shown: boolean // 控制展开关闭
-} & CurrencyData
 
 const { t } = useI18n()
 const closeDialog = inject('closeDialog', () => { })
 const { openDeleteConfirm } = useDeleteConfirmDialog()
 const { currentGlobalCurrency, userInfo } = storeToRefs(useAppStore())
-const { renderCurrencyList, getVirContractName } = useCurrencyData()
+const { renderCurrencyList } = useCurrencyData()
 const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
 const { push } = useLocalRouter()
 
@@ -38,34 +29,27 @@ const isVirtualCurrency = computed(() => application.isVirtualCurrency(curType.v
 const { data: bankcardData, runAsync: runAsyncWalletBankcardList } = useRequest(ApiWalletBankcardList)
 const bankcardList = computed(() => {
   if (bankcardData.value) {
-    const list = isVirtualCurrency.value ? bankcardData.value.coin[curType.value] : bankcardData.value.bankcard[curType.value]
+    const list = isVirtualCurrency.value ? bankcardData.value.coin[curCode.value] : bankcardData.value.bankcard[curCode.value]
     return list ?? []
   }
 
   return []
 })
 
-function toAddBankcards(item: WalletCurrencyList) {
+function toAddBankcards() {
   let isFirst = true
   let openName = ''
-  if (item.bankcard?.length) {
+  if (bankcardList.value.length > 0) {
     isFirst = false
-    openName = item.bankcard[0].open_name
+    openName = bankcardList.value[0].open_name
   }
-  const {
-    openAddBankcardsDialog,
-  } = useAddBankcardsDialog({
-    title: t('bind_bank_card'),
-    icon: 'fiat-bank',
-    openName,
+  const { openBindBankDialog } = useDialogBindBank({
     isFirst,
-    activeCurrency: item,
-    /** 702 货币id */
-    currentType: '1',
-    callback: openWalletDialog,
+    openName,
+    currencyId: curCode.value,
   })
   closeDialog()
-  nextTick(() => openAddBankcardsDialog())
+  nextTick(() => openBindBankDialog())
 }
 function toAddPix() {
   let isFirst = true
@@ -81,6 +65,7 @@ function toAddPix() {
     icon: 'fiat-pix-title',
     openName,
     isFirst,
+    currencyId: curCode.value,
   })
   closeDialog()
   nextTick(() => openAddPixDialog())
@@ -125,6 +110,15 @@ function bind() {
 
   else if (curCode.value === '702')
     toAddPix()
+
+  else
+    toAddBankcards()
+}
+function deleteCard(item: any) {
+  if (isVirtualCurrency.value)
+    toDeleteVirAddress(item, curType.value)
+  else
+    toDeleteBankcard(item)
 }
 
 await application.allSettled([runAsyncWalletBankcardList()])
@@ -143,7 +137,10 @@ await application.allSettled([runAsyncWalletBankcardList()])
       </BaseSelect>
     </div>
     <!-- 当前币种绑定为0 -->
-    <div v-show="bankcardList.length === 0" class="bg-tg-secondary-dark border-tg-text-white mb-14 mt-17 flex border-collapse items-center justify-center border-2 rounded-[4px] border-dashed py-25">
+    <div
+      v-show="bankcardList.length === 0"
+      class="bg-tg-secondary-dark border-tg-text-white mb-14 mt-17 flex border-collapse items-center justify-center border-2 rounded-[4px] border-dashed py-25"
+    >
       <ul class="relative font-medium leading-[1.5]">
         <div class="absolute left-[-22px] text-[16px]">
           <BaseIcon name="uni-warning-color" />
@@ -155,18 +152,18 @@ await application.allSettled([runAsyncWalletBankcardList()])
     </div>
 
     <!-- 列表 -->
-    <div class="mb-14 flex flex-col gap-14">
+    <div class="mb-14 mt-17 flex flex-col gap-14">
       <!-- item -->
-      <div class="flex overflow-hidden rounded-[4px]">
+      <div v-for="item in bankcardList" :key="item.id" class="flex overflow-hidden rounded-[4px]">
         <div class="bg-tg-secondary-grey max-w-60 flex items-center justify-center p-23">
           <BaseIcon name="coin-usdt" />
         </div>
         <div class="bg-tg-secondary relative flex grow items-center px-14">
           <div class="text-tg-text-white flex flex-col gap-6">
-            <span class="font-semibold">开户行</span>
-            <span class="font-bold">000000000000</span>
+            <span class="font-semibold">{{ item.bank_name || item.contract_name }}</span>
+            <span class="font-bold">{{ item.bank_account || item.address }}</span>
           </div>
-          <div class="absolute right-14">
+          <div class="absolute right-14" @click="deleteCard(item)">
             <BaseButton size="none" type="text">
               <BaseIcon class="text-[18px]" name="uni-bank-delete" />
             </BaseButton>
@@ -188,6 +185,4 @@ await application.allSettled([runAsyncWalletBankcardList()])
   </div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
