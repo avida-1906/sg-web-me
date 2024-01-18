@@ -75,10 +75,10 @@ const getComponent = computed(() => {
   else if (check === 3 && !isSetPayPwd.value && !isSetAuth.value)
     return SecuritySafePwd
 
-  else if (isOpenVerify.value && !isSetAuth.value)
+  else if (check === 1 && !isSetAuth.value)
     return SecuritySafeCheck
 
-  else if (isOpenPayPwd.value && !isSetPayPwd.value)
+  else if (check === 2 && !isSetPayPwd.value)
     return SecuritySafePwd
 
   else
@@ -120,47 +120,44 @@ await application.allSettled(
 </script>
 
 <template>
-  <div v-if="getComponent" class="component-box">
-    <component :is="getComponent" :tip-text="tabList.find((item) => item.value === currentTab)?.label" />
-  </div>
-  <template v-else>
-    <div class="app-wallet-dialog">
-      <div ref="contentRef" class="content">
-        <BaseTab v-model="currentTab" :list="tabList" />
-        <AppSelectCurrency
-          v-show="showWallet && !isCardHolder && !isExchange"
-          :type="4"
-          :active-currency-list="getActiveCurrency"
-          :show-balance="isWithdraw"
-          :network="isVirCurrency"
-          :popper-clazz="isDeposit ? 'app-wallet-cur' : 'app-wallet-cur-with'"
-          :placeholder="isDeposit ? 'search' : 'search_currency'"
-          :distance="distance"
-          @change="changeCurrency"
-        />
-        <!-- 存款 -->
-        <template v-if="isDeposit && activeCurrency">
-          <Suspense timeout="0">
-            <AppVirtualDeposit
-              v-if="isVirCurrency"
-              :active-currency="activeCurrency"
-              :current-network="currentNetwork"
-              @show="handleShow"
-            />
-            <AppFiatDeposit
-              v-else
-              :active-currency="activeCurrency"
-              @show="handleShow"
-            />
-            <template #fallback>
-              <div class="center dialog-loading-height">
-                <BaseLoading />
-              </div>
-            </template>
-          </Suspense>
-        </template>
-        <!-- 提款款 -->
-        <template v-else-if="isWithdraw && activeCurrency">
+  <div class="app-wallet-dialog">
+    <div ref="contentRef" class="content">
+      <BaseTab v-model="currentTab" :list="tabList" />
+      <AppSelectCurrency
+        v-show="showWallet && !isCardHolder && !isExchange && !getComponent"
+        :type="4"
+        :active-currency-list="getActiveCurrency"
+        :show-balance="isWithdraw"
+        :network="isVirCurrency"
+        :popper-clazz="isDeposit ? 'app-wallet-cur' : 'app-wallet-cur-with'"
+        :placeholder="isDeposit ? 'search' : 'search_currency'"
+        :distance="distance"
+        @change="changeCurrency"
+      />
+      <!-- 存款 -->
+      <template v-if="isDeposit && activeCurrency">
+        <Suspense timeout="0">
+          <AppVirtualDeposit
+            v-if="isVirCurrency"
+            :active-currency="activeCurrency"
+            :current-network="currentNetwork"
+            @show="handleShow"
+          />
+          <AppFiatDeposit
+            v-else
+            :active-currency="activeCurrency"
+            @show="handleShow"
+          />
+          <template #fallback>
+            <div class="center dialog-loading-height">
+              <BaseLoading />
+            </div>
+          </template>
+        </Suspense>
+      </template>
+      <!-- 提款款 -->
+      <template v-else-if="isWithdraw && activeCurrency">
+        <template v-if="!getComponent">
           <Suspense timeout="0">
             <AppWithdraw
               v-if="isVirCurrency"
@@ -180,36 +177,40 @@ await application.allSettled(
             </template>
           </Suspense>
         </template>
-      </div>
-      <template v-if="isCardHolder">
-        <Suspense timeout="0">
-          <AppCardHolder />
-          <template #fallback>
-            <div class="center dialog-loading-height">
-              <BaseLoading />
-            </div>
-          </template>
-        </Suspense>
+        <template v-else>
+          <component :is="getComponent" :tip-text="tabList.find((item) => item.value === currentTab)?.label" />
+        </template>
       </template>
-      <AppMoneyExchange v-else-if="isExchange" />
     </div>
-    <div
-      v-if="(isWithdraw || isDeposit || isExchange)
-        && isOpenVerify && !isSetAuth"
-      class="safe-bottom"
+    <!-- 卡包 -->
+    <template v-if="isCardHolder">
+      <Suspense timeout="0">
+        <AppCardHolder />
+        <template #fallback>
+          <div class="center dialog-loading-height">
+            <BaseLoading />
+          </div>
+        </template>
+      </Suspense>
+    </template>
+    <AppMoneyExchange v-else-if="isExchange" />
+  </div>
+  <div
+    v-if="(isWithdraw || isDeposit || isExchange)
+      && isOpenVerify && !isSetAuth && isEmailVerify"
+    class="safe-bottom"
+  >
+    <div>
+      {{ t('improve_safe_level') }}
+    </div>
+    <BaseButton
+      bg-style="primary"
+      size="md"
+      @click="router.push('/settings/security-safe-check'); closeDialog()"
     >
-      <div>
-        {{ t('improve_safe_level') }}
-      </div>
-      <BaseButton
-        bg-style="primary"
-        size="md"
-        @click="router.push('/settings/security-safe-check'); closeDialog()"
-      >
-        {{ t('turn_on_double_check') }}
-      </BaseButton>
-    </div>
-  </template>
+      {{ t('turn_on_double_check') }}
+    </BaseButton>
+  </div>
 </template>
 
 <style>
@@ -222,9 +223,6 @@ await application.allSettled(
 </style>
 
 <style lang='scss' scoped>
-.component-box{
-  padding: 0 16px 16px;
-}
 .app-wallet-dialog {
   --tg-base-input-style-placeholder-color: var(--tg-text-lightgrey);
   --tg-base-input-style-placeholder-opacity: 1;
