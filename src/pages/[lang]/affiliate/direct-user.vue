@@ -125,7 +125,7 @@ onMounted(() => {
               offline: record.online === '1',
             }"
           >
-            <BaseIcon v-if="record.online === '1'" name="uni-computer" />
+            <BaseIcon v-if="record.online === '2'" name="uni-computer" />
           </div>
           <span>{{ record.online === '2' ? t('active_state') : t('offline') }}</span>
         </div>

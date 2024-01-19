@@ -22,10 +22,11 @@ const pwdOptions = computed(() => {
   const check = brandBaseDetail.value?.check
   const code = { label: t('double_check_code'), value: '1' }
   const pwd = { label: t('menu_title_settings_update_safepwd'), value: '2' }
-  const teg = []
+  const teg: ISelectOption[] = []
   if (check === 3) {
-    isSetPayPwd.value && teg.push(pwd)
-    isSetAuth.value && teg.push(code)
+    // isSetPayPwd.value && teg.push(pwd)
+    // isSetAuth.value && teg.push(code)
+    return teg.concat([code, pwd])
   }
   else if (isOpenVerify.value) {
     teg.push(code)
