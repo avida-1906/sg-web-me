@@ -1,5 +1,8 @@
 import type { EnumCurrencyKey } from '~/apis/types'
 import { type EnumLanguageKeys } from '~/modules/i18n'
+import { EnumLanguage } from '~/utils/enums'
+
+console.log('🚀 ~ EnumLanguage:', EnumLanguage)
 
 const { VITE_I18N_DEFAULT_LANG } = getEnv()
 
