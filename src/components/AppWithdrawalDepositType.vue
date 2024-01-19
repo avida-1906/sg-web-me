@@ -21,7 +21,7 @@ const changeType = function (type: string) {
     const refHalfWidth = ref?.offsetWidth / 2
     const left = ref.offsetLeft - parentHalfWidth + refHalfWidth
     // parentRef.scrollLeft = ref.offsetLeft - parentHalfWidth + refHalfWidth
-    parentRef.scrollTo({ left, behavior: 'smooth' })
+    parentRef.scrollTo({ left })
   }
   emit('update:modelValue', type)
 }
@@ -30,7 +30,7 @@ watch(() => props.currentType, () => {
   nextTick(() => {
     const ref: HTMLElement | null = document.querySelector(`#id${props.modelValue}`)
     const parentRef = ref?.parentElement
-    parentRef?.scrollTo({ left: 0, behavior: 'smooth' })
+    parentRef?.scrollTo({ left: 0 })
   })
 })
 </script>
