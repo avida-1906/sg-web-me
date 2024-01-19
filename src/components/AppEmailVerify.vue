@@ -46,7 +46,7 @@ const { runAsync: runMemberUpdate } = useRequest(ApiMemberUpdate, {
   onSuccess(data, params) {
     if (params[0].record.email) {
       setEmailDisabledBtnTrue()
-      emailCheck(true)
+      emailCheck(false)
     }
     notifyData.value = {
       type: 'email',
@@ -101,7 +101,7 @@ async function emailSubmit() {
 async function emailCheck(manual: boolean) {
   await emailValidate()
   if (!emailErrormsg.value) {
-    (!manual) && (notifyData.value = {
+    manual && (notifyData.value = {
       type: 'email',
       title: t('tip_email_sent'),
       message: `${t('email_update_to')} ${email.value}`,

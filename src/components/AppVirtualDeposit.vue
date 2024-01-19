@@ -183,9 +183,7 @@ await application.allSettled([
           <BaseSelect
             v-model="aisleId"
             :options="paymentMethodCoinList"
-            :msg="amountError"
             small
-            :show-placeholder="false"
             @select="payMethodCoinselect"
           />
           <!-- <div class="other-aisles scroll-x">
@@ -370,6 +368,7 @@ await application.allSettled([
       color: var(--tg-text-white);
       cursor: pointer;
       background-color: var(--tg-secondary-dark);
+      word-break: break-all;
     }
     .warn-msg {
         line-height: 1;

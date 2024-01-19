@@ -302,7 +302,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
     span {
       font-size: var(--tg-font-size-xs);
       color: var(--tg-text-error-sub);
-      margin-left: var(--tg-spacing-8);
+      margin-left: var(--tg-spacing-4);
     }
   }
 

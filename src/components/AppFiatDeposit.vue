@@ -149,6 +149,7 @@ const paymentMethodData = computed(() => {
 })
 
 const strToArray = function (amounts: string) {
+  console.log(amounts)
   const temp = amounts.split(',').filter(str => str.trim() !== '')
   return temp.map((i) => {
     return {
@@ -213,8 +214,8 @@ const isPaymentDepositBank = computed(() => {
 })
 const getAmountLimit = computed(() => {
   return (paymentMerchantList.value?.length ?? 0) > 1
-    ? ''
-    : `${currentAisleItem.value?.amount_min}-${currentAisleItem.value?.amount_max}`
+    ? `${currentAisleItem.value?.amount_min}-${currentAisleItem.value?.amount_max}`
+    : ''
 })
 
 function formatAmount() {
@@ -224,21 +225,20 @@ function formatAmount() {
 const toCopy = function (item: string) {
   application.copy(item)
 }
-const changeAisle = function (item: IPaymentMerchantData) {
-  const ref: HTMLElement | null = document.querySelector(`#id${item.value}`)
-  const parentRef = ref?.parentElement
-  if (parentRef && ref) {
-    const parentHalfWidth = parentRef?.offsetWidth / 2
-    const refHalfWidth = ref?.offsetWidth / 2
-    const left = ref.offsetLeft - parentHalfWidth + refHalfWidth
-    // parentRef.scrollLeft = ref.offsetLeft - parentHalfWidth + refHalfWidth
-    parentRef.scrollTo({ left, behavior: 'smooth' })
-  }
+const changeAisle = function (val: string) {
+  // const ref: HTMLElement | null = document.querySelector(`#id${item.value}`)
+  // const parentRef = ref?.parentElement
+  // if (parentRef && ref) {
+  //   const parentHalfWidth = parentRef?.offsetWidth / 2
+  //   const refHalfWidth = ref?.offsetWidth / 2
+  //   const left = ref.offsetLeft - parentHalfWidth + refHalfWidth
+  //   parentRef.scrollTo({ left, behavior: 'smooth' })
+  // }
 
-  currentAisle.value = item.value
-  currentAisleItem.value = item
-  oftenAmount.value = strToArray(item.often_amount)
-  fixedAmount.value = strToArray(item.amount_fixed)
+  // currentAisle.value = item.value
+  currentAisleItem.value = paymentMerchantData.value.find(item => item.value === val)
+  oftenAmount.value = strToArray(currentAisleItem.value?.often_amount ?? '')
+  fixedAmount.value = strToArray(currentAisleItem.value?.amount_fixed ?? '')
   amountReset()
 }
 async function depositSubmit() {
@@ -419,7 +419,7 @@ await application.allSettled([awaitHandle()])
                 small
               />
             </BaseLabel>
-            <BaseLabel
+            <!-- <BaseLabel
               v-show="havePaymentMerchant && !isPaymentDepositBank"
               :label="t('channel_choose')"
             >
@@ -436,6 +436,14 @@ await application.allSettled([awaitHandle()])
                   <span>{{ item.amount_min }}-{{ item.amount_max }}</span>
                 </div>
               </div>
+            </BaseLabel> -->
+            <BaseLabel v-show="havePaymentMerchant && !isPaymentDepositBank" :label="t('channel_choose')" must-small>
+              <BaseSelect
+                v-model="currentAisle"
+                :options="paymentMerchantData"
+                small
+                @select="changeAisle"
+              />
             </BaseLabel>
             <BaseLabel v-if="isPaymentDepositBank" must-small :label="t('deposit_name')">
               <BaseInput v-model="depositName" :msg="depositNameError" />
@@ -544,43 +552,43 @@ await application.allSettled([awaitHandle()])
         display: flex;
         flex-direction: column;
         gap: 16px;
-        .other-aisles{
-          display: flex;
-          justify-content: left;
-          align-items: center;
-          gap: var(--tg-spacing-12);
-          // overflow: hidden;
-          &::-webkit-scrollbar-thumb{
-              display: none;
-            }
-          .aisle{
-            flex-shrink: 0;
-            padding: var(--tg-spacing-4) var(--tg-spacing-8);
-            background-color: var(--tg-secondary-dark);
-            border-radius: var(--tg-radius-default);
-            box-shadow: var(--tg-box-shadow);
-            cursor: pointer;
-            font-size: var(--tg-font-size-xs);
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            // gap: .75rem;
-            flex-direction: column;
-            line-height: 17px;
-            &:hover{
-              opacity: .9;
-            }
-            &.active{
-              background: var(--tg-text-blue);
-              color: var(--tg-text-white);
-            }
-            &:active{
-                span{
-                  transform: scale(.96);
-                }
-            }
-          }
-        }
+        // .other-aisles{
+        //   display: flex;
+        //   justify-content: left;
+        //   align-items: center;
+        //   gap: var(--tg-spacing-12);
+        //   // overflow: hidden;
+        //   &::-webkit-scrollbar-thumb{
+        //       display: none;
+        //     }
+        //   .aisle{
+        //     flex-shrink: 0;
+        //     padding: var(--tg-spacing-4) var(--tg-spacing-8);
+        //     background-color: var(--tg-secondary-dark);
+        //     border-radius: var(--tg-radius-default);
+        //     box-shadow: var(--tg-box-shadow);
+        //     cursor: pointer;
+        //     font-size: var(--tg-font-size-xs);
+        //     display: inline-flex;
+        //     justify-content: center;
+        //     align-items: center;
+        //     // gap: .75rem;
+        //     flex-direction: column;
+        //     line-height: 17px;
+        //     &:hover{
+        //       opacity: .9;
+        //     }
+        //     &.active{
+        //       background: var(--tg-text-blue);
+        //       color: var(--tg-text-white);
+        //     }
+        //     &:active{
+        //         span{
+        //           transform: scale(.96);
+        //         }
+        //     }
+        //   }
+        // }
       }
     }
   }

@@ -1,0 +1,137 @@
+.statistics-container {
+  width: 1140px;
+  min-width: 1040px;
+  min-height: 80px;
+  margin-top: 32px;
+  background-color: #0f212e;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.statistics-button {
+  width: 100%;
+  height: 80px;
+  margin-top: 10px;
+  background-color: #0f212e;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+.span-group {
+  width: 83%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+.span-white {
+  color: #fff;
+  text-align: center;
+  font-family: PingFang SC;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.32px;
+}
+
+.span-gray {
+  color: #b1bad3;
+  text-align: center;
+  font-family: PingFang SC;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.32px;
+  margin-left: 15px;
+}
+
+.span-gray:hover {
+  color: white;
+}
+.reward {
+  border-radius: 30px;
+  background: #2f4552;
+  width: 161px;
+  height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.reward .span1 {
+  color: #b1bad3;
+  text-align: center;
+  font-family: PingFang SC;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.reward .span2 {
+  color: #b1bad3;
+  text-align: center;
+  font-family: PingFang SC;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-left: 4px;
+}
+.RewardTypeContainer {
+  display: flex;
+  gap: 10px;
+  border-radius: 1000px;
+  background-color: #1a2c37;
+  padding: 5px;
+  margin-bottom: 10px;
+  width: 455px;
+  min-width: 455px;
+}
+.RewardTypeButton {
+  display: inline-flex;
+  padding: 12px 20px;
+  white-space: nowrap;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  font-family: PingFang SC;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.RewardTypeActive,
+.RewardTypeButton:hover {
+  border-radius: 1000px;
+  background-color: #2f4552;
+}
+
+.rotate {
+  transform: rotate(-90deg);
+}
+
+@media screen and (max-width: 1100px) {
+  .statistics-container {
+    width: 80vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    align-self: center;
+    margin-top: 10px;
+    background-color: #0f212e;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    min-width: 340px;
+  }
+}

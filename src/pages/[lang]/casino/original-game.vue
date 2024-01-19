@@ -14,7 +14,7 @@ const gameObj = computed<{ [t: string]: Component }>(() => ({
     () => import('~/components/DiceIndex.vue'),
   ),
   plinko: defineAsyncComponent(
-    () => import('~/components/PlinkoIndex.vue'),
+    () => import('~/original-games/plinko/index.vue'),
   ),
 }))
 
