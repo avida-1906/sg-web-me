@@ -9,7 +9,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppAccordionMenu: typeof import('./components/AppAccordionMenu.vue')['default']
     AppAddBankcards: typeof import('./components/AppAddBankcards.vue')['default']
-    AppAddPix: typeof import('./components/AppAddPix.vue')['default']
     AppAddPixDialog: typeof import('./components/AppAddPixDialog.vue')['default']
     AppAddVirAddressDialog: typeof import('./components/AppAddVirAddressDialog.vue')['default']
     AppAffiliateContent: typeof import('./components/AppAffiliateContent.vue')['default']

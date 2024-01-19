@@ -295,14 +295,11 @@ onMounted(() => {
             transition: color 0.2s ease;
             font-weight: var(--tg-font-weight-semibold);
 
-            &:hover { // ,&.active
+            &:hover {
               background-color: var(--tg-secondary-light);
-              // color: var(--tg-text-black);
-              // color: var(--tg-popper-hover-color-default);
             }
             &:active div{
               transform: scale(0.96);
-              // color: var(--tg-text-blue);
             }
 
         }

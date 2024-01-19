@@ -15,19 +15,19 @@ const route = useRoute()
         <div>{{ $t(`vip_rule_1`) }}</div>
       </div>
       <div class="h3">
-        {{ $t('vip_day_salary') }}
+        {{ $t('vip_day_salary_bonus') }}
       </div>
       <div class="li">
         <div>{{ $t(`vip_rule_2`) }}</div>
       </div>
       <div class="h3">
-        {{ $t('vip_week_salary') }}
+        {{ $t('vip_week_salary_bonus') }}
       </div>
       <div class="li">
         <div>{{ $t(`vip_rule_3`) }}</div>
       </div>
       <div class="h3">
-        {{ $t('vip_month_salary') }}
+        {{ $t('vip_month_salary_bonus') }}
       </div>
       <div class="li">
         <div>{{ $t(`vip_rule_4`) }}</div>
