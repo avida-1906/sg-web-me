@@ -56,10 +56,10 @@ watch(dependsData, (val, old) => {
 
 <template>
   <div
-    class="settings-content-box"
-    :class="{ 'not-last-one': !lastOne, 'settings-content-item': !dialogBox }"
+    class="settings-content-box settings-content-item"
+    :class="{ 'not-last-one': !lastOne }"
   >
-    <div v-if="!dialogBox" class="content-top">
+    <div class="content-top">
       <div class="top-title">
         <span>{{ props.title }}</span>
         <span v-if="props.badge" class="badge">{{ $t('verified') }}</span>

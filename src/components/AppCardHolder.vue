@@ -180,7 +180,7 @@ await application.allSettled([runAsyncWalletBankcardList()])
 
     <!-- 当千币种绑定>0 -->
     <div v-show="bankcardList.length > 0" class="mt-14 font-medium leading-[1.5]">
-      {{ t('three_withdraw_info_only') }}{{ t('want_more_del_first') }}
+      {{ t('bind_more_bank_tip') }}
     </div>
   </div>
 </template>
