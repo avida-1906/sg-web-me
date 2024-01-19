@@ -67,6 +67,9 @@ function selectTypeChange(item: string) {
   emit('update:modelValue', '')
   emit('update:modelType', item)
 }
+function passwordChange(val: string) {
+  emit('update:modelValue', val)
+}
 
 watch(() => pwdOptions.value, () => {
   pwdType.value = pwdOptions.value[0]?.value ?? ''
@@ -81,7 +84,7 @@ defineExpose({ resetPassword, validatePassword, errPassword, setTouchTrue: getTo
     <BaseInput
       ref="passwordRef" v-model="password" :label="pwdLabel" :msg="errPassword || errPayPwd" :placeholder="placeholder"
       type="password" max="6" must :msg-after-touched="!errPayPwd"
-      @blur="emit('update:modelValue', password)"
+      @input="passwordChange"
     >
       <template #right-button>
         <BaseSelect
