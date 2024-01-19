@@ -1,8 +1,21 @@
 import type { EnumCurrencyKey } from '~/apis/types'
 import { type EnumLanguageKeys } from '~/modules/i18n'
-import { EnumLanguage } from '~/utils/enums'
 
-console.log('🚀 ~ EnumLanguage:', EnumLanguage)
+/** * 语言枚举 */
+export enum EnumLanguage {
+  /** * 中文 */
+  'zh-CN' = 'zh_CN',
+  /** * 葡萄牙语 Portuguese */
+  'pt-BR' = 'pt_BR',
+  /** * 越南语 Vietnamese */
+  'vi-VN' = 'vi_VN',
+  /** * 泰语 Thai */
+  'th-TH' = 'th_TH',
+  /** * 印度 India */
+  'hi-IN' = 'en_IN',
+  /** * 英语 */
+  'en-US' = 'en_US',
+}
 
 const { VITE_I18N_DEFAULT_LANG } = getEnv()
 
