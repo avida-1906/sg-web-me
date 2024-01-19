@@ -151,7 +151,7 @@ declare global {
   const EnumCasinoSortType: typeof import('./utils/enums')['EnumCasinoSortType']
   const EnumCurrency: typeof import('./utils/enums')['EnumCurrency']
   const EnumGlobalGameType: typeof import('./utils/enums')['EnumGlobalGameType']
-  const EnumLanguage: typeof import('./utils/index')['EnumLanguage']
+  const EnumLanguage: typeof import('./utils/enums')['EnumLanguage']
   const EnumOddsChange: typeof import('./utils/enums')['EnumOddsChange']
   const EnumRightSidebarContent: typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']
   const EnumSportEndDomID: typeof import('./utils/enums')['EnumSportEndDomID']
@@ -844,7 +844,7 @@ declare module 'vue' {
     readonly EnumCasinoSortType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoSortType']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumGlobalGameType: UnwrapRef<typeof import('./utils/enums')['EnumGlobalGameType']>
-    readonly EnumLanguage: UnwrapRef<typeof import('./utils/index')['EnumLanguage']>
+    readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly EnumOddsChange: UnwrapRef<typeof import('./utils/enums')['EnumOddsChange']>
     readonly EnumRightSidebarContent: UnwrapRef<typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']>
     readonly EnumSportEndDomID: UnwrapRef<typeof import('./utils/enums')['EnumSportEndDomID']>
@@ -1529,7 +1529,7 @@ declare module '@vue/runtime-core' {
     readonly EnumCasinoSortType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoSortType']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumGlobalGameType: UnwrapRef<typeof import('./utils/enums')['EnumGlobalGameType']>
-    readonly EnumLanguage: UnwrapRef<typeof import('./utils/index')['EnumLanguage']>
+    readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly EnumOddsChange: UnwrapRef<typeof import('./utils/enums')['EnumOddsChange']>
     readonly EnumRightSidebarContent: UnwrapRef<typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']>
     readonly EnumSportEndDomID: UnwrapRef<typeof import('./utils/enums')['EnumSportEndDomID']>

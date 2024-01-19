@@ -1,3 +1,19 @@
+/** * 语言枚举 */
+export enum EnumLanguage {
+  /** * 中文 */
+  'zh-CN' = 'zh_CN',
+  /** * 葡萄牙语 Portuguese */
+  'pt-BR' = 'pt_BR',
+  /** * 越南语 Vietnamese */
+  'vi-VN' = 'vi_VN',
+  /** * 泰语 Thai */
+  'th-TH' = 'th_TH',
+  /** * 印度 India */
+  'hi-IN' = 'en_IN',
+  /** * 英语 */
+  'en-US' = 'en_US',
+}
+
 /** * 货币枚举 */
 export enum EnumCurrency {
   /**
