@@ -21,6 +21,8 @@ const { casinoNav, casinoGameList } = storeToRefs(casinoStore)
 const { openSwiperNoticeDialog } = useDialogSwiperNotice(430)
 const { openRegisterDialog } = useRegisterDialog()
 const router = useLocalRouter()
+const route = useRoute()
+const routeName = computed(() => route.name?.toString())
 
 const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
@@ -160,7 +162,7 @@ await application.allSettled([runMemberNoticeAllList(), loadIcon()])
     <AppBanner type="casino" />
     <!-- <AppMarquee /> -->
     <div v-if="!isMobile" class="tg-mt-24">
-      <AppGameSearch game-type="1" />
+      <AppGameSearch :key="routeName" game-type="1" />
     </div>
     <div v-show="casinoNav && casinoNav.length > 0" class="tg-mt-24">
       <BaseTab

@@ -152,7 +152,7 @@ onMounted(() => {
         </div>
       </div>
       <div v-if="!isMobile" class="tg-mt-24">
-        <AppGameSearch game-type="1" />
+        <AppGameSearch :key="currentType + cid + pids" game-type="1" />
       </div>
       <div class="tg-mt-24">
         <AppGroupFilter
