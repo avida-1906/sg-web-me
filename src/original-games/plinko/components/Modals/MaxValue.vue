@@ -1,63 +1,56 @@
 <script>
-export default {
-  props: {
-    isMaximum: {
-      type: Boolean,
-      required: true,
-    },
-  },
+import { mutations, store } from '../../core/Store'
 
-  methods: {
-    hideModal() {
-      const modal = document.getElementById('demo-modal')
-      modal.classList.toggle('active')
+export default {
+
+  setup() {
+    const hideModal = () => {
+      mutations.showMaxValueModal()
+    }
+
+    const setMaximum = () => {
+      hideModal()
+      mutations.showMaximum(!store.isMaximum)
+    }
+    return {
+      hideModal,
+      setMaximum,
+    }
+  },
+  computed: {
+    showMax() {
+      return store.isMaximum
     },
-    setMaximum() {
-      this.$emit('update:isMaximum', !this.isMaximum)
-      this.hideModal()
-      if (!this.isMaximum) {
-        document.getElementById('times1').style.display = 'none'
-        document.getElementById('times2').style.display = 'flex'
-        document.getElementById('timesmax').style.display = 'flex'
-        if (window.innerWidth > 1050)
-          document.getElementById('bitImage').style.right = '170px'
-        else
-          document.getElementById('bitImage').style.right = '180px'
-      }
-      else {
-        document.getElementById('times1').style.display = 'flex'
-        document.getElementById('times2').style.display = 'none'
-        document.getElementById('timesmax').style.display = 'none'
-        document.getElementById('bitImage').style.right = '100px'
-      }
+    showMaxValueModal() {
+      return store.showMaxValueModal
     },
   },
 }
 </script>
 
 <template>
-  <div id="demo-modal" class="modal">
+  <div class="modal" :class="[showMaxValueModal ? 'active' : '']">
     <div class="modal__content">
       <div class="modal-title">
         <img
-          src="/png/mini/plinko/max-setting.png"
+          src="/png/mini/plinko/max-setting.svg"
           alt="Image"
           width="16"
           height="16"
         >
-        <span>{{ $t("plinko_maxvalue") }}</span>
+        <span>{{ $t("maxvalue") }}</span>
       </div>
       <div class="modal-body">
-        <span>{{
-          isMaximum ? $t("plinko_maxquestion2") : $t("plinko_maxquestion1")
-        }}</span>
+        <span>{{ showMax ? $t("maxquestion2") : $t("maxquestion1") }}</span>
       </div>
       <div class="modal__footer">
         <button class="activeButton" @click="setMaximum">
-          {{ isMaximum ? $t("plinko_turnOff") : $t("plinko_turnOn") }}
+          <span>{{ showMax ? $t("turnOff") : $t("turnOn") }}</span>
         </button>
       </div>
-      <a href="#" class="modal__close" @click="hideModal">&times;</a>
+      <button class="modal__close" @click="hideModal">
+        <span><img src="/png/mini/plinko/times.svg" alt="Image" width="10" height="10"></span>
+      </button>
     </div>
   </div>
 </template>
@@ -76,6 +69,7 @@ export default {
   justify-content: center;
   background: rgba(0, 0, 0, 0.32);
   transition: all 0.4s;
+  z-index: 9;
 }
 .modal.active {
   visibility: visible;
@@ -94,10 +88,14 @@ export default {
   border-radius: 4px;
   background: #17e702;
   color: #05080a;
+  font-family: PingFang SC;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+}
+.activeButton:hover {
+  background-color: #1fff20;
 }
 .modal__content {
   border-radius: 4px;
@@ -105,7 +103,7 @@ export default {
   width: 500px;
   max-width: 90%;
   background: #1a2c37;
-  padding: 1em 2em;
+  padding: 16px;
 }
 
 .modal-title {
@@ -113,6 +111,7 @@ export default {
   gap: 10px;
   align-items: center;
   color: #fff;
+  font-family: PingFang SC;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -124,6 +123,7 @@ export default {
   justify-content: center;
   margin-top: 30px;
   color: #b1bad3;
+  font-family: PingFang SC;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -141,5 +141,8 @@ export default {
   right: 10px;
   color: #585858;
   text-decoration: none;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
 }
 </style>

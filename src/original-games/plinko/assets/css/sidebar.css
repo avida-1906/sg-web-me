@@ -1,0 +1,366 @@
+.container {
+  background-color: #213743;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px 0px 0px 0px;
+}
+
+.betAmountContainer {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.betAmountTimesBtn {
+  height: 40px;
+  background-color: #2f4553;
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 14px;
+  font-style: normal;
+  font-family: PingFang SC;
+  font-weight: 600;
+  line-height: 22px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.betAmountTimesBtn:hover {
+  background-color: #557086;
+}
+
+.divider {
+  position: absolute;
+  right: 15%;
+  top: 10px;
+  width: 2px;
+  height: 20px;
+  background: #1a2c37;
+}
+
+.baseStyle {
+  width: 100%;
+  height: 40px;
+  background-color: #0f212e;
+  border-radius: 4px;
+  border: 2px solid #2f4553;
+  color: #fff;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.12);
+}
+
+.betAmountInput {
+  width: 100%;
+  height: 40px;
+  background-color: #0f212e;
+  border: 2px solid #2f4553;
+  color: #fff;
+  font-family: Inter;
+  font-weight: 600;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.12);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  margin-right: 25px;
+  height: 20px;
+}
+
+.betamountcontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+input,
+select {
+  box-sizing: border-box;
+  width: 100%;
+  -webkit-appearance: none;
+  padding-left: 8px;
+}
+input:hover,
+select:hover {
+  border: 2px solid #557086;
+}
+input:focus,
+select:focus {
+  border: 2px solid #557086;
+  outline: 0;
+}
+.arrow-down {
+  position: absolute;
+  bottom: 13px;
+  right: 10px;
+  z-index: 2;
+}
+
+img.betting-image {
+  margin-top: 2px;
+  animation: mover 0.8s infinite alternate;
+}
+@keyframes mover {
+  0% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  75% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.spanstyle {
+  color: #b1bad3;
+  font-family: PingFang SC;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.betButton {
+  background-color: #00e701;
+  border-radius: 4px;
+  height: 52px;
+  border: none;
+  color: #000000;
+  font-family: PingFang SC;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.betButton:hover {
+  background-color: #1fff20;
+}
+.betTypeContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  border-radius: 1000px;
+  background-color: #0f212e;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  order: 1;
+}
+.typeButton {
+  width: 100%;
+  height: 40px;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.typeButton:hover {
+  background-color: #2f4552;
+  border-radius: 1000px;
+}
+.betTypeActive {
+  border-radius: 1000px;
+  background-color: #2f4552;
+}
+.warning {
+  border: 2px solid #ff0000;
+}
+.bitImage {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+}
+
+.buttons-container {
+  display: flex;
+  border-radius: 0px 4px 4px 0px;
+}
+.buttons-container > button {
+  position: relative;
+}
+.buttons-container > button:last-child {
+  border-radius: 0px 4px 4px 0px;
+}
+.buttons-container > button:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  background: #1a2c37;
+  height: 20px;
+  top: 10px;
+  left: -1px;
+  width: 2px;
+}
+
+.betNumberContainer {
+  position: relative;
+  order: 5;
+  margin-bottom: 10px;
+}
+
+.betNumberContainer .infinitiveImage {
+  position: absolute;
+  bottom: 13px;
+  right: 5%;
+}
+
+.amountorder {
+  order: 2;
+  margin-bottom: 10px;
+}
+
+.levelorder {
+  order: 3;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.roworder {
+  order: 4;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.betbuttonorder {
+  order: 6;
+  margin-bottom: 10px;
+}
+.alert-container {
+  position: fixed;
+  top: 30px;
+  left: 20px;
+}
+.autobet-alert {
+  width: 246px;
+  height: 55px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: #2f4552;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  position: relative;
+}
+
+.alert-timeline {
+  width: 246px;
+  height: 3px;
+  border-radius: 0px 0px 4px 4px;
+  background: #557086;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation-name: changeWidth;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+}
+
+.autobet-alert:hover .alert-timeline {
+  animation-play-state: paused;
+}
+
+@keyframes changeWidth {
+  0% {
+    width: 246px;
+  }
+  100% {
+    width: 0px;
+  }
+}
+
+.auto-image {
+  width: 60px;
+  height: 55px;
+  flex-shrink: 0;
+  border-radius: 4px 0px 0px 4px;
+  background: #213743;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.autobet-alert span {
+  color: #fff;
+  text-align: center;
+  font-family: PingFang SC;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-left: 24px;
+}
+
+.autobet-alert .close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+@media screen and (max-width: 1100px) {
+  .container {
+    background-color: #213743;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 10px;
+    border-radius: 0;
+    height: auto;
+  }
+
+  .betAmountContainer {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+  }
+
+  .betTypeContainer {
+    order: 6;
+    margin-top: 0;
+  }
+
+  .amountorder {
+    order: 1;
+  }
+
+  .levelorder {
+    order: 3;
+  }
+
+  .roworder {
+    order: 4;
+  }
+
+  .betNumberContainer {
+    order: 5;
+  }
+
+  .betbuttonorder {
+    order: 2;
+  }
+
+  .divider {
+    right: 10.5%;
+  }
+}

@@ -154,13 +154,6 @@ export function GlobalFunc() {
       0xA61304, 0xA61304, 0xA61304,
     ],
   }
-
-  const initialDrawValue = {
-    ParticleRadius: 12,
-    GapWidth: 10,
-    PointRadius: 8,
-    MapGap: 3,
-  }
   const getIndexForColorAndPercent = (rowNum, level, text) => {
     let index = 0
     const selectedBasket = baskets[level][`_${rowNum}`]
@@ -172,6 +165,7 @@ export function GlobalFunc() {
     }
     return index
   }
+
   const selectFromText = (rowNum, level, text, array) => {
     let selectedType = []
     if (array === 'color')
@@ -187,6 +181,13 @@ export function GlobalFunc() {
     const select = selectedType[`_${rowNum}`][index]
 
     return select
+  }
+
+  const initialDrawValue = {
+    ParticleRadius: 12,
+    GapWidth: 10,
+    PointRadius: 8,
+    MapGap: 3,
   }
 
   return {

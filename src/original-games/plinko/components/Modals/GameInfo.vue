@@ -1,31 +1,42 @@
 <script>
+import { mutations, store } from '../../core/Store'
+
 export default {
-  methods: {
-    hideModal() {
-      const modal = document.getElementById('gameinfo-modal')
-      modal.classList.toggle('active')
+  setup() {
+    const hideModal = () => {
+      mutations.showGameInfoModal()
+    }
+    return {
+      hideModal,
+    }
+  },
+  computed: {
+    showGameInfo() {
+      return store.showGameInfoModal
     },
   },
 }
 </script>
 
 <template>
-  <div id="gameinfo-modal" class="modal">
+  <div class="modal" :class="[showGameInfo ? 'active' : '']">
     <div class="modal__content">
       <div class="modal-title">
-        <img src="/png/mini/plinko/info.png" alt="Image" width="16" height="16">
-        <span>{{ $t("plinko_info") }}</span>
+        <img src="/png/mini/plinko/info.svg" alt="Image" width="16" height="16">
+        <span>{{ $t("info") }}</span>
       </div>
       <div class="modal__footer">
-        <button class="activeButton" @click="setMaximum">
-          {{ $t("plinko_rules") }}
+        <button class="activeButton">
+          <span>{{ $t("rules") }}</span>
         </button>
       </div>
       <div class="modal-body">
-        <span>{{ $t("plinko_info1") }}</span>
-        <span>{{ $t("plinko_info2") }}</span>
+        <span>{{ $t("info1") }}</span>
+        <span>{{ $t("info2") }}</span>
       </div>
-      <a href="#" class="modal__close" @click="hideModal">&times;</a>
+      <button class="modal__close" @click="hideModal">
+        <span><img src="/png/mini/plinko/times.svg" alt="Image" width="10" height="10"></span>
+      </button>
     </div>
   </div>
 </template>
@@ -44,6 +55,7 @@ export default {
   justify-content: center;
   background: rgba(0, 0, 0, 0.32);
   transition: all 0.4s;
+  z-index: 9;
 }
 .modal.active {
   visibility: visible;
@@ -62,6 +74,7 @@ export default {
   background: #223d49;
   border: 5px solid #0a1e29;
   color: #fff;
+  font-family: PingFang SC;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -71,7 +84,7 @@ export default {
   position: relative;
   width: 500px;
   max-width: 90%;
-  padding: 1em 2em;
+  padding: 16px;
   border-radius: 8px;
   background: #1a2c37;
   box-shadow: 0px 1px 0px 0px #253541 inset,
@@ -83,6 +96,7 @@ export default {
   gap: 10px;
   align-items: center;
   color: #fff;
+  font-family: PingFang SC;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -91,11 +105,11 @@ export default {
 .modal-body {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: space-between;
   gap: 10px;
   margin-top: 30px;
   color: #b1bad3;
+  font-family: PingFang SC;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -113,5 +127,8 @@ export default {
   right: 10px;
   color: #585858;
   text-decoration: none;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
 }
 </style>
