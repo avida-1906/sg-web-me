@@ -4,14 +4,10 @@ import { mutations, store } from '../core/Store'
 import { Plinko } from '../core/Plinko'
 import { GlobalFunc } from '../core/GlobalFunc'
 import Setting from './Setting.vue'
-import Statistics from './Statistics.vue'
-import Language from './Language.vue'
 
 export default {
   components: {
     Setting,
-    Statistics,
-    Language,
   },
   setup() {
     const isManualButton = ref(true)
@@ -266,7 +262,7 @@ export default {
         :disabled="isAutoBetting"
         @click="activeButton('manualButton')"
       >
-        <span>{{ $t("manual") }}</span>
+        <span>{{ $t("plinko_manual") }}</span>
       </button>
       <button
         class="typeButton" :class="[
@@ -276,13 +272,13 @@ export default {
         :disabled="isAutoBetting"
         @click="activeButton('autoButton')"
       >
-        <span>{{ $t("auto") }}</span>
+        <span>{{ $t("plinko_auto") }}</span>
       </button>
     </div>
     <div ref="amountorder" class="amountorder">
       <div class="betamountcontainer">
         <div class="spanstyle">
-          {{ $t("amount") }}
+          {{ $t("plinko_amount") }}
         </div>
         <div class="spanstyle" :style="{ fontSize: '12px' }">
           US$<span :style="{ fontFamily: 'PingFang SC' }">0.00</span>
@@ -312,7 +308,7 @@ export default {
             alt="Image"
             class="bitImage"
           >
-          <span class="tooltiptext">{{ $t("betamountalert") }}</span>
+          <span class="tooltiptext">{{ $t("plinko_betamountalert") }}</span>
         </div>
         <div class="buttons-container" :class="[betting > 0 ? 'disabled' : '']">
           <button
@@ -335,14 +331,14 @@ export default {
             :disabled="isAutoBetting"
             @click="betAmountTimes(999)"
           >
-            <span>{{ $t("max") }}</span>
+            <span>{{ $t("plinko_max") }}</span>
           </button>
         </div>
       </div>
     </div>
     <div class="levelorder">
       <div class="spanstyle">
-        {{ $t("risk") }}
+        {{ $t("plinko_risk") }}
       </div>
       <img
         src="/png/mini/plinko/arrow-down.svg"
@@ -359,19 +355,19 @@ export default {
         @change="changeState"
       >
         <option value="Low">
-          {{ $t("level1") }}
+          {{ $t("plinko_level1") }}
         </option>
         <option value="Medium">
-          {{ $t("level2") }}
+          {{ $t("plinko_level2") }}
         </option>
         <option value="High">
-          {{ $t("level3") }}
+          {{ $t("plinko_level3") }}
         </option>
       </select>
     </div>
     <div class="roworder">
       <div class="spanstyle">
-        {{ $t("rows") }}
+        {{ $t("plinko_rows") }}
       </div>
       <img
         src="/png/mini/plinko/arrow-down.svg"
@@ -394,7 +390,7 @@ export default {
     </div>
     <div v-if="isAutoButton" class="betNumberContainer">
       <div class="spanstyle">
-        {{ $t("betNumbers") }}
+        {{ $t("plinko_betNumbers") }}
       </div>
       <input
         v-model="numberofbet" class="baseStyle"
@@ -418,10 +414,10 @@ export default {
       <button class="baseStyle betButton" @click="bet">
         <span>{{
           isManualButton
-            ? $t("bet")
+            ? $t("plinko_bet")
             : isAutoBetting
-              ? $t("autobetstop")
-              : $t("autobetstart")
+              ? $t("plinko_autobetstop")
+              : $t("plinko_autobetstart")
         }}</span>
         <img
           v-if="isAutoBetting"
@@ -445,7 +441,7 @@ export default {
           class="infinitiveImage"
         >
       </div>
-      <span>{{ $t("autobetalert1") }}</span>
+      <span>{{ $t("plinko_autobetalert1") }}</span>
       <div class="close">
         <img
           src="/png/mini/plinko/times.svg"
@@ -467,7 +463,7 @@ export default {
           class="infinitiveImage"
         >
       </div>
-      <span>{{ $t("autobetalert2") }}</span>
+      <span>{{ $t("plinko_autobetalert2") }}</span>
       <div class="close">
         <img
           src="/png/mini/plinko/times.svg"
@@ -481,8 +477,6 @@ export default {
     </div>
   </div>
   <Setting />
-  <Statistics />
-  <Language />
 </template>
 
 <style scoped>

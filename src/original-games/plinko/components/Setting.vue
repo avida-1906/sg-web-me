@@ -169,7 +169,7 @@ export default {
               @mouseover="handleMouseOver('setting')"
               @mouseout="handleMouseOut('setting')"
             ></span>
-            <span class="tooltiptext">{{ $t("tooltip1") }}</span>
+            <span class="tooltiptext">{{ $t("plinko_tooltip1") }}</span>
           </button>
         </div>
         <div v-if="isShowSetting" class="dropdown-content">
@@ -209,7 +209,7 @@ export default {
                     alt="Image"
                   >
               <span :class="isLive ? 'active' : null">{{
-                $t("live")
+                $t("plinko_live")
               }}</span></span>
           </button>
           <button
@@ -229,7 +229,7 @@ export default {
                     alt="Image"
                   >
               <span :class="isAnimation ? 'active' : null">{{
-                $t("animation")
+                $t("plinko_animation")
               }}</span></span>
           </button>
           <button
@@ -245,7 +245,7 @@ export default {
                     alt="Image"
                   >
               <span :class="showMax ? 'active' : ''">{{
-                $t("maxvalue")
+                $t("plinko_maxvalue")
               }}</span></span>
           </button>
           <button class="activecontent contents" @click="showGameInfo">
@@ -255,7 +255,7 @@ export default {
                     height="14"
                     alt="Image"
                   >
-              <span>{{ $t("info") }}</span></span>
+              <span>{{ $t("plinko_info") }}</span></span>
           </button>
           <button
             class="contents" :class="[
@@ -270,7 +270,7 @@ export default {
                     alt="Image"
                   >
               <span :class="hotkeyState ? 'active' : ''">{{
-                $t("keyboard")
+                $t("plinko_keyboard")
               }}</span></span>
           </button>
           <div class="triangle" />
@@ -288,7 +288,7 @@ export default {
               @mouseout="handleMouseOut('rect')"
             >
           </span>
-          <span class="tooltiptext">{{ $t("tooltip2") }}</span>
+          <span class="tooltiptext">{{ $t("plinko_tooltip2") }}</span>
         </button>
       </div>
       <div class="stooltip">
@@ -303,7 +303,7 @@ export default {
               @mouseout="handleMouseOut('total')"
             >
           </span>
-          <span class="tooltiptext">{{ $t("tooltip3") }}</span>
+          <span class="tooltiptext">{{ $t("plinko_tooltip3") }}</span>
         </button>
       </div>
       <div class="stooltip">
@@ -318,7 +318,7 @@ export default {
               @mouseout="handleMouseOut('un')"
             >
           </span>
-          <span class="tooltiptext">{{ $t("tooltip4") }}</span>
+          <span class="tooltiptext">{{ $t("plinko_tooltip4") }}</span>
         </button>
       </div>
       <div class="divider" />
@@ -327,7 +327,7 @@ export default {
       <img src="/png/mini/plinko/Vector.svg" alt="Image" width="68" height="25">
     </div>
     <button :style="{ background: 'transparent', border: 'none' }" @click="showFairness">
-      <span class="footer-span">{{ $t("fairness") }}</span>
+      <span class="footer-span">{{ $t("plinko_fairness") }}</span>
     </button>
     <MaxValue />
     <GameInfo />

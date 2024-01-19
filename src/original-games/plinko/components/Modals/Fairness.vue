@@ -92,7 +92,7 @@ export default {
     >
       <div class="modal-title">
         <img src="/png/mini/plinko/fairness.svg" alt="Image" width="16" height="16">
-        <span>{{ $t("fairness") }}</span>
+        <span>{{ $t("plinko_fairness") }}</span>
       </div>
       <div class="modal-body">
         <div class="buttonContainer">
@@ -100,18 +100,12 @@ export default {
             :class="buttonType === 'seed' ? 'activeButton' : 'deactiveButton'"
             @click="changeType('seed')"
           >
-            <span class="white-span">{{ $t("fairnesses.seed") }}</span>
-          </button>
-          <button
-            :class="buttonType === 'verify' ? 'activeButton' : 'deactiveButton'"
-            @click="changeType('verify')"
-          >
-            <span class="white-span">{{ $t("fairnesses.verify") }}</span>
+            <span class="white-span">{{ $t("plinko_fairnesses_verify") }}</span>
           </button>
         </div>
         <div v-if="buttonType === 'seed'" class="input-container">
           <div class="gray-span">
-            {{ $t("fairnesses.text1") }}
+            {{ $t("plinko_fairnesses_text1") }}
           </div>
           <div class="inputBox buttonbox">
             <input
@@ -134,13 +128,13 @@ export default {
               </button>
               <span
                 class="tooltiptext1" :class="[copied1 ? 'tooltiptext1-active' : '']"
-              >{{ $t("copyText") }}</span>
+              >{{ $t("plinko_copyText") }}</span>
             </div>
           </div>
         </div>
         <div v-if="buttonType === 'seed'" class="input-container">
           <div class="gray-span">
-            {{ $t("fairnesses.text2") }}
+            {{ $t("plinko_fairnesses_text2") }}
           </div>
           <div class="inputBox buttonbox">
             <input
@@ -163,13 +157,13 @@ export default {
               </button>
               <span
                 class="tooltiptext1" :class="[copied2 ? 'tooltiptext1-active' : '']"
-              >{{ $t("copyText") }}</span>
+              >{{ $t("plinko_copyText") }}</span>
             </div>
           </div>
         </div>
         <div v-if="buttonType === 'seed'" class="input-container">
           <div class="gray-span">
-            {{ $t("fairnesses.text3") }}
+            {{ $t("plinko_fairnesses_text3") }}
           </div>
           <div class="inputBox">
             <input
@@ -182,7 +176,7 @@ export default {
         </div>
         <div v-if="buttonType === 'verify'" class="plinko-container">
           <span class="gray-span" :style="{ fontWeight: 400, fontFamily: 'PingFang SC' }">{{
-            $t("fairnesses.verifyText1")
+            $t("plinko_fairnesses_verifyText1")
           }}</span>
           <img
             src="/png/mini/plinko/betting1.svg"
@@ -195,11 +189,11 @@ export default {
       </div>
       <div v-if="buttonType === 'seed'" class="modal-footer">
         <span class="white-span" :style="{ fontSize: '16px' }">{{
-          $t("fairnesses.text4")
+          $t("plinko_fairnesses_text4")
         }}</span>
         <div class="input-container" :style="{ marginTop: '20px' }">
           <div class="gray-span">
-            {{ $t("fairnesses.text5") }}
+            {{ $t("plinko_fairnesses_text5") }}
             <span class="gray-span" :style="{ color: '#E54161' }">*</span>
           </div>
           <div class="inputBox buttonbox">
@@ -217,14 +211,14 @@ export default {
             >
             <button class="changeButton">
               <span class="white-span" :style="{ color: '#000' }">
-                {{ $t("fairnesses.button") }}
+                {{ $t("plinko_fairnesses_button") }}
               </span>
             </button>
           </div>
         </div>
         <div class="input-container" :style="{ marginTop: '17px' }">
           <div class="gray-span">
-            {{ $t("fairnesses.text6") }}
+            {{ $t("plinko_fairnesses_text6") }}
           </div>
           <div class="inputBox buttonbox">
             <input
@@ -247,18 +241,18 @@ export default {
               </button>
               <span
                 class="tooltiptext1" :class="[copied3 ? 'tooltiptext1-active' : '']"
-              >{{ $t("copyText") }}</span>
+              >{{ $t("plinko_copyText") }}</span>
             </div>
           </div>
         </div>
         <span class="gray-span" :style="{ alignSelf: 'flex-start', marginTop: '21px', marginBottom: '7px' }">
-          {{ $t("fairnesses.text7") }}Blackjack, Video Poker
+          {{ $t("plinko_fairnesses_text7") }}Blackjack, Video Poker
         </span>
       </div>
       <div v-if="buttonType === 'verify'" class="modal-footer verify">
         <div class="input-container">
           <div class="gray-span">
-            {{ $t("verifyTexts.game") }}
+            {{ $t("plinko_verifyTexts_game") }}
           </div>
           <div class="inputBox">
             <select
@@ -298,7 +292,7 @@ export default {
         </div>
         <div class="input-container">
           <div class="gray-span">
-            {{ $t("verifyTexts.clientSeed") }}
+            {{ $t("plinko_verifyTexts_clientSeed") }}
           </div>
           <div class="inputBox">
             <input class="inputStyle" type="text">
@@ -306,7 +300,7 @@ export default {
         </div>
         <div class="input-container">
           <div class="gray-span">
-            {{ $t("verifyTexts.serverSeed") }}
+            {{ $t("plinko_verifyTexts_serverSeed") }}
           </div>
           <div class="inputBox">
             <input class="inputStyle" type="text">
@@ -314,7 +308,7 @@ export default {
         </div>
         <div class="input-container">
           <div class="gray-span">
-            {{ $t("verifyTexts.nonce") }}
+            {{ $t("plinko_verifyTexts_nonce") }}
           </div>
           <div class="inputBox buttonbox">
             <input
@@ -361,7 +355,7 @@ export default {
         </div>
         <div class="input-container">
           <div class="gray-span">
-            {{ $t("risk") }}
+            {{ $t("plinko_risk") }}
           </div>
           <div class="inputBox">
             <select
@@ -369,13 +363,13 @@ export default {
               :style="{ width: '468px', height: '40px' }"
             >
               <option value="Low">
-                {{ $t("level1") }}
+                {{ $t("plinko_level1") }}
               </option>
               <option value="Medium">
-                {{ $t("level2") }}
+                {{ $t("plinko_level2") }}
               </option>
               <option value="High">
-                {{ $t("level3") }}
+                {{ $t("plinko_level3") }}
               </option>
             </select>
             <img
@@ -389,7 +383,7 @@ export default {
         </div>
         <div class="input-container">
           <div class="gray-span">
-            {{ $t("rows") }}
+            {{ $t("plinko_rows") }}
           </div>
           <div class="inputBox">
             <select
@@ -414,7 +408,7 @@ export default {
           </div>
         </div>
         <button class="bottomButton">
-          <span class="gray-span">{{ $t("fairnesses.calcButton") }}</span>
+          <span class="gray-span">{{ $t("plinko_fairnesses_calcButton") }}</span>
         </button>
       </div>
       <button class="modal__close" @click="hideModal">

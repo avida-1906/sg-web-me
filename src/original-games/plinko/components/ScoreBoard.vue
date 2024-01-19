@@ -143,7 +143,7 @@ export default {
     >
       <div class="modal-title">
         <img src="/png/mini/plinko/score.svg" alt="Image" width="16" height="16">
-        <span>{{ $t("bet") }}</span>
+        <span>{{ $t("plinko_bet") }}</span>
       </div>
       <div class="modal-body">
         <span class="white-span">Plinko</span>
@@ -166,7 +166,7 @@ export default {
             </button>
             <span
               class="tooltiptext1" :class="[copied1 ? 'tooltiptext1-active' : '']"
-            >{{ $t("copyId") }}</span>
+            >{{ $t("plinko_copyId") }}</span>
           </div>
           <div class="stooltip">
             <button
@@ -185,16 +185,16 @@ export default {
             </button>
             <span
               class="tooltiptext1" :class="[copied5 ? 'tooltiptext1-active' : '']"
-            >{{ $t("copyId") }}</span>
+            >{{ $t("plinko_copyId") }}</span>
           </div>
         </div>
         <span class="gray-span" :style="{ marginTop: '16px' }">
-          {{ $t("scoreboard.time") }}dwwyy332
+          {{ $t("plinko_scoreboard_time") }}dwwyy332
         </span>
         <span class="gray-span" :style="{ marginTop: '5px' }">
-          {{ $t("scoreboard.on") }}
+          {{ $t("plinko_scoreboard_on") }}
           <span :style="{ fontFamily: 'Inter' }">1/13/2024</span>
-          {{ $t("scoreboard.at") }}
+          {{ $t("plinko_scoreboard_at") }}
           <span :style="{ fontFamily: 'Inter' }">4:51</span> PM
         </span>
         <div class="forLogo">
@@ -202,18 +202,18 @@ export default {
         </div>
         <div class="state-container">
           <div class="state">
-            <span class="gray-span">{{ $t("bet") }}</span>
+            <span class="gray-span">{{ $t("plinko_bet") }}</span>
             <span class="number-span">
               {{ plinkoAmount }}
               <img src="/png/mini/plinko/bit.svg" alt="Image" width="14" height="14">
             </span>
           </div>
           <div class="state">
-            <span class="gray-span">{{ $t("scoreboard.multi") }}</span>
+            <span class="gray-span">{{ $t("plinko_scoreboard_multi") }}</span>
             <span class="number-span"> {{ cText }}x </span>
           </div>
           <div class="state">
-            <span class="gray-span">{{ $t("scoreboard.payout") }}</span>
+            <span class="gray-span">{{ $t("plinko_scoreboard_payout") }}</span>
             <span class="number-span success">
               {{ (plinkoAmount * (cText - 1)).toFixed(9) }}
               <img src="/png/mini/plinko/bit.svg" alt="Image" width="14" height="14">
@@ -234,7 +234,7 @@ export default {
         <div class="rowrisk">
           <div class="input-container">
             <div class="gray-span" :style="{ fontFamily: 'Inter' }">
-              {{ $t("risk") }}
+              {{ $t("plinko_risk") }}
             </div>
             <input
               class="inputStyle"
@@ -245,7 +245,7 @@ export default {
           </div>
           <div class="input-container">
             <div class="gray-span" :style="{ fontFamily: 'Inter' }">
-              {{ $t("rows") }}
+              {{ $t("plinko_rows") }}
             </div>
             <input
               class="inputStyle"
@@ -256,7 +256,7 @@ export default {
           </div>
         </div>
         <button class="playbutton" @click="hideModal">
-          <span class="gray-span">{{ $t("scoreboard.play") }} Plinko</span>
+          <span class="gray-span">{{ $t("plinko_scoreboard_play") }} Plinko</span>
         </button>
         <div class="fairness">
           <span
@@ -266,7 +266,7 @@ export default {
             @mouseover="changeHover('isHover3', 'on')"
             @mouseout="changeHover('isHover3', 'off')"
           >
-            {{ $t("scoreboard.provable") }}
+            {{ $t("plinko_scoreboard_provable") }}
             <img
               :src="
                 isHover3
@@ -282,13 +282,13 @@ export default {
           <div v-if="showFairFlag" class="fairness-container">
             <div class="input-container">
               <div class="gray-span">
-                {{ $t("prove.text1") }}
+                {{ $t("plinko_prove_text1") }}
               </div>
               <div class="inputBox">
                 <input
                   class="inputStyle"
                   type="text"
-                  :value="$t('prove.value1')"
+                  :value="$t('plinko_prove_value1')"
                   readonly
                   :style="{ background: '#203441', color: '#868F96', borderColor: '#203441' }"
                 >
@@ -296,7 +296,7 @@ export default {
             </div>
             <div class="input-container">
               <div class="gray-span">
-                {{ $t("prove.text2") }}
+                {{ $t("plinko_prove_text2") }}
               </div>
               <div class="inputBox buttonBox">
                 <input
@@ -321,14 +321,14 @@ export default {
                     class="tooltiptext1" :class="[
                       copied2 ? 'tooltiptext1-active' : '',
                     ]"
-                  >{{ $t("copyText") }}</span>
+                  >{{ $t("plinko_copyText") }}</span>
                 </div>
               </div>
             </div>
             <div class="seed">
               <div class="input-container">
                 <div class="gray-span">
-                  {{ $t("prove.text3") }}
+                  {{ $t("plinko_prove_text3") }}
                 </div>
                 <div
                   class="inputBox buttonBox"
@@ -356,13 +356,13 @@ export default {
                       class="tooltiptext1" :class="[
                         copied3 ? 'tooltiptext1-active' : '',
                       ]"
-                    >{{ $t("copyText") }}</span>
+                    >{{ $t("plinko_copyText") }}</span>
                   </div>
                 </div>
               </div>
               <div class="input-container">
                 <div class="gray-span">
-                  {{ $t("prove.text4") }}
+                  {{ $t("plinko_prove_text4") }}
                 </div>
                 <div
                   class="inputBox buttonBox"
@@ -390,7 +390,7 @@ export default {
                       class="tooltiptext1" :class="[
                         copied4 ? 'tooltiptext1-active' : '',
                       ]"
-                    >{{ $t("copyText") }}</span>
+                    >{{ $t("plinko_copyText") }}</span>
                   </div>
                 </div>
               </div>
@@ -404,10 +404,10 @@ export default {
               }"
             >
               <button class="fobutton">
-                <span class="gray-span">{{ $t("prove.button1") }}</span>
+                <span class="gray-span">{{ $t("plinko_prove_button1") }}</span>
               </button>
               <button class="fobutton">
-                <span class="gray-span">{{ $t("prove.button2") }}</span>
+                <span class="gray-span">{{ $t("plinko_prove_button2") }}</span>
               </button>
             </div>
           </div>

@@ -36,23 +36,23 @@ export default {
           width="16"
           height="16"
         >
-        <span>{{ $t("keyboard") }}</span>
+        <span>{{ $t("plinko_keyboard") }}</span>
       </div>
       <div class="modal-body">
         <div class="hotkey-row">
-          <span>{{ $t("hotkey1") }}</span>
+          <span>{{ $t("plinko_hotkey1") }}</span>
           <span class="hotkey">Space</span>
         </div>
         <div class="hotkey-row">
-          <span>{{ $t("hotkey2") }}</span>
+          <span>{{ $t("plinko_hotkey2") }}</span>
           <span class="hotkey">s</span>
         </div>
         <div class="hotkey-row">
-          <span>{{ $t("hotkey3") }}</span>
+          <span>{{ $t("plinko_hotkey3") }}</span>
           <span class="hotkey">a</span>
         </div>
         <div class="hotkey-row">
-          <span>{{ $t("hotkey4") }}</span>
+          <span>{{ $t("plinko_hotkey4") }}</span>
           <span class="hotkey">d</span>
         </div>
         <div class="hotkey-info">
@@ -63,12 +63,12 @@ export default {
             height="16"
           >
           <span>
-            {{ $t("hotkeyInfo") }}
+            {{ $t("plinko_hotkeyInfo") }}
           </span>
         </div>
       </div>
       <div class="modal__footer">
-        <label class="check-container">{{ $t("hotkeyUse") }}
+        <label class="check-container">{{ $t("plinko_hotkeyUse") }}
           <input type="checkbox" :checked="state" @input="hotkeyState">
           <span class="checkmark" />
         </label>

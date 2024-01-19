@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { EnumCurrencyKey } from '~/apis/types'
-
 const { t } = useI18n()
 // const appStore = useAppStore()
 // const { vipConfigData } = storeToRefs(appStore)
@@ -11,31 +9,6 @@ const { isMobile } = storeToRefs(useWindowStore())
 const { run: runVipRebateConfig, data: vipRebateConfig, loading: loadVipRebateConfig } = useRequest(ApiMemberVipRebateConfig)
 
 const tab = ref('')
-const squareTabList = ref<{
-  value: string
-  label: string
-  icon: string
-  useCloudImg: boolean
-}[]>([])
-
-for (const key in currencyConfig) {
-  const item = currencyConfig[key as EnumCurrencyKey]
-  squareTabList.value.push({
-    value: item.cur,
-    label: key,
-    icon: `/currency/${item.cur}.webp`,
-    useCloudImg: true,
-  })
-}
-//   renderCurrencyList.value.map((item) => {
-//   return {
-//     value: item.cur,
-//     label: item.type,
-//     icon: `/currency/${item.cur}.webp`,
-//     useCloudImg: true,
-//   }
-// })
-const squareVal = ref(squareTabList.value[0].value)
 
 // const prefix = computed(() =>
 //   AllLanguages.value.filter(a => a.value === userLanguage.value)[0].prefix)
@@ -88,20 +61,16 @@ const getRebateConfig = computed(() => {
   return result
 })
 
-function changeCurrency(item: any) {
-  squareVal.value = item.cur
-}
-
 watch(tabList, (val) => {
   if (val && val.length)
     tab.value = val[0].value
 }, {
   immediate: true,
 })
-watch([() => tab.value, () => squareVal.value], () => {
+watch(() => tab.value, () => {
   runVipRebateConfig({
     game_type: tab.value,
-    cur: squareVal.value,
+    cur: '',
   })
 }, {
   immediate: true,
@@ -117,32 +86,14 @@ watch([() => tab.value, () => squareVal.value], () => {
             <span>{{ $t('type_select') }}</span>
             <BaseSquareTab v-model="tab" :list="tabList" />
           </div>
-          <div class="flex-column">
-            <span>{{ $t('currency') }}</span>
-            <div class="currency-box">
-              <AppSelectCurrency
-                :type="3"
-                :show-balance="false"
-                popper-clazz="app-wallet-cur"
-                placeholder="search"
-                @change="changeCurrency"
-              />
-            </div>
-          </div>
         </div>
       </template>
       <template v-else>
-        <div>
-          <BaseTab
-            v-model="tab"
-            style="--tg-tab-style-color: var(--tg-text-lightgrey);"
-            :list="tabList"
-            :center="false"
-          />
-        </div>
-        <BaseSquareTab
-          v-model="squareVal" :list="squareTabList"
-          style="--tg-base-square-tab--padding-outer-y: var(--tg-spacing-6);"
+        <BaseTab
+          v-model="tab"
+          style="--tg-tab-style-color: var(--tg-text-lightgrey);"
+          :list="tabList"
+          :center="false"
         />
       </template>
       <BaseTable
@@ -151,7 +102,6 @@ watch([() => tab.value, () => squareVal.value], () => {
         :skeleton-width="20"
       >
         <template #level="{ record }">
-          <!-- <div>VIP{{ record.level }}</div> -->
           <div class="vip-badge">
             <BaseIcon :name="`vip${record.vip}`" />
           </div>
@@ -197,7 +147,7 @@ watch([() => tab.value, () => squareVal.value], () => {
     gap: var(--tg-spacing-16);
     .grid-box{
       display: grid;
-      grid-template-columns: 9fr 5fr;
+      grid-template-columns: auto;
       gap:  var(--tg-spacing-12);
       align-items: center;
       --tg-app-select-currency-padding-x: 0;
@@ -212,9 +162,6 @@ watch([() => tab.value, () => squareVal.value], () => {
         font-size: var(--tg-font-size-default);
         line-height: 1.4;
       }
-    }
-    .currency-box{
-      border-radius: var(--tg-radius-default);
     }
   }
 }
