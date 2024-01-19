@@ -73,7 +73,7 @@ function passwordChange(val: string) {
 }
 
 watch(() => pwdOptions.value, () => {
-  pwdType.value = pwdOptions.value[0]?.value ?? ''
+  pwdType.value = pwdOptions.value?.length > 1 ? '2' : pwdOptions.value[0].value.toString()
   emit('update:modelType', pwdType.value)
 }, { immediate: true })
 

@@ -886,8 +886,8 @@ sports_status_lose_half: Thua nửa tiền
 sports_status_lose_part: Thua một phần
 sports_estimated_payment_amount: 'Est. Thanh toán'
 sports_payment_amount: Thanh toán
-sports_single_bet: Đơn
-sports_multi_bet: Nhiều
+sports_single_bet: Đặt Cược Đơn
+sports_multi_bet: Đặt Cược Nhiều Trận
 sports_active: Hoạt động
 sports_settled: Đã đặt
 sports_accept_any_odds: Chấp Nhận Tất Cả Tỉ Lệ
@@ -908,7 +908,7 @@ sports_total_market: Kèo tổng điểm
 sports_tab_live_events: Sự Kiện Trực Tuyến
 sports_tab_starting_soon: Sắp Bắt Đầu
 sports_tab_lobby: Sảnh
-sports_tab_favourites: Yêu Thích
+sports_tab_favourites: Yêu thích
 sports_title_favourites: Sưu tầm
 sports_no_active_bet: Chưa có cược nào đang hoạt động
 sports_live_tv: Phát trực tiếp
@@ -1716,7 +1716,7 @@ casino_game: trò chơi sòng bạc
 recent_casino_game: Lịch sử trò chơi sòng bạc gần đây
 token_set: Cài đặt mã thông báo API
 set_general: Cài đặt chung
-login_pwd: Đăng nhập mật khẩu
+login_pwd: Mật khẩu
 account_session: Cuộc trò chuyện của tài khoản
 check_account: Xác nhận tài khoản
 transaction_archive: Tập tin giao dịch
@@ -2345,17 +2345,17 @@ success_close_double_check: 关闭双重验证密码成功
 close_verification: 关闭双重验证
 vip_sports_tip_title: Điểm dành cho sân vận động thể thao gấp {rate} lần số điểm được liệt kê bên dưới
 vip_sports_tip_content: '(Ví dụ: 1USDT=1 điểm thành viên, bạn sẽ nhận được 2 điểm thành viên khi đặt cược 1 USDT vào thể thao)'
-money_exchange: 兑换货币
-exchange: 兑换
-pay_with: 以 {currency} 支付
-rate: 汇率
-birthday_bonus: 生日奖金
+money_exchange: Đổi tệ
+exchange: Đổi
+pay_with: Thanh toán bằng VNĐ {currency}
+rate: Tỷ giá
+birthday_bonus: Tiền thưởng sinh nhật
 collection_instructions: 领取说明：本活动奖金均是以USDT发放；您可以自行选择领取的货币，货币间汇率采用市场实时汇率。
 activity_bonus: 活动奖金
 success_received: 成功领取{label} {amount} {renderSvg}
-add_withdraw_info: 请绑定提款信息
-three_withdraw_info_only: 每种货币只能绑定3个收款信息
-want_more_del_first: 如需绑定更多，请先删除不常用
+add_withdraw_info: Vui lòng liên kết tài khoản rút tiền
+three_withdraw_info_only: Mỗi loại tiền tệ chỉ có thể liên kết với 3 tài khoản nhận tiền.
+want_more_del_first: Nếu bạn cần liên kết nhiều hơn, vui lòng xóa những cái không sử dụng thường xuyên trước. 
 withdraw_account: 收款账号
 withdraw_address: 收款地址
 wrong_format: 格式错误
@@ -2474,3 +2474,4 @@ plinko_verifyTexts_serverSeed: "服务端种子"
 plinko_verifyTexts_nonce: "现实标志"
 plinko_copyText: "成功复制！"
 plinko_copyId: "成功复制！"
+currency_min_deposit_amount: 该币种最低存入金额为：{amount}{icon}
