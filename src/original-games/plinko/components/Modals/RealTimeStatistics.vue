@@ -131,7 +131,7 @@ export default {
         @mouseup="stopDrag"
       >
         <img src="/png/mini/plinko/total.svg" alt="Image" width="16" height="16">
-        <span>{{ $t("statistics") }}</span>
+        <span>{{ $t("plinko_statistics") }}</span>
       </div>
       <div class="modal-body">
         <div class="type-container">
@@ -161,7 +161,7 @@ export default {
                 @click="changeModalType('type1')"
               >
                 <span :class="modalType === 'type1' ? 'active' : ''">{{
-                  $t("type1")
+                  $t("plinko_type1")
                 }}</span>
               </button>
               <button
@@ -171,7 +171,7 @@ export default {
                 @click="changeModalType('type2')"
               >
                 <span :class="modalType === 'type2' ? 'active' : ''">{{
-                  $t("type2")
+                  $t("plinko_type2")
                 }}</span>
               </button>
               <button
@@ -181,7 +181,7 @@ export default {
                 @click="changeModalType('type3')"
               >
                 <span :class="modalType === 'type3' ? 'active' : ''">{{
-                  $t("type3")
+                  $t("plinko_type3")
                 }}</span>
               </button>
               <button
@@ -191,7 +191,7 @@ export default {
                 @click="hideModal"
               >
                 <span :class="modalType === 'type4' ? 'active' : ''">{{
-                  $t("type4")
+                  $t("plinko_type4")
                 }}</span>
               </button>
               <div class="triangle" />
@@ -209,7 +209,7 @@ export default {
             @mouseover="handleMouseOver('gameType')"
             @mouseout="handleMouseOut()"
           >
-            <span>{{ gameType === 'type1' ? $t("type1") : "Plinko" }}</span>
+            <span>{{ gameType === 'type1' ? $t("plinko_type1") : "Plinko" }}</span>
             <img
               :src="gameTypeSrc"
               width="14"
@@ -226,7 +226,7 @@ export default {
               @click="changeGameType('type1')"
             >
               <span :class="gameType === 'type1' ? 'active' : ''">
-                {{ $t("type1") }}
+                {{ $t("plinko_type1") }}
               </span>
             </button>
             <button
@@ -247,21 +247,21 @@ export default {
           class="score"
         >
           <div class="left">
-            <span>{{ $t("left1") }}</span>
+            <span>{{ $t("plinko_left1") }}</span>
             <span class="number success">
               0.00000000
               <img src="/png/mini/plinko/bit.svg" width="14" height="14" alt="Image">
             </span>
-            <span>{{ $t("left2") }}</span>
+            <span>{{ $t("plinko_left2") }}</span>
             <span class="number">
               0.00000000
               <img src="/png/mini/plinko/bit.svg" width="14" height="14" alt="Image">
             </span>
           </div>
           <div class="right">
-            <span>{{ $t("right1") }}</span>
+            <span>{{ $t("plinko_right1") }}</span>
             <span class="number success"> 8 </span>
-            <span>{{ $t("right2") }}</span>
+            <span>{{ $t("plinko_right2") }}</span>
             <span class="number failed"> 7 </span>
           </div>
         </div>
@@ -306,7 +306,7 @@ export default {
               <div class="triangle" />
             </div>
           </div>
-          <span class="racebottom">{{ $t("racespan") }}</span>
+          <span class="racebottom">{{ $t("plinko_racespan") }}</span>
         </div>
       </div>
       <button class="modal__close" @click="hideModal">

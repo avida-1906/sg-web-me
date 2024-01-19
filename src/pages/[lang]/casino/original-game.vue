@@ -27,7 +27,7 @@ const game = computed(() => gameObj.value[id.value])
       <component :is="game" />
     </div>
   </div>
-  <section class="page-content">
+  <section class="page-content mt-100">
     <AppDesc :name="name" :plat-name="pn" :pid="pid" />
     <div class="tg-mt-32 margin-auto home-container">
       <div v-if="!isMobile" class="layout-spacing">
@@ -43,7 +43,7 @@ const game = computed(() => gameObj.value[id.value])
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 3vw;
+  // padding: 0 3vw;
 
   .game-wrapper {
     width: 100%;

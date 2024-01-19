@@ -23,16 +23,16 @@ export default {
     <div class="modal__content">
       <div class="modal-title">
         <img src="/png/mini/plinko/info.svg" alt="Image" width="16" height="16">
-        <span>{{ $t("info") }}</span>
+        <span>{{ $t("plinko_info") }}</span>
       </div>
       <div class="modal__footer">
         <button class="activeButton">
-          <span>{{ $t("rules") }}</span>
+          <span>{{ $t("plinko_rules") }}</span>
         </button>
       </div>
       <div class="modal-body">
-        <span>{{ $t("info1") }}</span>
-        <span>{{ $t("info2") }}</span>
+        <span>{{ $t("plinko_info1") }}</span>
+        <span>{{ $t("plinko_info2") }}</span>
       </div>
       <button class="modal__close" @click="hideModal">
         <span><img src="/png/mini/plinko/times.svg" alt="Image" width="10" height="10"></span>

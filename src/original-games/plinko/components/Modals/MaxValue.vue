@@ -38,14 +38,14 @@ export default {
           width="16"
           height="16"
         >
-        <span>{{ $t("maxvalue") }}</span>
+        <span>{{ $t("plinko_maxvalue") }}</span>
       </div>
       <div class="modal-body">
-        <span>{{ showMax ? $t("maxquestion2") : $t("maxquestion1") }}</span>
+        <span>{{ showMax ? $t("plinko_maxquestion2") : $t("plinko_maxquestion1") }}</span>
       </div>
       <div class="modal__footer">
         <button class="activeButton" @click="setMaximum">
-          <span>{{ showMax ? $t("turnOff") : $t("turnOn") }}</span>
+          <span>{{ showMax ? $t("plinko_turnOff") : $t("plinko_turnOn") }}</span>
         </button>
       </div>
       <button class="modal__close" @click="hideModal">
