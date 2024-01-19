@@ -104,7 +104,7 @@ function onPopperOpen() {
         </div>
       </div>
       <div v-show="msg" class="msg">
-        <BaseIcon class="error-icon" name="uni-warning" />
+        <BaseIcon class="error-icon" name="uni-warning-color" />
         <span>{{ msg }}</span>
       </div>
       <template #popper="{ hide }">
@@ -174,7 +174,7 @@ function onPopperOpen() {
       </div>
     </div>
     <div v-show="msg" class="msg">
-      <BaseIcon class="error-icon" name="uni-warning" />
+      <BaseIcon class="error-icon" name="uni-warning-color" />
       <span>{{ msg }}</span>
     </div>
   </div>
@@ -292,8 +292,13 @@ function onPopperOpen() {
     align-items: center;
     span {
       font-size: var(--tg-font-size-xs);
-      color: var(--tg-text-error);
+      color: var(--tg-text-error-sub);
       margin-left: var(--tg-spacing-4);
+    }
+    .error-icon{
+      --tg-icon-color: var(--tg-text-error-sub);
+      font-size: var(--tg-font-size-xs);
+      // margin-left: var(--tg-spacing-8);
     }
   }
 .popper-wrap {

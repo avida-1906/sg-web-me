@@ -197,7 +197,7 @@ await application.allSettled(
   </div>
   <div
     v-if="(isWithdraw || isDeposit || isExchange)
-      && isOpenVerify && !isSetAuth && isEmailVerify"
+      && isOpenVerify && !isSetAuth"
     class="safe-bottom"
   >
     <div>
