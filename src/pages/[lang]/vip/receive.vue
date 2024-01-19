@@ -35,7 +35,7 @@ const typeOptions = [
   { label: t('vip_day_salary_bonus'), value: '819' },
   { label: t('vip_week_salary_bonus'), value: '820' },
   { label: t('vip_month_salary_bonus'), value: '821' },
-  { label: t('birthday_bonus'), value: '822' },
+  // { label: t('birthday_bonus'), value: '822' },
 ]
 const columns = reactive<Column[]>([
   {

@@ -102,7 +102,7 @@ await application.allSettled([runAsyncModelsList()])
         </div>
       </template>
       <template #rebate_ratio="{ record }">
-        <span style="color: var(--tg-text-warn)">
+        <span>
           {{ record.rebate_ratio }}%
         </span>
       </template>
