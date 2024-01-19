@@ -124,7 +124,7 @@ await application.allSettled(
     <div ref="contentRef" class="content">
       <BaseTab v-model="currentTab" :list="tabList" />
       <AppSelectCurrency
-        v-show="showWallet && !isCardHolder && !isExchange && !getComponent"
+        v-show="showWallet && (isDeposit || (isWithdraw && !getComponent))"
         :type="4"
         :active-currency-list="getActiveCurrency"
         :show-balance="isWithdraw"
