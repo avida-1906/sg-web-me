@@ -348,7 +348,6 @@ export function ApiMemberGameCateIndex() {
   return httpClient.get<{
     id: string
     name: string
-    seq: number
   }[]>('/member/game/cate/index')
 }
 
