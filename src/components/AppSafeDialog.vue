@@ -68,12 +68,12 @@ const updateParams = computed<IMemberBalanceLockerUpdate | null>(() => {
   }
   return null
 })
-// 币种年利率
-const vault = computed(() => {
+// 当前币种配置
+const vaultFig = computed(() => {
   if (interestConfig.value)
-    return interestConfig.value.find(a => a.currency_id.toString() === activeCurrency.value?.cur)?.interest_rate ?? 0
-
-  return 0
+    return interestConfig.value.find(a => a.currency_id.toString() === activeCurrency.value?.cur)
+  //     ?.interest_rate ?? 0
+  // return 0
 })
 // const getUsRate = computed(() => {
 //   const str: CurrencyCode = activeCurrency.value?.cur
@@ -134,8 +134,18 @@ async function handleUpdate() {
     passwordRef.value.setTouchTrue()
   await validateAmount()
   if (isDeposit.value) {
-    if (!errAmount.value && updateParams.value)
-      runLockerUpdate(updateParams.value)
+    if (!errAmount.value && updateParams.value) {
+      if (Number(amount.value) < Number(vaultFig.value?.min_deposit ?? 0)) {
+        openNotify({
+          title: t('finance_other_tab_vault_deposit'),
+          type: 'error',
+          message: t('currency_min_deposit_amount', { amount: vaultFig.value?.min_deposit, icon: renderSvg(activeCurrency.value.type.toLocaleLowerCase()) }),
+        })
+      }
+      else {
+        runLockerUpdate(updateParams.value)
+      }
+    }
   }
   else {
     await passwordRef.value.validatePassword()
@@ -181,7 +191,7 @@ await application.allSettled([runAsyncInterestConfig()])
       </div>
       <div class="amount">
         <div class="top">
-          <span v-show="isDeposit" class="label">{{ t('annual_interest_rate') + t('colon') }}{{ vault }}%</span>
+          <span v-show="isDeposit" class="label">{{ t('annual_interest_rate') + t('colon') }}{{ vaultFig?.interest_rate ?? 0 }}%</span>
           <span v-show="!isDeposit" class="label">{{ t('amount') }}</span>
           <!-- <span class="us">US${{ getUsRate }}</span> -->
         </div>

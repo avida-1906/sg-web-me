@@ -2019,3 +2019,4 @@ plinko_verifyTexts_serverSeed: "服务端种子"
 plinko_verifyTexts_nonce: "现实标志"
 plinko_copyText: "成功复制！"
 plinko_copyId: "成功复制！"
+currency_min_deposit_amount: 该币种最低存入金额为：{amount}{icon}
