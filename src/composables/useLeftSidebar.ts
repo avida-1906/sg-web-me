@@ -15,9 +15,9 @@ export const useLeftSidebar = createGlobalState(() => {
       navButtons.value = res.map((a) => {
         return {
           ...a,
-          title: +a.id === 2
+          title: a.id === '1'
             ? 'casino'
-            : +a.id === 3 ? 'sports' : '_',
+            : a.id === '2' ? 'sports' : '_',
         }
       })
     },

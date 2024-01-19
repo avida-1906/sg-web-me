@@ -330,7 +330,15 @@ export const application = new Application()
  */
 export function getEnv() {
   const _env = import.meta.env
-  _env.VITE_I18N_DEFAULT_LANG = navigator.language as EnumLanguageKeys
+  const lang = navigator.language
+
+  const isExist = EnumLanguage
+    ? Object.keys(EnumLanguage).map((key) => {
+      return key.split('-')[0]
+    }).includes(lang.split('-')[0])
+    : false
+
+  _env.VITE_I18N_DEFAULT_LANG = isExist ? (lang as EnumLanguageKeys) : 'en-US'
 
   return _env
 }
