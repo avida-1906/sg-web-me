@@ -2359,13 +2359,13 @@ vault_des_35: 'Please remember to always gamble responsibly. Learn more tips whe
 success_close_double_check: 2FA disabled successfully
 close_verification: Disable 2FA
 vip_sports_tip_title: The points for the stadium are {rate} times the following list
-vip_sports_tip_content: `(Example: 1USDT=1 member point, you will get {rate} member points when betting 1USDT on sports)`
+vip_sports_tip_content: '(Example: 1USDT=1 member point, you will get {rate} member points when betting 1USDT on sports)'
 money_exchange: Exchange currency
 exchange: Exchange
 pay_with: Pay in {currency}
 rate: Exchange rate
 birthday_bonus: Birthday bonus
-collection_instructions: `Instructions for receiving: The bonuses for this event are all issued in USDT; you can choose the currency you want to receive, and the exchange rate between currencies adopts the real-time market exchange rate.`
+collection_instructions: 'Instructions for receiving: The bonuses for this event are all issued in USDT; you can choose the currency you want to receive, and the exchange rate between currencies adopts the real-time market exchange rate.'
 activity_bonus: Activity bonus
 success_received: Successfully received {label} {amount} {renderSvg}
 add_withdraw_info: Please bind withdrawal information
