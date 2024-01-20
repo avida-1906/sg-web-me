@@ -111,7 +111,9 @@ const {
         }),
     })
     reset()
-    passwordRef.value.resetPassword()
+    if (!isDeposit.value)
+      passwordRef.value.resetPassword()
+
     appStore.getBalanceData()
     appStore.getLockerData()
     // appStore.updateUserInfo()
@@ -150,7 +152,7 @@ async function handleUpdate() {
   else {
     await passwordRef.value.validatePassword()
     if (!errAmount.value && !passwordRef.value.errPassword && updateParams.value)
-      runLockerUpdate({ ...updateParams.value, password: password.value, auth_type: passwordRef.value.authType })
+      runLockerUpdate({ ...updateParams.value, password: password.value, auth_type: +passwordRef.value.authType })
   }
 }
 function changeCurrency(item: CurrencyData) {
