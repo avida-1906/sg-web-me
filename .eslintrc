@@ -12,7 +12,8 @@
     "**/*.yml",
     "**/*.html",
     "**/*.json",
-    "**/*.py"
+    "**/*.py",
+    "**/*.xlsx"
   ],
   "rules": {
     "no-console": "off",
