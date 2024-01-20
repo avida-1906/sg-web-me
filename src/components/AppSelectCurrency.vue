@@ -89,6 +89,9 @@ watch(() => props.activeCurrencyList, () => {
     getActiveValue()
   })
 })
+watch(getCurrencyList, () => {
+  getActiveValue()
+})
 
 onMounted(() => {
   getActiveValue()
