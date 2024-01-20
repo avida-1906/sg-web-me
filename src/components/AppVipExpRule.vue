@@ -11,7 +11,7 @@ const expData = computed(() => {
   })
 })
 
-const { data } = useRequest(ApiMemberVipMultiple, { manual: false })
+const { data, loading } = useRequest(ApiMemberVipMultiple, { manual: false })
 const tableData = computed(() => {
   if (data.value) {
     return expData.value.map((a) => {
@@ -83,7 +83,7 @@ const column = [
       4.{{ t('diff_game_diff_rate') }}
     </div>
 
-    <BaseTable :columns="column" :data-source="tableData">
+    <BaseTable :loading="loading" :columns="column" :data-source="tableData">
       <template #currency="{ record }">
         <div class="flex gap-4">
           {{ record.num }}
