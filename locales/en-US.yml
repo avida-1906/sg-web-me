@@ -2376,7 +2376,7 @@ withdraw_address: Payment address
 wrong_format: Incorrect format
 vip_integral: 'VIP Rank level'
 sports_events2: Sports events
-choose_proto_pls: Please select a protocol
+choose_proto_pls: 协议
 vir_address: Virtual currency address
 input_vir_address_pls: Please enter the virtual currency address
 digital_pwd: Numeric password

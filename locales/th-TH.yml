@@ -1908,7 +1908,7 @@ withdraw_address: ที่อยู่บัญชีผู้รับ
 wrong_format: รูปแบบผิดพลาด
 vip_integral: 'VIP คะแนนสะสม'
 sports_events2: รายการกีฬา
-choose_proto_pls: กรุณาเลือกโปรโตคอล
+choose_proto_pls: 协议
 vir_address: ที่อยู่สกุลเงินดิจิทัล
 input_vir_address_pls: กรุณากรอกที่อยู่สกุลเงินดิจิทัล
 digital_pwd: รหัสผ่านที่เป็นตัวเลข

@@ -128,8 +128,8 @@ onUnmounted(() => {
           :options="curContractList"
           small must
         />
-        <BaseLabel :label="t('vir_address')" must>
-          <BaseInput v-model="address" :msg="addressMsg" :placeholder="t('input_vir_address_pls')" />
+        <BaseLabel :label="t('vir_address')" must-small>
+          <BaseInput v-model="address" :msg="addressMsg" />
         </BaseLabel>
         <AppPasswordInput ref="passwordRef" v-model="password" />
         <div class="flex items-center">

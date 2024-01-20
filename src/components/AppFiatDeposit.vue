@@ -149,7 +149,6 @@ const paymentMethodData = computed(() => {
 })
 
 const strToArray = function (amounts: string) {
-  console.log(amounts)
   const temp = amounts.split(',').filter(str => str.trim() !== '')
   return temp.map((i) => {
     return {
