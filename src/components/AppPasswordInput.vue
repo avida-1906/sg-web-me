@@ -15,7 +15,7 @@ withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['update:modelValue', 'update:modelType'])
 const { t } = useI18n()
 const {
-  isSetAuth, isOpenVerify, isOpenPayPwd, isSetPayPwd, brandBaseDetail,
+  isOpenVerify, isOpenPayPwd, brandBaseDetail,
 } = useBrandBaseDetail()
 
 const pwdOptions = computed(() => {
@@ -64,9 +64,11 @@ const getTouchTrue = computed(() => {
 // 密码类型切换
 function selectTypeChange(item: string) {
   pwdType.value = item
-  emit('update:modelValue', '')
+  if (password.value) {
+    resetPassword()
+    emit('update:modelValue', '')
+  }
   emit('update:modelType', item)
-  resetPassword()
 }
 function passwordChange(val: string) {
   emit('update:modelValue', val)
