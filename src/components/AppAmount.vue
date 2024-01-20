@@ -13,6 +13,8 @@ interface Props {
    * 小于0 显示绿色
    */
   showColor?: boolean
+  /** 是否需要显示popper */
+  isPopper?: boolean
 }
 
 const props = defineProps<Props>()
@@ -27,18 +29,54 @@ const colorClass = computed(() => {
 </script>
 
 <template>
-  <div class="app-amount">
-    <span
-      class="amount"
-      :class="colorClass"
-    >
-      {{ props.amount }}
-    </span>
-    <AppCurrencyIcon
-      v-if="currencyType"
-      :show-name="showName"
-      :currency-type="currencyType"
-    />
+  <div>
+    <template v-if="isPopper">
+      <AppTooltip icon-name="uni-doc" :auto-hide="false" :triggers="['click', 'hover']">
+        <template #content>
+          <div class="app-amount">
+            <span
+              class="amount"
+              :class="colorClass"
+            >
+              {{ props.amount }}
+            </span>
+            <AppCurrencyIcon
+              v-if="currencyType"
+              :show-name="showName"
+              :currency-type="currencyType"
+            />
+          </div>
+        </template>
+        <template #popper>
+          <div class="app-amount">
+            <span
+              class="amount"
+              :class="colorClass"
+            >
+              {{ props.amount }}
+            </span>
+            <AppCurrencyIcon
+              v-if="currencyType"
+              :show-name="showName"
+              :currency-type="currencyType"
+            />
+          </div>
+        </template>
+      </AppTooltip>
+    </template>
+    <div v-else class="app-amount">
+      <span
+        class="amount"
+        :class="colorClass"
+      >
+        {{ props.amount }}
+      </span>
+      <AppCurrencyIcon
+        v-if="currencyType"
+        :show-name="showName"
+        :currency-type="currencyType"
+      />
+    </div>
   </div>
 </template>
 
