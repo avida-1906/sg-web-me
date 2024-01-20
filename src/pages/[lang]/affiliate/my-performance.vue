@@ -51,8 +51,8 @@ const columns: Column[] = [
   },
   {
     title: t('performance'),
-    dataIndex: 'valid_bet_amount_direct',
-    slot: 'valid_bet_amount_direct',
+    dataIndex: 'valid_bet_amount_total',
+    slot: 'valid_bet_amount_total',
     align: 'center',
     sort: true,
   },
@@ -120,10 +120,10 @@ onMounted(() => {
       <template #username="{ record }">
         <AppReportUserName :username="record.username" :level="`${record.vip}`" />
       </template>
-      <template #valid_bet_amount_direct="{ record }">
+      <template #valid_bet_amount_total="{ record }">
         <div class="center">
           <AppAmount
-            :amount="record.valid_bet_amount_direct"
+            :amount="record.valid_bet_amount_total"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
           />
         </div>
