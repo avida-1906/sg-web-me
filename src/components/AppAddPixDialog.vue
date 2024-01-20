@@ -125,6 +125,14 @@ watch(countryOptions, (val) => {
     country.value = val[0].value
 })
 
+onMounted(() => {
+  if (props.openName) {
+    const [_xing, _ming] = props.openName.split(',')
+    xing.value = _xing || ''
+    ming.value = _ming || ''
+  }
+})
+
 onUnmounted(() => {
   openWalletDialog()
 })
@@ -141,12 +149,12 @@ onUnmounted(() => {
       <div class="flex gap-14 px-20 pt-14">
         <div class="flex-1">
           <BaseLabel must :label="$t('first_name')">
-            <BaseInput v-model="ming" :msg="mingError" />
+            <BaseInput v-model="ming" :msg="mingError" :disabled="!!openName" />
           </BaseLabel>
         </div>
         <div class="flex-1">
           <BaseLabel must :label="$t('last_name')">
-            <BaseInput v-model="xing" :msg="xingError" />
+            <BaseInput v-model="xing" :msg="xingError" :disabled="!!openName" />
           </BaseLabel>
         </div>
       </div>

@@ -7,6 +7,7 @@ interface Props {
   maxWithdrawBalance?: string
 }
 const props = withDefaults(defineProps<Props>(), {})
+const emit = defineEmits(['toHolder'])
 
 const amountRef = ref()
 const passwordRef = ref()
@@ -137,9 +138,9 @@ const bankcardId = computed(() =>
 function maxNumber() {
   setAmount(props.maxWithdrawBalance ?? '0.00')
 }
-function updateBank() {
-  runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur })
-}
+// function updateBank() {
+//   runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur })
+// }
 async function withDrawSubmit() {
   if (amountRef.value)
     amountRef.value.setTouchTrue()
@@ -185,14 +186,28 @@ await application.allSettled(
     <template v-if="withdrawMethodList?.length">
       <!-- 绑定银行卡/三方账户 -->
       <div v-if="!withdrawBankcardList?.d?.length" class="bank-bind">
-        <AppAddBankcards
+        <div class="layout-spacing not-payment-msg">
+          <div class="msg-warp">
+            <BaseIcon style="font-size: 16px;" name="uni-warning-color" class="search-icon" />
+            <div>
+              <div style="margin-bottom: 4px;">
+                请前往卡包绑定收款信息
+              </div>
+              <div>该币种您暂无收款信息</div>
+            </div>
+          </div>
+          <BaseButton bg-style="secondary" size="md" @click="emit('toHolder')">
+            前往卡包
+          </BaseButton>
+        </div>
+        <!-- <AppAddBankcards
           :is-first="true"
           :is-withdraw="true"
           :container="false"
           :active-currency="activeCurrency"
           :current-type="currentType"
           @added="updateBank"
-        />
+        /> -->
       </div>
       <!-- 出款信息 -->
       <div v-else class="withdrawal-wrap">
@@ -356,31 +371,45 @@ await application.allSettled(
       }
     }
   }
-
-}
-.bank-options{
-  .option-row {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: var(--tg-text-white);
-    cursor: pointer;
-    .bank-info{
+  .not-payment-msg{
+    gap: 16px;
+    .msg-warp{
       display: flex;
-      align-items: center;
-      :nth-child(1){
-        margin-right: var(--tg-spacing-5);
-      }
-      p{
-        margin: var(--tg-spacing-2) 0;
-      }
-      &.is-mobile{
-        flex-direction: column;
-        align-items: self-start;
-      }
-      user-select: none;
-      -webkit-user-select: none;
+      width: 100%;
+      gap: 4px;
+      justify-content: center;
+      padding: 27px 0;
+      border: var(--tg-border-width-sm) dashed var(--tg-secondary-light);
+      border-radius: 2px;
+      background-color: #0F212E;
+      font-size: var(--tg-font-size-default);
     }
   }
+
 }
+// .bank-options{
+//   .option-row {
+//     display: flex;
+//     align-items: center;
+//     gap: 0.75rem;
+//     color: var(--tg-text-white);
+//     cursor: pointer;
+//     .bank-info{
+//       display: flex;
+//       align-items: center;
+//       :nth-child(1){
+//         margin-right: var(--tg-spacing-5);
+//       }
+//       p{
+//         margin: var(--tg-spacing-2) 0;
+//       }
+//       &.is-mobile{
+//         flex-direction: column;
+//         align-items: self-start;
+//       }
+//       user-select: none;
+//       -webkit-user-select: none;
+//     }
+//   }
+// }
 </style>
