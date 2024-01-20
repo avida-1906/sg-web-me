@@ -29,7 +29,10 @@ export function useExchangeRate() {
     }
   }
 
+  const runGetExchangeRate = () => appStore.runGetExchangeRate()
+
   return {
     getRate,
+    runGetExchangeRate,
   }
 }
