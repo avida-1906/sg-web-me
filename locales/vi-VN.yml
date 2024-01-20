@@ -792,7 +792,7 @@ menu_title_my_commission: Hoa hồng của tôi
 menu_title_my_performance: Thành tích của tôi
 menu_title_all_data: Tất cả dữ liệu
 menu_title_direct_finance: Tài chính trực tiếp
-menu_title_direct_bet: cá cược trực tiếp
+menu_title_direct_bet: Cá cược trực tiếp
 menu_title_direct_user: Người chơi trực tiếp
 menu_title_direct_receive: Nhận lãnh trực tiếp
 menu_title_commission_rate: Tỷ lệ hoa hồng
@@ -1065,7 +1065,7 @@ label_type: Loại hình
 label_currency_types: Loại tiền tệ
 label_draw_time: Thời gian nhận lãnh
 label_contribute_count: Số lượng người đóng góp
-label_bind: Chương trình liên kết
+label_bind: Liên kết số tài khoản nhận
 title_input_paypwd: Nhập mật khẩu quỹ
 title_wallet_set: Cài đặt Ví
 success_bind: Liên kết thành công
@@ -1089,7 +1089,7 @@ vip_banner_tip_4: Được chỉ định một Đại diện Dịch vụ VIP t�
   và đáp ứng nhu cầu cá cược của bạn.
 vip_banner_tip_5: Nhận tiền thưởng sau khi đạt đến từng cấp độ tiếp theo. Cấp độ
   đạt được càng cao thì tiền thưởng nâng cấp càng lớn.
-booster_bonus: tiền thưởng tăng cường
+booster_bonus: Tiền thưởng tăng cường
 upgrade_bonus: Tiền thưởng tăng cấp
 monthly_bonus: Tiền thưởng hàng tháng
 weekly_bonus: Tiền thưởng hàng tuần
@@ -1266,7 +1266,7 @@ res_timeout: Hết thời gian phản hồi
 find_error: Đã xảy ra lỗi
 input_mem_account: Nhập tài khoản hội viên
 submit_reg: Gửi đăng ký
-join_time: thời gian tham gia
+join_time: Thời gian tham gia
 player_id: ID của người chơi
 activity_clicks: Số lần nhận hoạt động
 recommend_users: Người dùng được đề xuất
@@ -1608,7 +1608,7 @@ vip_club_tip_1: Trải nghiệm VIP tuyệt vời
 vip_club_tip_2: Mở khóa các lợi ích độc quyền và nhận tiền thưởng mà bạn có thể
   rút ngay lập tức mà không cần ràng buộc.
 vip_club_tip_3: Trở thành VIP là một quá trình dễ dàng và bổ ích
-vip_club_tip_4: Đăng ký ngay để bắt đầu cá cược tại sòng bạc hoặc chợ thể thao
+vip_club_tip_4: Đăng ký ngay để bắt đầu cá cược tại sòng bạc hoặc chợ thể thao.
 vip_club_tip_5: Mỗi lần đặt cược bạn thực hiện đều ảnh hưởng đến tiến trình đạt
   cấp VIP của bạn. Đạt cấp độ tiếp theo để mở khóa nhiều lợi ích hơn.
 vip_club_tip_6: Yêu cầu tiền thắng cược của bạn ngay. Quá trình nhận tiền thưởng
@@ -2205,7 +2205,7 @@ pwd_unequal: Mật khẩu không nhất quán
 cash_profit: lợi nhuận tiền mặt
 vip_win_lose: Thành viên thắng hay thua
 register_time: Thời gian đăng ký
-statistical_date: ngày thống kê
+statistical_date: Ngày thống kê
 phone_invalid: 'Số điện thoại không hợp lệ'
 colon: ':'
 period: .
