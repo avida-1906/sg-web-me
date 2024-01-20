@@ -22,6 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits(['change', 'update:modelValue'])
+const { userInfo } = storeToRefs(useAppStore())
 
 const { t } = useI18n()
 // 下拉搜索是否显示
@@ -89,7 +90,7 @@ watch(() => props.activeCurrencyList, () => {
     getActiveValue()
   })
 })
-watch(getCurrencyList, () => {
+watch(() => [userInfo.value.balanceData, userInfo.value.lockerData], () => {
   getActiveValue()
 })
 
