@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { BankCard, VirtualCoin } from '~/apis/types'
+import type { CurrencyCode } from '~/composables/useCurrencyData'
 
 const { t } = useI18n()
 const closeDialog = inject('closeDialog', () => { })
@@ -120,6 +121,17 @@ function deleteCard(item: any) {
   else
     toDeleteBankcard(item)
 }
+function getCurrencyIdToIconName(currencyId: CurrencyCode) {
+  console.error(currencyId)
+  const isVirtualCurrency = application.isVirtualCurrency(getCurrencyConfigByCode(currencyId).name)
+  if (isVirtualCurrency)
+    return `coin-${getCurrencyConfigByCode(currencyId).name.toLocaleLowerCase()}`
+
+  if (currencyId === '702')
+    return 'fiat-pix'
+
+  return 'fiat-bank'
+}
 
 await application.allSettled([runAsyncWalletBankcardList()])
 </script>
@@ -156,7 +168,7 @@ await application.allSettled([runAsyncWalletBankcardList()])
       <!-- item -->
       <div v-for="item in bankcardList" :key="item.id" class="flex overflow-hidden rounded-[4px]">
         <div class="bg-tg-secondary-grey max-w-60 flex items-center justify-center p-23">
-          <BaseIcon name="coin-usdt" />
+          <BaseIcon class="text-[20px]" :name="getCurrencyIdToIconName(item.currency_id)" />
         </div>
         <div class="bg-tg-secondary relative flex grow items-center px-14">
           <div class="text-tg-text-white flex flex-col gap-6">
