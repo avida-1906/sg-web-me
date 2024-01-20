@@ -20,7 +20,7 @@ const interestRate = computed(() => {
 const contentText = computed(() => {
   if (data.value) {
     const str = data.value.find(a => a.currency_name === curType.value)?.content_text
-    return str ? JSON.parse(str).text : ''
+    return str ? JSON.parse(str)?.text : ''
   }
   return ''
 })
