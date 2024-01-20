@@ -100,7 +100,7 @@ onMounted(() => {
       />
       <div>
         <BaseInput v-model="searchValue" :placeholder="t('player_id')">
-          <template #right-icon>
+          <template #left-icon>
             <div class="center" style="padding-right: var(--tg-spacing-4);">
               <BaseIcon name="uni-search" />
             </div>

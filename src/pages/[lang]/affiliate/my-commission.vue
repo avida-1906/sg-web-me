@@ -7,7 +7,7 @@ const router = useLocalRouter()
 const platformId = ref('')
 const platformIdList = ref([
   {
-    label: t('finance_other_tab_all'),
+    label: t('label_all_type'),
     value: '',
   },
 ])
