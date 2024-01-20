@@ -67,9 +67,7 @@ const {
   data: withdrawBankcardList,
 } = useRequest(ApiFinanceWithdrawBankcard, {
   onSuccess(data) {
-    const temp = currentType.value === '1'
-      ? data.d.find(i => i.is_default === 1 && i.state !== 2)?.bank_account
-      : data.d.find(i => i.state !== 2)?.bank_account
+    const temp = data.d.find(i => i.is_default === 1 && i.state !== 2)?.bank_account
     if (temp)
       selectBank.value = temp
     else
@@ -219,13 +217,13 @@ await application.allSettled(
               @focus="selectBankError && selectBankReset()"
             >
               <template #label>
-                <span style="min-height: 18px;">
+                <div style="min-height: 18px;">
                   <!-- <BaseIcon
                     v-if="defaultBank"
                     :name="currentType === '1' ? 'fiat-bank' : 'fiat-pix-title'"
                   /> -->
                   {{ defaultBank }}
-                </span>
+                </div>
               </template>
               <template #option="{ data: { item, parentWidth } }">
                 <div :style="{ width: `${parentWidth}px` }">
