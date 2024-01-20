@@ -139,7 +139,10 @@ await application.allSettled([runAsyncWalletBankcardList()])
 <template>
   <div class="px-16 pb-43">
     <div class="flex flex-col items-center">
-      <BaseSelect v-model="curType" :options="currencyOptions" popper>
+      <BaseSelect
+        v-model="curType" :options="currencyOptions" popper popper-search
+        :popper-search-placeholder="t('search_currency')"
+      >
         <template #label="{ data }">
           <AppCurrencyIcon show-name :currency-type="data?.value" />
         </template>

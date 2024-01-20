@@ -110,7 +110,7 @@ watch(amountPay, (a) => {
             --tg-base-select-popper-style-padding-y:12px;
             --tg-base-select-popper-bg-color:transparent;
             --tg-base-select-hover-bg-color:transparent;
-            width: 110px;" popper-search
+            width: 110px;" popper-search :popper-search-placeholder="t('search_currency')"
           >
             <template #label="{ data }">
               <AppCurrencyIcon show-name :currency-type="data?.value" />
@@ -137,7 +137,7 @@ watch(amountPay, (a) => {
             --tg-base-select-popper-style-padding-y:12px;
             --tg-base-select-popper-bg-color:transparent;
             --tg-base-select-hover-bg-color:transparent;
-            width: 110px;" popper-search
+            width: 110px;" popper-search :popper-search-placeholder="t('search_currency')"
           >
             <template #label="{ data }">
               <AppCurrencyIcon show-name :currency-type="data?.value" />

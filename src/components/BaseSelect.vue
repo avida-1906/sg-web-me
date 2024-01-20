@@ -25,6 +25,7 @@ interface Props {
   showPlaceholder?: boolean
   placeholder?: string
   popperSearch?: boolean
+  popperSearchPlaceholder?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -121,7 +122,10 @@ function onPopperOpen() {
           class="scroll-y need-pad-y popper-wrap" :style="{ maxHeight: popperMaxHeight }"
         >
           <div v-if="popperSearch" class="search-wrap">
-            <BaseSearch v-model="popperSearchValue" class="top-search" white-style shape="square" />
+            <BaseSearch
+              v-model="popperSearchValue" class="top-search" white-style shape="square"
+              :place-holder="popperSearchPlaceholder"
+            />
           </div>
 
           <a
