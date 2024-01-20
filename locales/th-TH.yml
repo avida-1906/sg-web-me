@@ -871,8 +871,8 @@ sports_status_lose_half: แพ้ครึ่ง
 sports_status_lose_part: แพ้บ้างส่วน
 sports_estimated_payment_amount: ยอดชำระเงินประมาณ
 sports_payment_amount: ยอดชำระ
-sports_single_bet: เดิมพันรายการเดี่ยว
-sports_multi_bet: การเดิมพันแบบผสม
+sports_single_bet: สำเร็จแล้ว เดิมพันรายการเดี่ยว
+sports_multi_bet: สำเร็จแล้ว เดิมพันแบบผสม
 sports_active: ยังไม่คำนวณ
 sports_settled: คำนวนเสร็จสิ้น
 sports_accept_any_odds: 'ยอมรับการเปลี่ยนแปลงอัตราต่อรองทั้งหมด'
@@ -1322,7 +1322,7 @@ withdrawal_fee_tip: เราจะหักเงินจากยอดเง
 withdrawal_as_fee: เป็นค่าธรรมเนียมการทำธุรกรรมสำหรับการถอนเงินของคุณ
 present: ส่ง
 order_label: รายการ
-bet_tip_amount_tip: 'ระงับมูลค่ารวม {numStr} สำเร็จแล้ว'
+bet_tip_amount_tip: 'วางเดิมพันรวมมูลค่า {numStr} สำเร็จแล้ว เดิมพันแบบผสม!'
 de: ของ
 bet_more_than_balance: ยอดเดิมพันต้องไม่มากกว่ายอดคงเหลือของคุณ.
 order_by_alpha: เรียงลำดับตามตัวอักษร
