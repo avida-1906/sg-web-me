@@ -1,6 +1,7 @@
 <script setup lang='ts'>
-const { t } = useI18n()
+import type { EnumCurrencyKey } from '~/apis/types'
 
+const { t } = useI18n()
 const {
   currentGlobalCurrency,
   userInfo,
@@ -9,26 +10,11 @@ const {
   renderBalanceList,
 } = useCurrencyData()
 const { getRate } = useExchangeRate()
-
-const {
-  value: amountGet,
-  errorMessage: errorGet,
-  setValue: setAmountGet,
-  resetField: resetAmountGet,
-} = useField<string>('amountGet', (v) => {
-  return ''
-})
-const {
-  value: amountPay,
-  errorMessage: errorPay,
-  setValue: setAmountPay,
-  resetField: resetAmountPay,
-} = useField<string>('amountPay', (v) => {
-  return ''
-})
+const { openNotify } = useNotify()
+const appStore = useAppStore()
 
 const currencyTypePay = ref(currentGlobalCurrency.value)
-const currencyTypeGet = ref(renderBalanceList.value.filter(a => a.type !== currencyTypePay.value)[0].type)
+const currencyTypeGet = ref<EnumCurrencyKey>('USDT')
 
 const currencyCodePay = computed(() => {
   return renderBalanceList.value.find(a => a.type === currencyTypePay.value)?.cur ?? '701'
@@ -60,8 +46,31 @@ const rate = computed(() => {
 })
 const currencyMaxBalance = computed(() => userInfo.value?.balance[currencyTypePay.value] ?? 0)
 
+const {
+  value: amountGet,
+  errorMessage: errorGet,
+  setValue: setAmountGet,
+  resetField: resetAmountGet,
+} = useField<string>('amountGet', (v) => {
+  return ''
+})
+const {
+  value: amountPay,
+  errorMessage: errorPay,
+  setValue: setAmountPay,
+  resetField: resetAmountPay,
+} = useField<string>('amountPay', (v) => {
+  return ''
+})
+
 const { run, loading } = useRequest(ApiFinanceBalanceTransfer, {
   onSuccess(res) {
+    openNotify({
+      type: 'success',
+      title: t('exchange'),
+      message: t('exchange') + t('notify_title_success'),
+    })
+    appStore.getBalanceData()
     resetAmountPay()
     resetAmountGet()
   },
@@ -93,6 +102,11 @@ watch(amountPay, (a) => {
     setAmountPay(`${currencyMaxBalance.value}`)
     setAmountGet(mul(+amountPay.value, rate.value))
   }
+})
+
+onMounted(() => {
+  setAmountPay(userInfo.value?.balance[currencyTypePay.value] ?? '')
+  setAmountGet(mul(+amountPay.value, rate.value))
 })
 </script>
 

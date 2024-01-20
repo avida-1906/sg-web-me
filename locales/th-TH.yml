@@ -2027,3 +2027,6 @@ check_card_account_pls: กรุณาใส่ใจกับการตร�
 all_currencies: 全部币种
 check_card_account_pls_brl: 请认真核对账户，卡号错误资金将无法到账
 is_default_addr_brl: 是否设为默认账户
+go_card_pack: 前往卡包
+please_go_package_bind_payment_information: 请前往卡包绑定收款信息
+not_payment_information_currency: 该币种您暂无收款信息
