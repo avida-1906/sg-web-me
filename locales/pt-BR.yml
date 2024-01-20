@@ -611,7 +611,7 @@ tickets_email_copy: Respostas e atualizações de ordem de trabalho serão envia
   para o seguinte endereço de e-mail
 tickets_email_subject: Sua ordem de trabalho {ticket_type_name}
 tickets_email_subject_with_ticket_id: 'Your {ticket_type_name} ticket #{ticket_id}'
-tickets_estimated_resolution: 预计解决时间：{duration}
+tickets_estimated_resolution: `Tempo estimado de resolução: {duration}`
 tickets_files_added: Arquivo adicionado
 tickets_have_a_question: Alguma dúvida?
 tickets_in_progress_status_detail: Estamos trabalhando duro em relação a este assunto 🙌
@@ -2322,15 +2322,15 @@ gameble_aware: 'Aposta com responsabilidade'
 transfer_to_wallet: 'Transferir para carteira'
 statistical_data_dialog_title: 'Dados estatísticos'
 end_time_table: 'Término: após {time} horas'
-user_no_statistics_display: 此用户未有可显示的统计数据
-this_week: 本周
-this_month: 本月
-this_quarter: 本季度
+user_no_statistics_display: Este usuário não tem estatísticas para exibir
+this_week: Esta semana
+this_month: Este mês
+this_quarter: Este trimestre
 sports_tab_starting_soon2: Prestes a começar
 recent_game_record2: Recente
 keep_integral: Pontos de rebaixamento
 min_deposit_amount: 最低存入金额
-annual_interest_rate: 年利率
+annual_interest_rate: Taxa de juros anual
 vault_des_1: 'The Meibo Vault Explained: How to Use Our Online Vault to Store Crypto'
 vault_des_2_1: 'Although betting at Meibo.com is highly secure, the Vault is an additional layer of protection for your funds. Every user at Meibo.com can access the Vault, whether you play'
 vault_des_casino: 'casino games'
@@ -2405,47 +2405,47 @@ vault_des_32: "The Meibo.com Vault is the ideal place to store your cryptocurren
 vault_des_33: 'Remember, we also send funds securely to the Vault as part of certain casino promotions and sports offers, so make sure you set up your Vault to avoid missing out on all our special deals, weekly giveaways, and exclusive prizes!'
 vault_des_34: "New to Meibo.com and want to learn more before placing your bets? Browse through our online casino guide and our guide to sports betting and you'll be an expert in no time."
 vault_des_35: 'Please remember to always gamble responsibly. Learn more tips when betting online with our responsible gambling guide . You can use our budget calculator to stay on top of your spending habits and read up on our guide to knowing how much to gamble with.'
-success_close_double_check: 关闭双重验证密码成功
-close_verification: 关闭双重验证
+success_close_double_check: 关2FA desativado com sucesso
+close_verification: Desativar 2FA
 vip_sports_tip_title: A pontuação dos estádios esportivos equivalem a {rate} vezes a seguinte lista
 vip_sports_tip_content: '(Exemplo: 1 USDT = 1 ponto de associação. Ao fazer uma aposta esportiva de 1 USDT, você receberá {rate} pontos de associação)'
-money_exchange: 兑换货币
-exchange: 兑换
-pay_with: 以 {currency} 支付
-rate: 汇率
+money_exchange: Câmbio
+exchange: Câmbio
+pay_with: Pague em {currency}
+rate: Taxa de câmbio
 birthday_bonus: Bônus de aniversário
-collection_instructions: 领取说明：本活动奖金均是以USDT发放；您可以自行选择领取的货币，货币间汇率采用市场实时汇率。
-activity_bonus: 活动奖金
-success_received: 成功领取{label} {amount} {renderSvg}
-add_withdraw_info: 请绑定提款信息
-three_withdraw_info_only: 每种货币只能绑定3个收款信息
-want_more_del_first: 如需绑定更多，请先删除不常用
-withdraw_account: 收款账号
-withdraw_address: 收款地址
-wrong_format: 格式错误
+collection_instructions: `Instruções para recebimento: Os bônus deste evento são todos emitidos em USDT, você pode escolher a moeda que deseja receber e a taxa de câmbio entre as moedas adota a taxa de câmbio do mercado em tempo real.`
+activity_bonus: Bônus de atividade
+success_received: `{label} {amount} {renderSvg} recebido com sucesso`
+add_withdraw_info: Por favor, vincule as informações de retirada
+three_withdraw_info_only: Cada moeda pode ter apenas 3 informações de recebimento vinculadas
+want_more_del_first: Caso precise vincular mais, exclua as menos utilizadas
+withdraw_account: Conta de pagamento
+withdraw_address: Endereço de pagamento
+wrong_format: Formato incorreto
 vip_integral: 'VIP Rank'
 sports_events2: Eventos esportivos
-choose_proto_pls: 请选择协议
-vir_address: 虚拟货币地址
-input_vir_address_pls: 请输入虚拟货币地址
-digital_pwd: 数字密码
-check_vir_address_pls: 请认真核对地址，地址错误资金将无法到账
-check_account_pls: 请认真核对账号，账号错误资金将无法到账
-first_name: 名字
-last_name : 姓氏
-country_pls: 请选择国家
-city_pls: 请填写城市
-select_pix_type_pls: 请选择PIX账号类型
-diff_game_diff_rate: 投注不同场馆将会获得不同的VIP积分累积，详情请查看下图。
-bet_currency: 投注币种
-sports_integral: 体育场馆积分
-casino_integral: 真人场馆积分
-slot_integral: 电子场馆积分
-fish_integral: 捕鱼场馆积分
-pay_methods: 支付方式
-country: 国家
-city: 城市
-pix_account_type: PIX账号类型
+choose_proto_pls: Selecione um protocolo
+vir_address: Endereço de moeda virtual
+input_vir_address_pls: Por favor insira o endereço da moeda virtual
+digital_pwd: Senha numérica
+check_vir_address_pls: Por favor, verifique o endereço com atenção. Se o endereço estiver incorreto, os fundos não serão recebidos.
+check_account_pls: Por favor, verifique o número da conta com atenção. Se o número da conta estiver incorreto, os fundos não serão recebidos.
+first_name: Nome
+last_name : Sobrenome
+country_pls: Selecione o país
+city_pls: Preencha a cidade
+select_pix_type_pls: Selecione o tipo de conta PIX
+diff_game_diff_rate: Apostar em locais diferentes resultará em diferentes acumulações de pontos VIP. Consulte a imagem abaixo para obter detalhes.
+bet_currency: Moeda de apostas
+sports_integral: Pontuação de Estádio
+casino_integral: Pontuação de locais ao vivo
+slot_integral: Pontuação eletrônicos do local
+fish_integral: Pontuação de pesca
+pay_methods: Forma de pagamento
+country: País
+city: Cidade
+pix_account_type: Tipo de conta PIX
 plinko_manual: "手动投注"
 plinko_auto: "自动投注"
 plinko_amount: "投注额"
@@ -2538,5 +2538,5 @@ plinko_verifyTexts_serverSeed: "服务端种子"
 plinko_verifyTexts_nonce: "现实标志"
 plinko_copyText: "成功复制！"
 plinko_copyId: "成功复制！"
-currency_min_deposit_amount: 该币种最低存入金额为：{amount}{icon}
+currency_min_deposit_amount: Valor mínimo de depósito：{amount}{icon}
 bind_more_bank_tip: 每种货币只能绑定3个收款信息，如需绑定更多，请先删除不常用
