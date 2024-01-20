@@ -505,7 +505,7 @@ const toVip = function () {
               {{ t('checklist_card_first_step') }}
             </p>
             <p>
-              {{ t('vip_club_tip_4') }}。
+              {{ t('vip_club_tip_4') }}
             </p>
           </div>
           <div class="step-item">

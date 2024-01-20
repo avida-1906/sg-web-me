@@ -2273,15 +2273,15 @@ gameble_aware: 'Gamble aware'
 transfer_to_wallet: 'Transfer to wallet'
 statistical_data_dialog_title: 'Statistical data'
 end_time_table: 'End time: after {time} hours'
-user_no_statistics_display: 此用户未有可显示的统计数据
-this_week: 本周
-this_month: 本月
-this_quarter: 本季度
+user_no_statistics_display: This user has no statistics to display
+this_week: This week
+this_month: This month
+this_quarter: This quarter
 sports_tab_starting_soon2: About to
 recent_game_record2: Record of recent games
-keep_integral: 保级积分
-min_deposit_amount: 最低存入金额
-annual_interest_rate: 年利率
+keep_integral: Relegation points
+min_deposit_amount: Minimum deposit amount
+annual_interest_rate: Annual interest rate
 vault_des_1: 'The Meibo Vault Explained: How to Use Our Online Vault to Store Crypto'
 vault_des_2_1: 'Although betting at Meibo.com is highly secure, the Vault is an additional layer of protection for your funds. Every user at Meibo.com can access the Vault, whether you play'
 vault_des_casino: 'casino games'
@@ -2356,47 +2356,47 @@ vault_des_32: "The Meibo.com Vault is the ideal place to store your cryptocurren
 vault_des_33: 'Remember, we also send funds securely to the Vault as part of certain casino promotions and sports offers, so make sure you set up your Vault to avoid missing out on all our special deals, weekly giveaways, and exclusive prizes!'
 vault_des_34: "New to Meibo.com and want to learn more before placing your bets? Browse through our online casino guide and our guide to sports betting and you'll be an expert in no time."
 vault_des_35: 'Please remember to always gamble responsibly. Learn more tips when betting online with our responsible gambling guide . You can use our budget calculator to stay on top of your spending habits and read up on our guide to knowing how much to gamble with.'
-success_close_double_check: 关闭双重验证密码成功
-close_verification: 关闭双重验证
-vip_sports_tip_title: 体育场馆的积分是下列列表的{rate}倍
-vip_sports_tip_content: (例：1USDT=1会员积分，您在体育投注1USDT将获得{rate}会员积分）
-money_exchange: 兑换货币
-exchange: 兑换
-pay_with: 以 {currency} 支付
-rate: 汇率
-birthday_bonus: 生日奖金
-collection_instructions: 领取说明：本活动奖金均是以USDT发放；您可以自行选择领取的货币，货币间汇率采用市场实时汇率。
-activity_bonus: 活动奖金
-success_received: 成功领取{label} {amount} {renderSvg}
-add_withdraw_info: 请绑定提款信息
-three_withdraw_info_only: 每种货币只能绑定3个收款信息
-want_more_del_first: 如需绑定更多，请先删除不常用
-withdraw_account: 收款账号
-withdraw_address: 收款地址
-wrong_format: 格式错误
+success_close_double_check: 2FA disabled successfully
+close_verification: Disable 2FA
+vip_sports_tip_title: The points for the stadium are {rate} times the following list
+vip_sports_tip_content: '(Example: 1USDT=1 member point, you will get {rate} member points when betting 1USDT on sports)'
+money_exchange: Exchange currency
+exchange: Exchange
+pay_with: Pay in {currency}
+rate: Exchange rate
+birthday_bonus: Birthday bonus
+collection_instructions: 'Instructions for receiving: The bonuses for this event are all issued in USDT; you can choose the currency you want to receive, and the exchange rate between currencies adopts the real-time market exchange rate.'
+activity_bonus: Activity bonus
+success_received: Successfully received {label} {amount} {renderSvg}
+add_withdraw_info: Please bind withdrawal information
+three_withdraw_info_only: Each currency can only be bound to 3 payment information
+want_more_del_first: If you need to bind more, please delete the infrequently used ones first.
+withdraw_account: Payment account number
+withdraw_address: Payment address
+wrong_format: Incorrect format
 vip_integral: 'VIP Rank level'
 sports_events2: Sports events
-choose_proto_pls: 请选择协议
-vir_address: 虚拟货币地址
-input_vir_address_pls: 请输入虚拟货币地址
-digital_pwd: 数字密码
-check_vir_address_pls: 请认真核对地址，地址错误资金将无法到账
-check_account_pls: 请认真核对账号，账号错误资金将无法到账
-first_name: 名字
-last_name : 姓氏
-country_pls: 请选择国家
-city_pls: 请填写城市
-select_pix_type_pls: 请选择PIX账号类型
-diff_game_diff_rate: 投注不同场馆将会获得不同的VIP积分累积，详情请查看下图。
-bet_currency: 投注币种
-sports_integral: 体育场馆积分
-casino_integral: 真人场馆积分
-slot_integral: 电子场馆积分
-fish_integral: 捕鱼场馆积分
-pay_methods: 支付方式
-country: 国家
-city: 城市
-pix_account_type: PIX账号类型
+choose_proto_pls: 协议
+vir_address: Virtual currency address
+input_vir_address_pls: Please enter the virtual currency address
+digital_pwd: Numeric password
+check_vir_address_pls: Please check the address carefully. If the address is incorrect, funds will not be received.
+check_account_pls: Please check the account number carefully. If the account number is incorrect, funds will not be received.
+first_name: Name
+last_name : Last name
+country_pls: Please select the country
+city_pls: Please fill in the city
+select_pix_type_pls: Please select PIX account type
+diff_game_diff_rate: Betting on different venues will result in different accumulation of VIP points. Please see the picture below for details.
+bet_currency: Betting currency
+sports_integral: Stadium Points
+casino_integral: Live venue points
+slot_integral: Electronic venue points
+fish_integral: Fishing venue points
+pay_methods: Payment method
+country: Country
+city: City
+pix_account_type: PIX account type
 plinko_manual: "手动投注"
 plinko_auto: "自动投注"
 plinko_amount: "投注额"
@@ -2491,3 +2491,4 @@ plinko_copyText: "成功复制！"
 plinko_copyId: "成功复制！"
 currency_min_deposit_amount: 该币种最低存入金额为：{amount}{icon}
 bind_more_bank_tip: 每种货币只能绑定3个收款信息，如需绑定更多，请先删除不常用
+all_currencies: 全部币种

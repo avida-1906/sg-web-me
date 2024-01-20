@@ -792,7 +792,7 @@ menu_title_my_commission: Hoa hồng của tôi
 menu_title_my_performance: Thành tích của tôi
 menu_title_all_data: Tất cả dữ liệu
 menu_title_direct_finance: Tài chính trực tiếp
-menu_title_direct_bet: cá cược trực tiếp
+menu_title_direct_bet: Cá cược trực tiếp
 menu_title_direct_user: Người chơi trực tiếp
 menu_title_direct_receive: Nhận lãnh trực tiếp
 menu_title_commission_rate: Tỷ lệ hoa hồng
@@ -1065,7 +1065,7 @@ label_type: Loại hình
 label_currency_types: Loại tiền tệ
 label_draw_time: Thời gian nhận lãnh
 label_contribute_count: Số lượng người đóng góp
-label_bind: Chương trình liên kết
+label_bind: Liên kết số tài khoản nhận
 title_input_paypwd: Nhập mật khẩu quỹ
 title_wallet_set: Cài đặt Ví
 success_bind: Liên kết thành công
@@ -1089,7 +1089,7 @@ vip_banner_tip_4: Được chỉ định một Đại diện Dịch vụ VIP t�
   và đáp ứng nhu cầu cá cược của bạn.
 vip_banner_tip_5: Nhận tiền thưởng sau khi đạt đến từng cấp độ tiếp theo. Cấp độ
   đạt được càng cao thì tiền thưởng nâng cấp càng lớn.
-booster_bonus: tiền thưởng tăng cường
+booster_bonus: Tiền thưởng tăng cường
 upgrade_bonus: Tiền thưởng tăng cấp
 monthly_bonus: Tiền thưởng hàng tháng
 weekly_bonus: Tiền thưởng hàng tuần
@@ -1266,7 +1266,7 @@ res_timeout: Hết thời gian phản hồi
 find_error: Đã xảy ra lỗi
 input_mem_account: Nhập tài khoản hội viên
 submit_reg: Gửi đăng ký
-join_time: thời gian tham gia
+join_time: Thời gian tham gia
 player_id: ID của người chơi
 activity_clicks: Số lần nhận hoạt động
 recommend_users: Người dùng được đề xuất
@@ -1608,7 +1608,7 @@ vip_club_tip_1: Trải nghiệm VIP tuyệt vời
 vip_club_tip_2: Mở khóa các lợi ích độc quyền và nhận tiền thưởng mà bạn có thể
   rút ngay lập tức mà không cần ràng buộc.
 vip_club_tip_3: Trở thành VIP là một quá trình dễ dàng và bổ ích
-vip_club_tip_4: Đăng ký ngay để bắt đầu cá cược tại sòng bạc hoặc chợ thể thao
+vip_club_tip_4: Đăng ký ngay để bắt đầu cá cược tại sòng bạc hoặc chợ thể thao.
 vip_club_tip_5: Mỗi lần đặt cược bạn thực hiện đều ảnh hưởng đến tiến trình đạt
   cấp VIP của bạn. Đạt cấp độ tiếp theo để mở khóa nhiều lợi ích hơn.
 vip_club_tip_6: Yêu cầu tiền thắng cược của bạn ngay. Quá trình nhận tiền thưởng
@@ -2205,7 +2205,7 @@ pwd_unequal: Mật khẩu không nhất quán
 cash_profit: lợi nhuận tiền mặt
 vip_win_lose: Thành viên thắng hay thua
 register_time: Thời gian đăng ký
-statistical_date: ngày thống kê
+statistical_date: Ngày thống kê
 phone_invalid: 'Số điện thoại không hợp lệ'
 colon: ':'
 period: .
@@ -2259,14 +2259,14 @@ transfer_to_wallet: 'Chuyển vào ví'
 statistical_data_dialog_title: 'Thống kê'
 end_time_table: 'Kết thúc sau {time} giờ nữa'
 user_no_statistics_display: Người dùng này thống kê bị ẩn.
-this_week: 本周
-this_month: 本月
-this_quarter: 本季度
+this_week: Tuần này
+this_month: Tháng này
+this_quarter: Quý này
 sports_tab_starting_soon2: Bắt Đầu
 recent_game_record2: Gần đây
 keep_integral: Điểm xuống hạng
-min_deposit_amount: 最低存入金额
-annual_interest_rate: 年利率
+min_deposit_amount: Số tiền gửi tối thiểu
+annual_interest_rate: Lợi nhuận hàng năm
 vault_des_1: 'The Meibo Vault Explained: How to Use Our Online Vault to Store Crypto'
 vault_des_2_1: 'Although betting at Meibo.com is highly secure, the Vault is an additional layer of protection for your funds. Every user at Meibo.com can access the Vault, whether you play'
 vault_des_casino: 'casino games'
@@ -2341,8 +2341,8 @@ vault_des_32: "The Meibo.com Vault is the ideal place to store your cryptocurren
 vault_des_33: 'Remember, we also send funds securely to the Vault as part of certain casino promotions and sports offers, so make sure you set up your Vault to avoid missing out on all our special deals, weekly giveaways, and exclusive prizes!'
 vault_des_34: "New to Meibo.com and want to learn more before placing your bets? Browse through our online casino guide and our guide to sports betting and you'll be an expert in no time."
 vault_des_35: 'Please remember to always gamble responsibly. Learn more tips when betting online with our responsible gambling guide . You can use our budget calculator to stay on top of your spending habits and read up on our guide to knowing how much to gamble with.'
-success_close_double_check: 关闭双重验证密码成功
-close_verification: 关闭双重验证
+success_close_double_check: Tắt mật khẩu xác minh hai yếu tố thành công
+close_verification: Tắt xác minh hai yếu tố
 vip_sports_tip_title: Điểm dành cho sân vận động thể thao gấp {rate} lần số điểm được liệt kê bên dưới
 vip_sports_tip_content: '(Ví dụ: 1USDT=1 điểm thành viên, bạn sẽ nhận được 2 điểm thành viên khi đặt cược 1 USDT vào thể thao)'
 money_exchange: Đổi tệ
@@ -2350,38 +2350,38 @@ exchange: Đổi
 pay_with: Thanh toán bằng VNĐ {currency}
 rate: Tỷ giá
 birthday_bonus: Tiền thưởng sinh nhật
-collection_instructions: 领取说明：本活动奖金均是以USDT发放；您可以自行选择领取的货币，货币间汇率采用市场实时汇率。
-activity_bonus: 活动奖金
-success_received: 成功领取{label} {amount} {renderSvg}
+collection_instructions: 'Hướng dẫn nhận: Tiền thưởng cho hoạt động này đều được phát bằng USDT, bạn có thể chọn loại tiền bạn muốn nhận và tỷ giá giữa các loại tiền tệ áp dụng tỷ giá thị trường theo thời gian thực.'
+activity_bonus: Phần thưởng hoạt động
+success_received: Đã nhận thành công {label} {amount} {renderSvg}
 add_withdraw_info: Vui lòng liên kết tài khoản rút tiền
-three_withdraw_info_only: Mỗi loại tiền tệ chỉ có thể liên kết với 3 tài khoản nhận tiền.
-want_more_del_first: Nếu bạn cần liên kết nhiều hơn, vui lòng xóa những cái không sử dụng thường xuyên trước. 
-withdraw_account: 收款账号
-withdraw_address: 收款地址
-wrong_format: 格式错误
+three_withdraw_info_only: Mỗi loại tiền tệ chỉ có thể liên kết với 3 tài khoản nhận tiền
+want_more_del_first: Nếu bạn cần liên kết nhiều hơn, vui lòng xóa những cái không sử dụng thường xuyên trước.
+withdraw_account: Số tài khoản nhận
+withdraw_address: Địa chỉ nhận
+wrong_format: Định dạng sai
 vip_integral: 'VIP Tích điểm'
 sports_events2: Tất Cả
-choose_proto_pls: 请选择协议
-vir_address: 虚拟货币地址
-input_vir_address_pls: 请输入虚拟货币地址
-digital_pwd: 数字密码
-check_vir_address_pls: 请认真核对地址，地址错误资金将无法到账
-check_account_pls: 请认真核对账号，账号错误资金将无法到账
-first_name: 名字
-last_name : 姓氏
-country_pls: 请选择国家
-city_pls: 请填写城市
-select_pix_type_pls: 请选择PIX账号类型
-diff_game_diff_rate: 投注不同场馆将会获得不同的VIP积分累积，详情请查看下图。
-bet_currency: 投注币种
-sports_integral: 体育场馆积分
-casino_integral: 真人场馆积分
-slot_integral: 电子场馆积分
-fish_integral: 捕鱼场馆积分
-pay_methods: 支付方式
-country: 国家
-city: 城市
-pix_account_type: PIX账号类型
+choose_proto_pls: 协议
+vir_address: Địa chỉ tiền tệ
+input_vir_address_pls: Vui lòng nhập địa chỉ tiền tệ
+digital_pwd: Mật khẩu số
+check_vir_address_pls: Vui lòng kiểm tra địa chỉ chính xác, nếu địa chỉ sai, sẽ không được nhận tiền
+check_account_pls: Vui lòng kiểm tra tài khoản chính xác, nếu tài khoản sai, sẽ không được nhận tiền
+first_name: Tên
+last_name : Họ
+country_pls: Vui lòng chọn Quốc gia
+city_pls: Vui lòng điền tên Thành phố
+select_pix_type_pls: Vui lòng chọn loại tài khoản PIX
+diff_game_diff_rate: Đặt cược ở các sân vận động khác nhau sẽ dẫn đến việc tích lũy điểm VIP khác nhau, vui lòng xem hình ảnh bên dưới để biết thêm chi tiết.
+bet_currency: Loại tiền tệ đặt cược
+sports_integral: Tích điểm trò chơi thể thao
+casino_integral: Tích điểm trò chơi Baccarat
+slot_integral: Tích điểm trò chơi điện tử
+fish_integral: Tích điểm trò chơi bắn cá
+pay_methods: Phương thức thanh toán
+country: Quốc gia
+city: Thành phố
+pix_account_type: Loại tài khoản PIX
 plinko_manual: "手动投注"
 plinko_auto: "自动投注"
 plinko_amount: "投注额"
@@ -2476,3 +2476,4 @@ plinko_copyText: "成功复制！"
 plinko_copyId: "成功复制！"
 currency_min_deposit_amount: 该币种最低存入金额为：{amount}{icon}
 bind_more_bank_tip: 每种货币只能绑定3个收款信息，如需绑定更多，请先删除不常用
+all_currencies: 全部币种

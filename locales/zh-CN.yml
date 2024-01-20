@@ -1406,7 +1406,7 @@ online_24_sup: 24 小时在线客户支持
 vip_club_tip_1: 无与伦比的 VIP 体验
 vip_club_tip_2: 解锁专属福利并获得无需任何附加条件即可立即提取的奖金。
 vip_club_tip_3: 成为 VIP 是个既简单又富有回报的过程
-vip_club_tip_4: 立即注册以开始在赌场或体育盘口上进行投注
+vip_club_tip_4: 立即注册以开始在赌场或体育盘口上进行投注。
 vip_club_tip_5: 您的每笔赌注都会影响您 VIP 级别的进度。达到下个级别以解锁更多福利。
 vip_club_tip_6: 立即领取您的奖金。领取每日、周度和月度奖金的过程既简单又容易。
 vip_club_tip_7: '{site} 通过不间断送出的奖金提供了独特且无与伦比的体验'
@@ -1906,9 +1906,8 @@ withdraw_address: 收款地址
 wrong_format: 格式错误
 vip_integral: 'VIP 积分'
 sports_events2: 体育项目
-choose_proto_pls: 请选择协议
+choose_proto_pls: 协议
 vir_address: 虚拟货币地址
-input_vir_address_pls: 请输入虚拟货币地址
 digital_pwd: 数字密码
 check_vir_address_pls: 请认真核对地址，地址错误资金将无法到账
 check_account_pls: 请认真核对账号，账号错误资金将无法到账
@@ -2021,3 +2020,4 @@ plinko_copyText: "成功复制！"
 plinko_copyId: "成功复制！"
 currency_min_deposit_amount: 该币种最低存入金额为：{amount}{icon}
 bind_more_bank_tip: 每种货币只能绑定3个收款信息，如需绑定更多，请先删除不常用
+all_currencies: 全部币种

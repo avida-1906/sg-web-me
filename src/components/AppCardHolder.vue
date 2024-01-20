@@ -183,9 +183,8 @@ await application.allSettled([runAsyncWalletBankcardList()])
         </div>
       </div>
     </div>
-
-    <div class="flex flex-col">
-      <BaseButton size="lg" bg-style="secondary" :disabled="bankcardList.length >= 3" @click="bind">
+    <div v-show="bankcardList.length < 3" class="flex flex-col">
+      <BaseButton size="lg" bg-style="secondary" @click="bind">
         {{ `${t('label_bind')}${isVirtualCurrency ? t('withdraw_address') : t('withdraw_account')}` }}
       </BaseButton>
     </div>
