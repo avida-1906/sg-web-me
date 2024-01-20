@@ -100,7 +100,7 @@ export const useAppStore = defineStore('app', () => {
     if (lockerData.value && _userInfo.value)
       _userInfo.value.balance_locker = lockerData.value
 
-    return _userInfo.value
+    return cloneDeep(_userInfo.value)
   })
 
   /** 用户当前选择的货币余额, 带有符号前缀 */
