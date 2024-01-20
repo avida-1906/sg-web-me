@@ -24,6 +24,8 @@ interface Props {
   popperMaxHeight?: string
   showPlaceholder?: boolean
   placeholder?: string
+  popperSearch?: boolean
+  popperSearchPlaceholder?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -41,11 +43,19 @@ const parent = ref<HTMLElement | null>(null)
 const { width } = useElementSize(parent)
 const { isMobile } = storeToRefs(useWindowStore())
 
+const popperSearchValue = ref('')
+
 const error = computed(() => !!props.msg)
 const selectedOption = computed(() =>
   props.options.find(a => a.value === props.modelValue))
 const popperLabel = computed(() =>
   props.options.find(a => a.value === props.modelValue)?.label ?? '')
+const popperOptions = computed(() => {
+  if (props.popperSearch)
+    return props.options.filter(a => a.label.toLowerCase().includes(popperSearchValue.value.toLowerCase()))
+
+  return props.options
+})
 
 function onChange(event: any) {
   const v = event.target.value
@@ -111,8 +121,15 @@ function onPopperOpen() {
         <div
           class="scroll-y need-pad-y popper-wrap" :style="{ maxHeight: popperMaxHeight }"
         >
+          <div v-if="popperSearch" class="search-wrap">
+            <BaseSearch
+              v-model="popperSearchValue" class="top-search" white-style shape="square"
+              :place-holder="popperSearchPlaceholder"
+            />
+          </div>
+
           <a
-            v-for="item, i in options" :key="i"
+            v-for="item, i in popperOptions" :key="i"
             :class="{
               'popper-option-dark': theme,
               'popper-option': !theme,
@@ -121,6 +138,7 @@ function onPopperOpen() {
               'disabled': item.disabled,
               'is-pop-mobile': isMobile,
               'is-pop-not-mobile': !isMobile,
+              'popper-search': popperSearch,
             }"
             @click="onClickPopperItem(item, hide)"
           >
@@ -202,6 +220,7 @@ function onPopperOpen() {
   --tg-base-select-box-shadow: var(--tg-box-shadow);
   --tg-base-select-icon-right: var(--tg-spacing-8);
   --tg-select-placeholder-color: var(--tg-text-placeholder);
+  --tg-base-select-popper-search-width:136px;
 }
 </style>
 
@@ -309,6 +328,20 @@ function onPopperOpen() {
     background: var(--tg-secondary-light);
   }
 }
+.search-wrap{
+  padding: 4px 12px;
+  padding-bottom: 8px;
+  width: var(--tg-base-select-popper-search-width);
+  .top-search{
+    --tg-base-search-icon-size: var(--tg-font-size-base);
+    width: 100%;
+    padding: 0 var(--tg-spacing-10);
+    background-color: var(--tg-text-white);
+    border-color: var(--tg-text-grey-light);
+    --tg-icon-color: var(--tg-secondary-light);
+    height: 39px;
+  }
+}
 
 .popper-option {
   cursor: pointer;
@@ -345,6 +378,11 @@ function onPopperOpen() {
   }
   &.active{
     color: var(--tg-base-select-popper-active-color);
+  }
+  &.popper-search{
+    display: flex;
+    justify-content: center;
+    padding: 8px 12px;
   }
 }
 

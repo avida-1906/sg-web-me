@@ -42,7 +42,7 @@ const columns = reactive<Column[]>([
   {
     title: t('amount'),
     dataIndex: 'amount',
-    slot: 'amount',
+    isAmount: true,
     align: 'center',
   },
   {
@@ -109,21 +109,10 @@ await application.allSettled(
       :data-source="list"
       :loading="loading"
       :skeleton-row="4"
+      is-amount-popper
     >
       <template #apply_at="{ record }">
-        {{ `${timeToDateFormat(record.apply_at)} ${timeToCustomizeFormat(
-          record.apply_at, 'HH:mm:ss')}` }}
-        <!-- <div>{{ timeToDateFormat2(record.apply_at) }}</div>
-        <div>{{ timeToCustomizeFormat(record.apply_at, 'HH:mm:ss') }}</div> -->
-      </template>
-
-      <template #amount="{ record }">
-        <div class="to-right">
-          <AppAmount
-            :amount="record.amount"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
+        {{ `${timeToDateFormat(record.apply_at)} ${timeToCustomizeFormat(record.apply_at, 'HH:mm:ss')}` }}
       </template>
       <template #bill_no="{ record }">
         <div class="center" style="gap: 4px">

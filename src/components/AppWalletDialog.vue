@@ -41,12 +41,17 @@ const SecuritySafePwd = defineAsyncComponent(() => import('~/pages/[lang]/settin
 const SecuritySafeCheck = defineAsyncComponent(() => import('~/pages/[lang]/settings/security-safe-check.vue'))
 const AppEmailVerify = defineAsyncComponent(() => import('~/components/AppEmailVerify.vue'))
 
-const tabList = computed(() => [
-  { label: t('deposit'), value: 'deposit' },
-  { label: t('menu_title_settings_withdrawals'), value: 'withdraw' },
-  { label: t('card_wallet'), value: 'cardHolder' },
-  { label: t('money_exchange'), value: 'exchange' },
-])
+const tabList = computed(() => {
+  const arr = [
+    { label: t('deposit'), value: 'deposit' },
+    { label: t('menu_title_settings_withdrawals'), value: 'withdraw' },
+    { label: t('card_wallet'), value: 'cardHolder' },
+  ]
+  if (brandBaseDetail.value.exchange === 1)
+    arr.push({ label: t('money_exchange'), value: 'exchange' })
+
+  return arr
+})
 const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
 const isCardHolder = computed(() => currentTab.value === 'cardHolder')

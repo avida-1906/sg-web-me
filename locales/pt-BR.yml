@@ -2425,7 +2425,7 @@ withdraw_address: Endereço de pagamento
 wrong_format: Formato incorreto
 vip_integral: 'VIP Rank'
 sports_events2: Eventos esportivos
-choose_proto_pls: Selecione um protocolo
+choose_proto_pls: 协议
 vir_address: Endereço de moeda virtual
 input_vir_address_pls: Por favor insira o endereço da moeda virtual
 digital_pwd: Senha numérica
@@ -2541,3 +2541,4 @@ plinko_copyId: "成功复制！"
 currency_min_deposit_amount: Valor mínimo de depósito：{amount}{icon}
 bind_more_bank_tip: 每种货币只能绑定3个收款信息，如需绑定更多，请先删除不常用
 check_card_account_pls: 请认真核对卡号，卡号错误资金将无法到账
+all_currencies: 全部币种

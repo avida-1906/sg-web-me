@@ -158,7 +158,6 @@ const columns = computed<Column[]>(() => [
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-14);
-  --tg-app-amount-font-size: var(--tg-font-size-xs);
   &.is-mobile {
     .tabs {
       background: none;

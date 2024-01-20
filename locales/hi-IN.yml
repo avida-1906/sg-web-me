@@ -1906,9 +1906,8 @@ withdraw_address: 收款地址
 wrong_format: 格式错误
 vip_integral: 'VIP 积分'
 sports_events2: 体育项目
-choose_proto_pls: 请选择协议
+choose_proto_pls: 协议
 vir_address: 虚拟货币地址
-input_vir_address_pls: 请输入虚拟货币地址
 digital_pwd: 数字密码
 check_vir_address_pls: 请认真核对地址，地址错误资金将无法到账
 check_account_pls: 请认真核对账号，账号错误资金将无法到账
@@ -2022,3 +2021,4 @@ plinko_copyId: "成功复制！"
 currency_min_deposit_amount: 该币种最低存入金额为：{amount}{icon}
 bind_more_bank_tip: 每种货币只能绑定3个收款信息，如需绑定更多，请先删除不常用
 check_card_account_pls: 请认真核对卡号，卡号错误资金将无法到账
+all_currencies: 全部币种

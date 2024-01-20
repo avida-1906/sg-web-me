@@ -1908,7 +1908,7 @@ withdraw_address: ที่อยู่บัญชีผู้รับ
 wrong_format: รูปแบบผิดพลาด
 vip_integral: 'VIP คะแนนสะสม'
 sports_events2: รายการกีฬา
-choose_proto_pls: กรุณาเลือกโปรโตคอล
+choose_proto_pls: 协议
 vir_address: ที่อยู่สกุลเงินดิจิทัล
 input_vir_address_pls: กรุณากรอกที่อยู่สกุลเงินดิจิทัล
 digital_pwd: รหัสผ่านที่เป็นตัวเลข
@@ -2024,3 +2024,4 @@ plinko_copyId: "成功复制！"
 currency_min_deposit_amount: 该币种最低存入金额为：{amount}{icon}
 bind_more_bank_tip: 每种货币只能绑定3个收款信息，如需绑定更多，请先删除不常用
 check_card_account_pls: 请认真核对卡号，卡号错误资金将无法到账
+all_currencies: 全部币种

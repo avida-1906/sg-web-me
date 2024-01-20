@@ -2355,13 +2355,13 @@ activity_bonus: Phần thưởng hoạt động
 success_received: Đã nhận thành công {label} {amount} {renderSvg}
 add_withdraw_info: Vui lòng liên kết tài khoản rút tiền
 three_withdraw_info_only: Mỗi loại tiền tệ chỉ có thể liên kết với 3 tài khoản nhận tiền
-want_more_del_first: Nếu bạn cần liên kết nhiều hơn, vui lòng xóa những cái không sử dụng thường xuyên trước. 
+want_more_del_first: Nếu bạn cần liên kết nhiều hơn, vui lòng xóa những cái không sử dụng thường xuyên trước.
 withdraw_account: Số tài khoản nhận
 withdraw_address: Địa chỉ nhận
 wrong_format: Định dạng sai
 vip_integral: 'VIP Tích điểm'
 sports_events2: Tất Cả
-choose_proto_pls: Vui lòng chọn một giao thức
+choose_proto_pls: 协议
 vir_address: Địa chỉ tiền tệ
 input_vir_address_pls: Vui lòng nhập địa chỉ tiền tệ
 digital_pwd: Mật khẩu số
@@ -2477,3 +2477,4 @@ plinko_copyId: "成功复制！"
 currency_min_deposit_amount: 该币种最低存入金额为：{amount}{icon}
 bind_more_bank_tip: 每种货币只能绑定3个收款信息，如需绑定更多，请先删除不常用
 check_card_account_pls: 请认真核对卡号，卡号错误资金将无法到账
+all_currencies: 全部币种

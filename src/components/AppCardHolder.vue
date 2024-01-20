@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import type { BankCard, VirtualCoin } from '~/apis/types'
+import type { CurrencyCode } from '~/composables/useCurrencyData'
 
 const { t } = useI18n()
 const closeDialog = inject('closeDialog', () => { })
@@ -121,7 +122,17 @@ function deleteCard(item: any) {
   else
     toDeleteBankcard(item)
 }
-const green_button = ref(null)
+function getCurrencyIdToIconName(currencyId: CurrencyCode) {
+  console.error(currencyId)
+  const isVirtualCurrency = application.isVirtualCurrency(getCurrencyConfigByCode(currencyId).name)
+  if (isVirtualCurrency)
+    return `coin-${getCurrencyConfigByCode(currencyId).name.toLocaleLowerCase()}`
+
+  if (currencyId === '702')
+    return 'fiat-pix'
+
+  return 'fiat-bank'
+}
 
 function get_vietnamese_and_delete() {
 
@@ -137,7 +148,10 @@ await application.allSettled([runAsyncWalletBankcardList()])
 <template>
   <div class="px-16 pb-43">
     <div class="flex flex-col items-center">
-      <BaseSelect v-model="curType" :options="currencyOptions" popper>
+      <BaseSelect
+        v-model="curType" :options="currencyOptions" popper popper-search
+        :popper-search-placeholder="t('search_currency')" popper-max-height="22em"
+      >
         <template #label="{ data }">
           <AppCurrencyIcon show-name :currency-type="data?.value" />
         </template>
@@ -166,7 +180,7 @@ await application.allSettled([runAsyncWalletBankcardList()])
       <!-- item -->
       <div v-for="item in bankcardList" :key="item.id" class="flex overflow-hidden rounded-[4px]">
         <div class="bg-tg-secondary-grey max-w-60 flex items-center justify-center p-23">
-          <BaseIcon name="coin-usdt" />
+          <BaseIcon class="text-[20px]" :name="getCurrencyIdToIconName(item.currency_id)" />
         </div>
         <div class="bg-tg-secondary relative flex grow items-center px-14">
           <div class="text-tg-text-white flex flex-col gap-6">
@@ -181,9 +195,8 @@ await application.allSettled([runAsyncWalletBankcardList()])
         </div>
       </div>
     </div>
-
-    <div class="flex flex-col">
-      <BaseButton ref="green_button" size="lg" bg-style="secondary" :disabled="bankcardList.length >= 3" @click="bind">
+    <div v-show="bankcardList.length < 3" class="flex flex-col">
+      <BaseButton size="lg" bg-style="secondary" @click="bind">
         {{ `${t('label_bind')}${isVirtualCurrency ? t('withdraw_address') : t('withdraw_account')}` }}
       </BaseButton>
     </div>

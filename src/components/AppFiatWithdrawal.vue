@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { CurrencyCode, CurrencyData } from '~/composables/useCurrencyData'
+import type { CurrencyData } from '~/composables/useCurrencyData'
 
 interface Props {
   /** 货币对象 */
@@ -14,7 +14,7 @@ const payPassword = ref('')
 const { t } = useI18n()
 // const { isLessThanXs } = storeToRefs(useWindowStore())
 const { openNotify } = useNotify()
-const { exchangeRateData } = storeToRefs(useAppStore())
+// const { exchangeRateData } = storeToRefs(useAppStore())
 /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
 const currentType = computed<'1' | '2'>(() =>
   props.activeCurrency.cur === '702' ? '2' : '1',
@@ -67,9 +67,7 @@ const {
   data: withdrawBankcardList,
 } = useRequest(ApiFinanceWithdrawBankcard, {
   onSuccess(data) {
-    const temp = currentType.value === '1'
-      ? data.d.find(i => i.is_default === 1 && i.state !== 2)?.bank_account
-      : data.d.find(i => i.state !== 2)?.bank_account
+    const temp = data.d.find(i => i.is_default === 1 && i.state !== 2)?.bank_account
     if (temp)
       selectBank.value = temp
     else
@@ -127,14 +125,14 @@ const defaultBank = computed(() =>
 const bankcardId = computed(() =>
   bindBanks.value.find(a => a.value === selectBank.value)?.id ?? '',
 )
-const getUsRate = computed(() => {
-  const str: CurrencyCode = props.activeCurrency.cur
-  if (str === '706')
-    return Number(amount.value).toFixed(2)
-  return str
-    ? (Number(exchangeRateData.value?.rates[str]['706']) * Number(amount.value ?? 0)).toFixed(2)
-    : 0.00
-})
+// const getUsRate = computed(() => {
+//   const str: CurrencyCode = props.activeCurrency.cur
+//   if (str === '706')
+//     return Number(amount.value).toFixed(2)
+//   return str
+//     ? (Number(exchangeRateData.value?.rates[str]['706']) * Number(amount.value ?? 0)).toFixed(2)
+//     : 0.00
+// })
 
 function maxNumber() {
   setAmount(props.maxWithdrawBalance ?? '0.00')
@@ -219,13 +217,13 @@ await application.allSettled(
               @focus="selectBankError && selectBankReset()"
             >
               <template #label>
-                <span style="min-height: 18px;">
+                <div style="min-height: 18px;">
                   <!-- <BaseIcon
                     v-if="defaultBank"
                     :name="currentType === '1' ? 'fiat-bank' : 'fiat-pix-title'"
                   /> -->
                   {{ defaultBank }}
-                </span>
+                </div>
               </template>
               <template #option="{ data: { item, parentWidth } }">
                 <div :style="{ width: `${parentWidth}px` }">
@@ -249,7 +247,6 @@ await application.allSettled(
             <div class="top">
               <span class="label">{{ t('amount') }}
                 <span style="color: var(--tg-text-error);">*</span></span>
-              <span class="us">US${{ application.numberToLocaleString(Number(getUsRate)) }}</span>
             </div>
             <BaseInput
               ref="amountRef"

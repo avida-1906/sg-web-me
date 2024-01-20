@@ -80,7 +80,7 @@ onMounted(() => {
       />
       <div>
         <BaseInput v-model="searchValue" :placeholder="t('player_id')">
-          <template #right-icon>
+          <template #left-icon>
             <div class="center" style="padding-right: var(--tg-spacing-4);">
               <BaseIcon name="uni-search" />
             </div>
@@ -114,7 +114,7 @@ onMounted(() => {
           record.created_at, 'HH:mm:ss')}` }}
       </template>
       <template #last_login_at="{ record: { last_login_at } }">
-        {{ last_login_at ? timeToDateFormat(last_login_at) : '-' }}
+        {{ last_login_at ? `${timeToDateFormat(last_login_at)} ${timeToCustomizeFormat(last_login_at, 'HH:mm:ss')}` : '-' }}
       </template>
       <template #online="{ record }">
         <div class="center" style="justify-content: flex-end;">

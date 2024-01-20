@@ -11,19 +11,19 @@ const {
 const { getRate } = useExchangeRate()
 
 const {
-  value: amountPay,
-  errorMessage: errorPay,
-  setValue: setAmountPay,
-  resetField: resetAmountPay,
-} = useField<string>('amountPay', (v) => {
-  return ''
-})
-const {
   value: amountGet,
   errorMessage: errorGet,
   setValue: setAmountGet,
   resetField: resetAmountGet,
 } = useField<string>('amountGet', (v) => {
+  return ''
+})
+const {
+  value: amountPay,
+  errorMessage: errorPay,
+  setValue: setAmountPay,
+  resetField: resetAmountPay,
+} = useField<string>('amountPay', (v) => {
   return ''
 })
 
@@ -76,8 +76,8 @@ function onAmountGetInput(v: string) {
 function confirm() {
   if (+amountPay.value > 0) {
     run({
-      currency_in: currencyCodePay.value,
-      currency_out: currencyCodeGet.value,
+      currency_in: currencyCodeGet.value,
+      currency_out: currencyCodePay.value,
       amount: amountPay.value,
     })
   }
@@ -98,20 +98,19 @@ watch(amountPay, (a) => {
 
 <template>
   <div class="flex flex-col gap-14 px-16 pb-20">
-    <BaseLabel :label="`${t('exchange')} ${currencyTypePay}`" must>
+    <BaseLabel :label="`${t('exchange')} ${currencyTypeGet}`" must>
       <BaseInput
-        v-model="amountPay" type="number" :msg="errorPay" style="--tg-base-input-right-button-padding:0;"
-        hide-spin-btn @input="onAmountPayInput"
+        v-model="amountGet" type="number" :msg="errorGet" style="--tg-base-input-right-button-padding:0;"
+        hide-spin-btn @input="onAmountGetInput"
       >
         <template #right-button>
           <BaseSelect
-            v-model="currencyTypePay" popper :options="currencyPayOptions"
+            v-model="currencyTypeGet" popper :options="currencyGetOptions"
             style="--tg-base-select-popper-style-padding-x:12px;
             --tg-base-select-popper-style-padding-y:12px;
             --tg-base-select-popper-bg-color:transparent;
             --tg-base-select-hover-bg-color:transparent;
-            width: 110px;
-            "
+            width: 110px;" popper-search :popper-search-placeholder="t('search_currency')" popper-max-height="22em"
           >
             <template #label="{ data }">
               <AppCurrencyIcon show-name :currency-type="data?.value" />
@@ -124,22 +123,21 @@ watch(amountPay, (a) => {
       </BaseInput>
     </BaseLabel>
     <BaseLabel
-      :label="t('pay_with', { currency: currencyTypeGet })"
-      :right-text="`${t('rate')} ${rate}`" must
+      :label="t('pay_with', { currency: currencyTypePay })"
+      :right-text="`${t('rate')}${rate}`" must
     >
       <BaseInput
-        v-model="amountGet" type="number" :msg="errorGet" style="--tg-base-input-right-button-padding:0;"
-        hide-spin-btn @input="onAmountGetInput"
+        v-model="amountPay" type="number" :msg="errorPay" style="--tg-base-input-right-button-padding:0;"
+        hide-spin-btn @input="onAmountPayInput"
       >
         <template #right-button>
           <BaseSelect
-            v-model="currencyTypeGet" popper :options="currencyGetOptions"
+            v-model="currencyTypePay" popper :options="currencyPayOptions"
             style="--tg-base-select-popper-style-padding-x:12px;
             --tg-base-select-popper-style-padding-y:12px;
             --tg-base-select-popper-bg-color:transparent;
             --tg-base-select-hover-bg-color:transparent;
-            width: 110px;
-            "
+            width: 110px;" popper-search :popper-search-placeholder="t('search_currency')" popper-max-height="22em"
           >
             <template #label="{ data }">
               <AppCurrencyIcon show-name :currency-type="data?.value" />

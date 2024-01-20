@@ -8,7 +8,7 @@ const {
   list: currencyList,
 } = useSelect([
   {
-    label: t('finance_other_tab_all'),
+    label: t('all_currencies'),
     value: '',
   },
   ...getCurrencyOptions(),
@@ -46,22 +46,23 @@ const columns: Column[] = [
     title: t('deposit'),
     dataIndex: 'deposit_amount',
     align: 'center',
-    slot: 'deposit_amount',
+    isAmount: true,
     sort: true,
   },
   {
     title: t('effective_bet'),
     dataIndex: 'valid_bet_amount',
     align: 'center',
-    slot: 'valid_bet_amount',
+    isAmount: true,
     sort: true,
   },
   {
     title: t('total_win_lose'),
     dataIndex: 'net_amount',
     align: 'center',
-    slot: 'net_amount',
+    isAmount: true,
     sort: true,
+    showColor: true,
   },
 ]
 
@@ -98,7 +99,7 @@ onMounted(() => {
       />
       <div>
         <BaseInput v-model="searchValue" :placeholder="t('player_id')">
-          <template #right-icon>
+          <template #left-icon>
             <div class="center" style="padding-right: var(--tg-spacing-4);">
               <BaseIcon name="uni-search" />
             </div>
@@ -112,6 +113,7 @@ onMounted(() => {
       :data-source="list"
       :loading="loading"
       :skeleton-row="5"
+      is-amount-popper
       @sort="setSortMap"
     >
       <template #created_at="{ record }">
@@ -119,31 +121,6 @@ onMounted(() => {
       </template>
       <template #username="{ record }">
         <AppReportUserName :username="record.username" :level="`${record.vip}`" />
-      </template>
-      <template #deposit_amount="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.deposit_amount"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
-      </template>
-      <template #valid_bet_amount="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.valid_bet_amount"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
-      </template>
-      <template #net_amount="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.net_amount"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-            show-color
-          />
-        </div>
       </template>
     </BaseTable>
     <BasePagination

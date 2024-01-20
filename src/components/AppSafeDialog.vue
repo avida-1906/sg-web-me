@@ -111,12 +111,9 @@ const {
         }),
     })
     reset()
-    if (!isDeposit.value)
-      passwordRef.value.resetPassword()
-
     appStore.getBalanceData()
     appStore.getLockerData()
-    // appStore.updateUserInfo()
+    passwordRef.value?.resetPassword()
   },
 })
 

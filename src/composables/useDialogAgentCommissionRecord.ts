@@ -10,7 +10,7 @@ export function useDialogAgentCommissionRecord() {
     closeDialog: closeAgentCommissionRecordDialog,
   } = useDialog({
     title: title.value,
-    icon: 'chess-affiliate',
+    icon: 'tabbar-bet',
     default: () => h(AppAgentCommissionRecordDialog),
   })
 
