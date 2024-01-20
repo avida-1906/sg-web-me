@@ -45,19 +45,20 @@ const columns: Column[] = [
     title: t('receive_amount'),
     dataIndex: 'total_receive',
     align: 'center',
-    slot: 'total_receive',
+    isAmount: true,
   },
   {
     title: t('activity'),
     dataIndex: 'gift_amount',
     align: 'center',
-    slot: 'gift_amount',
+    isAmount: true,
   },
   {
     title: t('agent_commission'),
     dataIndex: 'commission_amount',
     align: 'center',
-    slot: 'commission_amount',
+    isAmount: true,
+    showColor: true,
   },
 ]
 
@@ -93,7 +94,7 @@ onMounted(() => {
       />
       <div>
         <BaseInput v-model="searchValue" :placeholder="t('player_id')">
-          <template #right-icon>
+          <template #left-icon>
             <div class="center" style="padding-right: var(--tg-spacing-4);">
               <BaseIcon name="uni-search" />
             </div>
@@ -108,36 +109,13 @@ onMounted(() => {
       :data-source="list"
       :loading="loading"
       :skeleton-row="5"
+      is-amount-popper
     >
       <template #username="{ record }">
         <AppReportUserName :username="record.username" :level="`${record.vip}`" />
       </template>
       <template #time="{ record }">
         {{ timeToDateFormat(record.time) }}
-      </template>
-      <template #total_receive="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.total_receive"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
-      </template>
-      <template #gift_amount="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.gift_amount"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
-      </template>
-      <template #commission_amount="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.commission_amount"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
       </template>
     </BaseTable>
     <BasePagination

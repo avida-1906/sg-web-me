@@ -7,7 +7,7 @@ const router = useLocalRouter()
 const platformId = ref('')
 const platformIdList = ref([
   {
-    label: t('finance_other_tab_all'),
+    label: t('label_all_type'),
     value: '',
   },
 ])
@@ -65,7 +65,7 @@ const columns: Column[] = [
     title: t('performance'),
     dataIndex: 'valid_bet_amount_total',
     align: 'center',
-    slot: 'bet_amount',
+    isAmount: true,
   },
   {
     title: t('label_contribute_count'),
@@ -76,7 +76,7 @@ const columns: Column[] = [
     title: t('finance_funds_transfer_sort_commission'),
     dataIndex: 'commission_amount_total',
     align: 'center',
-    slot: 'commission_amount',
+    isAmount: true,
   },
   {
     title: t('detail'),
@@ -128,6 +128,7 @@ onMounted(() => {
       :data-source="list"
       :loading="loading"
       :skeleton-row="5"
+      is-amount-popper
     >
       <template #time="{ record }">
         {{ `${timeToDateFormat(record.send_time)} ${timeToCustomizeFormat(
@@ -136,22 +137,6 @@ onMounted(() => {
       <template #model_name="{ record }">
         <span>{{ platformIdList.find(
           item => item.value === record.model_id)?.label ?? '-' }}</span>
-      </template>
-      <template #bet_amount="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.valid_bet_amount_total"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
-      </template>
-      <template #commission_amount="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.commission_amount_total"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
       </template>
       <template #operate>
         <BaseButton

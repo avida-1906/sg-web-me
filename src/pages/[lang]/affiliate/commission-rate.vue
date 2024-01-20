@@ -107,7 +107,7 @@ await application.allSettled([runAsyncModelsList()])
         </span>
       </template>
       <template #effective_bat="{ record }">
-        {{ `${record.effective_amount + $t('ten_thousand')}+` }}
+        {{ record.effective_amount <= 0 ? 0 : `${mul(record.effective_amount, 10000)}+` }}
       </template>
     </BaseTable>
   </div>

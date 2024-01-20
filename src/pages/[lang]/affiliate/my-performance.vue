@@ -52,7 +52,7 @@ const columns: Column[] = [
   {
     title: t('performance'),
     dataIndex: 'valid_bet_amount_total',
-    slot: 'valid_bet_amount_total',
+    isAmount: true,
     align: 'center',
     sort: true,
   },
@@ -60,7 +60,7 @@ const columns: Column[] = [
     title: t('label_contribute_commission'),
     dataIndex: 'contribution_amount',
     align: 'center',
-    slot: 'contribution_amount',
+    isAmount: true,
     sort: true,
   },
 ]
@@ -98,7 +98,7 @@ onMounted(() => {
       />
       <div>
         <BaseInput v-model="searchValue" :placeholder="t('player_id')">
-          <template #right-icon>
+          <template #left-icon>
             <div class="center" style="padding-right: var(--tg-spacing-4);">
               <BaseIcon name="uni-search" />
             </div>
@@ -112,6 +112,7 @@ onMounted(() => {
       :data-source="list"
       :loading="loading"
       :skeleton-row="5"
+      is-amount-popper
       @sort="setSortMap"
     >
       <template #time="{ record }">
@@ -119,22 +120,6 @@ onMounted(() => {
       </template>
       <template #username="{ record }">
         <AppReportUserName :username="record.username" :level="`${record.vip}`" />
-      </template>
-      <template #valid_bet_amount_total="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.valid_bet_amount_total"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
-      </template>
-      <template #contribution_amount="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.contribution_amount"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
       </template>
     </BaseTable>
     <BasePagination
