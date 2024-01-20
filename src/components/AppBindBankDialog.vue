@@ -16,7 +16,7 @@ const currencyId = ref<CurrencyCode>(props.currencyId)
 const auth_type = ref<'1' | '2'>('1')
 // 是否设置为默认地址
 const { bool: isDefaultAddress, setBool: setDefaultAddress } = useBoolean(false)
-const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
+const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder', initCurrency: props.currencyId })
 const closeCurDialog = inject('closeDialog', () => {})
 
 // #region 表单验证
@@ -57,7 +57,6 @@ const {
       message: t('success_bind'),
     })
     closeCurDialog()
-    openWalletDialog()
   },
 })
 // #endregion
@@ -124,6 +123,10 @@ watch(countryOptions, (val) => {
   if (val.length)
     country.value = val[0].value
 })
+
+onUnmounted(() => {
+  openWalletDialog()
+})
 </script>
 
 <template>
@@ -178,11 +181,11 @@ watch(countryOptions, (val) => {
       </div>
       <div class="flex items-center px-20 py-14">
         <BaseCheckBox v-model="isDefaultAddress" />
-        <span class="text-tg-secondary-light cursor-pointer" @click="setDefaultAddress(!isDefaultAddress)">{{ $t('is_default_addr') }}</span>
+        <span class="text-tg-secondary-light cursor-pointer" @click="setDefaultAddress(!isDefaultAddress)">{{ $t('tip_msg_is_default_bank_number') }}</span>
       </div>
       <div class="border-tg-secondary border-t rounded-b-[4px] border-solid px-20 pb-24">
         <div class="text-tg-secondary-light py-10">
-          {{ $t('check_account_pls') }}
+          {{ $t('check_card_account_pls') }}
         </div>
         <BaseButton
           :loading="bankcardInsertLoading"
