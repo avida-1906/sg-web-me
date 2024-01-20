@@ -16,7 +16,7 @@ const currencyId = ref<CurrencyCode>(props.currencyId)
 const auth_type = ref<'1' | '2'>('1')
 // 是否设置为默认地址
 const { bool: isDefaultAddress, setBool: setDefaultAddress } = useBoolean(false)
-const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
+const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder', initCurrency: props.currencyId })
 const closeCurDialog = inject('closeDialog', () => {})
 
 // #region 表单验证
@@ -55,7 +55,6 @@ const {
       message: t('success_bind'),
     })
     closeCurDialog()
-    openWalletDialog()
   },
 })
 // #endregion
@@ -121,6 +120,10 @@ const onSubmit = handleSubmit((values) => {
 watch(countryOptions, (val) => {
   if (val.length)
     country.value = val[0].value
+})
+
+onUnmounted(() => {
+  openWalletDialog()
 })
 </script>
 
