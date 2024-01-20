@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import type { BankCard, VirtualCoin } from '~/apis/types'
 
 const { t } = useI18n()
@@ -120,7 +121,16 @@ function deleteCard(item: any) {
   else
     toDeleteBankcard(item)
 }
+const green_button = ref(null)
 
+function get_vietnamese_and_delete() {
+
+}
+onMounted(() => {
+  nextTick(() => {
+    get_vietnamese_and_delete()
+  })
+})
 await application.allSettled([runAsyncWalletBankcardList()])
 </script>
 
@@ -173,7 +183,7 @@ await application.allSettled([runAsyncWalletBankcardList()])
     </div>
 
     <div class="flex flex-col">
-      <BaseButton size="lg" bg-style="secondary" :disabled="bankcardList.length >= 3" @click="bind">
+      <BaseButton ref="green_button" size="lg" bg-style="secondary" :disabled="bankcardList.length >= 3" @click="bind">
         {{ `${t('label_bind')}${isVirtualCurrency ? t('withdraw_address') : t('withdraw_account')}` }}
       </BaseButton>
     </div>

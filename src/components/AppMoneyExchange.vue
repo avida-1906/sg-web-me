@@ -125,7 +125,7 @@ watch(amountPay, (a) => {
     </BaseLabel>
     <BaseLabel
       :label="t('pay_with', { currency: currencyTypeGet })"
-      :right-text="`${t('rate')}${rate}`" must
+      :right-text="`${t('rate')} ${rate}`" must
     >
       <BaseInput
         v-model="amountGet" type="number" :msg="errorGet" style="--tg-base-input-right-button-padding:0;"
