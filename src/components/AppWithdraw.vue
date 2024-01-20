@@ -8,8 +8,9 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const amountRef = ref()
+const emit = defineEmits(['toHolder'])
 
+const amountRef = ref()
 const { t } = useI18n()
 const { openNotify } = useNotify()
 // const { exchangeRateData } = storeToRefs(useAppStore())
@@ -100,9 +101,9 @@ const addrOptions = computed(() => {
   }
   return []
 })
-const getContractId = computed(() => {
-  return props.currentNetwork
-})
+// const getContractId = computed(() => {
+//   return props.currentNetwork
+// })
 // const getUsRate = computed(() => {
 //   const str: CurrencyCode = props.activeCurrency.cur
 //   if (str === '706')
@@ -255,7 +256,23 @@ await application.allSettled(
           </div> -->
       </div>
       <!-- 虚拟币地址添加 -->
-      <AppAddVirAddressDialog
+      <template v-else>
+        <div class="layout-spacing not-payment-msg">
+          <div class="msg-warp">
+            <BaseIcon style="font-size: 16px;" name="uni-warning-color" class="search-icon" />
+            <div>
+              <div style="margin-bottom: 4px;">
+                请前往卡包绑定收款信息
+              </div>
+              <div>该币种您暂无收款信息</div>
+            </div>
+          </div>
+          <BaseButton bg-style="secondary" size="md" @click="emit('toHolder')">
+            前往卡包
+          </BaseButton>
+        </div>
+      </template>
+      <!-- <AppAddVirAddressDialog
         v-else
         is-withdraw
         :currency-id="activeCurrency.cur"
@@ -263,7 +280,7 @@ await application.allSettled(
         :contract-id="getContractId"
         style="--tg-app-vir-address-style-padding: 0"
         @added="updateContract"
-      />
+      /> -->
     </template>
     <template v-else>
       <BaseEmpty :description="t('data_empty')" icon="uni-empty-betslip" />
@@ -306,6 +323,7 @@ await application.allSettled(
       }
     }
   }
+
   // .tips{
   //   font-size: var(--tg-font-size-xs);
   //   .currency-icon{
@@ -315,33 +333,47 @@ await application.allSettled(
   //   }
   // }
 }
-.bank-options{
-  .option-row {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: var(--tg-text-white);
-    cursor: pointer;
-    > svg{
-      width: 40px;
-      height: 40px;
-    }
-    .bank-info{
+  .not-payment-msg{
+    gap: 16px;
+    .msg-warp{
       display: flex;
-      align-items: center;
-      :nth-child(1){
-        margin-right: var(--tg-spacing-5);
-      }
-      p{
-        margin: var(--tg-spacing-2) 0;
-      }
-      &.is-mobile{
-        flex-direction: column;
-        align-items: self-start;
-      }
-      user-select: none;
-      -webkit-user-select: none;
+      width: 100%;
+      gap: 4px;
+      justify-content: center;
+      padding: 27px 0;
+      border: var(--tg-border-width-sm) dashed var(--tg-secondary-light);
+      border-radius: 2px;
+      background-color: #0F212E;
+      font-size: var(--tg-font-size-default);
     }
   }
-}
+// .bank-options{
+//   .option-row {
+//     display: flex;
+//     align-items: center;
+//     gap: 0.75rem;
+//     color: var(--tg-text-white);
+//     cursor: pointer;
+//     > svg{
+//       width: 40px;
+//       height: 40px;
+//     }
+//     .bank-info{
+//       display: flex;
+//       align-items: center;
+//       :nth-child(1){
+//         margin-right: var(--tg-spacing-5);
+//       }
+//       p{
+//         margin: var(--tg-spacing-2) 0;
+//       }
+//       &.is-mobile{
+//         flex-direction: column;
+//         align-items: self-start;
+//       }
+//       user-select: none;
+//       -webkit-user-select: none;
+//     }
+//   }
+// }
 </style>
