@@ -382,6 +382,7 @@ function onPopperOpen() {
   &.popper-search{
     display: flex;
     justify-content: center;
+    padding: 8px 12px;
   }
 }
 
