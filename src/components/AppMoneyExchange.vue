@@ -14,7 +14,11 @@ const { openNotify } = useNotify()
 const appStore = useAppStore()
 
 const currencyTypePay = ref(currentGlobalCurrency.value)
-const currencyTypeGet = ref<EnumCurrencyKey>('USDT')
+const currencyTypeGet = ref<EnumCurrencyKey>(
+  currentGlobalCurrency.value === 'USDT'
+    ? renderBalanceList.value.filter(a => a.type !== currencyTypePay.value)[0].type
+    : 'USDT',
+)
 
 const currencyCodePay = computed(() => {
   return renderBalanceList.value.find(a => a.type === currencyTypePay.value)?.cur ?? '701'
