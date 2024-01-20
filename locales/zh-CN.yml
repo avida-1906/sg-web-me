@@ -2020,3 +2020,4 @@ plinko_copyText: "成功复制！"
 plinko_copyId: "成功复制！"
 currency_min_deposit_amount: 该币种最低存入金额为：{amount}{icon}
 bind_more_bank_tip: 每种货币只能绑定3个收款信息，如需绑定更多，请先删除不常用
+all_currencies: 全部币种

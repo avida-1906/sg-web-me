@@ -8,7 +8,7 @@ const {
   list: currencyList,
 } = useSelect([
   {
-    label: t('finance_other_tab_all'),
+    label: t('all_currencies'),
     value: '',
   },
   ...getCurrencyOptions(),

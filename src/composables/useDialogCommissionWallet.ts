@@ -8,7 +8,7 @@ export function useDialogCommissionWallet() {
     closeDialog: closeCommissionWalletDialog,
   } = useDialog({
     title: title.value,
-    icon: 'chat-tip',
+    icon: 'navbar-wallet',
     default: () => h(AppCommissionHolder),
   })
 
