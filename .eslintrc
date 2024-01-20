@@ -11,7 +11,8 @@
     "**/*.svg",
     "**/*.yml",
     "**/*.html",
-    "**/*.json"
+    "**/*.json",
+    "**/*.py"
   ],
   "rules": {
     "no-console": "off",
