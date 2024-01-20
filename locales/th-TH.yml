@@ -682,8 +682,8 @@ view_all: ตรวจดูทั้งหมด
 view_conversation: ตรวจดูการสนทนา
 view_more: แสดงมากกว่านี้
 view_more_details: ตรวจดูรายละเอียดเพิ่มเติม
-view_more_2: ตรวจดูมากกว่านี้
-view_less: แสดงค่อนข้างน้อย
+view_more_2: ดูมากกว่านี้
+view_less: แสดงน้อยลง
 view_post: ตรวจดูโพสต์
 we_run_on_intercom: 'เราดำเนินการบน Intercom'
 with_teamname: 'พูดคุยกับ {teamname}'
@@ -1327,7 +1327,7 @@ de: ของ
 bet_more_than_balance: ยอดเดิมพันต้องไม่มากกว่ายอดคงเหลือของคุณ.
 order_by_alpha: เรียงลำดับตามตัวอักษร
 sport_in_coming: แต้มต่อของการเดิมพันระหว่างการแข่งขันและรายการที่ใกล้แข่งขัน
-champion_bet: เดิมพันผู้ชนะ
+champion_bet: เดิมพันผู้ชนะเลิศ
 empty_cap: ไม่มีแต้มต่อให้ใช้
 for_example: ตัวอย่างมีดังนี้
 direct_team: ทีมงานโดยตรง
@@ -2023,5 +2023,7 @@ plinko_copyText: "成功复制！"
 plinko_copyId: "成功复制！"
 currency_min_deposit_amount: 该币种最低存入金额为：{amount}{icon}
 bind_more_bank_tip: 每种货币只能绑定3个收款信息，如需绑定更多，请先删除不常用
-check_card_account_pls: 请认真核对卡号，卡号错误资金将无法到账
+check_card_account_pls: กรุณาใส่ใจกับการตรวจสอบบัญชี หากหมายเลขบัญชีไม่ถูกต้องเงินจะไม่เข้าบัญชี
 all_currencies: 全部币种
+check_card_account_pls_brl: 请认真核对账户，卡号错误资金将无法到账
+is_default_addr_brl: 是否设为默认账户
