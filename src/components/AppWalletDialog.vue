@@ -16,7 +16,7 @@ const closeDialog = inject('closeDialog', () => { })
 const { userInfo } = storeToRefs(useAppStore())
 const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
 const {
-  isSetAuth, isOpenVerify, isOpenPayPwd, isSetPayPwd, brandBaseDetail,
+  isSetAuth, isOpenVerify, isSetPayPwd, brandBaseDetail,
 } = useBrandBaseDetail()
 const {
   data: depositCurrency,
@@ -162,7 +162,7 @@ await application.allSettled(
           </template>
         </Suspense>
       </template>
-      <!-- 提款款 -->
+      <!-- 提款 -->
       <template v-else-if="isWithdraw && activeCurrency">
         <template v-if="!getComponent">
           <Suspense timeout="0">
@@ -171,11 +171,13 @@ await application.allSettled(
               :max-withdraw-balance="withdrawBalance?.withdraw_balance"
               :active-currency="activeCurrency"
               :current-network="currentNetwork"
+              @to-holder="currentTab = 'cardHolder'"
             />
             <AppFiatWithdrawal
               v-else
               :max-withdraw-balance="withdrawBalance?.withdraw_balance"
               :active-currency="activeCurrency"
+              @to-holder="currentTab = 'cardHolder'"
             />
             <template #fallback>
               <div class="center dialog-loading-height">

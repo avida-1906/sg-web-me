@@ -886,8 +886,8 @@ sports_status_lose_half: Thua nửa tiền
 sports_status_lose_part: Thua một phần
 sports_estimated_payment_amount: 'Est. Thanh toán'
 sports_payment_amount: Thanh toán
-sports_single_bet: Đặt Cược Đơn
-sports_multi_bet: Đặt Cược Nhiều Trận
+sports_single_bet: Đơn
+sports_multi_bet: Nhiều
 sports_active: Hoạt động
 sports_settled: Đã đặt
 sports_accept_any_odds: Chấp Nhận Tất Cả Tỉ Lệ
@@ -2347,8 +2347,8 @@ vip_sports_tip_title: Điểm dành cho sân vận động thể thao gấp {rat
 vip_sports_tip_content: '(Ví dụ: 1USDT=1 điểm thành viên, bạn sẽ nhận được 2 điểm thành viên khi đặt cược 1 USDT vào thể thao)'
 money_exchange: Đổi tệ
 exchange: Đổi
-pay_with: Thanh toán bằng VNĐ {currency}
-rate: Tỷ giá
+pay_with: Thanh toán bằng {currency}
+rate: Tỷ giá 
 birthday_bonus: Tiền thưởng sinh nhật
 collection_instructions: 'Hướng dẫn nhận: Tiền thưởng cho hoạt động này đều được phát bằng USDT, bạn có thể chọn loại tiền bạn muốn nhận và tỷ giá giữa các loại tiền tệ áp dụng tỷ giá thị trường theo thời gian thực.'
 activity_bonus: Phần thưởng hoạt động
@@ -2476,4 +2476,5 @@ plinko_copyText: "成功复制！"
 plinko_copyId: "成功复制！"
 currency_min_deposit_amount: 该币种最低存入金额为：{amount}{icon}
 bind_more_bank_tip: 每种货币只能绑定3个收款信息，如需绑定更多，请先删除不常用
+check_card_account_pls: 请认真核对卡号，卡号错误资金将无法到账
 all_currencies: 全部币种

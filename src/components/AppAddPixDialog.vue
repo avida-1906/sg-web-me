@@ -16,7 +16,10 @@ const currencyId = ref<CurrencyCode>(props.currencyId)
 const auth_type = ref<'1' | '2'>('1')
 // 是否设置为默认地址
 const { bool: isDefaultAddress, setBool: setDefaultAddress } = useBoolean(false)
-const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder', initCurrency: props.currencyId })
+const { openWalletDialog } = useWalletDialog({
+  activeTab: 'cardHolder',
+  initCurrency: getCurrencyConfigByCode(props.currencyId).name,
+})
 const closeCurDialog = inject('closeDialog', () => {})
 
 // #region 表单验证
@@ -122,6 +125,14 @@ watch(countryOptions, (val) => {
     country.value = val[0].value
 })
 
+onMounted(() => {
+  if (props.openName) {
+    const [_xing, _ming] = props.openName.split(',')
+    xing.value = _xing || ''
+    ming.value = _ming || ''
+  }
+})
+
 onUnmounted(() => {
   openWalletDialog()
 })
@@ -138,12 +149,12 @@ onUnmounted(() => {
       <div class="flex gap-14 px-20 pt-14">
         <div class="flex-1">
           <BaseLabel must :label="$t('first_name')">
-            <BaseInput v-model="ming" :msg="mingError" />
+            <BaseInput v-model="ming" :msg="mingError" :disabled="!!openName" />
           </BaseLabel>
         </div>
         <div class="flex-1">
           <BaseLabel must :label="$t('last_name')">
-            <BaseInput v-model="xing" :msg="xingError" />
+            <BaseInput v-model="xing" :msg="xingError" :disabled="!!openName" />
           </BaseLabel>
         </div>
       </div>

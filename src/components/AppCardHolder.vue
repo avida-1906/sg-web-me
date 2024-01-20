@@ -137,6 +137,14 @@ function getCurrencyIdToIconName(currencyId: CurrencyCode) {
   return 'fiat-bank'
 }
 
+function get_vietnamese_and_delete() {
+
+}
+onMounted(() => {
+  nextTick(() => {
+    get_vietnamese_and_delete()
+  })
+})
 await application.allSettled([runAsyncWalletBankcardList()])
 </script>
 
