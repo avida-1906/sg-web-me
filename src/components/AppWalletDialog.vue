@@ -1,8 +1,10 @@
 <script setup lang='ts'>
 import type { CurrencyData } from '~/composables/useCurrencyData'
+import type { EnumCurrencyKey } from '~/apis/types'
 
 interface Props {
   activeTab?: string
+  initCurrency?: EnumCurrencyKey
 }
 const props = withDefaults(defineProps<Props>(), {
   activeTab: 'deposit',
@@ -190,7 +192,7 @@ await application.allSettled(
     <!-- 卡包 -->
     <template v-if="isCardHolder">
       <Suspense timeout="0">
-        <AppCardHolder />
+        <AppCardHolder :init-currency="initCurrency" />
         <template #fallback>
           <div class="center dialog-loading-height">
             <BaseLoading />

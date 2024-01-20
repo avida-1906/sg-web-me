@@ -174,6 +174,7 @@ defineExpose({ manualFocus, manualBlur })
   }
 
   input {
+    color: var(--tg-secondary-main);
 
     &::placeholder {
       color: var(--tg-text-dark);

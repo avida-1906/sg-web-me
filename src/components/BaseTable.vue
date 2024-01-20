@@ -14,6 +14,8 @@ interface Props {
   skeletonRow?: number
   /** 骨架屏随机宽度最小值 */
   skeletonWidth?: number
+  /** 金额是否显示Popper */
+  isAmountPopper?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -157,12 +159,19 @@ watch(() => props.columns, () => {
             </template>
             <template v-else>
               <slot
-                v-if="col.slot" v-bind="{ record: data, index }"
+                v-if="col.slot" v-bind="{ record: data, index, isAmountPopper }"
                 :name="col.slot"
                 :index="index"
               >
                 {{ data[col.dataIndex] || '-' }}
               </slot>
+              <AppAmount
+                v-else-if="col.isAmount"
+                :is-popper="isAmountPopper"
+                :show-color="col.showColor"
+                :amount="data[col.dataIndex]"
+                :currency-type="getCurrencyConfigByCode(data.currency_id)?.name"
+              />
               <span v-else>{{ data[col.dataIndex] || '-' }}</span>
             </template>
           </td>

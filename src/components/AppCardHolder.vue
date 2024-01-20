@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import type { BankCard, VirtualCoin } from '~/apis/types'
+import type { BankCard, EnumCurrencyKey, VirtualCoin } from '~/apis/types'
 import type { CurrencyCode } from '~/composables/useCurrencyData'
+
+const props = defineProps<{ initCurrency?: EnumCurrencyKey }>()
 
 const { t } = useI18n()
 const closeDialog = inject('closeDialog', () => { })
 const { openDeleteConfirm } = useDeleteConfirmDialog()
 const { currentGlobalCurrency, userInfo } = storeToRefs(useAppStore())
 const { renderCurrencyList } = useCurrencyData()
-const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
+
 const { push } = useLocalRouter()
 
-const curType = ref(currentGlobalCurrency.value)
+const curType = ref(props.initCurrency || currentGlobalCurrency.value)
 
 const curCode = computed(() => {
   return renderCurrencyList.value.find(a => a.type === curType.value)?.cur ?? '701'
@@ -78,6 +80,8 @@ function toAddVirAddress() {
   } = useVirAddressDialog({
     icon: curType.value,
   })
+  const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder', initCurrency: curType.value })
+
   closeDialog()
   nextTick(() => openVirAddressDialog({
     currencyId: curCode.value,
@@ -139,7 +143,10 @@ await application.allSettled([runAsyncWalletBankcardList()])
 <template>
   <div class="px-16 pb-43">
     <div class="flex flex-col items-center">
-      <BaseSelect v-model="curType" :options="currencyOptions" popper>
+      <BaseSelect
+        v-model="curType" :options="currencyOptions" popper popper-search
+        :popper-search-placeholder="t('search_currency')" popper-max-height="22em"
+      >
         <template #label="{ data }">
           <AppCurrencyIcon show-name :currency-type="data?.value" />
         </template>

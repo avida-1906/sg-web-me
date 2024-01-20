@@ -46,25 +46,25 @@ const columns: Column[] = [
     title: t('deposit_amount_label'),
     dataIndex: 'deposit_amount',
     align: 'center',
-    slot: 'deposit_amount',
+    isAmount: true,
   },
   {
     title: t('withdraw_amount'),
     dataIndex: 'withdraw_amount',
     align: 'center',
-    slot: 'withdraw_amount',
+    isAmount: true,
   },
   {
     title: t('cash_profit'),
     dataIndex: 'deposit_withdraw_amount',
     align: 'center',
-    slot: 'deposit_withdraw_amount',
+    isAmount: true,
   },
   {
     title: t('balance'),
     dataIndex: 'balance',
     align: 'center',
-    slot: 'balance',
+    isAmount: true,
   },
 ]
 
@@ -115,6 +115,7 @@ onMounted(() => {
       :data-source="list"
       :loading="loading"
       :skeleton-row="5"
+      is-amount-popper
     >
       <template #username="{ record }">
         <AppReportUserName :username="record.username" :level="`${record.vip}`" />
@@ -123,38 +124,6 @@ onMounted(() => {
         <span>
           {{ timeToDateFormat(record.time) }}
         </span>
-      </template>
-      <template #deposit_amount="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.deposit_amount"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
-      </template>
-      <template #withdraw_amount="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.withdraw_amount"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
-      </template>
-      <template #deposit_withdraw_amount="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.deposit_withdraw_amount"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
-      </template>
-      <template #balance="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.balance"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
       </template>
     </BaseTable>
     <BasePagination
