@@ -154,18 +154,14 @@ onMounted(() => {
   <div class="tg-settings-general">
     <AppSettingsContentItem
       :last-one="isDialog"
+      :dialog-box="isDialog"
       :title="t('email_address')" :verified="emailSubmitBtnDisabled"
       :badge="emailVerified" @submit="emailSubmit"
     >
+      <template v-if="isDialog" #top-desc>
+        {{ t('must_verify_email_then', { delta: `${tipText}`.toLowerCase() }) }}{{ t('period') }}
+      </template>
       <div :class="{ 'verify-content': isDialog }">
-        <template v-if="isDialog">
-          <div class="content-title">
-            {{ t('email_address') }}
-          </div>
-          <div>
-            {{ t('must_verify_email_then', { delta: `${tipText}`.toLowerCase() }) }}{{ t('period') }}
-          </div>
-        </template>
         <BaseLabel :label="t('email_address')" must-small>
           <div v-if="emailVerified" class="email-erified-box cursor-pointer">
             {{ email }}
@@ -212,10 +208,6 @@ onMounted(() => {
     flex-direction: column;
     // padding: 0 16px 16px;
     gap: var(--tg-spacing-16);
-    .content-title{
-      color:var(--tg-text-white);
-      font-size: var(--tg-font-size-lg);
-    }
   }
   .email-erified-box {
     width: 100%;
