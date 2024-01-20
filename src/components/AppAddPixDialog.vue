@@ -16,7 +16,10 @@ const currencyId = ref<CurrencyCode>(props.currencyId)
 const auth_type = ref<'1' | '2'>('1')
 // 是否设置为默认地址
 const { bool: isDefaultAddress, setBool: setDefaultAddress } = useBoolean(false)
-const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder', initCurrency: props.currencyId })
+const { openWalletDialog } = useWalletDialog({
+  activeTab: 'cardHolder',
+  initCurrency: getCurrencyConfigByCode(props.currencyId).name,
+})
 const closeCurDialog = inject('closeDialog', () => {})
 
 // #region 表单验证
