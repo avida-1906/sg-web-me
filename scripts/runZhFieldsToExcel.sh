@@ -1,11 +1,10 @@
 #!/bin/bash
 set -e
 
-# 目标语言文件目录
+# 需要处理文件目录
 LOCALES_DIR="./locales"
+# 目标语言文件目录
 TARGET_FILE_DIR="./locales_get_unconverted_fields"
-
-# 使用 getZhFieldsToExcel.py a.yml a.xlsx 便利所有的语言文件，将其中的中文字段提取出来，保存到 xlsx 文件中
 
 # 遍历 LOCALES_DIR 目录下的所有 .yml 文件
 for file in ${LOCALES_DIR}/*.yml; do
