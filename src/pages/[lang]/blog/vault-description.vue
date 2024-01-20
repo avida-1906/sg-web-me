@@ -21,7 +21,7 @@ const contentText = computed(() => {
   if (data.value) {
     const str = data.value.find(a => a.currency_name === curType.value)?.content_text
     const lang = getCurrentLanguageForBackend()
-    return str ? JSON.parse(str)[lang] : ''
+    return str ? JSON.parse(str).text ? JSON.parse(str).text : JSON.parse(str)[lang] ? JSON.parse(str)[lang] : '' : ''
   }
   return ''
 })
