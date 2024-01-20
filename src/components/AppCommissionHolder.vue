@@ -3,6 +3,7 @@
 // const { openAgentCommissionDrawDialog } = useDialogAgentCommissionDraw()
 const { t } = useI18n()
 const { openNotify } = useNotify()
+const appStore = useAppStore()
 const {
   renderCurrencyList,
 } = useCurrencyData()
@@ -20,6 +21,7 @@ const {
       icon: 'navbar-wallet-notify',
       message: t('commission_draw_success'),
     })
+    appStore.getBalanceData()
   },
 })
 

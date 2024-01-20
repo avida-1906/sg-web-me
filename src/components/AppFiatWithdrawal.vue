@@ -188,16 +188,16 @@ await application.allSettled(
       <div v-if="!withdrawBankcardList?.d?.length" class="bank-bind">
         <div class="layout-spacing not-payment-msg">
           <div class="msg-warp">
-            <BaseIcon style="font-size: 16px;" name="uni-warning-color" class="search-icon" />
+            <BaseIcon style="font-size: var(--tg-font-size-base);" name="uni-warning-color" class="search-icon" />
             <div>
               <div style="margin-bottom: 4px;">
-                请前往卡包绑定收款信息
+                {{ t('not_payment_information_currency') }}
               </div>
-              <div>该币种您暂无收款信息</div>
+              <div>{{ t('please_go_package_bind_payment_information') }}</div>
             </div>
           </div>
           <BaseButton bg-style="secondary" size="md" @click="emit('toHolder')">
-            前往卡包
+            {{ t('go_card_pack') }}
           </BaseButton>
         </div>
         <!-- <AppAddBankcards
