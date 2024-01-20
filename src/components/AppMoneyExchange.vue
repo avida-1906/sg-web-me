@@ -10,6 +10,8 @@ const {
   renderBalanceList,
 } = useCurrencyData()
 const { getRate } = useExchangeRate()
+const { openNotify } = useNotify()
+const appStore = useAppStore()
 
 const currencyTypePay = ref(currentGlobalCurrency.value)
 const currencyTypeGet = ref<EnumCurrencyKey>('USDT')
@@ -63,6 +65,12 @@ const {
 
 const { run, loading } = useRequest(ApiFinanceBalanceTransfer, {
   onSuccess(res) {
+    openNotify({
+      type: 'success',
+      title: t('exchange'),
+      message: t('exchange') + t('notify_title_success'),
+    })
+    appStore.getBalanceData()
     resetAmountPay()
     resetAmountGet()
   },
