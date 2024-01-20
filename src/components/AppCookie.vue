@@ -3,6 +3,7 @@ const { VITE_ACCEPT_COOKIE_KEY } = getEnv()
 const { isMobile } = storeToRefs(useWindowStore())
 const { t } = useI18n()
 const { set, get } = useCookies()
+const { push } = useLocalRouter()
 function accept() {
   set(VITE_ACCEPT_COOKIE_KEY, '1', { expires: new Date(dayjs().add(1, 'year')) })
 }
@@ -15,7 +16,7 @@ function accept() {
   >
     <div class="wrap">
       <p>
-        <BaseButton type="text" size="none" @click="$router.push('/policies/cookies')">
+        <BaseButton type="text" size="none" @click="push('/policies/cookies')">
           <span class="btn">🍪 {{ t('we_use_cookie') }}</span>
         </BaseButton>
         {{ t('cookie_purposes') }}
