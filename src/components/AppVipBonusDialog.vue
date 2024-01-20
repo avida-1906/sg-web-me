@@ -15,7 +15,7 @@ const props = defineProps<Props>()
 const closeDialog = inject('closeDialog', () => { })
 const { t } = useI18n()
 const { openNotify } = useNotify()
-const { getRate } = useExchangeRate()
+const { getRate, runGetExchangeRate } = useExchangeRate()
 const { isLogin } = storeToRefs(useAppStore())
 // const { bool: isReceive, setBool: setShowWalletBool } = useBoolean(true)
 const amountMax = ref('0')
@@ -146,6 +146,8 @@ onMounted(() => {
 onUnmounted(() => {
   applyResult.value && props.callBack && props.callBack()
 })
+
+runGetExchangeRate()
 </script>
 
 <template>
