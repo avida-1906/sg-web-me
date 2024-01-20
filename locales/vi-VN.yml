@@ -2350,7 +2350,7 @@ exchange: Đổi
 pay_with: Thanh toán bằng VNĐ {currency}
 rate: Tỷ giá
 birthday_bonus: Tiền thưởng sinh nhật
-collection_instructions: `Hướng dẫn nhận: Tiền thưởng cho hoạt động này đều được phát bằng USDT, bạn có thể chọn loại tiền bạn muốn nhận và tỷ giá giữa các loại tiền tệ áp dụng tỷ giá thị trường theo thời gian thực.`
+collection_instructions: 'Hướng dẫn nhận: Tiền thưởng cho hoạt động này đều được phát bằng USDT, bạn có thể chọn loại tiền bạn muốn nhận và tỷ giá giữa các loại tiền tệ áp dụng tỷ giá thị trường theo thời gian thực.'
 activity_bonus: Phần thưởng hoạt động
 success_received: Đã nhận thành công {label} {amount} {renderSvg}
 add_withdraw_info: Vui lòng liên kết tài khoản rút tiền

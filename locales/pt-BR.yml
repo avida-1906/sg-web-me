@@ -611,7 +611,7 @@ tickets_email_copy: Respostas e atualizações de ordem de trabalho serão envia
   para o seguinte endereço de e-mail
 tickets_email_subject: Sua ordem de trabalho {ticket_type_name}
 tickets_email_subject_with_ticket_id: 'Your {ticket_type_name} ticket #{ticket_id}'
-tickets_estimated_resolution: `Tempo estimado de resolução: {duration}`
+tickets_estimated_resolution: 'Tempo estimado de resolução: {duration}'
 tickets_files_added: Arquivo adicionado
 tickets_have_a_question: Alguma dúvida?
 tickets_in_progress_status_detail: Estamos trabalhando duro em relação a este assunto 🙌
@@ -2414,9 +2414,9 @@ exchange: Câmbio
 pay_with: Pague em {currency}
 rate: Taxa de câmbio
 birthday_bonus: Bônus de aniversário
-collection_instructions: `Instruções para recebimento: Os bônus deste evento são todos emitidos em USDT, você pode escolher a moeda que deseja receber e a taxa de câmbio entre as moedas adota a taxa de câmbio do mercado em tempo real.`
+collection_instructions: 'Instruções para recebimento: Os bônus deste evento são todos emitidos em USDT, você pode escolher a moeda que deseja receber e a taxa de câmbio entre as moedas adota a taxa de câmbio do mercado em tempo real.'
 activity_bonus: Bônus de atividade
-success_received: `{label} {amount} {renderSvg} recebido com sucesso`
+success_received: '{label} {amount} {renderSvg} recebido com sucesso'
 add_withdraw_info: Por favor, vincule as informações de retirada
 three_withdraw_info_only: Cada moeda pode ter apenas 3 informações de recebimento vinculadas
 want_more_del_first: Caso precise vincular mais, exclua as menos utilizadas

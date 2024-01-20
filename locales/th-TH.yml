@@ -1891,13 +1891,13 @@ vault_des_35: 'Please remember to always gamble responsibly. Learn more tips whe
 success_close_double_check: ปิดรหัสการยืนยันสองขั้นตอนสำเร็จ
 close_verification: ปิดการยืนยันสองขั้นตอน
 vip_sports_tip_title: สนามกีฬามีคะแนนสะสม x{rate} ดังนี้ 
-vip_sports_tip_content: `(ตัวอย่าง : 1 USDT = 1 คะแนนสมาชิก , คุณกำลังเดิมพันกีฬา 1 USDT จะได้รับ {rate} คะแนนสมาชิก）`
+vip_sports_tip_content: '(ตัวอย่าง : 1 USDT = 1 คะแนนสมาชิก , คุณกำลังเดิมพันกีฬา 1 USDT จะได้รับ {rate} คะแนนสมาชิก）'
 money_exchange: แลกเปลี่ยนสกุลเงิน
 exchange: แลกเปลี่ยน
 pay_with: ชำระโดย {currency}
 rate: อัตราแลกเปลี่ยน
 birthday_bonus: โบนัสวันเกิด
-collection_instructions: `คำแนะนำในการรับ: โบนัสสำหรับกิจกรรมนี้จะออกทั้งหมดเป็น USDT； คุณสามารถเลือกสกุลเงินที่คุณต้องการรับด้วยตัวคุณเองและอัตราแลกเปลี่ยนระหว่างสกุลเงินจะใช้อัตราแลกเปลี่ยนแบบเรียลไทม์ของตลาด`
+collection_instructions: 'คำแนะนำในการรับ: โบนัสสำหรับกิจกรรมนี้จะออกทั้งหมดเป็น USDT； คุณสามารถเลือกสกุลเงินที่คุณต้องการรับด้วยตัวคุณเองและอัตราแลกเปลี่ยนระหว่างสกุลเงินจะใช้อัตราแลกเปลี่ยนแบบเรียลไทม์ของตลาด'
 activity_bonus: กิจกรรมโบนัส
 success_received: การรับเงินสำเร็จ {label} {amount} {renderSvg}
 add_withdraw_info: โปรดผูกข้อมูลการฝาก-ถอน
