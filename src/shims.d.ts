@@ -154,7 +154,7 @@ interface Column {
   isRound?: 'left' | 'right',
   /** 骨架屏是否固定宽度 */
   skeWidth?: string,
-  /** 是否表示金额 */
+  /** 是否表示金额 数据要有currency_id显示货币icon */
   isAmount?: boolean
   /** 金额是否需要颜色 */
   showColor?:boolean

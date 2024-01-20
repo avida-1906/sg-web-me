@@ -112,14 +112,13 @@ async function submitBonus() {
       id: props.vipBonusId ?? (promoBonus.value && promoBonus.value[0].id) ?? '',
       cur: activeCurrency.value?.cur ?? '',
       amount: amount.value,
-    }).then(() => {
+    }).then((data) => {
       const label = options.value.find(item => item.value === typeVal.value)?.label ?? t('vip_promotion_bonus')
       openNotify({
         type: 'success',
         title: `${label}${t('receive')}`,
         icon: 'navbar-wallet-notify',
-        // message: `成功领取${label} ${targetAmount.value} ${renderSvg()}`,
-        message: t('success_received', { label, amount: targetAmount.value, renderSvg: renderSvg() }),
+        message: t('success_received', { label, amount: data ?? 0, renderSvg: renderSvg() }),
       })
       closeDialog()
     })
