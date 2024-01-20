@@ -13,37 +13,25 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['update:modelValue'])
-const changeType = function (type: string) {
-  const ref: HTMLElement | null = document.querySelector(`#id${type}`)
-  const parentRef = ref?.parentElement
-  if (parentRef && ref) {
-    const parentHalfWidth = parentRef?.offsetWidth / 2
-    const refHalfWidth = ref?.offsetWidth / 2
-    const left = ref.offsetLeft - parentHalfWidth + refHalfWidth
-    // parentRef.scrollLeft = ref.offsetLeft - parentHalfWidth + refHalfWidth
-    parentRef.scrollTo({ left })
-  }
+
+const changeType = function (type: string, i: number) {
+  document.querySelectorAll('.scroll-list-item')[i].scrollIntoView({
+    behavior: 'smooth',
+    block: 'center',
+    inline: 'center',
+  })
   emit('update:modelValue', type)
 }
-
-watch(() => props.currentType, () => {
-  nextTick(() => {
-    const ref: HTMLElement | null = document.querySelector(`#id${props.modelValue}`)
-    const parentRef = ref?.parentElement
-    parentRef?.scrollTo({ left: 0 })
-  })
-})
 </script>
 
 <template>
   <div class="scroll-x hide-scrollbar withdrawal-deposit-type">
     <div
-      v-for="item in currentType"
-      :id="`id${item.value}`"
+      v-for="item, i in currentType"
       :key="item.value"
-      class="center type-btn"
+      class="center type-btn scroll-list-item"
       :class="item.value === props.modelValue ? 'active' : '' "
-      @click="changeType(item.value)"
+      @click="changeType(item.value, i)"
     >
       <BaseImage
         :url="`payment/deposit/${item.icon ?? 'dft'}.webp`"

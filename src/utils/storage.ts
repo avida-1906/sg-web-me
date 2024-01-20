@@ -33,6 +33,9 @@ export class Local {
       value,
     }
 
+    if (_value.value === null || _value.value === undefined)
+      return
+
     localStorage.setItem(key, JSON.stringify(_value))
   }
 
