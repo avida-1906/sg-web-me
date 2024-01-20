@@ -2355,7 +2355,7 @@ activity_bonus: Phần thưởng hoạt động
 success_received: Đã nhận thành công {label} {amount} {renderSvg}
 add_withdraw_info: Vui lòng liên kết tài khoản rút tiền
 three_withdraw_info_only: Mỗi loại tiền tệ chỉ có thể liên kết với 3 tài khoản nhận tiền
-want_more_del_first: Nếu bạn cần liên kết nhiều hơn, vui lòng xóa những cái không sử dụng thường xuyên trước. 
+want_more_del_first: Nếu bạn cần liên kết nhiều hơn, vui lòng xóa những cái không sử dụng thường xuyên trước.
 withdraw_account: Số tài khoản nhận
 withdraw_address: Địa chỉ nhận
 wrong_format: Định dạng sai
