@@ -64,9 +64,9 @@ const getTouchTrue = computed(() => {
 // 密码类型切换
 function selectTypeChange(item: string) {
   pwdType.value = item
-  resetPassword()
   emit('update:modelValue', '')
   emit('update:modelType', item)
+  resetPassword()
 }
 function passwordChange(val: string) {
   emit('update:modelValue', val)

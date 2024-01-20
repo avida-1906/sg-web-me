@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { CurrencyCode, CurrencyData } from '~/composables/useCurrencyData'
+import type { CurrencyData } from '~/composables/useCurrencyData'
 
 interface Props {
   activeCurrency: CurrencyData
@@ -12,7 +12,7 @@ const amountRef = ref()
 
 const { t } = useI18n()
 const { openNotify } = useNotify()
-const { exchangeRateData } = storeToRefs(useAppStore())
+// const { exchangeRateData } = storeToRefs(useAppStore())
 const {
   value: address,
   errorMessage: addressMsg,
@@ -103,14 +103,14 @@ const addrOptions = computed(() => {
 const getContractId = computed(() => {
   return props.currentNetwork
 })
-const getUsRate = computed(() => {
-  const str: CurrencyCode = props.activeCurrency.cur
-  if (str === '706')
-    return Number(amount.value).toFixed(2)
-  return str
-    ? (Number(exchangeRateData.value?.rates[str]['706']) * Number(amount.value ?? 0)).toFixed(2)
-    : 0.00
-})
+// const getUsRate = computed(() => {
+//   const str: CurrencyCode = props.activeCurrency.cur
+//   if (str === '706')
+//     return Number(amount.value).toFixed(2)
+//   return str
+//     ? (Number(exchangeRateData.value?.rates[str]['706']) * Number(amount.value ?? 0)).toFixed(2)
+//     : 0.00
+// })
 
 // function onAmountInput() {
 //   if (amount.value)
@@ -187,7 +187,7 @@ await application.allSettled(
             v-model="address"
             :options="addrOptions"
             :msg="addressMsg"
-            small popper border
+            popper small border
             popper-clazz="app-with"
             style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-9)"
             @focus="addressMsg && resetAddress()"
@@ -218,7 +218,7 @@ await application.allSettled(
           <div class="top">
             <span class="label">{{ t('amount') }}
               <span style="color: var(--tg-text-error);">*</span></span>
-            <span class="us">US${{ application.numberToLocaleString(Number(getUsRate)) }}</span>
+            <!-- <span class="us">US${{ application.numberToLocaleString(Number(getUsRate)) }}</span> -->
           </div>
           <BaseInput
             ref="amountRef"
