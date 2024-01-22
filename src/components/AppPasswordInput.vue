@@ -26,7 +26,7 @@ const pwdOptions = computed(() => {
   if (check === 3) {
     // isSetPayPwd.value && teg.push(pwd)
     // isSetAuth.value && teg.push(code)
-    return teg.concat([code, pwd])
+    return teg.concat([pwd, code])
   }
   else if (isOpenVerify.value) {
     teg.push(code)

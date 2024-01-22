@@ -13,6 +13,7 @@ export const useBrandBaseDetail = createGlobalState(() => {
   })
 
   const {
+    loading: loadingAuthConfig,
     data: authConfig,
     run: runMemberAuthConfig,
   } = useRequest(ApiMemberAuthConfig, {
@@ -44,6 +45,7 @@ export const useBrandBaseDetail = createGlobalState(() => {
     isOpenVerify,
     /** 站点是否开启资金密码 */
     isOpenPayPwd,
+    loadingAuthConfig,
     runMemberAuthConfig,
   }
 })

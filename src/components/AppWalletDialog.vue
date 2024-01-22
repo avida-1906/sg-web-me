@@ -213,7 +213,7 @@ await application.allSettled(
       {{ t('improve_safe_level') }}
     </div>
     <BaseButton
-      bg-style="primary"
+      bg-style="secondary"
       size="md"
       @click="router.push('/settings/security-safe-check'); closeDialog()"
     >

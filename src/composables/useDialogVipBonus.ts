@@ -8,7 +8,7 @@ export function useDialogVipBonus(callBack?: () => void) {
     closeDialog: closeVipBonusDialog,
   } = useDialog({
     title: title.value,
-    icon: 'chat-tip',
+    icon: 'uni-bonus',
     default: ({ vipBonus, vipBonusId }) =>
       h(AppVipBonusDialog, {
         vipBonus,

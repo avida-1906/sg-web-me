@@ -151,7 +151,7 @@ runGetExchangeRate()
 
 <template>
   <div class="app-receive-bonus">
-    <BaseLabel :label="$t('activity_bonus')">
+    <BaseLabel :label="vipBonusId ? $t('vip_promotion_bonus') : $t('activity_bonus')">
       <BaseInput ref="amountRef" v-model="amount" :msg="amountMsg" type="number" msg-after-touched @blur="amountBlur">
         <template v-if="!vipBonusId" #right-button>
           <BaseSelect

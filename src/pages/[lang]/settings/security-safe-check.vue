@@ -3,8 +3,7 @@ const { t } = useI18n()
 usePageTitle({ prefix: t('two_step_verification') })
 const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
-const { runMemberAuthConfig } = useBrandBaseDetail()
-// const { updateUserInfo } = useAppStore()
+const { runMemberAuthConfig, isSetAuth, loadingAuthConfig } = useBrandBaseDetail()
 /** 双重验证 */
 const {
   value: loginPassword,
@@ -22,36 +21,12 @@ const {
     return t('pls_input_double_check_pwd')
   return ''
 })
-// const {
-//   run: runMemberDualVerify,
-//   loading: dualVerifyLoading,
-// } = useRequest(ApiMemberDualVerify, {
-//   onSuccess() {
-//     openNotify({
-//       type: 'success',
-//       message: t('success_set_double_check'),
-//     })
-//     updateUserInfo()
-//   },
-// })
 // 获取二阶段验证密钥
 const {
   data: authSecret,
   run: runMemberAuthSecret,
 } = useRequest(ApiMemberAuthSecret, {
   onSuccess() {
-  },
-})
-// 获取安全验证配置
-const {
-  data: authConfig,
-  runAsync: runAsyncMemberAuthConfig,
-} = useRequest(ApiMemberAuthConfig, {
-  onSuccess(data) {
-    if (data.is_secret !== '1')
-      runMemberAuthSecret()
-    resetLoginPassword()
-    resetDoublePassword()
   },
 })
 // 设定二阶段验证
@@ -61,13 +36,12 @@ const {
 } = useRequest(ApiMemberAuthSet, {
   onSuccess() {
     runMemberAuthConfig()
-    runAsyncMemberAuthConfig()
     openNotify({
       type: 'success',
       message: t('success_set_double_check'),
     })
-
-    // updateUserInfo()
+    resetLoginPassword()
+    resetDoublePassword()
   },
 })
 // 关闭二阶段验证
@@ -77,18 +51,15 @@ const {
 } = useRequest(ApiMemberAuthClose, {
   onSuccess() {
     runMemberAuthConfig()
-    runAsyncMemberAuthConfig()
     openNotify({
       type: 'success',
       message: t('success_close_double_check'),
     })
+    resetLoginPassword()
+    resetDoublePassword()
   },
 })
 
-const doubleVerified = computed(() => {
-  return authConfig.value?.is_secret === '1'
-  // userInfo.value?.google_verify === 2
-})
 const getQRcodeUrl = computed(() => {
   if (userInfo.value)
     return generateQRCodeUrl({ label: 'sg', email: userInfo.value.email, secret: authSecret.value ?? '' })
@@ -110,7 +81,7 @@ async function submitDoublePassword() {
   await validateDoublePwd()
   if (!loginPwdErrorMsg.value && !doublePwdErrorMsg.value) {
     const data = { password: loginPassword.value, auth_code: doublePassword.value }
-    doubleVerified.value ? runMemberAuthClose(data) : runMemberAuthSet(data)
+    isSetAuth.value ? runMemberAuthClose(data) : runMemberAuthSet(data)
   }
 }
 function generateQRCodeUrl(params: {
@@ -123,24 +94,40 @@ function generateQRCodeUrl(params: {
 }) {
   return `otpauth://totp/${encodeURIComponent(params.label)}:${encodeURIComponent(params.email)}?secret=${params.secret}&issuer=${encodeURIComponent(params.label)}`
 }
+function awaitHandle() {
+  return new Promise((resolve) => {
+    let timer: NodeJS.Timeout | null = setInterval(() => {
+      if (!loadingAuthConfig.value) {
+        timer && clearInterval(timer)
+        timer = null
+        return resolve(true)
+      }
+    }, 200)
+  })
+}
 
-await application.allSettled([runAsyncMemberAuthConfig()])
+watch(() => isSetAuth.value, (val) => {
+  if (!val)
+    runMemberAuthSecret()
+}, { immediate: true })
+
+await application.allSettled([awaitHandle()])
 </script>
 
 <template>
   <div class="tg-settings-security">
     <AppSettingsContentItem
-      :title="doubleVerified ? t('close_verification') : t('two_step_verification') "
+      :title="isSetAuth ? t('close_verification') : t('two_step_verification') "
       last-one
-      :btn-loading="loadMemberAuthSet || loadMemberAuthClose"
-      :btn-text="doubleVerified ? 'close' : 'submit'"
+      :btn-loading="loadMemberAuthSet || loadMemberAuthClose || loadingAuthConfig"
+      :btn-text="isSetAuth ? 'close' : 'submit'"
       @submit="submitDoublePassword"
     >
       <template #top-desc>
         {{ t('tip_start_double_check') }}
       </template>
       <div class="two-step-verification">
-        <template v-if="!doubleVerified">
+        <template v-if="!isSetAuth">
           <AppCopyLine
             v-if="userInfo"
             :label="t('copy_to_google')"

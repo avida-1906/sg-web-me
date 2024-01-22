@@ -32,7 +32,16 @@ const currencyCodeGet = computed(() => {
   return renderBalanceList.value.find(a => a.type === currencyTypeGet.value)?.cur ?? '701'
 })
 const currencyPayOptions = computed(() => {
-  return renderBalanceList.value.filter(b => +b.balance > 0).map((a) => {
+  if (renderBalanceList.value.some(a => +a.balance > 0)) {
+    return renderBalanceList.value.filter(b => +b.balance > 0).map((a) => {
+      return {
+        label: a.type,
+        value: a.type,
+        currencyType: a.type,
+      }
+    })
+  }
+  return renderBalanceList.value.map((a) => {
     return {
       label: a.type,
       value: a.type,
@@ -100,11 +109,19 @@ function confirm() {
     })
   }
 }
+function onCurrencyGetSelected(v: string) {
+  nextTick(() => {
+    setAmountGet(mul(+amountPay.value, rate.value))
+  })
+}
 
 // 监听支付货币类型
 watch(currencyTypePay, (a) => {
   if (currencyTypeGet.value === a)
     currencyTypeGet.value = renderBalanceList.value.filter(a => a.type !== currencyTypePay.value)[0].type
+
+  setAmountPay(userInfo.value?.balance[currencyTypePay.value] ?? '')
+  setAmountGet(mul(+amountPay.value, rate.value))
 })
 watch(amountPay, (a) => {
   if (+a > +currencyMaxBalance.value) {
@@ -134,6 +151,7 @@ onMounted(() => {
             --tg-base-select-popper-bg-color:transparent;
             --tg-base-select-hover-bg-color:transparent;
             width: 110px;" popper-search :popper-search-placeholder="t('search_currency')" popper-max-height="22em"
+            @select="onCurrencyGetSelected"
           >
             <template #label="{ data }">
               <AppCurrencyIcon show-name :currency-type="data?.value" />
