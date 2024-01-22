@@ -68,16 +68,19 @@ function push(title: string) {
     @close="closeLeftSidebar"
   />
 
-  <!-- <div v-if="isMobile && !isCasino && !isSports" class="buttons">
+  <div v-if="isMobile && !isCasino && !isSports" class="buttons">
     <BaseAspectRatio v-for="n in navButtons" :key="n.title" ratio="3.5/1">
       <div
-        :class="[n.title, { active: route.name?.toString().includes(n.title) }]"
+        :class="[n.title, {
+          active: route.name?.toString().includes(n.title),
+          maintained: n.title === 'sports' && isSportsMaintained,
+        }]"
         @click="push(n.title)"
       >
         <span>{{ t(n.title) }}</span>
       </div>
     </BaseAspectRatio>
-  </div> -->
+  </div>
 
   <div class="content scrollY">
     <Transition name="slide-fade">
@@ -140,6 +143,11 @@ function push(title: string) {
 
   .sports {
     @include getBackgroundImage('/left-side-bar/sports_bg');
+    &.maintained{
+      &:hover{
+        @include getBackgroundImage('/left-side-bar/sports_bg');
+      }
+    }
 
     &:hover, &.active {
       @include getBackgroundImage('/left-side-bar/sports_bg_active');
