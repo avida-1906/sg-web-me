@@ -16,6 +16,10 @@ for file in ${LOCALES_DIR}/*.yml; do
             continue
         fi
 
+        if [ "$lang" = "hi-IN" ]; then
+            continue
+        fi
+
         python3 ./scripts/runZhFieldsToExcel.py $LOCALES_DIR/$filename $TARGET_FILE_DIR/$lang.xlsx
     fi
 done
