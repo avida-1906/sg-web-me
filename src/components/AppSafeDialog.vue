@@ -183,7 +183,6 @@ await application.allSettled([runAsyncInterestConfig()])
           <span>{{ t('currency') }}</span>
           <AppSelectCurrency
             :type="isDeposit ? 1 : 2"
-            popper-clazz="app-safe-cur"
             @change="changeCurrency"
           />
         </div>
@@ -280,12 +279,6 @@ await application.allSettled([runAsyncInterestConfig()])
     </div>
   </div>
 </template>
-
-<style>
-.app-safe-cur {
-  --tg-app-select-currency-poptop-width: 218px;
-}
-</style>
 
 <style lang='scss' scoped>
 .app-safe{

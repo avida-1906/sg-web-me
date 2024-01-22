@@ -7,7 +7,6 @@ interface Props {
   showBalance?: boolean // 是否展示货币余额
   network?: boolean // 是否显示协议类型
   type?: number
-  popperClazz?: string
   placeholder?: string
   distance?: number
   activeCurrencyList?: availableCurrency[]
@@ -132,8 +131,8 @@ onMounted(() => {
         </BaseButton>
       </div>
       <template #popper="{ hide }">
-        <div class="dropdown-popper need-pad-y" :class="[popperClazz]">
-          <div class="popper-top">
+        <div class="dropdown-popper need-pad-y">
+          <div class="popper-top" :style="{ '--tg-app-select-currency-poptop-width': showBalance ? '218px' : '136px' }">
             <BaseSearch
               v-model="searchValue"
               class="top-search"

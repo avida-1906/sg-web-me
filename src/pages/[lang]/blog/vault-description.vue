@@ -51,7 +51,6 @@ await application.allSettled([runAsync()])
         <AppSelectCurrency
           :type="4"
           :show-balance="false"
-          popper-clazz="app-wallet-cur"
           placeholder="search"
           :active-currency-list="data ?? []"
           :style="`--tg-app-select-currency-padding-x:0;--tg-app-select-currency-bg:transparent;
