@@ -71,6 +71,8 @@ export const useSportsStore = defineStore('sports', () => {
   const currentVSportsBetType = ref('')
   /** 购物车 */
   const cart = reactive(new SportsCart(currentGlobalCurrency.value))
+  /** 体育场馆维护 */
+  const isSportsMaintained = ref(false)
 
   /** 体育计数源 */
   const { data: allSportsCount, run: runSportsCount } = useRequest(() =>
@@ -252,6 +254,7 @@ export const useSportsStore = defineStore('sports', () => {
         currentProvider.value = res.d[0].id
         Local.set(STORAGE_SPORTS_CURRENT_PROVIDER, res.d[0].id)
       }
+      isSportsMaintained.value = res.d.find(a => a.id === currentProvider.value)?.maintained === '2'
       runAsyncHomeConfig().then(() => runSportsCount())
       runSportsSidebar()
     },
@@ -601,6 +604,7 @@ export const useSportsStore = defineStore('sports', () => {
     lobbyCurrentEventType,
     currentLobbySiNav,
     currentLobbyBetType,
+    isSportsMaintained,
     renderOdds,
     setSportsOddsType,
     getSportsOddsType,

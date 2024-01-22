@@ -10,6 +10,7 @@ const { triggerLeftSidebar, closeLeftSidebar, navButtons } = useLeftSidebar()
 const menuStore = useMenuStore()
 const router = useLocalRouter()
 const route = useRoute()
+const { isSportsMaintained } = storeToRefs(useSportsStore())
 
 const isCasino = computed(() => route.name?.toString().includes('casino'))
 const isSports = computed(() => route.name?.toString().includes('sports'))
@@ -21,6 +22,9 @@ function onGameTypeChange(v: string) {
   gameType.value = v
 }
 function push(title: string) {
+  if (title === 'sports' && isSportsMaintained.value)
+    return
+
   Local.remove(STORAGE_MENU_EXPAND_DOMID)
   menuStore.setSideBigActiveMenu('')
   const path = title === 'casino' ? '/casino' : `/sports/${getSportsPlatId()}`
@@ -46,7 +50,10 @@ function push(title: string) {
           <div class="game-type">
             <div
               v-for="n in navButtons" :key="n.title"
-              :class="[n.title, { active: route.name?.toString().includes(n.title) }]"
+              :class="[n.title, {
+                active: route.name?.toString().includes(n.title),
+                maintained: n.title === 'sports' && isSportsMaintained,
+              }]"
               @click.stop="push(n.title)"
             >
               <span style="text-align: center;">{{ t(n.title) }}</span>
@@ -86,7 +93,6 @@ function push(title: string) {
 <style lang='scss' scoped>
 .sidebar-top {
   height: var(--tg-sidebar-top-height-sm);
-  cursor: pointer;
   box-shadow: var(--tg-header-shadow);
 }
 .content {
@@ -187,7 +193,7 @@ function push(title: string) {
         @include getBackgroundImage('/left-side-bar/casino_bg_active')
       }
 
-      &:active {
+      &:active:not(.maintained) {
         span {
           transform: scale(0.96);
         }
@@ -199,6 +205,13 @@ function push(title: string) {
 
       &:hover {
         @include getBackgroundImage('/left-side-bar/sports_bg_active');
+      }
+
+      &.maintained{
+        cursor: not-allowed ;
+        &:hover{
+          @include getBackgroundImage('/left-side-bar/sports_bg');
+        }
       }
     }
 
