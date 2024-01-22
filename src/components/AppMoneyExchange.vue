@@ -9,7 +9,7 @@ const {
 const {
   renderBalanceList,
 } = useCurrencyData()
-const { getRate } = useExchangeRate()
+const { getRate, runGetExchangeRate } = useExchangeRate()
 const { openNotify } = useNotify()
 const appStore = useAppStore()
 
@@ -144,6 +144,7 @@ watch(amountPay, (a) => {
 })
 
 onMounted(() => {
+  runGetExchangeRate()
   setAmountPay(userInfo.value?.balance[currencyTypePay.value] ?? '')
   setAmountGetWithToFixed(mul(+amountPay.value, rate.value))
 })
