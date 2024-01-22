@@ -898,7 +898,7 @@ sports_betting_now: Bắt đầu đặt cược ngay bây giờ!
 sports_total_odds: Tổng Tỉ Lệ
 sports_total_bet_amount: Tổng Cược
 sports_odds_has_changed: Tỷ lệ cược đã thay đổi.
-sports_bet: ''
+sports_bet: 'Đặt cược'
 sports_hot_event: Sự Kiện Phổ Biến
 sports_three_options: đặt cược 3 chiều
 sports_standard: Tiêu chuẩn
@@ -2425,7 +2425,7 @@ plinko_hotkey4: "零数投注额"
 plinko_hotkeyInfo: "快捷键一旦启用后将会影响所有游戏至禁用为止。虽然部分游戏的绑定键相同，还是建议您确认不同游戏的锁定按键交互之后再使用。"
 plinko_hotkeyUse: "启用快捷键"
 plinko_statistics: "实时统计"
-plinko_type1: "全部"
+plinko_type1: "Tất cả"
 plinko_type2: "投注"
 plinko_type3: "竞赛"
 plinko_type4: "隐藏"
