@@ -1409,13 +1409,13 @@ bet_tip_amount_tip: Đã chặn thành công tổng giá trị
 de: Của
 bet_more_than_balance: Số tiền đặt cược của bạn không thể lớn hơn số dư của bạn.
 order_by_alpha: theo thứ tự bảng chữ cái
-sport_in_coming: Cược trực tiếp và cá cược trận đấu sắp tới
-champion_bet: Quán quân đặt cược
+sport_in_coming: Trực tiếp & Sắp Diễn Ra
+champion_bet: Hiện tại
 empty_cap: Tạm không có bảng kèo nào được sử dụng
 for_example: Ví dụ cụ thể như sau
 direct_team: Đội nhóm trực thuộc
 other_team: Đội nhóm khác
-summary: ghi chú tóm tắt
+summary: Ghi chú tóm tắt
 no_bonus_now: 'Hiện tại không thể. nhận tiền quà tặng hoạt động nào '
 fail_bonus: Nhận lãnh thất bại
 bet_number: ID Cược
@@ -2483,3 +2483,8 @@ is_default_addr_brl: 是否设为默认账户
 go_card_pack: 前往卡包
 please_go_package_bind_payment_information: 请前往卡包绑定收款信息
 not_payment_information_currency: 该币种您暂无收款信息
+all: Tất cả
+back_to_home: 回到主页
+maintain_time: 维护时间
+sports_under_maintain: 体育场馆维护中...
+to: 至
