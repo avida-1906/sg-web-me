@@ -18,6 +18,10 @@ const { bool: showEmoji, toggle: toggleEmoji, setBool: setEBool } = useBoolean(f
 
 const { openNotify } = useNotify()
 
+const manCount = ref(application.numberToLocaleString(
+  Math.floor(Math.random() * 100) + 1800,
+  getCurrentLanguageForFrontend(),
+))
 const emojiWrap = ref()
 const maxMsgLen = 160
 const msgInput = ref()
@@ -300,11 +304,7 @@ watch(message, (val) => {
       <div class="green-dot" />
       <div>
         <span>{{ t('active_state') }}： </span>
-        <span>{{ application.numberToLocaleString(
-          Math.floor(Math.random() * 100) + 1800,
-          getCurrentLanguageForFrontend(),
-        )
-        }}</span>
+        <span>{{ manCount }}</span>
       </div>
     </div>
     <div class="actions">
