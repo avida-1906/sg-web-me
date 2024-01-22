@@ -177,8 +177,9 @@ defineExpose({ manualFocus, manualBlur })
     color: var(--tg-secondary-main);
 
     &::placeholder {
-      color: var(--tg-text-dark);
-      opacity: 0.3;
+      color: var(--tg-secondary-main);
+      font-weight: var(--tg-font-weight-semibold);
+      opacity: 0.8;
     }
   }
 }

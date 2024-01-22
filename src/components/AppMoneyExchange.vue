@@ -163,7 +163,7 @@ onMounted(() => {
             --tg-base-select-popper-style-padding-y:12px;
             --tg-base-select-popper-bg-color:transparent;
             --tg-base-select-hover-bg-color:transparent;
-            width: 110px;" popper-search :popper-search-placeholder="t('search_currency')" popper-max-height="22em"
+            width: 110px;" popper-search :popper-search-placeholder="t('search')" popper-max-height="22em"
             @select="onCurrencyGetSelected"
           >
             <template #label="{ data }">
@@ -191,7 +191,7 @@ onMounted(() => {
             --tg-base-select-popper-style-padding-y:12px;
             --tg-base-select-popper-bg-color:transparent;
             --tg-base-select-hover-bg-color:transparent;
-            width: 110px;" popper-search :popper-search-placeholder="t('search_currency')" popper-max-height="22em"
+            width: 110px;" popper-search :popper-search-placeholder="t('search')" popper-max-height="22em"
           >
             <template #label="{ data }">
               <AppCurrencyIcon show-name :currency-type="data?.value" />
