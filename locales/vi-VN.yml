@@ -1385,7 +1385,7 @@ choose_protocol: Chọn giao thức
 your_virtual_addr: Địa chỉ {curNetworkName} của {currencyName} của bạn
 is_default_addr: Có nên đặt nó làm địa chỉ mặc định hay không
 transfer_in_addr: Địa chỉ chuyển vào
-confirm_pls_addr_tip: Vui lòng xác nhận gửi USDT đến địa chỉ này. Việc nạp tiền
+confirm_pls_addr_tip: Vui lòng xác nhận gửi {type} đến địa chỉ này. Việc nạp tiền
   cần có xác nhận từ toàn bộ mạng trước khi có thể được ghi có. Vui lòng kiên nhẫn
   chờ đợi!
 transfer_in_amount: Số tiền chuyển khoản

@@ -1414,7 +1414,7 @@ choose_protocol: Select protocol
 your_virtual_addr: Your {currencyName}'s {curNetworkName} address
 is_default_addr: Set as the default address
 transfer_in_addr: Transfer-to address
-confirm_pls_addr_tip: Please confirm sending USDT to this address. The recharge
+confirm_pls_addr_tip: Please confirm sending { type } to this address. The recharge
   requires confirmation from the entire network before it can be credited. Please
   wait patiently!
 transfer_in_amount: Transfer amount

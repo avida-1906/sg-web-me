@@ -1425,7 +1425,7 @@ choose_protocol: Selecione o protocolo
 your_virtual_addr: O endereço {curNetworkName} da sua {currencyName}
 is_default_addr: Definir como endereço padrão
 transfer_in_addr: Endereço para transferência
-confirm_pls_addr_tip: Por favor, confirme o envio de USDT para este endereço. A
+confirm_pls_addr_tip: Por favor, confirme o envio de {type} para este endereço. A
   recarga requer confirmação de toda a rede antes de poder ser creditada. Agradecemos
   a sua paciência!
 transfer_in_amount: Transferir valor
