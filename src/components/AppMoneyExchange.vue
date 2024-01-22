@@ -32,7 +32,16 @@ const currencyCodeGet = computed(() => {
   return renderBalanceList.value.find(a => a.type === currencyTypeGet.value)?.cur ?? '701'
 })
 const currencyPayOptions = computed(() => {
-  return renderBalanceList.value.filter(b => +b.balance > 0).map((a) => {
+  if (renderBalanceList.value.some(a => +a.balance > 0)) {
+    return renderBalanceList.value.filter(b => +b.balance > 0).map((a) => {
+      return {
+        label: a.type,
+        value: a.type,
+        currencyType: a.type,
+      }
+    })
+  }
+  return renderBalanceList.value.map((a) => {
     return {
       label: a.type,
       value: a.type,
@@ -105,6 +114,9 @@ function confirm() {
 watch(currencyTypePay, (a) => {
   if (currencyTypeGet.value === a)
     currencyTypeGet.value = renderBalanceList.value.filter(a => a.type !== currencyTypePay.value)[0].type
+
+  setAmountPay(userInfo.value?.balance[currencyTypePay.value] ?? '')
+  setAmountGet(mul(+amountPay.value, rate.value))
 })
 watch(amountPay, (a) => {
   if (+a > +currencyMaxBalance.value) {
