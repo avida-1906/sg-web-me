@@ -95,7 +95,6 @@ function changeCurrency(item: CurrencyData, network: string) {
       <AppSelectCurrency
         :show-balance="false"
         :network="isVirCurrency"
-        popper-clazz="app-rec-bonus"
         placeholder="search"
         @change="changeCurrency"
       />
@@ -124,12 +123,6 @@ function changeCurrency(item: CurrencyData, network: string) {
     </div>
   </div>
 </template>
-
-<style>
-.app-rec-bonus {
-  --tg-app-select-currency-poptop-width: 136px;
-}
-</style>
 
 <style lang="scss" scoped>
 .app-receive-bonus {

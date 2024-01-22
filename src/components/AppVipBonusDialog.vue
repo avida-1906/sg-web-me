@@ -189,7 +189,7 @@ runGetExchangeRate()
         <template #right-button>
           <AppSelectCurrency
             :type="3" :show-balance="false"
-            popper-clazz="app-wallet-cur" placeholder="search"
+            placeholder="search"
             @change="changeCurrency"
           />
         </template>
@@ -207,12 +207,6 @@ runGetExchangeRate()
     </div>
   </div>
 </template>
-
-<style>
-.app-wallet-cur {
-    --tg-app-select-currency-poptop-width: 136px;
-}
-</style>
 
 <style lang="scss" scoped>
 .app-receive-bonus {

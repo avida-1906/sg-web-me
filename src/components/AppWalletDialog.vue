@@ -136,7 +136,6 @@ await application.allSettled(
         :active-currency-list="getActiveCurrency"
         :show-balance="isWithdraw"
         :network="isVirCurrency"
-        :popper-clazz="isDeposit ? 'app-wallet-cur' : 'app-wallet-cur-with'"
         :placeholder="isDeposit ? 'search' : 'search_currency'"
         :distance="distance"
         @change="changeCurrency"
@@ -221,15 +220,6 @@ await application.allSettled(
     </BaseButton>
   </div>
 </template>
-
-<style>
-.app-wallet-cur {
-  --tg-app-select-currency-poptop-width: 136px;
-}
-.app-wallet-cur-with {
-  --tg-app-select-currency-poptop-width: 218px;
-}
-</style>
 
 <style lang='scss' scoped>
 .app-wallet-dialog {
