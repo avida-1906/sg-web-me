@@ -16,10 +16,12 @@ defineProps<{
     time: string
   }
 }>()
+
+const { push } = useLocalRouter()
 </script>
 
 <template>
-  <div class="hot-event-info" @click="$router.push(replaceSportsPlatId(data.path))">
+  <div class="hot-event-info" @click="push(replaceSportsPlatId(data.path))">
     <div class="header">
       <div class="icon">
         <AppImage :url="data.cpic" is-network />

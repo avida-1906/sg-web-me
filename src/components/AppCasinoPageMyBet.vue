@@ -9,6 +9,7 @@ const props = defineProps<Props>()
 const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())
 const { openBetSlipDialog } = useDialogBetSlip()
+const { push } = useLocalRouter()
 
 const columns = computed(() => {
   if (isMobile.value) {
@@ -111,7 +112,7 @@ else
           <BaseButton
             type="text" size="none"
             style="--tg-base-button-text-default-color:var(--tg-text-white)"
-            @click="$router.push('/casino')"
+            @click="push('/casino')"
           >
             {{ t('start_game_now') }}！
           </BaseButton>

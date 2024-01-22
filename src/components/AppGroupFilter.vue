@@ -15,6 +15,7 @@ const emit = defineEmits(['sortTypeChange', 'platTypeChecked'])
 
 const { t } = useI18n()
 const { appContentWidth } = storeToRefs(useWindowStore())
+const { push } = useLocalRouter()
 const {
   bool: isPopperOpen,
   setTrue: setPopperOpen,
@@ -123,7 +124,7 @@ function resetPlatformChecked() {
           bg-style="dark"
           size="md"
           round
-          @click="$router.push('/casino/collection/provider')"
+          @click="push('/casino/collection/provider')"
         >
           {{ $t('casino_filter_provider_all') }}
         </BaseButton>

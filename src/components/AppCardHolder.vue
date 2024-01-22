@@ -104,12 +104,6 @@ function toDeleteBankcard(item: BankCard) {
   })
 }
 function bind() {
-  if (userInfo.value?.pay_password !== '1') {
-    closeDialog()
-    push('/settings/security-safe-pwd')
-    return
-  }
-
   if (isVirtualCurrency.value)
     toAddVirAddress()
 

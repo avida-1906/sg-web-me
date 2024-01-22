@@ -3,6 +3,7 @@
 // const { openAgentCommissionDrawDialog } = useDialogAgentCommissionDraw()
 const { t } = useI18n()
 const { openNotify } = useNotify()
+const appStore = useAppStore()
 const {
   renderCurrencyList,
 } = useCurrencyData()
@@ -20,7 +21,15 @@ const {
       icon: 'navbar-wallet-notify',
       message: t('commission_draw_success'),
     })
+    appStore.getBalanceData()
   },
+})
+
+const currencyList = computed(() => {
+  const arr1 = renderCurrencyList.value.filter(a => !application.isVirtualCurrency(a.type))
+  const arr2 = renderCurrencyList.value.filter(a => application.isVirtualCurrency(a.type))
+
+  return [...arr1, ...arr2]
 })
 
 await application.allSettled(
@@ -37,7 +46,7 @@ await application.allSettled(
         <div>{{ $t('finance_funds_transfer_sort_available') }}</div>
         <div>{{ $t('finance_funds_transfer_sort_commission') }}</div>
       </div>
-      <div v-for="item of renderCurrencyList" :key="item.cur" class="currency-item">
+      <div v-for="item of currencyList" :key="item.cur" class="currency-item">
         <AppAmount
           :amount="item.balanceWithSymbol"
           :currency-type="item.type"

@@ -13,8 +13,17 @@ const { getRate } = useExchangeRate()
 const { openNotify } = useNotify()
 const appStore = useAppStore()
 
-const currencyTypePay = ref(currentGlobalCurrency.value)
-const currencyTypeGet = ref<EnumCurrencyKey>('USDT')
+function initCurrencyTypePay() {
+  const balance = renderBalanceList.value.find(a => a.type === currentGlobalCurrency.value)?.balance
+  return balance && +balance > 0 ? currentGlobalCurrency.value : renderBalanceList.value.filter(b => +b.balance > 0)[0].type
+}
+
+const currencyTypePay = ref(initCurrencyTypePay())
+const currencyTypeGet = ref<EnumCurrencyKey>(
+  currentGlobalCurrency.value === 'USDT'
+    ? renderBalanceList.value.filter(a => a.type !== currencyTypePay.value)[0].type
+    : 'USDT',
+)
 
 const currencyCodePay = computed(() => {
   return renderBalanceList.value.find(a => a.type === currencyTypePay.value)?.cur ?? '701'
@@ -23,7 +32,7 @@ const currencyCodeGet = computed(() => {
   return renderBalanceList.value.find(a => a.type === currencyTypeGet.value)?.cur ?? '701'
 })
 const currencyPayOptions = computed(() => {
-  return renderBalanceList.value.map((a) => {
+  return renderBalanceList.value.filter(b => +b.balance > 0).map((a) => {
     return {
       label: a.type,
       value: a.type,
