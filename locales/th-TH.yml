@@ -2030,3 +2030,7 @@ is_default_addr_brl: 是否设为默认账户
 go_card_pack: 前往卡包
 please_go_package_bind_payment_information: 请前往卡包绑定收款信息
 not_payment_information_currency: 该币种您暂无收款信息
+back_to_home: 回到主页
+maintain_time: 维护时间
+sports_under_maintain: 体育场馆维护中...
+to: 至
