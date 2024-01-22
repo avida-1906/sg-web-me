@@ -79,7 +79,7 @@ onMounted(() => {
         :max="endTime"
       />
       <div>
-        <BaseInput v-model="searchValue" :placeholder="t('player_id')">
+        <BaseInput v-model="searchValue" :placeholder="t('player_id')" clearable>
           <template #left-icon>
             <div class="center" style="padding-right: var(--tg-spacing-4);">
               <BaseIcon name="uni-search" />

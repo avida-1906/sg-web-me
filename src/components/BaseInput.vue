@@ -16,6 +16,7 @@ interface Props {
   name?: string
   readonly?: boolean
   hideSpinBtn?: boolean
+  clearable?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -26,7 +27,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits(
-  ['update:modelValue', 'input', 'blur', 'focus', 'downEnter', 'onRightButton', 'paste'],
+  ['update:modelValue', 'input', 'blur', 'focus', 'downEnter', 'onRightButton', 'paste', 'clear'],
 )
 
 const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
@@ -91,6 +92,10 @@ function onRightButton() {
 
 function onPaste() {
   emit('paste')
+}
+function onClear() {
+  emit('update:modelValue', '')
+  emit('clear')
 }
 
 function onCompositionStart() {
@@ -181,6 +186,12 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
             class="eye" @click="toggleType"
           >
             <BaseIcon :name="`uni-eye-${_type === 'password' ? 'open' : 'close'}`" />
+          </BaseButton>
+          <BaseButton
+            v-if="clearable && modelValue" type="text" size="none"
+            class="eye" @click="onClear"
+          >
+            <BaseIcon name="uni-circle-add" style="transform: rotate(45deg);" />
           </BaseButton>
           <div v-show="$slots['right-icon']" class="right-icon">
             <slot name="right-icon" />
