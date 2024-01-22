@@ -109,6 +109,11 @@ function confirm() {
     })
   }
 }
+function onCurrencyGetSelected(v: string) {
+  nextTick(() => {
+    setAmountGet(mul(+amountPay.value, rate.value))
+  })
+}
 
 // 监听支付货币类型
 watch(currencyTypePay, (a) => {
@@ -146,6 +151,7 @@ onMounted(() => {
             --tg-base-select-popper-bg-color:transparent;
             --tg-base-select-hover-bg-color:transparent;
             width: 110px;" popper-search :popper-search-placeholder="t('search_currency')" popper-max-height="22em"
+            @select="onCurrencyGetSelected"
           >
             <template #label="{ data }">
               <AppCurrencyIcon show-name :currency-type="data?.value" />
