@@ -80,7 +80,7 @@ export function toFixed(_num: number, _decimal?: number): string {
   const num = scientificToString(_num)
   const decimal = _decimal || 2
   const [integer, decimalPart] = `${num}`.split('.')
-
+  // debugger
   if (decimal) {
     if (decimalPart) {
       if (decimalPart.length > decimal)

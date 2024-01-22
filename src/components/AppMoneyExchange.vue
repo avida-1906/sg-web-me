@@ -94,12 +94,23 @@ const { run, loading } = useRequest(ApiFinanceBalanceTransfer, {
   },
 })
 
+// 设置兑换金额保留指定位数
+function setAmountGetWithToFixed(amount: string) {
+  setAmountGet(toFixed(+amount, application.getCurrencySuffixLength(currencyTypeGet.value)))
+}
+// 设置支付金额保留指定位数
+function setAmountPayWithToFixed(amount: string) {
+  setAmountPay(toFixed(+amount, application.getCurrencySuffixLength(currencyTypePay.value)))
+}
+// 支付金额输入时
 function onAmountPayInput(v: string) {
-  setAmountGet(mul(+v, rate.value))
+  setAmountGetWithToFixed(mul(+v, rate.value))
 }
+// 兑换金额输入时
 function onAmountGetInput(v: string) {
-  setAmountPay(div(+v, rate.value))
+  setAmountPayWithToFixed(div(+v, rate.value))
 }
+// 确认
 function confirm() {
   if (+amountPay.value > 0) {
     run({
@@ -109,9 +120,10 @@ function confirm() {
     })
   }
 }
-function onCurrencyGetSelected(v: string) {
+// 切换兑换货币
+function onCurrencyGetSelected() {
   nextTick(() => {
-    setAmountGet(mul(+amountPay.value, rate.value))
+    setAmountGetWithToFixed(mul(+amountPay.value, rate.value))
   })
 }
 
@@ -121,18 +133,19 @@ watch(currencyTypePay, (a) => {
     currencyTypeGet.value = renderBalanceList.value.filter(a => a.type !== currencyTypePay.value)[0].type
 
   setAmountPay(userInfo.value?.balance[currencyTypePay.value] ?? '')
-  setAmountGet(mul(+amountPay.value, rate.value))
+  setAmountGetWithToFixed(mul(+amountPay.value, rate.value))
 })
+// 监听支付金额
 watch(amountPay, (a) => {
   if (+a > +currencyMaxBalance.value) {
     setAmountPay(`${currencyMaxBalance.value}`)
-    setAmountGet(mul(+amountPay.value, rate.value))
+    setAmountGetWithToFixed(mul(+amountPay.value, rate.value))
   }
 })
 
 onMounted(() => {
   setAmountPay(userInfo.value?.balance[currencyTypePay.value] ?? '')
-  setAmountGet(mul(+amountPay.value, rate.value))
+  setAmountGetWithToFixed(mul(+amountPay.value, rate.value))
 })
 </script>
 
