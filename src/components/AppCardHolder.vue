@@ -86,7 +86,7 @@ function toAddVirAddress() {
   nextTick(() => openVirAddressDialog({
     currencyId: curCode.value,
     currencyName: curType.value,
-    title: `${t('label_bind')}${curType.value}`,
+    title: `${t('label_bind')} ${curType.value}`,
     callback: openWalletDialog,
   }))
 }
