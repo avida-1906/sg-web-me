@@ -1908,7 +1908,7 @@ withdraw_address: ที่อยู่บัญชีผู้รับ
 wrong_format: รูปแบบผิดพลาด
 vip_integral: 'VIP คะแนนสะสม'
 sports_events2: รายการกีฬา
-choose_proto_pls: 协议
+choose_proto_pls: ข้อตกลง
 vir_address: ที่อยู่สกุลเงินดิจิทัล
 input_vir_address_pls: กรุณากรอกที่อยู่สกุลเงินดิจิทัล
 digital_pwd: รหัสผ่านที่เป็นตัวเลข
@@ -1924,107 +1924,107 @@ bet_currency: สกุลเงินเดิมพัน
 sports_integral: คะแนนกีฬา
 casino_integral: คะแนนไลฟ์สด
 slot_integral: คะแนนอีสปอร์ต
-fish_integral: 捕鱼场馆积分
+fish_integral: คะแนนยิงปลา
 pay_methods: คะแนนยิงปลา
 country: ประเทศ
 city: เมือง
 pix_account_type: ประเภทบัญชี PXI
-plinko_manual: "手动投注"
-plinko_auto: "自动投注"
-plinko_amount: "投注额"
-plinko_risk: "风险"
-plinko_rows: "排数"
-plinko_bet: "投注"
-plinko_betNumbers: "投注次数"
-plinko_autobetstart: "开始自动投注"
-plinko_autobetstop: "停止自动投注"
-plinko_fairness: "公平性"
-plinko_original: "Meibo 原创游戏"
-plinko_bigwins: "大赢家"
-plinko_luckwins: "幸运赢家"
-plinko_challenges: "挑战"
-plinko_description: "描述"
-plinko_rank: "排名"
-plinko_user: "玩家"
-plinko_date: "日期"
-plinko_multiplier: "乘数"
-plinko_payout: "支付额"
-plinko_level1: "下等"
-plinko_level2: "中等"
-plinko_level3: "上等"
-plinko_stealth: "隐身"
-plinko_live: "即时下注"
-plinko_animation: "动画"
-plinko_maxvalue: "最大投注额"
-plinko_info: "游戏信息"
-plinko_keyboard: "快捷键"
-plinko_maxquestion1: "您确定要启用最大投注额按钮吗？"
-plinko_maxquestion2: "您确定要启用最大投注额按钮吗？"
-plinko_turnOn: "开启"
-plinko_turnOff: "开启"
-plinko_info1: "1.配置模式将通过风险和乘数来决定不同的潜在支付额。"
-plinko_info2: "2.请勿在游戏进行时转动您的设备或显示屏来逆重力。"
-plinko_rules: "游戏规则"
-plinko_hotkey1: "下注"
-plinko_hotkey2: "加倍投注额"
-plinko_hotkey3: "减半投注额"
-plinko_hotkey4: "零数投注额"
-plinko_hotkeyInfo: "快捷键一旦启用后将会影响所有游戏至禁用为止。虽然部分游戏的绑定键相同，还是建议您确认不同游戏的锁定按键交互之后再使用。"
-plinko_hotkeyUse: "启用快捷键"
-plinko_statistics: "实时统计"
-plinko_type1: "全部"
-plinko_type2: "投注"
-plinko_type3: "竞赛"
-plinko_type4: "隐藏"
-plinko_left1: "利润"
-plinko_left2: "总投注额"
-plinko_right1: "赢"
-plinko_right2: "输"
-plinko_max: "最大值"
-plinko_autobetalert1: "自动投注开始"
-plinko_autobetalert2: "自动投注完成"
-plinko_betamountalert: "您的投注额不能大于余额！"
-plinko_tooltip1: "游戏设置"
-plinko_tooltip2: "启用剧院模式"
-plinko_tooltip3: "打开实时统计"
-plinko_tooltip4: "最喜欢的游戏"
-plinko_racespan: "立即投注参赛！"
-plinko_scoreboard_time: "投注者："
-plinko_scoreboard_on: "于"
-plinko_scoreboard_at: "的"
-plinko_scoreboard_multi: "乘数"
-plinko_scoreboard_payout: "支付额"
-plinko_scoreboard_play: "前往"
-plinko_scoreboard_provable: "可证明的公平"
-plinko_prove_text1: "服务器种子"
-plinko_prove_value1: "种子尚未揭示"
-plinko_prove_text2: "服务器种子（散列化）"
-plinko_prove_text3: "客户端种子"
-plinko_prove_text4: "现实标志"
-plinko_prove_button1: "轮换您的种子配对以验证这比赌注"
-plinko_prove_button2: "什么是可证明的公平？"
-plinko_fairnesses_seed: "种子"
-plinko_fairnesses_verify: "验证"
-plinko_fairnesses_text1: "活跃客户端种子"
-plinko_fairnesses_text2: "活跃服务器种子（散列化）"
-plinko_fairnesses_text3: "种子配对的投注次数"
-plinko_fairnesses_text4: "轮换种子配对"
-plinko_fairnesses_text5: "新客户端种子"
-plinko_fairnesses_text6: "下一个服务器种子（散列化）"
-plinko_fairnesses_text7: "您必须完成以下游戏才能轮换种子配对："
-plinko_fairnesses_button: "更换"
-plinko_fairnesses_verifyText1: "需要更多输入才能验证结果"
-plinko_fairnesses_calcButton: "查看计算细目"
-plinko_verifyTexts_game: "游戏"
-plinko_verifyTexts_clientSeed: "客户端种子"
-plinko_verifyTexts_serverSeed: "服务端种子"
-plinko_verifyTexts_nonce: "现实标志"
-plinko_copyText: "成功复制！"
-plinko_copyId: "成功复制！"
-currency_min_deposit_amount: 该币种最低存入金额为：{amount}{icon}
-bind_more_bank_tip: 每种货币只能绑定3个收款信息，如需绑定更多，请先删除不常用
+plinko_manual: เดิมพันด้วยตนเอง
+plinko_auto: เดิมพันอัตโนมัติ
+plinko_amount: จำนวนเงินเดิมพัน
+plinko_risk: ความเสี่ยง
+plinko_rows: จำนวนแถว
+plinko_bet: เดิมพัน
+plinko_betNumbers: จำนวนการเดิมพัน
+plinko_autobetstart: เริ่มการเดิมพันอัตโนมัติ
+plinko_autobetstop: หยุดการเดิมพันอัตโนมัติ
+plinko_fairness: ความเป็นธรรม
+plinko_original: เกมดั้งเดิมของ Meibo
+plinko_bigwins: ผู้ชนะรางวัลใหญ่
+plinko_luckwins: ผู้โชคดีชนะรางวัล
+plinko_challenges: ความท้าทาย
+plinko_description: คำอธิบาย
+plinko_rank: อันดับ
+plinko_user: ผู้เล่น
+plinko_date: วันที่
+plinko_multiplier: ตัวคูณ
+plinko_payout: ยอดชำระ
+plinko_level1: ระดับล่าง
+plinko_level2: ระดับกลาง
+plinko_level3: ระดับสูง
+plinko_stealth: ซ่อนตัวตน
+plinko_live: เดิมพันทันที
+plinko_animation: อนิเมชั่น
+plinko_maxvalue: เดิมพันสูงสุด
+plinko_info: ข้อมูลเกม
+plinko_keyboard: ปุ่มลัด
+plinko_maxquestion1: คุณแน่ใจหรือไม่ว่าคุณต้องการใช้งานปุ่มยอดเดิมพันสูงสุด?
+plinko_maxquestion2: คุณแน่ใจหรือไม่ว่าคุณต้องการใช้งานปุ่มยอดเดิมพันสูงสุด?
+plinko_turnOn: เปิดใช้งาน
+plinko_turnOff: เปิดใช้งาน
+plinko_info1: โหมดการกำหนดค่าจะกำหนดจำนวนเงินที่เป็นไปได้ที่แตกต่างกันผ่านความเสี่ยงและตัวคูณ
+plinko_info2: อย่าหมุนอุปกรณ์หรือจอแสดงผลของท่านเพื่อต่อต้านแรงโน้มถ่วงขณะเล่นเกม
+plinko_rules: กฎของเกม
+plinko_hotkey1: วางเดิมพัน
+plinko_hotkey2: เพิ่มเงินเดิมพันเป็นสองเท่า
+plinko_hotkey3: ลดเงินเดิมพันครึ่งหนึ่ง
+plinko_hotkey4: จำวนการเดิมพันเป็นศูนย์
+plinko_hotkeyInfo: เมื่อเปิดใช้งานปุ่มลัดแล้ว จะส่งผลต่อเกมทั้งหมดจนกว่าจะปิดใช้งาน แม้ว่าบางเกมจะมีการเชื่องโยงปุ่มที่เหมือนกัน แต่ขอแนะนำให้คุณยืนยันการโต้ตอบของปุ่มล็อคในเกมต่าง ๆ ก่อนที่จะใช้
+plinko_hotkeyUse: เปิดใช้งานปุ่มลัด
+plinko_statistics: ระบบเรียลไทม์
+plinko_type1: ทั้งหมด
+plinko_type2: เดิมพัน
+plinko_type3: การแข่งขัน
+plinko_type4: ซ่อน
+plinko_left1: กำไร
+plinko_left2: เดิมพันทั้งหมด
+plinko_right1: ชนะ
+plinko_right2: แพ้
+plinko_max: สูงสุด
+plinko_autobetalert1: เริ่มต้นเดิมพันอัตโนมัติ
+plinko_autobetalert2: เดิมพันอัตโนมัติสมบูรณ์
+plinko_betamountalert: ยอดเดิมพันของท่านต้องไม่เกินยอดคงเหลือ
+plinko_tooltip1: ตั้งค่าเกม
+plinko_tooltip2: เปิดใช้งานโรงภาพยนต์
+plinko_tooltip3: เปิดสถิติแบบเรียลไทม์
+plinko_tooltip4: เกมที่ชอบ
+plinko_racespan: เดิมพันเพื่อเข้าร่วมตอนนี้
+plinko_scoreboard_time: นักพนัน
+plinko_scoreboard_on: ใน
+plinko_scoreboard_at: ของ
+plinko_scoreboard_multi: เลขคูณ
+plinko_scoreboard_payout: จำนวนเงินที่ชำระ
+plinko_scoreboard_play: ก่อนหน้านี้
+plinko_scoreboard_provable: ความเป็นธรรมที่พิสูจน์ได้
+plinko_prove_text1: เซิร์ฟเวอร์ Seeds
+plinko_prove_value1: Seeds ที่ยังไม่ถูกเปิดเผย
+plinko_prove_text2: เซิร์ฟเวอร์ Seeds (Hash)
+plinko_prove_text3: ลูกค้า Seeds
+plinko_prove_text4: สัญญาณที่เกิดขึ้นจริง
+plinko_prove_button1: หมุนการจับคู่ Seeds ของคุณเพื่อตรวจสอบการเดิมพันนี้ หมุนการจับคู่
+plinko_prove_button2: ความยุติธรรมที่พิสูจน์ได้คืออะไร!
+plinko_fairnesses_seed: Seeds
+plinko_fairnesses_verify: ยืนยัน
+plinko_fairnesses_text1: ลูกค้า Seeds ที่ใช้งานอยู่
+plinko_fairnesses_text2: เซิร์ฟเวอร์ที่ใช้งานอยู่ Seeds (Hash)
+plinko_fairnesses_text3: จำนวนการเดิมพันในการจับคู่ Seeds
+plinko_fairnesses_text4: การหมุนจับคู่ Seeds
+plinko_fairnesses_text5: ลูกค้าใหม่ Seeds
+plinko_fairnesses_text6: เซิร์ฟเวอร์ถัดไป Seeds (Hash)
+plinko_fairnesses_text7: ท่านต้องเล่นเกมต่อไปนี้ให้เสร็จสิ้นเพื่อหมุนเวียนการจับคู่ Seeds
+plinko_fairnesses_button: แทนที่
+plinko_fairnesses_verifyText1: จำเป็นต้องป้อนข้อมูลเพิ่มเติมเพื่อตรวจสอบผลลัพธ์
+plinko_fairnesses_calcButton: ดูรายละเอียดการคำนวณ
+plinko_verifyTexts_game: เกม
+plinko_verifyTexts_clientSeed: ลูกค้า Seeds
+plinko_verifyTexts_serverSeed: บริการ Seeds
+plinko_verifyTexts_nonce: สัญญาณที่เกิดขึ้นจริง
+plinko_copyText: คัดลอกสำเร็จ
+plinko_copyId: คัดลอกสำเร็จ
+currency_min_deposit_amount: 'จำนวนเงินฝากขั้นต่ำในสกุลเงินนี้คือ: {amount} {icon}'
+bind_more_bank_tip: สามารถผูกมัดข้อมูลการชำระเงินได้เพียง 3 รายการสำหรับแต่ละสกุลเงิน , หากต้องการผูกมัดมากขึ้น , กรุณาลบบัญชีที่ไม่ได้ใช่ออกก่อน 
 check_card_account_pls: กรุณาใส่ใจกับการตรวจสอบบัญชี หากหมายเลขบัญชีไม่ถูกต้องเงินจะไม่เข้าบัญชี
-all_currencies: 全部币种
+all_currencies: สกุลเงินทั้งหมด
 check_card_account_pls_brl: 请认真核对账户，卡号错误资金将无法到账
 is_default_addr_brl: 是否设为默认账户
 go_card_pack: 前往卡包

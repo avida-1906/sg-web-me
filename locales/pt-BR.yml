@@ -2329,7 +2329,7 @@ this_quarter: Este trimestre
 sports_tab_starting_soon2: Prestes a começar
 recent_game_record2: Recente
 keep_integral: Pontos de rebaixamento
-min_deposit_amount: 最低存入金额
+min_deposit_amount: 'Valor mínimo de depósito'
 annual_interest_rate: Taxa de juros anual
 vault_des_1: 'The Meibo Vault Explained: How to Use Our Online Vault to Store Crypto'
 vault_des_2_1: 'Although betting at Meibo.com is highly secure, the Vault is an additional layer of protection for your funds. Every user at Meibo.com can access the Vault, whether you play'
@@ -2405,7 +2405,7 @@ vault_des_32: "The Meibo.com Vault is the ideal place to store your cryptocurren
 vault_des_33: 'Remember, we also send funds securely to the Vault as part of certain casino promotions and sports offers, so make sure you set up your Vault to avoid missing out on all our special deals, weekly giveaways, and exclusive prizes!'
 vault_des_34: "New to Meibo.com and want to learn more before placing your bets? Browse through our online casino guide and our guide to sports betting and you'll be an expert in no time."
 vault_des_35: 'Please remember to always gamble responsibly. Learn more tips when betting online with our responsible gambling guide . You can use our budget calculator to stay on top of your spending habits and read up on our guide to knowing how much to gamble with.'
-success_close_double_check: 关2FA desativado com sucesso
+success_close_double_check: '2FA desativado com sucesso'
 close_verification: Desativar 2FA
 vip_sports_tip_title: A pontuação dos estádios esportivos equivalem a {rate} vezes a seguinte lista
 vip_sports_tip_content: '(Exemplo: 1 USDT = 1 ponto de associação. Ao fazer uma aposta esportiva de 1 USDT, você receberá {rate} pontos de associação)'
@@ -2425,7 +2425,7 @@ withdraw_address: Endereço de pagamento
 wrong_format: Formato incorreto
 vip_integral: 'VIP Rank'
 sports_events2: Eventos esportivos
-choose_proto_pls: 协议
+choose_proto_pls: 'Protocolo'
 vir_address: Endereço de moeda virtual
 input_vir_address_pls: Por favor insira o endereço da moeda virtual
 digital_pwd: Senha numérica
@@ -2446,102 +2446,102 @@ pay_methods: Forma de pagamento
 country: País
 city: Cidade
 pix_account_type: Tipo de conta PIX
-plinko_manual: "手动投注"
-plinko_auto: "自动投注"
-plinko_amount: "投注额"
-plinko_risk: "风险"
-plinko_rows: "排数"
-plinko_bet: "投注"
-plinko_betNumbers: "投注次数"
-plinko_autobetstart: "开始自动投注"
-plinko_autobetstop: "停止自动投注"
-plinko_fairness: "公平性"
-plinko_original: "Meibo 原创游戏"
-plinko_bigwins: "大赢家"
-plinko_luckwins: "幸运赢家"
-plinko_challenges: "挑战"
-plinko_description: "描述"
-plinko_rank: "排名"
-plinko_user: "玩家"
-plinko_date: "日期"
-plinko_multiplier: "乘数"
-plinko_payout: "支付额"
-plinko_level1: "下等"
-plinko_level2: "中等"
-plinko_level3: "上等"
-plinko_stealth: "隐身"
-plinko_live: "即时下注"
-plinko_animation: "动画"
-plinko_maxvalue: "最大投注额"
-plinko_info: "游戏信息"
-plinko_keyboard: "快捷键"
-plinko_maxquestion1: "您确定要启用最大投注额按钮吗？"
-plinko_maxquestion2: "您确定要启用最大投注额按钮吗？"
-plinko_turnOn: "开启"
-plinko_turnOff: "开启"
-plinko_info1: "1.配置模式将通过风险和乘数来决定不同的潜在支付额。"
-plinko_info2: "2.请勿在游戏进行时转动您的设备或显示屏来逆重力。"
-plinko_rules: "游戏规则"
-plinko_hotkey1: "下注"
-plinko_hotkey2: "加倍投注额"
-plinko_hotkey3: "减半投注额"
-plinko_hotkey4: "零数投注额"
-plinko_hotkeyInfo: "快捷键一旦启用后将会影响所有游戏至禁用为止。虽然部分游戏的绑定键相同，还是建议您确认不同游戏的锁定按键交互之后再使用。"
-plinko_hotkeyUse: "启用快捷键"
-plinko_statistics: "实时统计"
-plinko_type1: "全部"
-plinko_type2: "投注"
-plinko_type3: "竞赛"
-plinko_type4: "隐藏"
-plinko_left1: "利润"
-plinko_left2: "总投注额"
-plinko_right1: "赢"
-plinko_right2: "输"
-plinko_max: "最大值"
-plinko_autobetalert1: "自动投注开始"
-plinko_autobetalert2: "自动投注完成"
-plinko_betamountalert: "您的投注额不能大于余额！"
-plinko_tooltip1: "游戏设置"
-plinko_tooltip2: "启用剧院模式"
-plinko_tooltip3: "打开实时统计"
-plinko_tooltip4: "最喜欢的游戏"
-plinko_racespan: "立即投注参赛！"
-plinko_scoreboard_time: "投注者："
-plinko_scoreboard_on: "于"
-plinko_scoreboard_at: "的"
-plinko_scoreboard_multi: "乘数"
-plinko_scoreboard_payout: "支付额"
-plinko_scoreboard_play: "前往"
-plinko_scoreboard_provable: "可证明的公平"
-plinko_prove_text1: "服务器种子"
-plinko_prove_value1: "种子尚未揭示"
-plinko_prove_text2: "服务器种子（散列化）"
-plinko_prove_text3: "客户端种子"
-plinko_prove_text4: "现实标志"
-plinko_prove_button1: "轮换您的种子配对以验证这比赌注"
-plinko_prove_button2: "什么是可证明的公平？"
-plinko_fairnesses_seed: "种子"
-plinko_fairnesses_verify: "验证"
-plinko_fairnesses_text1: "活跃客户端种子"
-plinko_fairnesses_text2: "活跃服务器种子（散列化）"
-plinko_fairnesses_text3: "种子配对的投注次数"
-plinko_fairnesses_text4: "轮换种子配对"
-plinko_fairnesses_text5: "新客户端种子"
-plinko_fairnesses_text6: "下一个服务器种子（散列化）"
-plinko_fairnesses_text7: "您必须完成以下游戏才能轮换种子配对："
-plinko_fairnesses_button: "更换"
-plinko_fairnesses_verifyText1: "需要更多输入才能验证结果"
-plinko_fairnesses_calcButton: "查看计算细目"
-plinko_verifyTexts_game: "游戏"
-plinko_verifyTexts_clientSeed: "客户端种子"
-plinko_verifyTexts_serverSeed: "服务端种子"
-plinko_verifyTexts_nonce: "现实标志"
-plinko_copyText: "成功复制！"
-plinko_copyId: "成功复制！"
+plinko_manual: Apostas Manuais
+plinko_auto: Aposta Automática
+plinko_amount: Valor da aposta
+plinko_risk: Risco
+plinko_rows: Número de linhas
+plinko_bet: Apostas
+plinko_betNumbers: Número de apostas
+plinko_autobetstart: Iniciar apostas automáticas
+plinko_autobetstop: Parar apostas automáticas
+plinko_fairness: Justiça
+plinko_original: Originais Meibo
+plinko_bigwins: Grande Vencedor
+plinko_luckwins: Vencedor de sorte
+plinko_challenges: Desafio
+plinko_description: Descrição
+plinko_rank: Classificação
+plinko_user: Jogador
+plinko_date: Data
+plinko_multiplier: Multiplicador
+plinko_payout: Valor do pagamento
+plinko_level1: Inferior
+plinko_level2: Médio
+plinko_level3: Superior
+plinko_stealth: Privado
+plinko_live: Apostas instantâneas
+plinko_animation: Animação
+plinko_maxvalue: Valor máximo da aposta
+plinko_info: Informações do Jogo
+plinko_keyboard: Tecla de atalho
+plinko_maxquestion1: Tem certeza de que deseja ativar o botão Aposta Máxima?
+plinko_maxquestion2: Tem certeza de que deseja ativar o botão Aposta Máxima?
+plinko_turnOn: Ativar
+plinko_turnOff: Ativar
+plinko_info1: 1. O modelo de alocação determinará diferentes pagamentos potenciais por meio de risco e multiplicadores.
+plinko_info2: 2. Não vire seu dispositivo ou tela para desafiar a gravidade enquanto o jogo estiver em andamento.
+plinko_rules: Regras do jogo
+plinko_hotkey1: Fazer uma aposta
+plinko_hotkey2: Duplique sua aposta
+plinko_hotkey3: Meia aposta
+plinko_hotkey4: Valor ímpar de apostas
+plinko_hotkeyInfo: Depois que a tecla de atalho for ativada, ela afetará todos os jogos até que seja desativada. Embora alguns jogos tenham as mesmas combinações de teclas, é recomendável que você confirme a interação da tecla bloqueada em jogos diferentes antes de usá-la.
+plinko_hotkeyUse: Ativar teclas de atalho
+plinko_statistics: Estatísticas em tempo real
+plinko_type1: Todos
+plinko_type2: Apostas
+plinko_type3: Competição
+plinko_type4: Ocultar
+plinko_left1: Lucro
+plinko_left2: Valor total da aposta
+plinko_right1: Vitória
+plinko_right2: Derrota
+plinko_max: Máximo
+plinko_autobetalert1: Início de apostas automáticas
+plinko_autobetalert2: Apostas automáticas concluídas
+plinko_betamountalert: Sua aposta não pode ser maior que seu saldo!
+plinko_tooltip1: Configurações do jogo
+plinko_tooltip2: Ativar modo teatro
+plinko_tooltip3: Ative estatísticas em tempo real
+plinko_tooltip4: Jogo favorito
+plinko_racespan: Aposte agora para competir!
+plinko_scoreboard_time: 'Apostador:'
+plinko_scoreboard_on: 'no'
+plinko_scoreboard_at: de
+plinko_scoreboard_multi: Multiplicador
+plinko_scoreboard_payout: Valor do pagamento
+plinko_scoreboard_play: Ir para
+plinko_scoreboard_provable: Justiça comprovável
+plinko_prove_text1: Semente do servidor
+plinko_prove_value1: “As sementes ainda não foram reveladas”
+plinko_prove_text2: Semente do Servidor (Hash)
+plinko_prove_text3: Semente do cliente
+plinko_prove_text4: Sinal de realidade
+plinko_prove_button1: Rode seus pares iniciais para verificar esta aposta
+plinko_prove_button2: O que é justiça comprovável?
+plinko_fairnesses_seed: Semente
+plinko_fairnesses_verify: Verificar
+plinko_fairnesses_text1: Semente de cliente ativa
+plinko_fairnesses_text2: Seed do Servidor Ativo (Hash)
+plinko_fairnesses_text3: Número de apostas feitas no par inicial
+plinko_fairnesses_text4: Rodar pares de sementes
+plinko_fairnesses_text5: Nova Semente de Cliente
+plinko_fairnesses_text6: Próxima semente do servidor (hashed)
+plinko_fairnesses_text7: 'Você deve completar os seguintes jogos para alternar as partidas iniciais:'
+plinko_fairnesses_button: Substituir
+plinko_fairnesses_verifyText1: Mais informações são necessárias para verificar os resultados
+plinko_fairnesses_calcButton: Ver detalhes do cálculo
+plinko_verifyTexts_game: Jogo
+plinko_verifyTexts_clientSeed: Semente do cliente
+plinko_verifyTexts_serverSeed: Semente do Servidor
+plinko_verifyTexts_nonce: Sinal de realidade
+plinko_copyText: Copiado com sucesso!
+plinko_copyId: Copiado com sucesso!
 currency_min_deposit_amount: Valor mínimo de depósito：{amount}{icon}
-bind_more_bank_tip: 每种货币只能绑定3个收款信息，如需绑定更多，请先删除不常用
+bind_more_bank_tip: Cada moeda só pode ser vinculada a 3 informações de pagamento. Se você precisar vincular mais, exclua primeiro as usadas com pouca frequência.
 check_card_account_pls: 请认真核对卡号，卡号错误资金将无法到账
-all_currencies: 全部币种
+all_currencies: Todas as moedas
 check_card_account_pls_brl: 请认真核对账户，卡号错误资金将无法到账
 is_default_addr_brl: 是否设为默认账户
 go_card_pack: 前往卡包
