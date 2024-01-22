@@ -25,7 +25,7 @@ def update_yaml_from_excel(excel_file, yaml_file):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python3 update_yaml_from_excel.py <excel_file> <yaml_file>")
+        print("Usage: python3 runUpdateLang.py <excel_file> <yaml_file>")
         sys.exit(1)
 
     update_yaml_from_excel(sys.argv[1], sys.argv[2])
