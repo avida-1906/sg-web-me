@@ -8,7 +8,9 @@ interface Props {
 withDefaults(defineProps<Props>(), {})
 
 const route = useRoute()
+const { t } = useI18n()
 const { isLogin } = storeToRefs(useAppStore())
+const { isSidebarHasProvider } = storeToRefs(useCasinoStore())
 const {
   casinoMenu,
   casinoGameList,
@@ -32,7 +34,7 @@ const menuData = computed(() => {
     return [
       casinoMenu,
       casinoGameList,
-      // casinoGameProvider,
+      casinoGameProvider,
       staticMenu1,
       staticMenu2,
     ]
@@ -64,6 +66,8 @@ function itemClick(item: MenuItem) {
   <section class="tg-app-sidebar-small">
     <ul
       v-for="menu, idx in menuData"
+      v-show="menu.value[0].title !== t('casino_provider')
+        || (menu.value[0].title === t('casino_provider') && isSidebarHasProvider)"
       :key="idx"
       class="tiny-menu flex-col-center"
     >

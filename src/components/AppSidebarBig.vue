@@ -10,7 +10,7 @@ const props = defineProps<Props>()
 const {
   casinoMenu,
   casinoGameList,
-  // casinoGameProvider,
+  casinoGameProvider,
   staticMenu1,
   staticMenu2,
   menuItemClick,
@@ -19,6 +19,7 @@ const { t } = useI18n()
 const route = useRoute()
 const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
+const { isSidebarHasProvider } = storeToRefs(useCasinoStore())
 const {
   sportOddType,
   sportsMenu,
@@ -92,7 +93,7 @@ onBeforeUnmount(() => {
             <AppMenuItem :menu-item="item" />
           </div>
         </div>
-        <!-- <div class="menu-box">
+        <div v-if="isSidebarHasProvider" class="menu-box">
           <div
             v-for="item, i in casinoGameProvider"
             :key="i"
@@ -100,7 +101,7 @@ onBeforeUnmount(() => {
           >
             <AppMenuItem :menu-item="item" />
           </div>
-        </div> -->
+        </div>
       </template>
 
       <!-- Sports -->

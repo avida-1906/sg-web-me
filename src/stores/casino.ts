@@ -3,6 +3,7 @@ import type { CasinoProviderItem } from '~/apis/types'
 
 export const useCasinoStore = defineStore('casino', () => {
   const { t } = useI18n()
+  const isSidebarHasProvider = ref(false)
 
   const { list: bigPlats } = useList(ApiMemberPlatformList, {
     manual: false,
@@ -22,7 +23,13 @@ export const useCasinoStore = defineStore('casino', () => {
   // 厂商列表读取/member/game/cate?cid=5
   const { data: cateProviderData } = useRequest(() => ApiMemberGameCate({ cid: '5' }), { manual: false })
 
-  const { data, runAsync: runAsyncGameLobby } = useRequest(ApiMemberGameLobby, { manual: false })
+  const { data, runAsync: runAsyncGameLobby } = useRequest(ApiMemberGameLobby, {
+    manual: false,
+    onSuccess(res) {
+      if (res.sidebars && res.sidebars.find(a => a.cid === '5'))
+        isSidebarHasProvider.value = true
+    },
+  })
 
   const casinoNav = computed(() => {
     if (data.value) {
@@ -73,15 +80,13 @@ export const useCasinoStore = defineStore('casino', () => {
   })
   const casinoSidebar = computed(() => {
     if (data.value && data.value.sidebars) {
-      return data.value.sidebars.map(a => ({
+      return data.value.sidebars.filter(b => b.cid !== '5').map(a => ({
         ...a,
         title: a.name,
         list: [],
-        path: a.cid === '5'
-          ? '/casino/collection/provider'
-          : a.ty === 1
-            ? `/casino/group/category?cid=${a.cid}&name=${a.name}`
-            : `/casino/group/provider?pid=${a.platform_id}&name=${a.name}`,
+        path: a.ty === 1
+          ? `/casino/group/category?cid=${a.cid}&name=${a.name}`
+          : `/casino/group/provider?pid=${a.platform_id}&name=${a.name}`,
         useCloudImg: true,
       }))
     }
@@ -108,6 +113,7 @@ export const useCasinoStore = defineStore('casino', () => {
     casinoSidebar,
     cateProviderData,
     lobbyBdata: data,
+    isSidebarHasProvider,
     runAsyncGameLobby,
     getBg,
   }
