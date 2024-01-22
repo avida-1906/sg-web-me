@@ -2361,7 +2361,7 @@ withdraw_address: Địa chỉ nhận
 wrong_format: Định dạng sai
 vip_integral: 'VIP Tích điểm'
 sports_events2: Tất Cả
-choose_proto_pls: Giao thức
+choose_proto_pls: Vui lòng chọn một giao thức
 vir_address: Địa chỉ tiền tệ
 input_vir_address_pls: Vui lòng nhập địa chỉ tiền tệ
 digital_pwd: Mật khẩu số
@@ -2488,3 +2488,4 @@ back_to_home: 回到主页
 maintain_time: 维护时间
 sports_under_maintain: 体育场馆维护中...
 to: 至
+label_bind_crypto_address : Liên kết

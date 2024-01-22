@@ -150,7 +150,7 @@ onUnmounted(() => {
         class="min-w-90"
         @click="handleBindAddress"
       >
-        {{ isWithdraw ? t('submit') : t('label_bind') }}
+        {{ isWithdraw ? t('submit') : t('label_bind_crypto_address') }}
       </BaseButton>
     </div>
   </div>
