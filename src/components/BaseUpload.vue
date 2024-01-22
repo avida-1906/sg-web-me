@@ -1,12 +1,18 @@
 <script setup lang="ts">
 interface Props {
   modelValue: string[]
-  imgType?: 'common' // 上传图片用途
-  disabled?: boolean // 禁用
-  accept?: string[] // 可选文件类型
-  much?: number // 可上传文件数量
-  size?: number // 上传文件大小，单位MB
-  isWebp?: boolean // 是否转换成webp
+  /** 上传图片用途 */
+  imgType?: 'common'
+  /** 禁用 */
+  disabled?: boolean
+  /** 可选文件类型 */
+  accept?: string[]
+  /** 可上传文件数量 */
+  much?: number
+  /** 上传文件大小，单位MB */
+  size?: number
+  /** 是否压缩转换成webp */
+  isWebp?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -99,14 +105,24 @@ function processFile(file: File) {
     return new Promise((resolve, reject) => {
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
-
-      canvas.width = rawImage.width
-      canvas.height = rawImage.height
+      let width, height
+      if (rawImage.width > rawImage.height) {
+        const rate = rawImage.width / 720
+        width = 720
+        height = rawImage.height / rate
+      }
+      else {
+        const rate = rawImage.height / 720
+        width = rawImage.width / rate
+        height = 720
+      }
+      canvas.width = width
+      canvas.height = height
       if (ctx) {
-        ctx.drawImage(rawImage, 0, 0)
+        ctx.drawImage(rawImage, 0, 0, width, height)
         canvas.toBlob((blob) => {
           resolve(blob)
-        }, 'image/webp', 0)
+        }, 'image/webp', 0.9)
       }
       else { reject(new Error(t('image_upload_failed'))) }
     })
