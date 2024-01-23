@@ -282,11 +282,16 @@ function formatBankAccount(s: string) {
 }
 function awaitHandle() {
   return new Promise((resolve) => {
+    // const timer = setInterval(() => {
+    //   if (props.activeCurrency) {
+    //     clearInterval(timer)
     runAsyncPaymentMethodList({ currency_id: props.activeCurrency.cur }).then(() => {
       runPaymentMerchantList({ id: currentType.value }).then(() => {
         resolve(true)
       })
     })
+    //   }
+    // }, 200)
   })
 }
 

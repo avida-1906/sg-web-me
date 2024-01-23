@@ -9,6 +9,7 @@ interface Props {
   type?: number
   placeholder?: string
   distance?: number
+  activeType?: string
   activeCurrencyList?: availableCurrency[]
 }
 
@@ -70,10 +71,10 @@ function selectCurrency(item: CurrencyData, hide: () => void) {
   hide()
   activeCurrency.value = item
   getTypeVal()
-  emit('change', item, currentNetwork.value)
+  emit('change', item, currentNetwork.value, true)
 }
 function getActiveValue() {
-  activeCurrency.value = getCurrencyList.value.find(item => item.type === (activeCurrency.value?.type ?? currentCurrency.value))
+  activeCurrency.value = getCurrencyList.value.find(item => item.type === (props.activeType ?? activeCurrency.value?.type ?? currentCurrency.value))
     ?? getCurrencyList.value[0]
   emit('change', activeCurrency.value, currentNetwork.value)
 }

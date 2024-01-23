@@ -104,7 +104,7 @@ const oftenAmount = computed(() => {
 })
 const getFinanceMerchantCoinParam = computed(() => {
   return {
-    currency_id: props.activeCurrency.cur,
+    currency_id: props.activeCurrency?.cur,
     contract_id: props.currentNetwork,
   }
 })
@@ -157,6 +157,18 @@ function backDepositInit(data: { amount: string; id?: string }) {
 function payMethodCoinselect(val: string) {
   currentAisle.value = paymentMethodCoinList.value?.find(item => item.id === val)
 }
+function awaitHandle() {
+  return new Promise((resolve) => {
+    // const timer = setInterval(() => {
+    //   if (props.activeCurrency && props.currentNetwork) {
+    //     clearInterval(timer)
+    runAsyncFinanceMerchantCoinList(getFinanceMerchantCoinParam.value).finally(() => {
+      resolve(true)
+    })
+    //   }
+    // }, 200)
+  })
+}
 
 watch(() => props.activeCurrency, (newValue) => {
   if (newValue)
@@ -171,7 +183,7 @@ watch(() => currentAisle.value, () => {
 })
 
 await application.allSettled([
-  runAsyncFinanceMerchantCoinList(getFinanceMerchantCoinParam.value),
+  awaitHandle(),
 ])
 </script>
 

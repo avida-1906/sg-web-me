@@ -2,17 +2,18 @@
 import type { BankCard, EnumCurrencyKey, VirtualCoin } from '~/apis/types'
 import type { CurrencyCode } from '~/composables/useCurrencyData'
 
-const props = defineProps<{ initCurrency?: EnumCurrencyKey }>()
+const props = defineProps<{ modelValue: EnumCurrencyKey }>()
 
+const emit = defineEmits(['update:modelValue'])
 const { t } = useI18n()
 const closeDialog = inject('closeDialog', () => { })
 const { openDeleteConfirm } = useDeleteConfirmDialog()
-const { currentGlobalCurrency, userInfo } = storeToRefs(useAppStore())
+const { currentGlobalCurrency } = storeToRefs(useAppStore())
 const { renderCurrencyList } = useCurrencyData()
 
-const { push } = useLocalRouter()
+// const { push } = useLocalRouter()
 
-const curType = ref(props.initCurrency || currentGlobalCurrency.value)
+const curType = ref(props.modelValue || currentGlobalCurrency.value)
 
 const curCode = computed(() => {
   return renderCurrencyList.value.find(a => a.type === curType.value)?.cur ?? '701'
@@ -130,10 +131,13 @@ function getCurrencyIdToIconName(currencyId: CurrencyCode) {
 
   return 'fiat-bank'
 }
-
+function handleSelect(t: EnumCurrencyKey) {
+  emit('update:modelValue', t)
+}
 function get_vietnamese_and_delete() {
 
 }
+
 onMounted(() => {
   nextTick(() => {
     get_vietnamese_and_delete()
@@ -148,6 +152,7 @@ await application.allSettled([runAsyncWalletBankcardList()])
       <BaseSelect
         v-model="curType" :options="currencyOptions" popper popper-search
         :popper-search-placeholder="t('search')" popper-max-height="22em"
+        @select="handleSelect"
       >
         <template #label="{ data }">
           <AppCurrencyIcon show-name :currency-type="data?.value" />
