@@ -2041,9 +2041,9 @@ all_data_all_currencies: 全部币种
 top_bar_login_button: 登录
 pop_up_login_label: 登录
 pop_up_login_button: 登录
-pop_up_create_account_password_least_1_number: 至少包含一个数字
 pop_up_create_account_passcode_least_1_number: 至少包含一个数字
 pop_up_create_account_uppercase_lowercase_letter: 含有大写和小写字母
 pop_up_create_account_password_least_1_number: 密码必须含有至少一个数字
 pop_up_create_account_password_uppercase_lowercase_letter: 密码必须含有至少 1 个大写字母和 1 个小写字母
 tip_pop_up_reg_success_title: 欢迎
+registration_agree_terms_conditions: 请完整阅读条款与条件，然后滚动至末尾将其接受。

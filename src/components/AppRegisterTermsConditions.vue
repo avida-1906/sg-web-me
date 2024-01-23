@@ -24,7 +24,7 @@ const {
   validate: valiChecked,
 } = useField<string>('checkbox', () => {
   if (!checkboxValue.value)
-    return t('agree_terms_conditions')
+    return t('registration_agree_terms_conditions')
   return ''
 })
 

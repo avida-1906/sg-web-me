@@ -46,8 +46,7 @@ code_optional: Code (optional)
 read_and_agree: I have read and agree
 terms_conditions: Terms and conditions
 read_terms_conditions: I have read and agree to the terms and conditions
-agree_terms_conditions: Please read the terms and conditions then select I have
-  read and agree
+agree_terms_conditions: Please read the terms and conditions then select I have read and agree
 read_and_accept: Read and agree to the terms and conditions
 or_use: OR
 forgot_password: Forgot password
@@ -2516,3 +2515,4 @@ pop_up_create_account_uppercase_lowercase_letter: Includes lower and upper case
 pop_up_create_account_password_least_1_number: Password must include at least one number
 pop_up_create_account_password_uppercase_lowercase_letter: Password must include a lower and upper case character
 tip_pop_up_reg_success_title: Welcome
+registration_agree_terms_conditions: Please read the terms and conditions in full and scroll to the end to accept.
