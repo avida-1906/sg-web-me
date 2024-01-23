@@ -22,6 +22,7 @@ const {
       message: t('commission_draw_success'),
     })
     appStore.getBalanceData()
+    getBalanceAgency()
   },
 })
 
