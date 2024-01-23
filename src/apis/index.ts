@@ -2260,3 +2260,39 @@ export function ApiMemberBankcardBank(params: {
     }[]
   }[]>('/member/bankcard/bank', { params })
 }
+
+/**
+ * 会员站点banner列表 member/banner/v2/list?banner_type=2
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=1da00228-93c5-4100-9bfc-02ee66985214
+ */
+export function ApiMemberBannerV2List(params: {
+  /**
+   * 1:娱乐城
+   *
+   * 2:体育
+   */
+  banner_type: 1 | 2
+}) {
+  return httpClient.get<{
+    jump_type: number
+    jump_url: string
+    banner_style: number
+    banner_info: {
+      background: string
+      icon: string
+      content: { [key: string]: string }
+      /**
+       * 1:显示
+       *
+       * 2:隐藏
+       * */
+      button_state: 1 | 2
+      button_content: { [key: string]: string }
+      button_jump_type: number
+      button_jump_url: string
+    }
+    banner_url: { [key: string]: string }
+    pc_seq: number
+    mobile_seq: number
+  }[]>('/member/banner/v2/list', { params })
+}

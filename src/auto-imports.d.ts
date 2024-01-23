@@ -59,6 +59,7 @@ declare global {
   const ApiMemberBankcardInsert: typeof import('./apis/index')['ApiMemberBankcardInsert']
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
   const ApiMemberBannerList: typeof import('./apis/index')['ApiMemberBannerList']
+  const ApiMemberBannerV2List: typeof import('./apis/index')['ApiMemberBannerV2List']
   const ApiMemberBetList: typeof import('./apis/index')['ApiMemberBetList']
   const ApiMemberBetReport: typeof import('./apis/index')['ApiMemberBetReport']
   const ApiMemberBrandDetail: typeof import('./apis/index')['ApiMemberBrandDetail']
@@ -751,6 +752,7 @@ declare module 'vue' {
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
+    readonly ApiMemberBannerV2List: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerV2List']>
     readonly ApiMemberBetList: UnwrapRef<typeof import('./apis/index')['ApiMemberBetList']>
     readonly ApiMemberBetReport: UnwrapRef<typeof import('./apis/index')['ApiMemberBetReport']>
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
@@ -1437,6 +1439,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
+    readonly ApiMemberBannerV2List: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerV2List']>
     readonly ApiMemberBetList: UnwrapRef<typeof import('./apis/index')['ApiMemberBetList']>
     readonly ApiMemberBetReport: UnwrapRef<typeof import('./apis/index')['ApiMemberBetReport']>
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
