@@ -358,6 +358,7 @@ declare global {
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
+  const scientificToString: typeof import('./utils/number')['scientificToString']
   const scrollMainContentToTop: typeof import('./utils/index')['scrollMainContentToTop']
   const scrollToTop: typeof import('./utils/dom')['scrollToTop']
   const setActivePinia: typeof import('pinia')['setActivePinia']
@@ -1050,6 +1051,7 @@ declare module 'vue' {
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
+    readonly scientificToString: UnwrapRef<typeof import('./utils/number')['scientificToString']>
     readonly scrollMainContentToTop: UnwrapRef<typeof import('./utils/index')['scrollMainContentToTop']>
     readonly scrollToTop: UnwrapRef<typeof import('./utils/dom')['scrollToTop']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
@@ -1736,6 +1738,7 @@ declare module '@vue/runtime-core' {
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
+    readonly scientificToString: UnwrapRef<typeof import('./utils/number')['scientificToString']>
     readonly scrollMainContentToTop: UnwrapRef<typeof import('./utils/index')['scrollMainContentToTop']>
     readonly scrollToTop: UnwrapRef<typeof import('./utils/dom')['scrollToTop']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
