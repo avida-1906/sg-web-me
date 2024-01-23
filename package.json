@@ -21,9 +21,7 @@
     "postinstall": "npx simple-git-hooks",
     "sizecheck": "npx vite-bundle-visualizer",
     "generate:webp": "sh ./scripts/genImg.sh",
-    "add:lang": "sh ./scripts/addLang.sh",
-    "update:lang": "sh ./scripts/runUpdateLang.sh",
-    "zh:to:excel": "sh ./scripts/runZhFieldsToExcel.sh"
+    "add:lang": "sh ./scripts/addLang.sh"
   },
   "dependencies": {
     "@tweenjs/tween.js": "^21.0.0",

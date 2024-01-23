@@ -25,6 +25,7 @@ const passwordRef = ref()
 const { data: interestConfig, runAsync: runAsyncInterestConfig } = useRequest(ApiMemberInterestGetConfig)
 // 获取安全验证配置
 const { isOpenVerify, isSetAuth } = useBrandBaseDetail()
+const { getComponent } = useUserVerify()
 const {
   value: amount,
   errorMessage: errAmount,
@@ -168,7 +169,7 @@ function handleBlur() {
 }
 
 watch(() => activeTab.value, () => {
-  amountRef.value.setTouchFalse()
+  amountRef.value?.setTouchFalse()
 })
 
 await application.allSettled([runAsyncInterestConfig()])
@@ -178,82 +179,63 @@ await application.allSettled([runAsyncInterestConfig()])
   <div class="app-safe">
     <div class="safe-content">
       <BaseTab v-model="activeTab" :list="tabOptions" />
-      <div class="center">
-        <div class="flex-col-start">
-          <span>{{ t('currency') }}</span>
-          <AppSelectCurrency
-            :type="isDeposit ? 1 : 2"
-            @change="changeCurrency"
-          />
-        </div>
-      </div>
-      <div class="amount">
-        <div class="top">
-          <span v-show="isDeposit" class="label">{{ t('annual_interest_rate') + t('colon') }}{{ vaultFig?.interest_rate ?? 0 }}%</span>
-          <span v-show="!isDeposit" class="label">{{ t('amount') }}</span>
-          <!-- <span class="us">US${{ getUsRate }}</span> -->
-        </div>
-        <BaseInput
-          ref="amountRef" v-model="amount"
-          type="number"
-          :msg="errAmount"
-          msg-after-touched
-          @blur="handleBlur"
-          @on-right-button="maxNumber"
-        >
-          <template #right-icon>
-            <AppCurrencyIcon v-if="activeCurrency" :currency-type="activeCurrency.type" />
-          </template>
-          <template #right-button>
-            <span>{{ t('max') }}</span>
-          </template>
-        </BaseInput>
-      </div>
-      <BaseButton
-        v-if="isDeposit"
-        bg-style="secondary"
-        size="xl"
-        :loading="lockerUpdateLoading"
-        style="font-size: var(--tg-font-size-base);"
-        @click="handleUpdate"
-      >
-        {{ t('save_to_vault') }}
-      </BaseButton>
+      <template v-if="getComponent && !isDeposit">
+        <component :is="getComponent" tip-text="true" />
+      </template>
       <template v-else>
-        <AppPasswordInput ref="passwordRef" v-model="password" />
-        <!-- <div class="password-box">
+        <div class="center">
+          <div class="flex-col-start">
+            <span>{{ t('currency') }}</span>
+            <AppSelectCurrency
+              :type="isDeposit ? 1 : 2"
+              @change="changeCurrency"
+            />
+          </div>
+        </div>
+        <div class="amount">
+          <div class="top">
+            <span v-show="isDeposit" class="label">{{ t('annual_interest_rate') + t('colon') }}{{ vaultFig?.interest_rate ?? 0 }}%</span>
+            <span v-show="!isDeposit" class="label">{{ t('amount') }}</span>
+          <!-- <span class="us">US${{ getUsRate }}</span> -->
+          </div>
           <BaseInput
-            ref="passwordRef" v-model="password"
-            :label="pwdLabel"
-            :msg="errPassword"
-            placeholder=""
-            type="password"
-            max="6"
-            msg-after-touched must
+            ref="amountRef" v-model="amount"
+            type="number"
+            :msg="errAmount"
+            msg-after-touched
+            @blur="handleBlur"
+            @on-right-button="maxNumber"
           >
-            <template v-if="authConfig?.is_secret === '1'" #right-button>
-              <BaseSelect
-                :model-value="pwdType" popper plain-popper-label :options="pwdOptions"
-                @select="selectTypeChange"
-              >
-                <template #option="{ data: { item } }">
-                  <div class="center">
-                    {{ item.label }}
-                  </div>
-                </template>
-              </BaseSelect>
+            <template #right-icon>
+              <AppCurrencyIcon v-if="activeCurrency" :currency-type="activeCurrency.type" />
+            </template>
+            <template #right-button>
+              <span>{{ t('max') }}</span>
             </template>
           </BaseInput>
-        </div> -->
+        </div>
         <BaseButton
-          style="font-size: var(--tg-font-size-base);"
+          v-if="isDeposit"
           bg-style="secondary"
           size="xl"
           :loading="lockerUpdateLoading"
+          style="font-size: var(--tg-font-size-base);"
           @click="handleUpdate"
         >
-          {{ t('draw_vault') }}
+          {{ t('save_to_vault') }}
         </BaseButton>
+        <template v-else>
+          <AppPasswordInput ref="passwordRef" v-model="password" />
+          <BaseButton
+            style="font-size: var(--tg-font-size-base);"
+            bg-style="secondary"
+            size="xl"
+            :loading="lockerUpdateLoading"
+            @click="handleUpdate"
+          >
+            {{ t('draw_vault') }}
+          </BaseButton>
+        </template>
       </template>
     </div>
     <div class="safe-bottom">

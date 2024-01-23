@@ -68,9 +68,10 @@ const {
 const {
   runAsync: runAsyncPaymentMethodList,
   data: paymentMethodList,
+  loading: loadMethodList,
 } = useRequest(ApiFinanceMethodList, {
   onSuccess(data) {
-    currentType.value = data[0].id
+    currentType.value = data ? data[0].id : ''
   },
 })
 const {
@@ -291,7 +292,7 @@ function awaitHandle() {
 
 watch(() => props.activeCurrency, (newValue) => {
   if (newValue)
-    runAsyncPaymentMethodList({ currency_id: newValue.cur })
+    (!loadMethodList.value) && runAsyncPaymentMethodList({ currency_id: newValue.cur })
 })
 watch(() => currentType.value, (newValue, oldValue) => {
   oldValue && runPaymentMerchantList({ id: currentType.value })

@@ -100,8 +100,8 @@ meta:
       path: /affiliate/commission-rate
       token: false
       isT: true
-    - title: menu_title_add_new_subagent
-      path: /affiliate/add-new-subagent
-      token: false
-      isT: true
+    # - title: menu_title_add_new_subagent
+    #   path: /affiliate/add-new-subagent
+    #   token: false
+    #   isT: true
 </route>
