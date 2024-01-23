@@ -9,7 +9,7 @@ slot: Slot
 fishing: Fishing
 chess: Chess
 live: Real people
-email_or_username: E-mail or username
+email_or_username: Email or Username
 pls_enter_email_or_username: Please enter e-mail or username
 email_or_username_incorrect: E-mail or username incorrect
 two_step_verification: Two step verification
@@ -42,15 +42,15 @@ reg_step: Fill in your detailed information
 reg_step1: 'Step 1/2:  fill in your detailed information'
 reg_step2: 'Step 2/2:  fill in your detailed information'
 step_label: Step
-code_optional: Code (optional)
+code_optional: Code (Optional)
 read_and_agree: I have read and agree
 terms_conditions: Terms and conditions
 read_terms_conditions: I have read and agree to the terms and conditions
 agree_terms_conditions: Please read the terms and conditions then select I have read and agree
-read_and_accept: Read and agree to the terms and conditions
+read_and_accept: Read and accept the terms and conditions
 or_use: OR
-forgot_password: Forgot password
-no_account_yet: Still don't have an account?
+forgot_password: Forgot Password
+no_account_yet: Don’t have an account? Register an Account?
 register_account: Register account
 have_account: Already have an account?
 stake_hCaptcha: '{site} is protected by hCaptcha'
@@ -679,7 +679,7 @@ time_september: September
 time_october: October
 time_november: November
 time_december: December
-time_birthday: Birthday
+time_birthday: Date of Birth
 time_month: Month
 date: Date
 tour: Tour
@@ -1911,7 +1911,7 @@ transfer_amount: Transfer amount
 select_deposit_amount: Please scroll down to select the recharge amount
 pls_select_pix: Please select a PIX account
 we_use_cookie: We use cookies
-cookie_purposes: Perform functional and analytical purposes.
+cookie_purposes: for functional and analytical purpose.
 accept: Accept
 start_game_now: Start game now
 policies: Policies
@@ -2516,3 +2516,19 @@ pop_up_create_account_password_least_1_number: Password must include at least on
 pop_up_create_account_password_uppercase_lowercase_letter: Password must include a lower and upper case character
 tip_pop_up_reg_success_title: Welcome
 registration_agree_terms_conditions: Please read the terms and conditions in full and scroll to the end to accept.
+registration_finally_play_now: Play Now
+pop_up_forgot_password_email_address: Email
+pop_up_forgot_password: Forgot Password
+pop_up_create_account_password_least_8_characters: Your password must be at least 8 characters long
+pop_up_create_account_name_14_char: Your username must be less than 14 characters long
+pop_up_create_account_name_3_char: Your username must be at least 3 characters long
+pop_up_create_account_no_support_email: Email domain not supported
+pop_up_create_account_email_add_char: Please include an “{delta}” in your email address
+pop_up_create_account_username_incorrect: Your username must be 3-14 characters long.
+pop_up_create_account_no_dot_email_add_char: Please include a “{delta}” in your email address
+pop_up_create_account_label_email_address: Email
+pop_up_create_account_label_reg_step1: 'Step 1/2: Fill out your details'
+pop_up_create_account_header_register: Create an Account
+site_announcement: 站内公告
+dont_tip_today: 今日不再提示
+pop_up_finally_create_account_name_no_equal_pwd: Password cannot be the same as username

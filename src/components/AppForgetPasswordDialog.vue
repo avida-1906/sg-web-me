@@ -37,7 +37,7 @@ async function sendEmail() {
 
 <template>
   <div class="app-forget-password-dialog">
-    <BaseLabel :label="t('email_address')" must-small>
+    <BaseLabel :label="t('pop_up_forgot_password_email_address')" must-small>
       <BaseInput v-model="email" :msg="emailErrorMsg" />
     </BaseLabel>
     <BaseButton
