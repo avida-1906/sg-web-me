@@ -1024,9 +1024,7 @@ vip_rule_3: 'Thu nhập hàng tuần: Nếu bạn đạt cấp VIP tương ứng
 vip_rule_4: 'Thu nhập hàng tháng: Nếu bạn nạp tiền và code hàng tháng đạt yêu cầu
   về thu nhập hàng tháng tương ứng với cấp VIP hiện tại thì có thể nhận thưởng hàng
   tháng tương ứng, reset vào lúc 00:00 ngày mùng 1 hàng tháng'
-vip_rule_5: 'Hướng dẫn duy trì cấp độ: Sau khi thành viên đạt đến cấp VIP nhất định,
-  nếu việc nạp tiền và mã hóa trong tháng trước không đáp ứng yêu cầu duy trì, thành
-  viên sẽ tự động bị hạ một cấp.'
+vip_rule_5: 在晋级或降级后90天内满足保级要求（即打码都满足条件），即可保留当前VIP等级。如果90天内无法满足打码需求，则会降低一级VIP等级
 vip_rule_6: 'Hướng dẫn kiểm tra: Phần thưởng do VIP đưa ra yêu cầu dòng tiền 1 lần
   (tức là kiểm toán, mã hóa hoặc đặt cược hợp lệ) trước khi có thể rút. Mã hóa không
   giới hạn ở nền tảng trò chơi'
@@ -1892,7 +1890,7 @@ input_draw_coin_addr: Vui lòng nhập địa chỉ rút tiền
 withdraw_detail: Chi tiết rút tiền
 direct_vip: Hội viên trực thuộc
 up_rule: Tiêu chuẩn khuyến mãi
-keep_level_desc: Hướng dẫn giữ cấp độ
+keep_level_desc: 保级标准
 check_desc: Hướng dẫn kiểm tra
 activity_desc: Nêu rõ hoạt động
 explain_desc: Hướng dẫn giải thích

@@ -90,7 +90,9 @@ const {
 // 禁用提交按钮
 const submitDisabled = computed(() => {
   const isVirtual = application.isVirtualCurrency(currencyTypeGet.value)
-  return isVirtual ? +amountGet.value < 0.00000001 : +amountGet.value < 0.01
+  return isVirtual
+    ? +amountGet.value < 0.00000001 || +amountPay.value < 0.00000001
+    : +amountGet.value < 0.01 || +amountPay.value < 0.01
 })
 
 const { run, loading } = useRequest(ApiFinanceBalanceTransfer, {

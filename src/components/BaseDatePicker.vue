@@ -14,7 +14,8 @@ const emit = defineEmits(['update:modelValue', 'change'])
 
 const today = dayjs(new Date()).format('YYYY-MM-DD')
 
-const { bool: arrowUp, setFalse: setUpFalse, setTrue: setUpTrue } = useBoolean(false)
+const { bool: arrowUp1, setFalse: setUpFalse1, setTrue: setUpTrue1 } = useBoolean(false)
+const { bool: arrowUp2, setFalse: setUpFalse2, setTrue: setUpTrue2 } = useBoolean(false)
 
 const startDateEle = ref()
 const endDateEle = ref()
@@ -49,21 +50,14 @@ function dateChange(e: any, ty: DateLabel) {
   else
     endDate.value = e.target.value
 
-  setUpFalse()
+  setUpFalse1()
+  setUpFalse2()
   const temp = [
     dayjs(startDate.value).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
     dayjs(endDate.value).endOf('day').format('YYYY-MM-DD HH:mm:ss'),
   ]
   emit('update:modelValue', temp)
   emit('change', temp)
-}
-
-function inputFocus() {
-  setUpTrue()
-}
-
-function inputBlur() {
-  setUpFalse()
 }
 
 onMounted(() => {
@@ -90,11 +84,15 @@ onMounted(() => {
             :min="minDate"
             :max="endDate"
             @change="e => dateChange(e, 'start')"
-            @focus="inputFocus"
-            @blur="inputBlur"
+            @focus="setUpTrue1"
+            @blur="setUpFalse1"
           >
         </label>
-        <span class="separator">-</span>
+      </div>
+      <BaseIcon :class="{ 'arrow-up': arrowUp1 }" name="uni-arrow-down" />
+    </div>
+    <div class="base-date-picker">
+      <div class="wrap">
         <label class="end" @click="togglePicker('end')">
           <span>{{ endDateLabel }}</span>
           <input
@@ -105,12 +103,12 @@ onMounted(() => {
             :min="startDate"
             :max="maxDate"
             @change="e => dateChange(e, 'end')"
-            @focus="inputFocus"
-            @blur="inputBlur"
+            @focus="setUpTrue2"
+            @blur="setUpFalse2"
           >
         </label>
       </div>
-      <BaseIcon :class="{ 'arrow-up': arrowUp }" name="uni-arrow-down" />
+      <BaseIcon :class="{ 'arrow-up': arrowUp2 }" name="uni-arrow-down" />
     </div>
     <div v-if="!isValid" class="error">
       <BaseIcon name="uni-warning" /><span>{{ $t('date_picker_error') }}</span>
@@ -132,12 +130,12 @@ onMounted(() => {
 <style lang="scss" scoped>
 .date-picker-outer {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--tg-spacing-16);
   .error {
-    // position: absolute;
     display: flex;
     align-items: center;
-    // left: 0;
-    // bottom: -24px;
     font-size: var(--tg-font-size-md);
     color: var(--tg-text-error);
     line-height: var(--tg-spacing-24);

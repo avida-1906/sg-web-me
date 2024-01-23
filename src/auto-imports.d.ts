@@ -59,6 +59,7 @@ declare global {
   const ApiMemberBankcardInsert: typeof import('./apis/index')['ApiMemberBankcardInsert']
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
   const ApiMemberBannerList: typeof import('./apis/index')['ApiMemberBannerList']
+  const ApiMemberBannerV2List: typeof import('./apis/index')['ApiMemberBannerV2List']
   const ApiMemberBetList: typeof import('./apis/index')['ApiMemberBetList']
   const ApiMemberBetReport: typeof import('./apis/index')['ApiMemberBetReport']
   const ApiMemberBrandDetail: typeof import('./apis/index')['ApiMemberBrandDetail']
@@ -187,6 +188,7 @@ declare global {
   const STORAGE_MENU_ACTIVE_ITEM: typeof import('./utils/storage')['STORAGE_MENU_ACTIVE_ITEM']
   const STORAGE_MENU_EXPAND_DOMID: typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']
   const STORAGE_MENU_LEFT_EXPAND: typeof import('./utils/storage')['STORAGE_MENU_LEFT_EXPAND']
+  const STORAGE_NO_MORE_TIP_DAY: typeof import('./utils/storage')['STORAGE_NO_MORE_TIP_DAY']
   const STORAGE_REG_PARAMS_KEYWORDS: typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']
   const STORAGE_RIGHT_SIDEBAR_CONTENT: typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']
   const STORAGE_SEARCH_KEYWORDS_LIVE: typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']
@@ -496,6 +498,7 @@ declare global {
   const useDialogMessage: typeof import('./composables/useDialogMessage')['useDialogMessage']
   const useDialogNotice: typeof import('./composables/useDialogNotice')['useDialogNotice']
   const useDialogReceiveBonus: typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']
+  const useDialogSiteAnnouncement: typeof import('./composables/useDialogSiteAnnouncement')['useDialogSiteAnnouncement']
   const useDialogSwiperNotice: typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']
   const useDialogThirdAuthForm: typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']
   const useDialogVipBonus: typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']
@@ -752,6 +755,7 @@ declare module 'vue' {
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
+    readonly ApiMemberBannerV2List: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerV2List']>
     readonly ApiMemberBetList: UnwrapRef<typeof import('./apis/index')['ApiMemberBetList']>
     readonly ApiMemberBetReport: UnwrapRef<typeof import('./apis/index')['ApiMemberBetReport']>
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
@@ -880,6 +884,7 @@ declare module 'vue' {
     readonly STORAGE_MENU_ACTIVE_ITEM: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_ACTIVE_ITEM']>
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
     readonly STORAGE_MENU_LEFT_EXPAND: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_LEFT_EXPAND']>
+    readonly STORAGE_NO_MORE_TIP_DAY: UnwrapRef<typeof import('./utils/storage')['STORAGE_NO_MORE_TIP_DAY']>
     readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']>
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
@@ -1189,6 +1194,7 @@ declare module 'vue' {
     readonly useDialogMessage: UnwrapRef<typeof import('./composables/useDialogMessage')['useDialogMessage']>
     readonly useDialogNotice: UnwrapRef<typeof import('./composables/useDialogNotice')['useDialogNotice']>
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
+    readonly useDialogSiteAnnouncement: UnwrapRef<typeof import('./composables/useDialogSiteAnnouncement')['useDialogSiteAnnouncement']>
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
     readonly useDialogVipBonus: UnwrapRef<typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']>
@@ -1439,6 +1445,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
+    readonly ApiMemberBannerV2List: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerV2List']>
     readonly ApiMemberBetList: UnwrapRef<typeof import('./apis/index')['ApiMemberBetList']>
     readonly ApiMemberBetReport: UnwrapRef<typeof import('./apis/index')['ApiMemberBetReport']>
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
@@ -1567,6 +1574,7 @@ declare module '@vue/runtime-core' {
     readonly STORAGE_MENU_ACTIVE_ITEM: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_ACTIVE_ITEM']>
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
     readonly STORAGE_MENU_LEFT_EXPAND: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_LEFT_EXPAND']>
+    readonly STORAGE_NO_MORE_TIP_DAY: UnwrapRef<typeof import('./utils/storage')['STORAGE_NO_MORE_TIP_DAY']>
     readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']>
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
@@ -1876,6 +1884,7 @@ declare module '@vue/runtime-core' {
     readonly useDialogMessage: UnwrapRef<typeof import('./composables/useDialogMessage')['useDialogMessage']>
     readonly useDialogNotice: UnwrapRef<typeof import('./composables/useDialogNotice')['useDialogNotice']>
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
+    readonly useDialogSiteAnnouncement: UnwrapRef<typeof import('./composables/useDialogSiteAnnouncement')['useDialogSiteAnnouncement']>
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
     readonly useDialogVipBonus: UnwrapRef<typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']>
