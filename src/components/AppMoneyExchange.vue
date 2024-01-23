@@ -15,7 +15,13 @@ const appStore = useAppStore()
 
 function initCurrencyTypePay() {
   const balance = renderBalanceList.value.find(a => a.type === currentGlobalCurrency.value)?.balance
-  return balance && +balance > 0 ? currentGlobalCurrency.value : renderBalanceList.value.filter(b => +b.balance > 0)[0].type
+  if (balance && +balance > 0)
+    return currentGlobalCurrency.value
+
+  if (renderBalanceList.value.some(a => +a.balance > 0))
+    return renderBalanceList.value.filter(b => +b.balance > 0)[0].type
+
+  return currentGlobalCurrency.value
 }
 
 const currencyTypePay = ref(initCurrencyTypePay())
@@ -60,7 +66,7 @@ const currencyGetOptions = computed(() => {
 })
 const rate = computed(() => {
   const r = getRate(currencyTypePay.value, currencyTypeGet.value, 9)?.targetNum
-  return r ? +r : 1
+  return scientificToString(r ? +r : 1)
 })
 const currencyMaxBalance = computed(() => userInfo.value?.balance[currencyTypePay.value] ?? 0)
 
@@ -79,6 +85,14 @@ const {
   resetField: resetAmountPay,
 } = useField<string>('amountPay', (v) => {
   return ''
+})
+
+// 禁用提交按钮
+const submitDisabled = computed(() => {
+  const isVirtual = application.isVirtualCurrency(currencyTypeGet.value)
+  return isVirtual
+    ? +amountGet.value < 0.00000001 || +amountPay.value < 0.00000001
+    : +amountGet.value < 0.01 || +amountPay.value < 0.01
 })
 
 const { run, loading } = useRequest(ApiFinanceBalanceTransfer, {
@@ -204,7 +218,10 @@ onMounted(() => {
         </template>
       </BaseInput>
     </BaseLabel>
-    <BaseButton size="lg" bg-style="secondary" :disabled="loading" :loading="loading" @click="confirm">
+    <BaseButton
+      size="lg" bg-style="secondary" :disabled="submitDisabled || loading"
+      :loading="loading" @click="confirm"
+    >
       {{ t('confirm_pay') }}
     </BaseButton>
   </div>

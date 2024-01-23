@@ -1024,9 +1024,7 @@ vip_rule_3: 'Thu nhập hàng tuần: Nếu bạn đạt cấp VIP tương ứng
 vip_rule_4: 'Thu nhập hàng tháng: Nếu bạn nạp tiền và code hàng tháng đạt yêu cầu
   về thu nhập hàng tháng tương ứng với cấp VIP hiện tại thì có thể nhận thưởng hàng
   tháng tương ứng, reset vào lúc 00:00 ngày mùng 1 hàng tháng'
-vip_rule_5: 'Hướng dẫn duy trì cấp độ: Sau khi thành viên đạt đến cấp VIP nhất định,
-  nếu việc nạp tiền và mã hóa trong tháng trước không đáp ứng yêu cầu duy trì, thành
-  viên sẽ tự động bị hạ một cấp.'
+vip_rule_5: 在晋级或降级后90天内满足保级要求（即打码都满足条件），即可保留当前VIP等级。如果90天内无法满足打码需求，则会降低一级VIP等级
 vip_rule_6: 'Hướng dẫn kiểm tra: Phần thưởng do VIP đưa ra yêu cầu dòng tiền 1 lần
   (tức là kiểm toán, mã hóa hoặc đặt cược hợp lệ) trước khi có thể rút. Mã hóa không
   giới hạn ở nền tảng trò chơi'
@@ -1892,7 +1890,7 @@ input_draw_coin_addr: Vui lòng nhập địa chỉ rút tiền
 withdraw_detail: Chi tiết rút tiền
 direct_vip: Hội viên trực thuộc
 up_rule: Tiêu chuẩn khuyến mãi
-keep_level_desc: Hướng dẫn giữ cấp độ
+keep_level_desc: 保级标准
 check_desc: Hướng dẫn kiểm tra
 activity_desc: Nêu rõ hoạt động
 explain_desc: Hướng dẫn giải thích
@@ -2489,3 +2487,18 @@ maintain_time: 维护时间
 sports_under_maintain: 体育场馆维护中...
 to: 至
 label_bind_crypto_address : Liên kết
+no_withdraw_information_about_the_currency: 该币种您暂无收款信息
+please_go_card_wallet_bind_withdraw_information: 请前往卡包绑定收款信息
+go_card_wallet: 前往卡包
+Directly_subordinate_to_all_currencies: 全部币种
+Directly_subordinate_to_collect_all_currencies: 全部币种
+all_data_all_currencies: 全部币种
+top_bar_login_button: 登录
+pop_up_login_label: 登录
+pop_up_login_button: 登录
+pop_up_create_account_passcode_least_1_number: 至少包含一个数字
+pop_up_create_account_uppercase_lowercase_letter: 含有大写和小写字母
+pop_up_create_account_password_least_1_number: 密码必须含有至少一个数字
+pop_up_create_account_password_uppercase_lowercase_letter: 密码必须含有至少 1 个大写字母和 1 个小写字母
+tip_pop_up_reg_success_title: 欢迎
+registration_agree_terms_conditions: 请完整阅读条款与条件，然后滚动至末尾将其接受。

@@ -5,7 +5,7 @@
  * @example console.log(scientificToString('3e-8')) // 0.00000003
  * @return {string} 转换后的数字字符串
  */
-function scientificToString(inputNumber: number | string): string {
+export function scientificToString(inputNumber: number | string): string {
   if (Number.isNaN(inputNumber))
     return '0'
 

@@ -8,7 +8,7 @@ const {
   list: currencyList,
 } = useSelect([
   {
-    label: t('all_currencies'),
+    label: t('Directly_subordinate_to_collect_all_currencies'),
     value: '',
   },
   ...getCurrencyOptions(),

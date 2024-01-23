@@ -32,8 +32,7 @@ confirm_pwd: Confirm password
 pls_enter_password: Enter your password
 pls_enter_birthday: Enter your birthday
 password_incorrect: Incorrect password format
-password_uppercase_lowercase_letter: The password must contain at least 1 uppercase
-  letter and 1 lowercase letter
+password_uppercase_lowercase_letter: The password must contain at least 1 uppercase letter and 1 lowercase letter
 password_least_8_characters: The password must contain at least 8 characters
 password_least_8_characters_2: The password must contain at least 8 characters
 password_least_1_number: The password Must contain at least 1 number
@@ -47,10 +46,9 @@ code_optional: Code (optional)
 read_and_agree: I have read and agree
 terms_conditions: Terms and conditions
 read_terms_conditions: I have read and agree to the terms and conditions
-agree_terms_conditions: Please read the terms and conditions then select I have
-  read and agree
+agree_terms_conditions: Please read the terms and conditions then select I have read and agree
 read_and_accept: Read and agree to the terms and conditions
-or_use: or use
+or_use: OR
 forgot_password: Forgot password
 no_account_yet: Still don't have an account?
 register_account: Register account
@@ -682,7 +680,7 @@ time_october: October
 time_november: November
 time_december: December
 time_birthday: Birthday
-time_month: Monthly
+time_month: Month
 date: Date
 tour: Tour
 community: Community
@@ -1053,9 +1051,7 @@ vip_rule_3: 'Weekly Salary: If you reach the VIP level corresponding to the week
 vip_rule_4: 'Monthly salary: If you recharge and code every month to meet the monthly
   salary requirements corresponding to the current VIP level, you can receive the
   corresponding monthly bonus, reset at 12:00am on the 1st of each month'
-vip_rule_5: 'Level maintenance instructions: After a member reaches a certain VIP
-  level, if the recharge and coding in the last month do not meet the maintenance
-  requirements, the member will automatically be downgraded by one level.'
+vip_rule_5: 在晋级或降级后90天内满足保级要求（即打码都满足条件），即可保留当前VIP等级。如果90天内无法满足打码需求，则会降低一级VIP等级
 vip_rule_6: 'Audit instructions: The bonus given by VIP requires 1 times of turnover
   (i.e. audit, coding or valid betting) before it can be withdrawn. The coding is
   not limited to the game platform'
@@ -1942,7 +1938,7 @@ input_draw_coin_addr: Please enter the withdrawal address
 withdraw_detail: Withdrawal details
 direct_vip: Direct member
 up_rule: Promotion criteria
-keep_level_desc: Keep level instructions
+keep_level_desc: 保级标准
 check_desc: Audit instructions
 activity_desc: Activity Statement
 explain_desc: Explanation instructions
@@ -2503,3 +2499,18 @@ maintain_time: 维护时间
 sports_under_maintain: 体育场馆维护中...
 to: 至
 label_bind_crypto_address : 绑定
+no_withdraw_information_about_the_currency: 该币种您暂无收款信息
+please_go_card_wallet_bind_withdraw_information: 请前往卡包绑定收款信息
+go_card_wallet: 前往卡包
+Directly_subordinate_to_all_currencies: 全部币种
+Directly_subordinate_to_collect_all_currencies: 全部币种
+all_data_all_currencies: 全部币种
+top_bar_login_button: Sign In
+pop_up_login_label: Sign In
+pop_up_login_button: Sign In
+pop_up_create_account_passcode_least_1_number: At least 1 number
+pop_up_create_account_uppercase_lowercase_letter: Includes lower and upper case
+pop_up_create_account_password_least_1_number: Password must include at least one number
+pop_up_create_account_password_uppercase_lowercase_letter: Password must include a lower and upper case character
+tip_pop_up_reg_success_title: Welcome
+registration_agree_terms_conditions: Please read the terms and conditions in full and scroll to the end to accept.

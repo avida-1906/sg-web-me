@@ -45,9 +45,9 @@ const {
   else if (value.length < 8)
     return t('password_least_8_characters')
   else if (!upperLowerReg.test(value))
-    return t('password_uppercase_lowercase_letter')
+    return t('pop_up_create_account_password_uppercase_lowercase_letter')
   else if (!lastOneNumberReg.test(value))
-    return t('password_least_1_number')
+    return t('pop_up_create_account_password_least_1_number')
   return ''
 })
 const {

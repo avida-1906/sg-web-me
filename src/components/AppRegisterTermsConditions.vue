@@ -24,7 +24,7 @@ const {
   validate: valiChecked,
 } = useField<string>('checkbox', () => {
   if (!checkboxValue.value)
-    return t('agree_terms_conditions')
+    return t('registration_agree_terms_conditions')
   return ''
 })
 
@@ -38,6 +38,7 @@ const regThirdParams = computed(() => {
 const regParams = computed(() => {
   return Session.get<IMemberReg>(STORAGE_REG_PARAMS_KEYWORDS)?.value
 })
+console.log(regParams.value)
 const {
   run: runMemberReg,
   loading: isLoading,
@@ -45,13 +46,13 @@ const {
   manual: true,
   onSuccess: async (res) => {
     appStore.setToken(res)
-    Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
     setNeedBackFalse()
     openNotify({
-      title: t('reg_success_title'),
+      title: t('tip_pop_up_reg_success_title'),
       type: 'success',
-      message: t('success_register', { username: regParams.value?.username }),
+      message: `${t('tip_pop_up_reg_success_title')},${regParams.value?.username}`,
     })
+    Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
     await nextTick()
     closeDialog()
   },

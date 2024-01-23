@@ -1062,9 +1062,7 @@ vip_rule_3: 'Salário semanal: Se você atingir o nível VIP correspondente aos 
 vip_rule_4: 'Salário mensal: Se você recarregar e codificar todos os meses para
   atender aos requisitos salariais mensais correspondentes ao nível VIP atual, poderá
   receber o bônus mensal correspondente, zerado às 00:00 do dia 1º de cada mês'
-vip_rule_5: 'Instruções de manutenção de nível: Depois que um membro atingir um
-  determinado nível VIP, se a recarga e a codificação do último mês não atenderem
-  aos requisitos de manutenção, o membro será automaticamente rebaixado em um nível.'
+vip_rule_5: 在晋级或降级后90天内满足保级要求（即打码都满足条件），即可保留当前VIP等级。如果90天内无法满足打码需求，则会降低一级VIP等级
 vip_rule_6: 'Instruções de auditoria: O bônus dado pelo VIP requer 1 vez de rollover
   (ou seja, auditoria, codificação ou apostas válidas) antes de poder ser retirado.
   A codificação não está limitada à plataforma de jogo'
@@ -1969,7 +1967,7 @@ input_draw_coin_addr: Insira o endereço de saque
 withdraw_detail: Detalhes do saque
 direct_vip: Membro direto
 up_rule: Critérios de promoção
-keep_level_desc: Instruções de manutenção de nível
+keep_level_desc: 保级标准
 check_desc: Instruções de auditoria
 activity_desc: Declaração de atividade
 explain_desc: Instruções da explicação
@@ -2552,3 +2550,18 @@ maintain_time: 维护时间
 sports_under_maintain: 体育场馆维护中...
 to: 至
 label_bind_crypto_address : 绑定
+no_withdraw_information_about_the_currency: 该币种您暂无收款信息
+please_go_card_wallet_bind_withdraw_information: 请前往卡包绑定收款信息
+go_card_wallet: 前往卡包
+Directly_subordinate_to_all_currencies: 全部币种
+Directly_subordinate_to_collect_all_currencies: 全部币种
+all_data_all_currencies: 全部币种
+top_bar_login_button: 登录
+pop_up_login_label: 登录
+pop_up_login_button: 登录
+pop_up_create_account_passcode_least_1_number: 至少包含一个数字
+pop_up_create_account_uppercase_lowercase_letter: 含有大写和小写字母
+pop_up_create_account_password_least_1_number: 密码必须含有至少一个数字
+pop_up_create_account_password_uppercase_lowercase_letter: 密码必须含有至少 1 个大写字母和 1 个小写字母
+tip_pop_up_reg_success_title: 欢迎
+registration_agree_terms_conditions: 请完整阅读条款与条件，然后滚动至末尾将其接受。

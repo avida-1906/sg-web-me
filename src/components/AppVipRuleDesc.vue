@@ -15,6 +15,12 @@ const route = useRoute()
         <div>{{ $t(`vip_rule_1`) }}</div>
       </div>
       <div class="h3">
+        {{ $t('keep_level_desc') }}
+      </div>
+      <div class="li">
+        <div>{{ $t(`vip_rule_5`) }}</div>
+      </div>
+      <div class="h3">
         {{ $t('vip_day_salary_bonus') }}
       </div>
       <div class="li">
@@ -31,12 +37,6 @@ const route = useRoute()
       </div>
       <div class="li">
         <div>{{ $t(`vip_rule_4`) }}</div>
-      </div>
-      <div class="h3">
-        {{ $t('keep_level_desc') }}
-      </div>
-      <div class="li">
-        <div>{{ $t(`vip_rule_5`) }}</div>
       </div>
       <div class="h3">
         {{ $t('check_desc') }}

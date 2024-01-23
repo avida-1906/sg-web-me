@@ -193,13 +193,13 @@ await application.allSettled(
             <BaseIcon style="font-size: var(--tg-font-size-base);" name="uni-warning-color" class="search-icon" />
             <div>
               <div style="margin-bottom: 4px;">
-                {{ t('not_payment_information_currency') }}
+                {{ t('no_withdraw_information_about_the_currency') }}
               </div>
-              <div>{{ t('please_go_package_bind_payment_information') }}</div>
+              <div>{{ t('please_go_card_wallet_bind_withdraw_information') }}</div>
             </div>
           </div>
           <BaseButton bg-style="secondary" size="md" @click="emit('toHolder')">
-            {{ t('go_card_pack') }}
+            {{ t('go_card_wallet') }}
           </BaseButton>
         </div>
         <!-- <AppAddBankcards

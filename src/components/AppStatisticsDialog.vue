@@ -260,7 +260,7 @@ watch(() => tab.value, (newValue) => {
               </p>
               <div class="s-join-date">
                 <span>{{ t('in_date') }}</span>
-                <span>{{ ` ${timeToDateFormat(1705314641516)}` }}</span>
+                <span>{{ ` ${timeToDateFormat(userInfo?.created_at)}` }}</span>
               </div>
             </template>
             <div class="go-vip" @click="goVip">

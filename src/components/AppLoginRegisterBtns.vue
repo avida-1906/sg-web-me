@@ -25,7 +25,7 @@ function handleRegister() {
         --tg-base-button-text-default-color: var(--tg-text-white);"
       @click.stop="handleLogin"
     >
-      {{ t('login') }}
+      {{ t('top_bar_login_button') }}
     </BaseButton>
     <BaseButton
       custom-padding
