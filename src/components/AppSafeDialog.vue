@@ -2,14 +2,14 @@
 import type { IMemberBalanceLockerUpdate } from '~/apis/types'
 import type { CurrencyData } from '~/composables/useCurrencyData'
 
-const closeDialog = inject('closeDialog', () => {})
+// const closeDialog = inject('closeDialog', () => {})
 
 const { t } = useI18n()
 const appStore = useAppStore()
 const { openNotify } = useNotify()
 // const { exchangeRateData } = storeToRefs(appStore)
-const router = useLocalRouter()
-const { push } = useLocalRouter()
+// const router = useLocalRouter()
+// const { push } = useLocalRouter()
 
 const activeCurrency = ref<any>()
 const activeTab = ref('deposit')
@@ -24,8 +24,8 @@ const passwordRef = ref()
 // 获取利率
 const { data: interestConfig, runAsync: runAsyncInterestConfig } = useRequest(ApiMemberInterestGetConfig)
 // 获取安全验证配置
-const { isOpenVerify, isSetAuth } = useBrandBaseDetail()
-const { getComponent } = useUserVerify()
+// const { isOpenVerify, isSetAuth } = useBrandBaseDetail()
+const { getComponent, isEmailVerify } = useUserVerify()
 const {
   value: amount,
   errorMessage: errAmount,
@@ -180,7 +180,7 @@ await application.allSettled([runAsyncInterestConfig()])
     <div class="safe-content">
       <BaseTab v-model="activeTab" :list="tabOptions" />
       <template v-if="getComponent && !isDeposit">
-        <component :is="getComponent" tip-text="true" />
+        <component :is="getComponent" :tip-text="$t('finance_funds_vault_draw')" />
       </template>
       <template v-else>
         <div class="center">
@@ -238,7 +238,8 @@ await application.allSettled([runAsyncInterestConfig()])
         </template>
       </template>
     </div>
-    <div class="safe-bottom">
+    <AppAuthWarp v-if="isEmailVerify" show-more />
+    <!-- <div class="safe-bottom">
       <template v-if="isOpenVerify && !isSetAuth">
         <div>
           {{ t('improve_safe_level') }}
@@ -258,7 +259,7 @@ await application.allSettled([runAsyncInterestConfig()])
       >
         {{ t('vault_info') }}
       </BaseButton>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -279,17 +280,6 @@ await application.allSettled([runAsyncInterestConfig()])
     font-weight: var(--tg-font-weight-semibold);
     line-height: 21px;
   }
-  .safe-bottom{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    background-color: #0f212e;
-    padding: 20px 16px;
-    gap: var(--tg-spacing-14);
-    color: var(--tg-text-lightgrey);
-    line-height: 1.5;
-  }
   .amount {
     display: flex;
     flex-direction: column;
@@ -304,12 +294,6 @@ await application.allSettled([runAsyncInterestConfig()])
         font-size: var(--tg-font-size-xs);
       }
     }
-  }
-  .password-box{
-    --tg-app-select-currency-bg: none;
-    --tg-base-input-right-button-padding: 0 0;
-    --tg-base-select-hover-bg-color: none;
-    --tg-base-select-popper-style-padding-y:11px;
   }
 }
 </style>

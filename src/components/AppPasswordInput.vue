@@ -15,7 +15,7 @@ withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['update:modelValue', 'update:modelType'])
 const { t } = useI18n()
 const {
-  isOpenVerify, isOpenPayPwd, brandBaseDetail,
+  isOpenVerify, isOpenPayPwd, brandBaseDetail, isSetPayPwd, isSetAuth,
 } = useBrandBaseDetail()
 
 const pwdOptions = computed(() => {
@@ -24,9 +24,9 @@ const pwdOptions = computed(() => {
   const pwd = { label: t('menu_title_settings_update_safepwd'), value: '2' }
   const teg: ISelectOption[] = []
   if (check === 3) {
-    // isSetPayPwd.value && teg.push(pwd)
-    // isSetAuth.value && teg.push(code)
-    return teg.concat([pwd, code])
+    isSetPayPwd.value && teg.push(pwd)
+    isSetAuth.value && teg.push(code)
+    return teg
   }
   else if (isOpenVerify.value) {
     teg.push(code)
@@ -75,7 +75,7 @@ function passwordChange(val: string) {
 }
 
 watch(() => pwdOptions.value, () => {
-  pwdType.value = pwdOptions.value?.length > 1 ? '2' : pwdOptions.value[0].value.toString()
+  pwdType.value = pwdOptions.value?.length === 2 ? '2' : pwdOptions.value[0].value.toString()
   emit('update:modelType', pwdType.value)
 }, { immediate: true })
 

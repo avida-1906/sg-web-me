@@ -147,7 +147,7 @@ await application.allSettled([runAsyncWalletBankcardList()])
 </script>
 
 <template>
-  <div class="px-16 pb-43">
+  <div class="px-16">
     <div class="flex flex-col items-center">
       <BaseSelect
         v-model="curType" :options="currencyOptions" popper popper-search

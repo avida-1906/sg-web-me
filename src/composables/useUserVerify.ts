@@ -30,5 +30,6 @@ export function useUserVerify() {
 
   return {
     getComponent,
+    isEmailVerify,
   }
 }

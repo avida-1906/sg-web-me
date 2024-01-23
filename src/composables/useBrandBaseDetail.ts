@@ -2,6 +2,7 @@ export const useBrandBaseDetail = createGlobalState(() => {
   const { isLogin } = storeToRefs(useAppStore())
   const {
     data: brandBaseDetail,
+    runAsync: runAsyncBrandBaseDetail,
   } = useRequest(ApiMemberBrandDetail, {
     ready: isLogin,
     manual: false,
@@ -47,5 +48,6 @@ export const useBrandBaseDetail = createGlobalState(() => {
     isOpenPayPwd,
     loadingAuthConfig,
     runMemberAuthConfig,
+    runAsyncBrandBaseDetail,
   }
 })

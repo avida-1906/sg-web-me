@@ -20,6 +20,7 @@ declare module 'vue' {
     AppAmountInput: typeof import('./components/AppAmountInput.vue')['default']
     AppAuthLogin: typeof import('./components/AppAuthLogin.vue')['default']
     AppAuthThirdFormDialog: typeof import('./components/AppAuthThirdFormDialog.vue')['default']
+    AppAuthWarp: typeof import('./components/AppAuthWarp.vue')['default']
     AppBallRange: typeof import('./components/AppBallRange.vue')['default']
     AppBankAndCoinAddress: typeof import('./components/AppBankAndCoinAddress.vue')['default']
     AppBanner: typeof import('./components/AppBanner.vue')['default']

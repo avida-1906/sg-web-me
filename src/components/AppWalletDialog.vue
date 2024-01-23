@@ -10,12 +10,13 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const { t } = useI18n()
-const router = useLocalRouter()
-const closeDialog = inject('closeDialog', () => { })
+// const router = useLocalRouter()
+// const closeDialog = inject('closeDialog', () => { })
 const {
-  isSetAuth, isOpenVerify, brandBaseDetail,
+  // isSetAuth, isOpenVerify,
+  brandBaseDetail, runAsyncBrandBaseDetail,
 } = useBrandBaseDetail()
-const { getComponent } = useUserVerify()
+const { getComponent, isEmailVerify } = useUserVerify()
 const {
   currentCurrency: currentCur,
 } = useCurrencyData()
@@ -54,7 +55,7 @@ const isExchange = computed(() => currentTab.value === 'exchange')
 //   })
 // }
 
-// await application.allSettled([awaitHandle()])
+await application.allSettled([runAsyncBrandBaseDetail({ tag: 'base' })])
 </script>
 
 <template>
@@ -89,7 +90,7 @@ const isExchange = computed(() => currentTab.value === 'exchange')
       </template>
       <template v-else>
         <Suspense timeout="0">
-          <component :is="getComponent" :tip-text="tabList.find((item) => item.value === currentTab)?.label" />
+          <component :is="getComponent" :tip-text="$t('menu_title_settings_withdrawals')" />
           <template #fallback>
             <div class="center dialog-loading-height">
               <BaseLoading />
@@ -114,7 +115,8 @@ const isExchange = computed(() => currentTab.value === 'exchange')
       <AppMoneyExchange v-else-if="isExchange" />
     </template>
   </div>
-  <div
+  <AppAuthWarp v-if="isEmailVerify" />
+  <!-- <div
     v-if="(isWithdraw || isDeposit || isExchange) && isOpenVerify && !isSetAuth"
     class="safe-bottom"
   >
@@ -125,7 +127,7 @@ const isExchange = computed(() => currentTab.value === 'exchange')
     >
       {{ t('turn_on_double_check') }}
     </BaseButton>
-  </div>
+  </div> -->
 </template>
 
 <style lang='scss' scoped>
