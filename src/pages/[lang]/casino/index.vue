@@ -25,7 +25,7 @@ const route = useRoute()
 const routeName = computed(() => route.name?.toString())
 // 站内公告
 const { openDialogSiteAnnouncement } = useDialogSiteAnnouncement()
-openDialogSiteAnnouncement()
+// openDialogSiteAnnouncement()
 
 const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
