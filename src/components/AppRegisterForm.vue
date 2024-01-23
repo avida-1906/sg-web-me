@@ -43,7 +43,7 @@ const {
   if (!value)
     return t('password_least_8_characters')
   else if (value.length < 8)
-    return t('password_least_8_characters')
+    return t('pop_up_create_account_password_least_8_characters')
   else if (!upperLowerReg.test(value))
     return t('pop_up_create_account_password_uppercase_lowercase_letter')
   else if (!lastOneNumberReg.test(value))
@@ -61,16 +61,16 @@ const {
   const lastAtIdx = value ? value.lastIndexOf('@') : -1
   const lastDotIdx = value ? value.lastIndexOf('.') : -1
   if (!value)
-    return t('no_support_email')
+    return t('pop_up_create_account_no_support_email')
 
   else if (!value.includes('@'))
-    return [t('email_add_char', { delta: '@' })]
+    return [t('pop_up_create_account_email_add_char', { delta: '@' })]
 
   else if (!value.includes('.'))
-    return t('email_add_char', { delta: '.' })
+    return t('pop_up_create_account_no_dot_email_add_char', { delta: '.' })
 
   else if (lastDotIdx === value.length - 1)
-    return t('no_support_email')
+    return t('pop_up_create_account_no_support_email')
 
   else if (value === password.value)
     return t('email_no_equal_password')
@@ -93,13 +93,13 @@ const {
   setValue: setUsername,
 } = useField<string>('username', (value) => {
   if (!value)
-    return t('name_3_char')
+    return t('pop_up_create_account_name_3_char')
   else if (value.length < 3)
-    return t('name_3_char')
+    return t('pop_up_create_account_name_3_char')
   else if (value.match('[^a-z0-9]'))
     return t('name_has_invalid_char')
   else if (value.length > 14)
-    return t('name_14_char')
+    return t('pop_up_create_account_name_14_char')
   else if (value === password.value)
     return t('name_no_equal_pwd')
   else if (!usernameReg.test(value))
@@ -319,7 +319,7 @@ defineExpose({ getMemberReg, resetForm })
 <template>
   <div class="app-register">
     <div class="app-register-input-box">
-      <BaseLabel v-if="needEmail" :label="t('email_address')" need-focus must-small>
+      <BaseLabel v-if="needEmail" :label="t('pop_up_create_account_label_email_address')" must-small need-focus>
         <BaseInput
           ref="emailRef" v-model="email"
           :msg="emailErrorMsg" msg-after-touched type="email" name="email"
@@ -332,7 +332,7 @@ defineExpose({ getMemberReg, resetForm })
           @blur="onEmailUsernameBlur(1)"
         />
         <div v-if="!usernameErrorMsg" class="hint">
-          {{ t('username_incorrect') }}
+          {{ t('pop_up_create_account_username_incorrect') }}
         </div>
       </BaseLabel>
       <BaseLabel :label="t('password')" must-small need-focus>

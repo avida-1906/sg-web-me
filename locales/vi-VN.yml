@@ -2502,3 +2502,19 @@ pop_up_create_account_password_least_1_number: 密码必须含有至少一个数
 pop_up_create_account_password_uppercase_lowercase_letter: 密码必须含有至少 1 个大写字母和 1 个小写字母
 tip_pop_up_reg_success_title: 欢迎
 registration_agree_terms_conditions: 请完整阅读条款与条件，然后滚动至末尾将其接受。
+registration_finally_play_now: 开始游戏
+pop_up_forgot_password_email_address: 电邮地址
+pop_up_forgot_password: 忘记密码
+pop_up_create_account_password_least_8_characters: 您的密码必须含有至少 8 个字符
+pop_up_create_account_name_14_char: 您的 username 不得超过 14 个字符
+pop_up_create_account_name_3_char: 您的 username 必须含有至少 3 个字符
+pop_up_create_account_no_support_email: 电子邮件域不受支持
+pop_up_create_account_email_add_char: 请在您的电邮地址中加入 “{delta}” 符号
+pop_up_create_account_username_incorrect: 您的用户名长度必须为 3 – 14 个字符。
+pop_up_create_account_no_dot_email_add_char: 请在您的电邮地址中加入 “{delta}” 符号
+pop_up_create_account_label_email_address: 电邮地址
+pop_up_create_account_label_reg_step1: 步骤 1/2： 填写您的详细信息
+pop_up_create_account_header_register: 创建账户
+site_announcement: 站内公告
+dont_tip_today: 今日不再提示
+pop_up_finally_create_account_name_no_equal_pwd: 您的用户名和密码不能相同

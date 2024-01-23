@@ -23,6 +23,9 @@ const { openRegisterDialog } = useRegisterDialog()
 const router = useLocalRouter()
 const route = useRoute()
 const routeName = computed(() => route.name?.toString())
+// 站内公告
+const { openDialogSiteAnnouncement } = useDialogSiteAnnouncement()
+// openDialogSiteAnnouncement()
 
 const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')

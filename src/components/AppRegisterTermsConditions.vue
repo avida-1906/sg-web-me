@@ -154,7 +154,7 @@ onBeforeUnmount(() => {
         size="xl"
         bg-style="secondary" @click.stop="getStartGame"
       >
-        <span class="size-base">{{ t('start_game') }}</span>
+        <span class="size-base">{{ t('registration_finally_play_now') }}</span>
       </BaseButton>
     </div>
     <!-- <div class="app-bottom">

@@ -10,6 +10,7 @@ interface Props {
   showButtons?: boolean
   transparent?: boolean
   showClose?: boolean
+  noMoreToday?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -20,9 +21,11 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(['update:show', 'close', 'cancel', 'confirm'])
 
+const { t } = useI18n()
 const { leftIsExpand } = useLeftSidebar()
 const { bool: _show, setTrue: setBShowTrue, setFalse: setBShowFalse } = useBoolean(false)
 const { closeAllDialog } = useDialogList()
+const { bool: checked } = useBoolean(false)
 
 useLockScroll(_show, leftIsExpand)
 
@@ -50,6 +53,12 @@ function onCancel() {
 
 function onConfirm() {
   emit('confirm')
+}
+
+function onNoMoreTipChecked(v: boolean) {
+  if (v)
+    return Local.set(STORAGE_NO_MORE_TIP_DAY, new Date().getDate())
+  Local.remove(STORAGE_NO_MORE_TIP_DAY)
 }
 
 provide('closeDialog', close)
@@ -124,6 +133,13 @@ watch(closeAllDialog, (val) => {
           <a v-if="showClose && !icon && !title" class="close-only" @click.stop="close">
             <BaseIcon name="uni-close" />
           </a>
+
+          <!-- 今日不再显示 -->
+          <div v-if="noMoreToday" class="no-more-today">
+            <BaseCheckBox v-model="checked" @check="onNoMoreTipChecked">
+              {{ t('dont_tip_today') }}
+            </BaseCheckBox>
+          </div>
         </div>
       </section>
     </Transition>
@@ -179,7 +195,6 @@ watch(closeAllDialog, (val) => {
       max-height: calc(100% - 4em);
       border-radius: var(--tg-radius-default);
       background: var(--tg-dialog_style-bg);
-      overflow: hidden;
       display: flex;
       flex-direction: column;
       color: var(--tg-text-white);
@@ -243,6 +258,14 @@ watch(closeAllDialog, (val) => {
       &:hover {
         --tg-icon-color: var(--tg-text-white);
       }
+    }
+    .no-more-today{
+      position: absolute;
+      display: flex;
+      align-items: center;
+      bottom: -35px;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 </style>

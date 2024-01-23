@@ -63,6 +63,10 @@ function onClick(e: any) {
   --tg-base-button-loading-opacity:0.5;
   --tg-base-button-line-border-color: var(--tg-text-white);
   --tg-base-button-justify-content: center;
+  --tg-base-button-line-hover-color: var(--tg-secondary-main);
+  --tg-base-button-line-active-color: var(--tg-secondary-main);
+  --tg-base-button-min-width: auto;
+  --tg-base-button-max-width: auto;
 }
 </style>
 
@@ -73,6 +77,8 @@ button {
   border-radius: var(--tg-radius-default);
   font-weight: var(--tg-base-button-font-weight);
   transition: var(--tg-transition);
+  min-width: var(--tg-base-button-min-width);
+  max-width: var(--tg-base-button-max-width);
   line-height: 1;
   max-width: 100%;
 
@@ -163,7 +169,7 @@ button {
   border: 1px solid var(--tg-base-button-line-border-color);
 
   &:active {
-    background-color: var(--tg-secondary-main);
+    background-color: var(--tg-base-button-line-active-color);
 
     .content {
       transform: scale(0.96);
@@ -171,7 +177,7 @@ button {
   }
 
   &:hover:not(:disabled):not(:active) {
-    background-color: var(--tg-secondary-main);
+    background-color: var(--tg-base-button-line-hover-color);
   }
 }
 

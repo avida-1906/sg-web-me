@@ -260,7 +260,7 @@ async function toLogin() {
   <div class="app-register">
     <template v-if="steps === 1">
       <div class="app-register-title">
-        {{ t('reg_step1') }}
+        {{ t('pop_up_create_account_label_reg_step1') }}
       </div>
       <AppRegisterForm ref="registerFormRef" is-register />
       <div class="app-register-check-box">

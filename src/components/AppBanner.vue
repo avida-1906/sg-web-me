@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { BannerItem } from '~/types'
+
 interface Props {
   type?: 'casino' | 'sports'
 }
@@ -7,13 +9,12 @@ const props = withDefaults(defineProps<Props>(), {
   type: 'casino',
 })
 
-const router = useLocalRouter()
 const { appContentWidth } = storeToRefs(useWindowStore())
 
 const {
-  runAsync: runMemberBannerList,
+  runAsync: runMemberBannerV2List,
   data: bannerList,
-} = useRequest(ApiMemberBannerList)
+} = useRequest(ApiMemberBannerV2List)
 
 const mgt = computed(() => {
   if (appContentWidth.value < 600)
@@ -22,43 +23,46 @@ const mgt = computed(() => {
     return 'var(--tg-spacing-12)'
 })
 
-function jumpToUrl(item: { type: number; jumpUrl: string }) {
-  /** 跳转类型 1-自定义 2-娱乐城 3-体育 4-优惠活动 5-联盟中心 */
-  switch (item.type) {
-    case 1:
-      router.push(item.jumpUrl)
-      break
-    case 2:
-      router.push('/casino')
-      break
-    case 3:
-      router.push(`/sports/${getSportsPlatId()}`)
-      break
-    case 4:
-      router.push('/promotions')
-      break
-    case 5:
-      router.push('/affiliate/promotion-tutorial')
-      break
-  }
-}
-
 const items = computed(() => {
-  if (!bannerList.value)
+  if (bannerList.value === undefined || bannerList.value.length === 0)
     return []
-  return bannerList.value.map(item => ({
-    imgUrl: item.image_url[getCurrentLanguageForBackend()],
-    type: item.jump_type,
-    jumpUrl: item.jump_url,
-  }))
+
+  return bannerList.value.map<BannerItem>((item) => {
+    return {
+      imgUrl: item.jump_url,
+      type: item.jump_type,
+      backgroundUrl: item.banner_info.background,
+      rightImageUrl: item.banner_info.icon,
+      content: item.banner_info.content[getCurrentLanguageForBackend()],
+      align: item.banner_style === 1 ? 'left' : 'right',
+      banner_style: item.banner_style,
+      banner_style3_background: item.banner_url[getCurrentLanguageForBackend()],
+      button: item.banner_info.button_state === 1
+        ? {
+            text: item.banner_info.button_content[getCurrentLanguageForBackend()],
+            url: item.banner_info.button_jump_url,
+            type: item.banner_info.button_jump_type,
+          }
+        : undefined,
+    }
+  })
 })
 
 function fetchDataOrLoadImage() {
   return new Promise((resolve, reject) => {
-    runMemberBannerList({
-      banner_type: props.type === 'casino' ? '1' : '2',
+    runMemberBannerV2List({
+      banner_type: props.type === 'casino' ? 1 : 2,
     }).then(async () => {
-      await application.allSettled([...items.value.map(item => application.loadImage(item.imgUrl))])
+      const urls = items.value.reduce<Promise<any>[]>((acc, item) => {
+        if (item.banner_style === 3)
+          acc.push(application.loadImage(item.banner_style3_background))
+
+        else
+          acc.push(application.loadImage(item.backgroundUrl), application.loadImage(item.rightImageUrl))
+
+        return acc
+      }, [])
+      await application.allSettled(urls)
       resolve(true)
     }).catch(() => {
       reject(new Error('fetch data error'))
@@ -75,10 +79,7 @@ await application.allSettled([fetchDataOrLoadImage()])
       marginTop: mgt,
     }"
   >
-    <BaseSwipe
-      :items="items"
-      @click-item="jumpToUrl"
-    />
+    <BaseSwipe :items="items" />
   </div>
 </template>
 

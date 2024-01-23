@@ -56,6 +56,8 @@ const imgUrl = computed(() => {
 :root {
   --tg-base-img-style-radius: var(--tg-radius-none);
   --tg-img-object-position: center;
+  --tg-base-img-max-width: 100%;
+  --tg-base-img-max-height: 100%;
 }
 </style>
 
@@ -71,6 +73,8 @@ const imgUrl = computed(() => {
     user-select: none;
     -webkit-user-select: none;
     -webkit-user-drag: none;
+    max-width: var(--tg-base-img-max-width);
+    max-height: var(--tg-base-img-max-height);
   }
 }
 </style>

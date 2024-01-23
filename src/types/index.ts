@@ -260,3 +260,22 @@ export interface ISportsBreadcrumbs {
   value: string
   path: string
 }
+
+/**
+ * Banner 类型
+ */
+export interface BannerItem {
+  imgUrl: string
+  type: number
+  backgroundUrl: string
+  rightImageUrl: string
+  content: string
+  banner_style3_background: string
+  banner_style: 1 | 2 | 3
+  button?: {
+    text: string
+    url: string
+    type: number
+  }
+  align: 'left' | 'right'
+}

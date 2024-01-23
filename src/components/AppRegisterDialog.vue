@@ -5,7 +5,7 @@ const { t } = useI18n()
 <template>
   <div class="app-register-dialog">
     <div class="title">
-      {{ t('register') }}
+      {{ t('pop_up_create_account_header_register') }}
     </div>
     <AppRegister />
   </div>

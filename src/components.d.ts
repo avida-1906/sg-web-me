@@ -61,6 +61,7 @@ declare module 'vue' {
     AppDialogDepositDetail: typeof import('./components/AppDialogDepositDetail.vue')['default']
     AppDialogMessage: typeof import('./components/AppDialogMessage.vue')['default']
     AppDialogNotice: typeof import('./components/AppDialogNotice.vue')['default']
+    AppDialogSiteAnnouncement: typeof import('./components/AppDialogSiteAnnouncement.vue')['default']
     AppDialogSwiperNotice: typeof import('./components/AppDialogSwiperNotice.vue')['default']
     AppEmailCodeDialog: typeof import('./components/AppEmailCodeDialog.vue')['default']
     AppEmailVerify: typeof import('./components/AppEmailVerify.vue')['default']
