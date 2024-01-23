@@ -33,8 +33,10 @@ export class Local {
       value,
     }
 
-    if (_value.value === null || _value.value === undefined)
+    if (_value.value === null || _value.value === undefined) {
+      localStorage.removeItem(key)
       return
+    }
 
     localStorage.setItem(key, JSON.stringify(_value))
   }

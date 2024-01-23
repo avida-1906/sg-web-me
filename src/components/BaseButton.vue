@@ -64,6 +64,7 @@ function onClick(e: any) {
   --tg-base-button-line-border-color: var(--tg-text-white);
   --tg-base-button-justify-content: center;
   --tg-base-button-line-hover-color: var(--tg-secondary-main);
+  --tg-base-button-line-active-color: var(--tg-secondary-main);
   --tg-base-button-min-width: auto;
   --tg-base-button-max-width: auto;
 }
@@ -168,7 +169,7 @@ button {
   border: 1px solid var(--tg-base-button-line-border-color);
 
   &:active {
-    background-color: var(--tg-secondary-main);
+    background-color: var(--tg-base-button-line-active-color);
 
     .content {
       transform: scale(0.96);

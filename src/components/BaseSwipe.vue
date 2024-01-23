@@ -1,24 +1,11 @@
 <script lang="ts" setup>
-interface Item {
-  imgUrl: string
-  type: number
-  backgroundUrl: string
-  rightImageUrl: string
-  content: string
-  button?: {
-    text: string
-    url: string
-    type: number
-  }
-}
+import type { BannerItem } from '~/types'
 
 interface Props {
-  items: Item[]
+  items: BannerItem[]
 }
 
 const props = defineProps<Props>()
-
-const emit = defineEmits(['clickItem'])
 
 const heroContentRef = ref<HTMLElement | null>(null)
 const { appContentWidth } = storeToRefs(useWindowStore())
@@ -96,7 +83,7 @@ onMounted(() => {
           v-for="item, i in props.items"
           :key="i"
           :style="{
-            'background-image': `url(${VITE_CASINO_IMG_CLOUD_URL}/${item.backgroundUrl})`,
+            'background-image': `url(${VITE_CASINO_IMG_CLOUD_URL}/${item.banner_style === 3 ? item.banner_style3_background : item.backgroundUrl})`,
           }"
           class="hero"
           @click="jumpToUrl({
@@ -106,25 +93,33 @@ onMounted(() => {
         >
           <!--  -->
           <div class="center wrapper" />
-          <div class="other">
-            <div>
-              {{ item.content }}
-            </div>
-            <div>
-              <BaseButton
-                v-if="item.button" type="line"
-                @click.stop="jumpToUrl({
-                  type: item.button?.type ?? 1,
-                  jumpUrl: item.button?.url ?? '',
-                })"
+          <template v-if="item.banner_style !== 3">
+            <div class="other" :class="[item.align === 'left' ? 'other-left' : 'other-right']">
+              <div class="banner-content">
+                <div class="banner-content-text">
+                  {{ item.content }}
+                </div>
+              </div>
+              <div
+                class="btn-flex" :class="[
+                  item.align === 'left' ? 'btn-flex-left' : 'btn-flex-right',
+                ]"
               >
-                {{ item.button.text }}
-              </BaseButton>
+                <BaseButton
+                  v-if="item.button" type="line"
+                  @click.stop="jumpToUrl({
+                    type: item.button?.type ?? 1,
+                    jumpUrl: item.button?.url ?? '',
+                  })"
+                >
+                  {{ item.button.text }}
+                </BaseButton>
+              </div>
             </div>
-          </div>
-          <div v-if="item.rightImageUrl" class="right-icon">
-            <BaseImage class="right-img" :url="item.rightImageUrl" is-network width="auto" height="auto" />
-          </div>
+            <div v-if="item.rightImageUrl" class="right-icon" :class="[item.align === 'left' ? 'right-icon-right' : 'right-icon-left']">
+              <BaseImage class="right-img" :url="item.rightImageUrl" is-network width="auto" height="auto" />
+            </div>
+          </template>
         </div>
       </div>
       <div
@@ -229,7 +224,6 @@ onMounted(() => {
 
 .other {
   position: absolute;
-  left: 0;
   top: 0;
   width: 60%;
   height: 100%;
@@ -237,11 +231,17 @@ onMounted(() => {
   --tg-base-button-line-hover-color: rgba(255, 255, 255, 0.1);
   --tg-base-button-min-width: 120px;
   --tg-base-button-max-width: 170px;
+  --tg-base-button-line-active-color: none;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  & > * {
-    text-align: left;
+
+  &.other-left {
+    left: 0;
+  }
+  &.other-right {
+    right: 0;
+    // text-align: right;
   }
 }
 
@@ -255,6 +255,13 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
 
+  &.right-icon-left {
+    left: 0;
+  }
+  &.right-icon-right {
+    right: 0;
+  }
+
   .right-img {
     max-width: 100%;
   }
@@ -262,6 +269,33 @@ onMounted(() => {
 
 .wrapper {
   height: 12rem;
+}
+
+.btn-flex {
+  display: flex;
+  & > * {
+    text-align: left;
+  }
+
+  &.btn-flex-left {
+    justify-content: flex-start;
+  }
+
+  &.btn-flex-right {
+    justify-content: flex-end;
+  }
+}
+
+.banner-content {
+  line-height: 1.3;
+  height: 0;
+  flex: 1;
+  .banner-content-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    overflow: hidden;
+  }
 }
 
 @container grid-size (width < 50rem) {
@@ -296,7 +330,7 @@ onMounted(() => {
     }
 
     .other {
-      width: 52%;
+      width: 53%;
       padding: var(--tg-spacing-button-padding-horizontal-sm);
     }
 }

@@ -2276,7 +2276,8 @@ export function ApiMemberBannerV2List(params: {
   return httpClient.get<{
     jump_type: number
     jump_url: string
-    banner_style: number
+    /** 1靠右 2靠左 3自定义 */
+    banner_style: 1 | 2 | 3
     banner_info: {
       background: string
       icon: string
