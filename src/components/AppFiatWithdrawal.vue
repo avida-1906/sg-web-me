@@ -62,10 +62,12 @@ const {
 const {
   runAsync: runAsyncWithdrawMethodList,
   data: withdrawMethodList,
+  loading: loadMethodList,
 } = useRequest(ApiFinanceWithdrawMethodList)
 const {
-  runAsync: runAsyncWithdrawBankcardList,
+  runAsync: runAsyncWithdrawBankcard,
   data: withdrawBankcardList,
+  loading: loadBankcard,
 } = useRequest(ApiFinanceWithdrawBankcard, {
   onSuccess(data) {
     const temp = data.d.find(i => i.is_default === 1 && i.state !== 2)?.bank_account
@@ -166,8 +168,8 @@ function formatAmount() {
 }
 
 watch(() => props.activeCurrency, (newValue) => {
-  runAsyncWithdrawBankcardList({ currency_id: newValue.cur })
-  runAsyncWithdrawMethodList({ currency_id: newValue.cur })
+  !loadBankcard.value && runAsyncWithdrawBankcard({ currency_id: newValue.cur })
+  !loadMethodList.value && runAsyncWithdrawMethodList({ currency_id: newValue.cur })
   selectBankReset()
   amountReset()
   passwordRef.value?.resetPassword()
@@ -175,7 +177,7 @@ watch(() => props.activeCurrency, (newValue) => {
 
 await application.allSettled(
   [
-    runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur }),
+    runAsyncWithdrawBankcard({ currency_id: props.activeCurrency.cur }),
     runAsyncWithdrawMethodList({ currency_id: props.activeCurrency.cur }),
   ],
 )
