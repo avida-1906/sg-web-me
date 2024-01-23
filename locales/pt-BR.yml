@@ -2558,3 +2558,6 @@ go_card_wallet: 前往卡包
 Directly_subordinate_to_all_currencies: 全部币种
 Directly_subordinate_to_collect_all_currencies: 全部币种
 all_data_all_currencies: 全部币种
+top_bar_login_button: 登录
+pop_up_login_label: 登录
+pop_up_login_button: 登录

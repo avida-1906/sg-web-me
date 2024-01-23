@@ -50,7 +50,7 @@ read_terms_conditions: I have read and agree to the terms and conditions
 agree_terms_conditions: Please read the terms and conditions then select I have
   read and agree
 read_and_accept: Read and agree to the terms and conditions
-or_use: or use
+or_use: OR
 forgot_password: Forgot password
 no_account_yet: Still don't have an account?
 register_account: Register account
@@ -682,7 +682,7 @@ time_october: October
 time_november: November
 time_december: December
 time_birthday: Birthday
-time_month: Monthly
+time_month: Month
 date: Date
 tour: Tour
 community: Community
@@ -2509,3 +2509,6 @@ go_card_wallet: 前往卡包
 Directly_subordinate_to_all_currencies: 全部币种
 Directly_subordinate_to_collect_all_currencies: 全部币种
 all_data_all_currencies: 全部币种
+top_bar_login_button: Sign In
+pop_up_login_label: Sign In
+pop_up_login_button: Sign In

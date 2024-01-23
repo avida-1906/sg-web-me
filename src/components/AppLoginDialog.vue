@@ -5,7 +5,7 @@ const { t } = useI18n()
 <template>
   <div class="app-login-dialog">
     <div class="title">
-      {{ t('login') }}
+      {{ t('pop_up_login_label') }}
     </div>
     <AppLogin />
     <AppLoginRegisterBottom type="login" :show-desc="false" />

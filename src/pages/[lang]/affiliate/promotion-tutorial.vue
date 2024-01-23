@@ -31,7 +31,7 @@ const getUrl = computed(() => {
       </div>
       <div class="p">
         <div class="content">
-          <div>{{ $t('promotion_tutorial_example_desc2') }}:</div>
+          <div>{{ $t('promotion_tutorial_example_desc2') }}</div>
         </div>
       </div>
       <div class="p">

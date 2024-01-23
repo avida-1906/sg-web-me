@@ -93,7 +93,7 @@ onMounted(() => {
         @click.stop="getMemberLogin"
       >
         <span class="login-text">
-          {{ t('login') }}
+          {{ t('pop_up_login_button') }}
         </span>
       </BaseButton>
     </div>
