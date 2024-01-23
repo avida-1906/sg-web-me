@@ -24,6 +24,7 @@ export const STORAGE_CLEAR_LIVE = 'storage_clear_live'
 export const STORAGE_CLEAR_SPORTS = 'storage_clear_sports'
 export const STORAGE_CASINO_GAME_CURRENCY = 'storage_casino_game_currency'
 export const STORAGE_THIRDREG_PARAMS_KEYWORDS = 'storage_thirdreg_params_keywords'
+export const STORAGE_NO_MORE_TIP_DAY = 'storage_no_more_tip_day'
 
 export class Local {
   static set<T>(key: string, value: any) {
