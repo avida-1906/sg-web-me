@@ -37,12 +37,12 @@ watch(() => props.password, () => {
     <div class="item">
       <BaseIcon v-if="upperLowerRegOk" class="hook-2" name="uni-hook" />
       <BaseIcon v-else class="hook-1" name="uni-hook" />
-      {{ t('uppercase_lowercase_letter') }}
+      {{ t('pop_up_create_account_uppercase_lowercase_letter') }}
     </div>
     <div class="item">
       <BaseIcon v-if="lastOneNumberRegOk" class="hook-2" name="uni-hook" />
       <BaseIcon v-else class="hook-1" name="uni-hook" />
-      {{ t('password_least_1_number') }}
+      {{ t('pop_up_create_account_passcode_least_1_number') }}
     </div>
     <div class="item">
       <BaseIcon v-if="lengthOk" class="hook-2" name="uni-hook" />
