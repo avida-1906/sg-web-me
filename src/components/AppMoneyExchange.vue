@@ -66,7 +66,7 @@ const currencyGetOptions = computed(() => {
 })
 const rate = computed(() => {
   const r = getRate(currencyTypePay.value, currencyTypeGet.value, 9)?.targetNum
-  return r ? +r : 1
+  return scientificToString(r ? +r : 1)
 })
 const currencyMaxBalance = computed(() => userInfo.value?.balance[currencyTypePay.value] ?? 0)
 
