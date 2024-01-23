@@ -15,7 +15,13 @@ const appStore = useAppStore()
 
 function initCurrencyTypePay() {
   const balance = renderBalanceList.value.find(a => a.type === currentGlobalCurrency.value)?.balance
-  return balance && +balance > 0 ? currentGlobalCurrency.value : renderBalanceList.value.filter(b => +b.balance > 0)[0].type
+  if (balance && +balance > 0)
+    return currentGlobalCurrency.value
+
+  if (renderBalanceList.value.some(a => +a.balance > 0))
+    return renderBalanceList.value.filter(b => +b.balance > 0)[0].type
+
+  return currentGlobalCurrency.value
 }
 
 const currencyTypePay = ref(initCurrencyTypePay())
