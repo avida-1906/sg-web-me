@@ -1062,9 +1062,7 @@ vip_rule_3: 'Salário semanal: Se você atingir o nível VIP correspondente aos 
 vip_rule_4: 'Salário mensal: Se você recarregar e codificar todos os meses para
   atender aos requisitos salariais mensais correspondentes ao nível VIP atual, poderá
   receber o bônus mensal correspondente, zerado às 00:00 do dia 1º de cada mês'
-vip_rule_5: 'Instruções de manutenção de nível: Depois que um membro atingir um
-  determinado nível VIP, se a recarga e a codificação do último mês não atenderem
-  aos requisitos de manutenção, o membro será automaticamente rebaixado em um nível.'
+vip_rule_5: 在晋级或降级后90天内满足保级要求（即打码都满足条件），即可保留当前VIP等级。如果90天内无法满足打码需求，则会降低一级VIP等级
 vip_rule_6: 'Instruções de auditoria: O bônus dado pelo VIP requer 1 vez de rollover
   (ou seja, auditoria, codificação ou apostas válidas) antes de poder ser retirado.
   A codificação não está limitada à plataforma de jogo'
@@ -1969,7 +1967,7 @@ input_draw_coin_addr: Insira o endereço de saque
 withdraw_detail: Detalhes do saque
 direct_vip: Membro direto
 up_rule: Critérios de promoção
-keep_level_desc: Instruções de manutenção de nível
+keep_level_desc: 保级标准
 check_desc: Instruções de auditoria
 activity_desc: Declaração de atividade
 explain_desc: Instruções da explicação
