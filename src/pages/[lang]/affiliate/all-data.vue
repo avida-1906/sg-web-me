@@ -8,7 +8,7 @@ const {
   list: currencyList,
 } = useSelect([
   {
-    label: t('all_currencies'),
+    label: t('all_data_all_currencies'),
     value: '',
   },
   ...getCurrencyOptions(),

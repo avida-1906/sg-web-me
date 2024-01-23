@@ -2552,3 +2552,9 @@ maintain_time: 维护时间
 sports_under_maintain: 体育场馆维护中...
 to: 至
 label_bind_crypto_address : 绑定
+no_withdraw_information_about_the_currency: 该币种您暂无收款信息
+please_go_card_wallet_bind_withdraw_information: 请前往卡包绑定收款信息
+go_card_wallet: 前往卡包
+Directly_subordinate_to_all_currencies: 全部币种
+Directly_subordinate_to_collect_all_currencies: 全部币种
+all_data_all_currencies: 全部币种

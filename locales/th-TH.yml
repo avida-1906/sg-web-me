@@ -1137,7 +1137,7 @@ validate_deposit_amount_pos: จำนวนเงินฝากต้องไ
 validate_deposit_amount_max: จำนวนเงินสูงสุดต้องไม่เกิน
 validate_deposit_amount_zero: 'จำนวนเงินฝากต้องไม่เป็น 0'
 withdraw_apply_success: การสมัครถอนเงินสำเร็จ
-withdraw_bank: บัตรธนาคารถอนเงิน
+withdraw_bank: บัญชีธนาคารถอนเงิน
 pix_account: 'บัญชี PIX'
 max: ค่าสูงสุด
 sports_rule: กฎการเดิมพันกีฬา
@@ -1908,7 +1908,7 @@ withdraw_address: ที่อยู่บัญชีผู้รับ
 wrong_format: รูปแบบผิดพลาด
 vip_integral: 'VIP คะแนนสะสม'
 sports_events2: รายการกีฬา
-choose_proto_pls: ข้อตกลง
+choose_proto_pls: โปรโตคอล
 vir_address: ที่อยู่สกุลเงินดิจิทัล
 input_vir_address_pls: กรุณากรอกที่อยู่สกุลเงินดิจิทัล
 digital_pwd: รหัสผ่านที่เป็นตัวเลข
@@ -2022,7 +2022,7 @@ plinko_verifyTexts_nonce: สัญญาณที่เกิดขึ้นจ
 plinko_copyText: คัดลอกสำเร็จ
 plinko_copyId: คัดลอกสำเร็จ
 currency_min_deposit_amount: 'จำนวนเงินฝากขั้นต่ำในสกุลเงินนี้คือ: {amount} {icon}'
-bind_more_bank_tip: สามารถผูกมัดข้อมูลการชำระเงินได้เพียง 3 รายการสำหรับแต่ละสกุลเงิน , หากต้องการผูกมัดมากขึ้น , กรุณาลบบัญชีที่ไม่ได้ใช่ออกก่อน 
+bind_more_bank_tip: สามารถผูกมัดข้อมูลการชำระเงินได้เพียง 3 รายการสำหรับแต่ละสกุลเงิน,หากต้องการผูกบัญชีเพิ่มเติม,กรุณาลบบัญชีที่ไม่ได้ใช่ออกก่อน
 check_card_account_pls: กรุณาใส่ใจกับการตรวจสอบบัญชี หากหมายเลขบัญชีไม่ถูกต้องเงินจะไม่เข้าบัญชี
 all_currencies: สกุลเงินทั้งหมด
 check_card_account_pls_brl: 请认真核对账户，卡号错误资金将无法到账
@@ -2035,3 +2035,9 @@ maintain_time: 维护时间
 sports_under_maintain: 体育场馆维护中...
 to: 至
 label_bind_crypto_address : 绑定
+no_withdraw_information_about_the_currency: คุณยังไม่มีข้อมูลการชำระเงินสำหรับสกุลเงินนี้
+please_go_card_wallet_bind_withdraw_information: โปรดไปที่กระเป๋าบัตรเพื่อผูกข้อมูลการรับเงิน
+go_card_wallet: ไปที่หน้ากระเป๋าบัตร
+Directly_subordinate_to_all_currencies: สกุลเงินทั้งหมด
+Directly_subordinate_to_collect_all_currencies: สกุลเงินทั้งหมด
+all_data_all_currencies: สกุลเงินทั้งหมด
