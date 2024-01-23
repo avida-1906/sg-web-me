@@ -87,6 +87,12 @@ const {
   return ''
 })
 
+// 禁用提交按钮
+const submitDisabled = computed(() => {
+  const isVirtual = application.isVirtualCurrency(currencyTypeGet.value)
+  return isVirtual ? +amountGet.value < 0.00000001 : +amountGet.value < 0.01
+})
+
 const { run, loading } = useRequest(ApiFinanceBalanceTransfer, {
   onSuccess(res) {
     openNotify({
@@ -210,7 +216,10 @@ onMounted(() => {
         </template>
       </BaseInput>
     </BaseLabel>
-    <BaseButton size="lg" bg-style="secondary" :disabled="loading" :loading="loading" @click="confirm">
+    <BaseButton
+      size="lg" bg-style="secondary" :disabled="submitDisabled || loading"
+      :loading="loading" @click="confirm"
+    >
       {{ t('confirm_pay') }}
     </BaseButton>
   </div>
