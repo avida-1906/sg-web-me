@@ -181,7 +181,7 @@ export function useApiMenuData() {
     },
     {
       title: t('responsible_casino'),
-      path: '/responsible-gambling',
+      path: '/responsible-gambling/safe',
       icon: 'spt-secure',
       list: [],
       domId: '',

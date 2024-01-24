@@ -43,17 +43,6 @@ const {
   //   validate: valiAmount,
   //   resetField: amountReset,
 } = useField<string>('targetAmount')
-const { selected: typeVal, list: options } = useSelect([
-  // { label: t('vip_promotion_bonus'), value: '818' },
-  { label: t('vip_day_salary_bonus'), value: '819' },
-  { label: t('vip_week_salary_bonus'), value: '820' },
-  { label: t('vip_month_salary_bonus'), value: '821' },
-  // { label: t('birthday_bonus'), value: '822' },
-  // {
-  //   label: t('finance_other_tab_all'),
-  //   value: '',
-  // },
-])
 const amountRef = ref()
 const activeCurrency = ref<CurrencyData | null>()
 const getBit = computed(() => {
@@ -67,22 +56,59 @@ const {
 const rate = computed(() => {
   return activeCurrency.value?.type === 'USDT' ? '1.00' : getRate('USDT', activeCurrency.value?.type ?? 'USDT', 8)?.targetNum
 })
-const { run: runGetPromoBonus, data: promoBonus, loading: loadPromoBonus }
+const { run: runGetPromoBonus, data: promoBonus, loading: loadPromoBonus } = useRequest(ApiMemberVipBonusAvailable, {
+  ready: isLogin,
+  onSuccess(data) {
+    const item = data[0]
+    if (item.state === 2) {
+      amountMax.value = toFixed(0, getBit.value)
+      setAmount(toFixed(0, getBit.value), false)
+      setTargetAmount(toFixed(0, getBit.value))
+    }
+    else {
+      const amount = Number(sub(Number(item.amount), Number(item.receive_amount)))
+      amountMax.value = toFixed(amount, getBit.value)
+      setAmount(toFixed(amount, getBit.value))
+      setTargetAmount(toFixed(Number(mul(Number(rate.value), amount)), getBit.value))
+    }
+  },
+})
+const { run: runVipBonusUpgradeApplyAll, data: applyAllResult, loading: loadApplyAll } = useRequest(ApiMemberVipBonusUpgradeApplyAll, {
+  onSuccess(data) {
+    openNotify({
+      type: 'success',
+      title: `${t('vip_promotion_bonus')}${t('receive')}`,
+      icon: 'navbar-wallet-notify',
+      message: t('success_received', { label: t('vip_promotion_bonus'), amount: data ?? 0, renderSvg: renderSvg() }),
+    })
+    closeDialog()
+  },
+})
+
+const { selected: typeVal, list: options } = useSelect(
+  [
+  // { label: t('vip_promotion_bonus'), value: '818' },
+    { label: t('vip_day_salary_bonus'), value: '819' },
+    { label: t('vip_week_salary_bonus'), value: '820' },
+    { label: t('vip_month_salary_bonus'), value: '821' },
+  // { label: t('birthday_bonus'), value: '822' },
+  // {
+  //   label: t('finance_other_tab_all'),
+  //   value: '',
+  // },
+  ])
+const { runAsync: runAsyncGetPromoBonus, data: lvPromoBonus, loading: loadLvPromoBonus }
   = useRequest(ApiMemberVipBonusAvailable, {
-    ready: isLogin,
     onSuccess(data) {
-      const item = data[0]
-      if (item.state === 2) {
-        amountMax.value = toFixed(0, getBit.value)
-        setAmount(toFixed(0, getBit.value), false)
-        setTargetAmount(toFixed(0, getBit.value))
-      }
-      else {
-        const amount = Number(sub(Number(item.amount), Number(item.receive_amount)))
-        amountMax.value = toFixed(amount, getBit.value)
-        setAmount(toFixed(amount, getBit.value))
-        setTargetAmount(toFixed(Number(mul(Number(rate.value), amount)), getBit.value))
-      }
+      options.value = data.filter(item => item.state !== 2).map((item) => {
+        return {
+          label: `VIP${item.vip}`,
+          value: item.id,
+          // ...item,
+        }
+      })
+      options.value.push({ label: t('finance_other_tab_all'), value: '' })
+      typeVal.value = props.vipBonusId ?? ''
     },
   })
 
@@ -92,9 +118,24 @@ function changeCurrency(item: CurrencyData) {
   setTargetAmount(toFixed(Number(mul(Number(rate.value), Number(amount.value))), getBit.value))
 }
 // 奖金类型切换
-function selectTypeChange(item: string) {
-  typeVal.value = item
-  runGetPromoBonus({ cash_type: typeVal.value })
+function selectTypeChange(val: string) {
+  typeVal.value = val
+  if (props.vipBonusId) { // 晋级奖金
+    let amount = 0
+    if (val) {
+      const item = lvPromoBonus.value?.find(t => t.id === val)
+      amount = Number(sub(Number(item?.amount), Number(item?.receive_amount)))
+    }
+    else { // 全部领取
+      amount = lvPromoBonus.value?.reduce((total, item) => Number(add(total, Number(sub(Number(item.amount), Number(item.receive_amount))))), 0) ?? 0
+    }
+    amountMax.value = toFixed(amount, getBit.value)
+    setAmount(toFixed(amount, getBit.value))
+    setTargetAmount(toFixed(Number(mul(Number(rate.value), amount)), getBit.value))
+  }
+  else { // 日周月奖金
+    runGetPromoBonus({ cash_type: typeVal.value })
+  }
 }
 function renderSvg() {
   return activeCurrency.value
@@ -108,20 +149,25 @@ async function submitBonus() {
     amountRef.value.setTouchTrue()
   await valiAmount()
   if (!amountMsg.value) {
-    runAsyncVipBonusApply({
-      id: props.vipBonusId ?? (promoBonus.value && promoBonus.value[0].id) ?? '',
-      cur: activeCurrency.value?.cur ?? '',
-      amount: amount.value,
-    }).then((data) => {
-      const label = options.value.find(item => item.value === typeVal.value)?.label ?? t('vip_promotion_bonus')
-      openNotify({
-        type: 'success',
-        title: `${label}${t('receive')}`,
-        icon: 'navbar-wallet-notify',
-        message: t('success_received', { label, amount: data ?? 0, renderSvg: renderSvg() }),
+    if (typeVal.value) {
+      runAsyncVipBonusApply({
+        id: props.vipBonusId ?? (promoBonus.value && promoBonus.value[0].id) ?? '',
+        cur: activeCurrency.value?.cur ?? '',
+        amount: amount.value,
+      }).then((data) => {
+        const label = options.value.find(item => item.value === typeVal.value)?.label ?? t('vip_promotion_bonus')
+        openNotify({
+          type: 'success',
+          title: `${label}${t('receive')}`,
+          icon: 'navbar-wallet-notify',
+          message: t('success_received', { label, amount: data ?? 0, renderSvg: renderSvg() }),
+        })
+        closeDialog()
       })
-      closeDialog()
-    })
+    }
+    else { // 晋级奖金全部领取
+      runVipBonusUpgradeApplyAll({ cur: activeCurrency.value?.cur ?? '' })
+    }
   }
 }
 function amountBlur() {
@@ -132,28 +178,33 @@ function amountBlur() {
 }
 
 onMounted(() => {
-  if (!props.vipBonusId) {
-    runGetPromoBonus({ cash_type: typeVal.value })
-  }
-  else {
-    typeVal.value = '818'
+  if (props.vipBonusId) {
     setAmount(props.vipBonus ?? '', false)
     amountMax.value = props.vipBonus ?? '0'
+  }
+  else {
+    runGetPromoBonus({ cash_type: typeVal.value })
   }
 })
 
 onUnmounted(() => {
-  applyResult.value && props.callBack && props.callBack()
+  (applyResult.value || applyAllResult.value) && props.callBack && props.callBack()
 })
 
 runGetExchangeRate()
+
+if (props.vipBonusId) {
+  await application.allSettled(
+    [runAsyncGetPromoBonus({ cash_type: '818' })],
+  )
+}
 </script>
 
 <template>
   <div class="app-receive-bonus">
     <BaseLabel :label="vipBonusId ? $t('vip_promotion_bonus') : $t('activity_bonus')">
-      <BaseInput ref="amountRef" v-model="amount" :msg="amountMsg" type="number" msg-after-touched @blur="amountBlur">
-        <template v-if="!vipBonusId" #right-button>
+      <BaseInput ref="amountRef" v-model="amount" :msg="amountMsg" type="number" :disabled="!typeVal" msg-after-touched @blur="amountBlur">
+        <template #right-button>
           <BaseSelect
             :model-value="typeVal" popper plain-popper-label :options="options"
             @select="selectTypeChange"
@@ -161,7 +212,7 @@ runGetExchangeRate()
             <template #label="{ data }">
               <div class="center" style="gap: 4px;">
                 <AppCurrencyIcon currency-type="USDT" />
-                <span>{{ data.label }}</span>
+                <span>{{ data?.label }}</span>
               </div>
             </template>
             <template #option="{ data: { item } }">
@@ -171,9 +222,6 @@ runGetExchangeRate()
               </div>
             </template>
           </BaseSelect>
-        </template>
-        <template v-else #right-icon>
-          <AppCurrencyIcon currency-type="USDT" />
         </template>
       </BaseInput>
     </BaseLabel>
@@ -197,7 +245,7 @@ runGetExchangeRate()
     </div>
     <BaseButton
       bg-style="secondary" size="md"
-      :loading="loadVipBonusApply || loadPromoBonus"
+      :loading="loadVipBonusApply || loadPromoBonus || loadLvPromoBonus || loadApplyAll"
       @click="submitBonus"
     >
       {{ $t('receive') }}

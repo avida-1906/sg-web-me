@@ -43,7 +43,7 @@ const {
   resetField: restPwd,
 } = useField<string>('password', (value) => {
   if (!value)
-    return t('password_least_8_characters')
+    return t('pop_up_create_account_password_least_8_characters')
   else if (value.length < 8)
     return t('pop_up_create_account_password_least_8_characters')
   else if (!upperLowerReg.test(value))

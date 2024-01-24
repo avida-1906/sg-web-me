@@ -35,7 +35,10 @@ function onClick() {
       >
         <span v-show="modelValue" class="icon" />
       </span>
-      <slot />
+
+      <span class="label">
+        <slot />
+      </span>
     </div>
     <div v-show="msg" class="msg">
       <BaseIcon class="error-icon" name="uni-warning-color" />
@@ -52,6 +55,7 @@ function onClick() {
   --tg-base-checkbox-msg-margin-top: var(--tg-spacing-6);
   --tg-base-checkbox-error-icon-color: var(--tg-text-error-sub);
   --tg-base-checkbox-wrap-width: auto;
+  --tg-base-checkbox-label-color:var(--tg-secondary-light);
 }
 </style>
 
@@ -87,6 +91,10 @@ function onClick() {
   cursor: pointer;
   font-weight: var(--tg-font-weight-semibold);
   width: var(--tg-base-checkbox-wrap-width);
+  .label{
+    color: var(--tg-base-checkbox-label-color);
+  }
+
   &:hover {
     .outer {
       border-color: var(--tg-border-color-deep-grey);

@@ -60,6 +60,7 @@ declare module 'vue' {
     AppDialogBetSlip: typeof import('./components/AppDialogBetSlip.vue')['default']
     AppDialogDepositDetail: typeof import('./components/AppDialogDepositDetail.vue')['default']
     AppDialogMessage: typeof import('./components/AppDialogMessage.vue')['default']
+    AppDialogNoMoreToday: typeof import('./components/AppDialogNoMoreToday.vue')['default']
     AppDialogNotice: typeof import('./components/AppDialogNotice.vue')['default']
     AppDialogSiteAnnouncement: typeof import('./components/AppDialogSiteAnnouncement.vue')['default']
     AppDialogSwiperNotice: typeof import('./components/AppDialogSwiperNotice.vue')['default']

@@ -138,6 +138,8 @@ useListSearch(params, runAsyncGetRecordAsync, resetPage)
 
 <style lang="scss" scoped>
 .app-vip-bonus-record{
+  width: 100%;
+  overflow: hidden;
   background: var(--tg-secondary-dark);
   padding: 12px 12px;
   border-radius: var(--tg-radius-default);

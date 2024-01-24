@@ -25,7 +25,6 @@ const route = useRoute()
 const routeName = computed(() => route.name?.toString())
 // 站内公告
 const { openDialogSiteAnnouncement } = useDialogSiteAnnouncement()
-// openDialogSiteAnnouncement()
 
 const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
@@ -155,6 +154,8 @@ onMounted(() => {
   const parentUid = router.currentRoute.value.query.uid
   if (parentUid && parentUid.length && !isLogin.value)
     openRegisterDialog()
+
+  openDialogSiteAnnouncement()
 })
 
 await application.allSettled([runMemberNoticeAllList(), loadIcon()])

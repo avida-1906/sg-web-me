@@ -109,7 +109,7 @@ const numFormat = ref(radioList[0].value)
   font-size: var(--tg-font-size-default);
   .switch-item{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     .right {
       flex: 1;
     }

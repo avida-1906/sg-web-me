@@ -6,6 +6,7 @@ const { openNotify } = useNotify()
 const { isMobile } = storeToRefs(useWindowStore())
 const { vip, score, nextLevel, isMaxLevel, vipConfigArray, max } = useVipInfo()
 const { isLogin } = storeToRefs(useAppStore())
+const route = useRoute()
 
 const { run: runGetPromoBonus, data: promoBonus, loading: loadPromoBonus }
   = useRequest(ApiMemberVipBonusAvailable, { ready: isLogin })
@@ -34,18 +35,21 @@ const columns = computed<Column[]>(() => [
     dataIndex: 'score',
     align: 'center',
     slot: 'score',
+    width: '30%',
   },
   {
     title: t('vip_promotion_bonus'),
     dataIndex: 'up_gift',
     align: 'center',
     slot: 'up_gift',
+    width: '30%',
   },
   {
     title: t('keep_integral'),
     dataIndex: 'retain_score',
     align: 'center',
     slot: 'retain_score',
+    width: '30%',
   },
 ])
 
@@ -71,11 +75,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    class="vip-promotion-bonus" :class="{ 'is-mobile': isMobile }"
-  >
+  <div class="vip-promotion-bonus" :class="{ 'is-mobile': isMobile }">
     <div class="tabs">
       <BaseTable
+        v-if="route.path.includes('/vip/')"
         :columns="columns"
         :data-source="vipConfigArray" :loading="loadPromoBonus"
         :skeleton-width="50"
@@ -90,27 +93,9 @@ onMounted(() => {
           </BaseButton>
         </template>
         <template #level="{ record }">
-          <!-- <div>VIP{{ record.level }}</div> -->
           <div class="vip-badge">
             <BaseIcon :name="`vip${record.level}`" />
           </div>
-        </template>
-        <template #retain_score="{ record: { retain_score, level }, index }">
-          <div v-if="!index">
-            -
-          </div>
-          <span v-else-if="!Number(retain_score ?? 0)">-</span>
-          <div
-            v-else-if="+vip === +level" class="score-wrap user-level-vip"
-            :style="{
-              '--progress-width':
-                `${(score / Number(retain_score)) > 1 ? 100
-                  : (score / Number(retain_score)) * 100}%`,
-            }"
-          >
-            <span>{{ score }}/{{ retain_score }}</span>
-          </div>
-          <span v-else>{{ retain_score }}</span>
         </template>
         <template #score="{ record, index }">
           <div v-if="!index">
@@ -119,9 +104,6 @@ onMounted(() => {
           <div
             v-else-if="(nextLevel && +nextLevel?.level === +record.level)"
             class="score-wrap user-level-vip"
-            :class="{
-              'lower-vip': +record.level <= +vip && bonusArray.length,
-            }"
             :style="{
               '--progress-width':
                 `${(score / Number(record.score)) > 1 ? 100
@@ -173,6 +155,69 @@ onMounted(() => {
             </template>
           </div>
         </template>
+        <template #retain_score="{ record: { retain_score, level }, index }">
+          <div v-if="!index">
+            -
+          </div>
+          <span v-else-if="!Number(retain_score ?? 0)">-</span>
+          <div
+            v-else-if="+vip === +level" class="score-wrap user-level-vip"
+            :style="{
+              '--progress-width':
+                `${(score / Number(retain_score)) > 1 ? 100
+                  : (score / Number(retain_score)) * 100}%`,
+            }"
+          >
+            <span>{{ score }}/{{ retain_score }}</span>
+          </div>
+          <span v-else>{{ retain_score }}</span>
+        </template>
+      </BaseTable>
+      <BaseTable
+        v-else
+        :columns="columns"
+        :data-source="vipConfigArray" :loading="loadPromoBonus"
+        :skeleton-width="50"
+      >
+        <template #th-score>
+          <BaseButton
+            type="text"
+            size="none"
+            @click="seeExpDialog"
+          >
+            <BaseIcon name="uni-ques-blue" />
+          </BaseButton>
+        </template>
+        <template #level="{ record }">
+          <div class="vip-badge">
+            <BaseIcon :name="`vip${record.level}`" />
+          </div>
+        </template>
+        <template #score="{ record, index }">
+          <div v-if="!index">
+            -
+          </div>
+          <div v-else>
+            {{ record.score }}
+          </div>
+        </template>
+        <template #up_gift="{ record, index }">
+          <div class="score-wrap">
+            <div v-if="!index">
+              -
+            </div>
+            <div v-else>
+              <AppAmount :amount="record.up_gift" currency-type="USDT" />
+            </div>
+          </div>
+        </template>
+        <template #retain_score="{ record: { retain_score }, index }">
+          <div v-if="!index">
+            -
+          </div>
+          <span v-else-if="!Number(retain_score ?? 0)">-</span>
+          <span v-else>{{ retain_score }}</span>
+        </template>
       </BaseTable>
     </div>
     <AppVipRuleDesc />
@@ -188,15 +233,15 @@ onMounted(() => {
   display: flex;
   align-items: center;
 }
-.lower-vip {
-  max-width: 290px;
-  margin: 0 auto;
-  border-radius: 20px;
-  // background: rgba(47, 69, 84, 0.70);
-  color: var(--tg-text-white);
-  display: block;
-  width: 100%;
-}
+// .lower-vip {
+//   max-width: 290px;
+//   margin: 0 auto;
+//   border-radius: 20px;
+//   // background: rgba(47, 69, 84, 0.70);
+//   color: var(--tg-text-white);
+//   display: block;
+//   width: 100%;
+// }
 .score-wrap {
   display: flex;
   align-items: center;
@@ -218,7 +263,7 @@ onMounted(() => {
   margin: 0 auto;
   border-radius: 20px;
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
   color: var(--tg-text-white);
   span {
     position: relative;
@@ -241,11 +286,12 @@ onMounted(() => {
   justify-content: flex-end;
 }
 .vip-promotion-bonus {
+  width: 100%;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
   gap: var(--tg-spacing-14);
   --tg-app-amount-font-size: var(--tg-font-size-xs);
-  overflow: visible;
   &.is-mobile {
     .tabs {
       background: none;
@@ -254,6 +300,7 @@ onMounted(() => {
     }
   }
   .tabs {
+    width: 100%;
     background: var(--tg-secondary-dark);
     padding: 12px 12px;
     border-radius: var(--tg-radius-default);
