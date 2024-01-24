@@ -543,7 +543,7 @@ const toVip = function () {
         <AppBannerUnlimited class="vip-slider-wrap" />
       </div>
       <!-- 奖励 -->
-      <div class="vip-award">
+      <div ref="award" class="vip-award">
         <p class="title">
           {{ t('bonus_label') }}
         </p>

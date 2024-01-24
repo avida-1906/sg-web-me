@@ -2297,3 +2297,13 @@ export function ApiMemberBannerV2List(params: {
     mobile_seq: number
   }[]>('/member/banner/v2/list', { params })
 }
+
+/*
+* vip晋级奖励全部领取
+* @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=998fe27d-fe2e-49d1-ada7-c52bf2caae56
+*/
+export function ApiMemberVipBonusUpgradeApplyAll(data: {
+  cur: string
+}) {
+  return httpClient.post<string>('/member/vip/bonus/upgrade/apply/all', data)
+}

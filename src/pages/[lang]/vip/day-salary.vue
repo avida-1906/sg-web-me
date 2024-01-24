@@ -140,23 +140,14 @@ const columns = computed<Column[]>(() => [
   display: flex;
   align-items: center;
 }
-.green-text {
-  color: var(--tg-text-green);
-  cursor: pointer;
-}
 .gift {
   display: inline-block;
 }
-// .color-orange {
-//   color: var(--tg-text-warn);
-// }
-.flex-center {
-  display: flex;
-  justify-content: center;
-}
 .vip-day-salary {
+  width: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   gap: var(--tg-spacing-14);
   &.is-mobile {
     .tabs {
@@ -170,8 +161,6 @@ const columns = computed<Column[]>(() => [
     padding: 12px 12px;
     border-radius: var(--tg-radius-default);
     .btn-box{
-      // --tg-base-button-padding-y: 8px;
-      // --tg-base-button-padding-x: 148px;
       margin-top: 20px;
     }
     .btn-receive{
