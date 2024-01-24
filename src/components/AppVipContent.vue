@@ -4,8 +4,7 @@ const { isLogin } = storeToRefs(useAppStore())
 const { appContentWidth } = storeToRefs(useWindowStore())
 const router = useLocalRouter()
 
-const PromotionBonus
-  = defineAsyncComponent(() => import('~/pages/[lang]/vip/promotion-bonus.vue'))
+const PromotionBonus = defineAsyncComponent(() => import('~/pages/[lang]/vip/promotion-bonus.vue'))
 const DaySalary = defineAsyncComponent(() => import('~/pages/[lang]/vip/day-salary.vue'))
 const Rebate = defineAsyncComponent(() => import('~/pages/[lang]/vip/rebate.vue'))
 const Receive = defineAsyncComponent(() => import('~/pages/[lang]/vip/receive.vue'))
@@ -39,7 +38,9 @@ const getComponent = computed(() => {
         full
       />
     </template>
-    <component :is="getComponent" />
+    <Transition mode="out-in">
+      <component :is="getComponent" />
+    </Transition>
   </div>
 </template>
 

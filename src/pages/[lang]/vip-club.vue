@@ -855,6 +855,9 @@ const toVip = function () {
         "headerImage"
         "headerText";
         grid-template-columns: 1fr;
+        .left-title{
+          text-align: center;
+        }
       }
     }
   }
@@ -905,8 +908,10 @@ const toVip = function () {
         }
         &.steps-is-sm{
           grid-auto-flow: row;
+          gap: 24px;
+          margin-top: 24px;
           .img-wrap{
-            margin: 0 0 var(--tg-spacing-26);
+            margin: 0 0 var(--tg-spacing-24);
           }
         }
       }
