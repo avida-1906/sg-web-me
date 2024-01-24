@@ -6,14 +6,24 @@ const router = useLocalRouter()
 const route = useRoute()
 const { animatingMounted } = useLayoutAnimate({ aniMounted: true })
 const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
-const { isLogin } = storeToRefs(useAppStore())
+const { isLogin, companyData } = storeToRefs(useAppStore())
 const { bool: isPopShow, setTrue: setPTrue, setFalse: setPFalse } = useBoolean(false)
 
 const path = computed(() => {
   return `/${route.path.split('/').slice(2).join('/')}`
 })
 const menuData = computed<any>(() =>
-  route.meta.withMenuMenu?.map((m, idx) => ({ ...m, title: m.isT ? t(m.title) : m.title, value: idx, label: m.isT ? t(m.title) : m.title }))
+  route.meta.withMenuMenu?.map((m, idx) => {
+    if (m.title === 'stake_safety')
+      m.title = t(m.title, { site: companyData.value?.name })
+
+    return {
+      ...m,
+      title: m.isT ? t(m.title) : m.title,
+      value: idx,
+      label: m.isT ? t(m.title) : m.title,
+    }
+  })
     .filter(f => f.token ? isLogin.value : true))
 const icon = computed<any>(() => route.meta.withMenuIcon)
 const withMenuMobileType = computed(() => route.meta.withMenuMobileType)
