@@ -41,7 +41,7 @@ const {
   resetField: restPwd,
 } = useField<string>('password', (value) => {
   if (!value)
-    return t('password_least_8_characters')
+    return t('pop_up_create_account_password_least_8_characters')
   else if (value.length < 8)
     return t('pop_up_create_account_password_least_8_characters')
   else if (!upperLowerReg.test(value))
@@ -319,7 +319,7 @@ defineExpose({ getMemberReg, resetForm })
 <template>
   <div class="app-register">
     <div class="app-register-input-box">
-      <BaseLabel v-if="needEmail" :label="t('pop_up_create_account_label_email_address')" must-small need-focus>
+      <BaseLabel v-if="needEmail" :label="t('pop_up_create_account_label_email_address')" need-focus must-small>
         <BaseInput
           ref="emailRef" v-model="email"
           :msg="emailErrorMsg" msg-after-touched type="email" name="email"

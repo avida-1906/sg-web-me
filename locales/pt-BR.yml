@@ -2556,11 +2556,11 @@ go_card_wallet: 前往卡包
 Directly_subordinate_to_all_currencies: 全部币种
 Directly_subordinate_to_collect_all_currencies: 全部币种
 all_data_all_currencies: 全部币种
-top_bar_login_button: 登录
-pop_up_login_label: 登录
-pop_up_login_button: 登录
-pop_up_create_account_passcode_least_1_number: 至少包含一个数字
-pop_up_create_account_uppercase_lowercase_letter: 含有大写和小写字母
+top_bar_login_button: Entrar
+pop_up_login_label: Entrar
+pop_up_login_button: Entrar
+pop_up_create_account_passcode_least_1_number: Pelo menos 1 número
+pop_up_create_account_uppercase_lowercase_letter: Inclui maiúsculas e minúsculas
 pop_up_create_account_password_least_1_number: 密码必须含有至少一个数字
 pop_up_create_account_password_uppercase_lowercase_letter: 密码必须含有至少 1 个大写字母和 1 个小写字母
 tip_pop_up_reg_success_title: 欢迎
@@ -2582,3 +2582,78 @@ site_announcement: 站内公告
 dont_tip_today: 今日不再提示
 pop_up_finally_create_account_name_no_equal_pwd: 您的用户名和密码不能相同
 top_bar_drop_down_search_currency: 搜索货币
+responsible_safe_text_1: meibo is committed to providing a safe environment for all its players to gamble with us, which is why it’s so important to meibo Safe!
+responsible_safe_text_2: Online casino gambling should be a form of entertainment that should not cause harm to other areas of your life.
+responsible_safe_text_3: 'meibo does this through:'
+responsible_safe_text_4: Providing information to customers regarding their play and spend so they can make informed decisions about their gambling.
+responsible_safe_text_5: Having safer gambling tools available in (such as limits, breaks and self-exclusions) that are available to all customers to place on their account at any time.
+responsible_safe_text_6: Providing information regarding external support to assist with preventing gambling harm and problem gambling.
+responsible_safe_text_7: A Customer Service Team available 24/7 to assist with safer gambling enquiries.
+responsible_safe_text_8: Ensuring minors are not able to create meibo.com accounts.
+responsible_safe_text_9: What is Safe Gambling?
+responsible_safe_text_10: Understanding about safe gambling is key to making sure you are maximising the meibo.com experience.
+responsible_safe_text_11: 'Tips to gambling safely are:'
+responsible_safe_text_12: Your gambling is balanced with other recreational activities/pastimes you have.
+responsible_safe_text_13: Before you start to gamble, you have a plan in mind of how much you want to spend gambling, and how long you will be gambling for.
+responsible_safe_text_14: Betting with money that is affordable to you.
+responsible_safe_text_15: Taking breaks or stopping gambling for the day.
+responsible_safe_text_16: Understanding the odds and knowing the risks associated with gambling.
+responsible_safe_text_17: Not being overly upset and angry by losses when you are gambling.
+responsible_safe_text_18: Learn more tips with our responsible gambling guide.
+responsible_safe_text_19: Knowing the Odds
+responsible_safe_text_20: There are a lot of myths and misconceptions about gambling - understanding the odds of gambling helps put the chances of winning into perspective.
+responsible_safe_text_21: meibo offers two products, Casino and Sportsbook.
+responsible_safe_text_22: Both products have different win rates and probability that players need to be aware of, which will help to understand the risks associated with gaming.
+responsible_safe_text_23: House Advantage/House Edge
+responsible_safe_text_24: Games have a house edge to ensure a percentage of the total amount wagered is returned to the House, which in this case is meibo.
+responsible_safe_text_25: Randomness
+responsible_safe_text_26: All gambling has an element of randomness - there is no way to control the outcome of any casino game or sporting event.
+responsible_safe_text_27: Independent Outcomes
+responsible_safe_text_28: Games/Spins are not related. Their outcomes are not dependent on how much, or how long, you’ve previously played the game for.
+responsible_safe_text_29: Odds and Probability
+responsible_safe_text_30: Odds and probability are ways to describe your chances of winning. Whilst the odds can appear to be low, there are no certainties in betting.
+responsible_safe_text_31: Ways We Can Help You Stay meibo Safe!
+responsible_safe_text_32: meibo is committed to promoting players to consider their own activity, whilst providing the tools they need to ensure they are in control, and playing with money they can afford.
+responsible_safe_text_33: Using Safer Gambling Tools on Your Account
+responsible_safe_text_34: meibo has a range of tools that can be applied to your account to set safe limits for you to play within.
+responsible_safe_text_35: Budget Calculator
+responsible_safe_text_36: Use our Monthly Budget Calculator to help monitor your spending habits and review how much of your income is spent on gambling. Learn more about how much you should gamble with our guide.
+responsible_safe_text_37: Gambling Limits
+responsible_safe_text_38: Loss limit
+responsible_safe_text_39: A loss limit allows you to set a limit on how much you can afford to lose over your set period of time. The limit can be set over a period of one day, one week or one month. It is a net loss limit. Profits made during your set period will not count towards your limit amount. If you are profitable during the set period, you are able to use your profits to continue to wager and bet until you reach your loss limit. Unsettled bets count towards the limit. Please check your unsettled bets if you are unable to place bets, as these unsettled bets may be causing you to reach your limit.
+responsible_safe_text_40: Wager limit
+responsible_safe_text_41: A wager limit (or betting limit) allows you to set a limit on how much you can wager over your set period of time. The maximum bet limit can be set over a period of one day, one week or one month. The limit is not a net limit so profits are excluded. This means, if you are profitable during the period these profits are not offset against your maximum bet limit.
+responsible_safe_text_42: To increase or decrease your limits you must remove existing limits and create new limits. Upon removing limits a 24-hour cool off period will commence before you are able to create your new limit.
+responsible_safe_text_43: Self-Exclusion
+responsible_safe_text_44: Lock yourself out of your meibo.com for a longer period of time if gambling is becoming a concern for you. You can opt for a 6 month, 1 year, 2 year and 5 year self exclusion. If you would like detailed information about how self exclusion works, please click here.
+responsible_safe_text_45: Gamban
+responsible_safe_text_46: Gamban is a gambling blocking software that you can elect to install on your devices for the duration of your self exclusion. Eligible customers can receive a complimentary Gamban subscription on us when excluding for the periods of 3 months, 6 months or 1 year.
+responsible_safe_text_47: What is Problem Gambling?
+responsible_safe_text_48: 'A small population of people who gamble are considered to be problem gamblers. For these people, gambling stops being fun and starts to negatively affect other areas of your personal life such as:'
+responsible_safe_text_49: Mental wellbeing
+responsible_safe_text_50: Physical health
+responsible_safe_text_51: Personal relationships
+responsible_safe_text_52: Financial situation
+responsible_safe_text_53: 'Signs you May be developing Problem Gambling:'
+responsible_safe_text_54: Getting overly upset by losses.
+responsible_safe_text_55: Chasing your losses back.
+responsible_safe_text_56: Not being able to stop or cut back gambling.
+responsible_safe_text_57: Hiding your gambling from others and being defensive about losses or time spent gambling.
+responsible_safe_text_58: Neglecting responsibilities (financial and personal relationships).
+responsible_safe_text_59: Using gambling to escape other problems.
+responsible_safe_text_60: Minors
+responsible_safe_text_61: meibo.com does not support underage gambling.
+responsible_safe_text_62: Underage gambling is illegal, and is defined as anyone who is under the age of 18 years old at the time of account registration.
+responsible_safe_text_63: No winnings should be paid to such players if identified as someone who is underage.
+responsible_safe_text_64: Tips for Parents
+responsible_safe_text_65: Do not leave your computer unattended when your casino software is running.
+responsible_safe_text_66: Password-protect your casino program.
+responsible_safe_text_67: Do not allow minors to participate in any gambling activity.
+responsible_safe_text_68: Keep your casino account number and payment card(s) out of reach of minors.
+responsible_safe_text_69: Do not save passwords onto your computer.
+responsible_safe_text_70: Limit the amount of time your children spend online and make use of software to prevent your children from accessing inappropriate material.
+responsible_safe_text_71: Gambling Bet Blocking and Filtering Tools
+responsible_safe_text_72: 'In order to ensure child safety on the Internet, meibo encourages its players to make use of filtering software to prevent minors from accessing certain online material:'
+responsible_safe_text_73: Gamcare
+responsible_safe_text_74: Netnanny
+responsible_safe_text_75: Betblocker
