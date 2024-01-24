@@ -107,7 +107,7 @@ await application.allSettled([runAsyncModelsList()])
         </span>
       </template>
       <template #effective_bat="{ record }">
-        {{ record.effective_amount <= 0 ? toFixed(0) : `${toFixed(+mul(record.effective_amount, 10000))}+` }}
+        {{ record.effective_amount <= 0 ? `${toFixed(0)}+` : `${toFixed(+mul(record.effective_amount, 10000))}+` }}
       </template>
     </BaseTable>
   </div>

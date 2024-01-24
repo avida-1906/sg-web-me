@@ -29,8 +29,7 @@ const validationSchema = yup.object({
   country: yup.string().trim().required(t('enter_your_content')),
   city: yup.string().trim().required(t('enter_your_content')),
   bank_name: yup.string().trim().required(t('enter_your_content')),
-  address: yup.string().trim().required(t('enter_your_content')),
-  bank_account: yup.number().required(t('enter_your_content')),
+  bank_account: yup.string().required(t('enter_your_content')),
   pay_password: yup.string().trim().required(t('enter_your_content')),
 })
 // #endregion
@@ -43,7 +42,7 @@ const { value: country, errorMessage: countryError } = useField<string>('country
 const { value: city, errorMessage: cityError } = useField<string>('city')
 const { value: address, errorMessage: addressError } = useField<string>('address')
 const { value: bank_name, errorMessage: bank_nameError } = useField<string>('bank_name')
-const { value: bank_account, errorMessage: bank_accountError } = useField<number>('bank_account')
+const { value: bank_account, errorMessage: bank_accountError } = useField<string>('bank_account')
 const { value: pay_password, errorMessage: pay_passwordError } = useField<string>('pay_password')
 // #endregion
 
