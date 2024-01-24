@@ -32,6 +32,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const lang = getCurrentLanguageForBackend()
+const { setCurrentNoticeId } = useDialogSiteAnnouncementList()
 
 const tab = ref(props.data[0].id)
 
@@ -45,11 +46,19 @@ const isText = computed(() => currentNotice.value?.pop_up_type === 1)
 const isImg = computed(() => currentNotice.value?.pop_up_type === 2)
 const textContent = computed(() => currentNotice.value?.content[lang] ?? '')
 const imgUrl = computed(() => currentNotice.value?.image_url[lang] ?? '')
+
+function onTabChange(v: string) {
+  setCurrentNoticeId(v)
+}
+
+onMounted(() => {
+  setCurrentNoticeId(tab.value)
+})
 </script>
 
 <template>
   <div class="flex flex-col px-12 pb-18">
-    <BaseTab v-if="tabList.length > 1" v-model="tab" :list="tabList" />
+    <BaseTab v-if="tabList.length > 1" v-model="tab" :list="tabList" @change="onTabChange" />
     <div class="bg-tg-secondary-dark relative mt-15 w-full rounded-[4px] pt-[78.125%]">
       <div class="scroll-y absolute left-0 top-0 h-full w-full">
         <!-- 文字 -->

@@ -36,7 +36,7 @@ const {
   onSuccess(data) {
     if (data.notice && data.notice.length > 0 && !Local.get(STORAGE_NO_MORE_TIP_DAY)?.value) {
       const { openDialogSiteAnnouncement } = useDialogSiteAnnouncement()
-      openDialogSiteAnnouncement(data.notice)
+      openDialogSiteAnnouncement(data.notice.slice(0, 4))
     }
   },
 })

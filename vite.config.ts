@@ -84,6 +84,7 @@ export default defineConfig(({ mode }) => {
           'pinia',
           {
             'lodash-es': [
+              'uniq',
               'find',
               'debounce',
               'filter',
