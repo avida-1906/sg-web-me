@@ -2550,7 +2550,7 @@ maintain_time: 维护时间
 sports_under_maintain: 体育场馆维护中...
 to: 至
 label_bind_crypto_address : 绑定
-no_withdraw_information_about_the_currency: 该币种您暂无收款信息
+no_withdraw_information_about_the_currency: Você ainda não tem informações de pagamento para esta moeda
 please_go_card_wallet_bind_withdraw_information: 请前往卡包绑定收款信息
 go_card_wallet: 前往卡包
 Directly_subordinate_to_all_currencies: Todas as moedas
@@ -2568,7 +2568,7 @@ registration_agree_terms_conditions: Por favor, leia os termos e condições na 
 registration_finally_play_now: Jogar Agora
 pop_up_forgot_password_email_address: E-mail
 pop_up_forgot_password: Esqueci a Senha
-pop_up_create_account_password_least_8_characters: 您的密码必须含有至少 8 个字符
+pop_up_create_account_password_least_8_characters: Sua senha deve ter no mínimo 8 caracteres
 pop_up_create_account_name_14_char: Seu username deve conter menos de 14 caracteres
 pop_up_create_account_name_3_char: Seu username deve conter pelo menos 3 caracteres
 pop_up_create_account_no_support_email: Domínio de e-mail não suportado
