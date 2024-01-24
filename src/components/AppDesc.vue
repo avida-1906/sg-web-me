@@ -78,8 +78,8 @@ const columns = ref<Column[]>([
   {
     title: t('multiple_count'),
     width: 100,
-    dataIndex: 'multiple',
-    slot: 'multiple',
+    dataIndex: 'factor',
+    slot: 'factor',
     align: 'center',
   },
   {
@@ -280,6 +280,9 @@ setTimeout(() => {
                 style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
               />
             </div>
+          </template>
+          <template #factor="{ record: { factor } }">
+            {{ `${application.numberToLocaleString(factor)}x` }}
           </template>
         </BaseTable>
       </div>

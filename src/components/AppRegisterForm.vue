@@ -126,9 +126,9 @@ const {
 // #endregion
 
 const {
-  runAsync: runAsyncMemberSendMailCode,
+  runAsync: runAsyncMemberSendMailReg,
   loading: sendMailCodeLoading,
-} = useRequest(ApiMemberSendMailCode, {
+} = useRequest(ApiMemberSendMailReg, {
   onSuccess() {
     timer.value = setInterval(() => {
       if (countdown.value <= 1) {
@@ -316,7 +316,7 @@ async function sendEmailCode() {
     if (emailErrorMsg.value)
       return
 
-    runAsyncMemberSendMailCode()
+    runAsyncMemberSendMailReg({ email: email.value })
   }
 }
 

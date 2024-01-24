@@ -36,7 +36,7 @@ const {
 } = useBoolean(false)
 const { openStatisticsDialog } = useStatisticsDialog()
 // 投注详情
-const { openBetSlipDialog } = useDialogBetSlip()
+// const { openBetSlipDialog } = useDialogBetSlip()
 // 我的投注
 const {
   list,
@@ -120,7 +120,8 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
       },
       {
         title: t('multiple_count'),
-        dataIndex: 'multiplier',
+        dataIndex: 'factor',
+        slot: 'factor',
         align: 'right',
         xl: true,
         skeWidth: '42px',
@@ -172,7 +173,8 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
       },
       {
         title: t('multiple_count'),
-        dataIndex: 'multiplier',
+        dataIndex: 'factor',
+        slot: 'factor',
         align: 'right',
         xl: true,
         skeWidth: '42px',
@@ -258,7 +260,8 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
       },
       {
         title: t('sports_odds_title'),
-        dataIndex: 'multiplier',
+        dataIndex: 'factor',
+        slot: 'factor',
         align: 'right',
         xl: true,
         skeWidth: '42px',
@@ -304,7 +307,7 @@ const getList = computed(() => {
           player: 'Herryhung',
           time: '10:47',
           bet_amount: '1234.11',
-          multiplier: '2.97x',
+          factor: '2.97x',
           net_amount: '100',
           currency_id: '701',
           stealth: 1, // 隐身状态
@@ -315,7 +318,7 @@ const getList = computed(() => {
           player: 'Herryhung',
           time: '10:47',
           bet_amount: '2.111111',
-          multiplier: '2.97x',
+          factor: '2.97x',
           net_amount: '200',
           currency_id: '702',
           bonus_amount: '12.00%',
@@ -325,7 +328,7 @@ const getList = computed(() => {
           player: 'Herryhung',
           time: '10:47',
           bet_amount: '1.111111',
-          multiplier: '2.97x',
+          factor: '2.97x',
           net_amount: '10',
           currency_id: '703',
           bonus_amount: '8.00%',
@@ -335,7 +338,7 @@ const getList = computed(() => {
           player: 'Herryhung',
           time: '10:47',
           bet_amount: '1.111111',
-          multiplier: '2.97x',
+          factor: '2.97x',
           net_amount: '20',
           currency_id: '706',
           bonus_amount: '6.00%',
@@ -483,8 +486,9 @@ onUnmounted(() => {
         <template #gameName="{ record }">
           <div class="game-box">
             <!-- @click="openBetSlipDialog({ type: 'casino', data: record })" -->
-            <BaseIcon v-if="mode === 'casino'" name="chess-slot-machine" />
-            <BaseIcon v-if="mode === 'sports'" name="spt-basketball" />
+            <!-- <BaseIcon v-if="mode === 'casino'" name="chess-slot-machine" />
+            <BaseIcon v-if="mode === 'sports'" name="spt-basketball" /> -->
+            <BaseImage :url="`${record.icon}`" width="14px" is-network />
             <span>{{ record.game_name }}</span>
           </div>
         </template>
@@ -570,6 +574,9 @@ onUnmounted(() => {
             <BaseIcon v-else-if="index === 2" name="uni-rank3" />
           </div>
           <span v-else>{{ `${index + 1}th` }}</span>
+        </template>
+        <template #factor="{ record: { factor } }">
+          {{ factor ? application.numberToLocaleString(factor) + (mode === 'casino' ? 'x' : '') : '-' }}
         </template>
       </BaseTable>
     </template>

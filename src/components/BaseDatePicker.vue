@@ -72,9 +72,9 @@ onMounted(() => {
 
 <template>
   <div class="date-picker-outer">
-    <div class="base-date-picker">
+    <div class="base-date-picker" @click="togglePicker('start')">
       <div class="wrap">
-        <label @click="togglePicker('start')">
+        <label>
           <span>{{ startDateLabel }}</span>
           <input
             ref="startDateEle"
@@ -91,9 +91,9 @@ onMounted(() => {
       </div>
       <BaseIcon :class="{ 'arrow-up': arrowUp1 }" name="uni-arrow-down" />
     </div>
-    <div class="base-date-picker">
+    <div class="base-date-picker" @click="togglePicker('end')">
       <div class="wrap">
-        <label class="end" @click="togglePicker('end')">
+        <label class="end">
           <span>{{ endDateLabel }}</span>
           <input
             ref="endDateEle"
@@ -146,6 +146,7 @@ onMounted(() => {
   }
 }
 .base-date-picker {
+  cursor: pointer;
   display: flex;
   gap: var(--tg-spacing-8);
   width: var(--tg-base-date-picker-width);
@@ -175,7 +176,7 @@ onMounted(() => {
     label {
       display: block;
       position: relative;
-      cursor: pointer;
+
       height: 100%;
       line-height: 21px;
       min-height: 21px;

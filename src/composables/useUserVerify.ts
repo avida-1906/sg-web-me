@@ -4,7 +4,7 @@ export function useUserVerify() {
   } = useBrandBaseDetail()
   const { userInfo } = storeToRefs(useAppStore())
 
-  const SecuritySafePwd = defineAsyncComponent(() => import('~/pages/[lang]/settings/security-safe-pwd.vue'))
+  const SecuritySafePwd = defineAsyncComponent(() => import('~/components/AppPayPassword.vue'))
   const SecuritySafeCheck = defineAsyncComponent(() => import('~/pages/[lang]/settings/security-safe-check.vue'))
   const AppEmailVerify = defineAsyncComponent(() => import('~/components/AppEmailVerify.vue'))
 

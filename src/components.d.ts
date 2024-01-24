@@ -103,6 +103,8 @@ declare module 'vue' {
     AppPageMyBets: typeof import('./components/AppPageMyBets.vue')['default']
     AppPasswordInput: typeof import('./components/AppPasswordInput.vue')['default']
     AppPasswordVerify: typeof import('./components/AppPasswordVerify.vue')['default']
+    AppPayPassword: typeof import('./components/AppPayPassword.vue')['default']
+    AppPayPassWord: typeof import('./components/AppPayPassWord.vue')['default']
     AppPayPwdAndGoogleCode: typeof import('./components/AppPayPwdAndGoogleCode.vue')['default']
     AppPayPwdDialog: typeof import('./components/AppPayPwdDialog.vue')['default']
     AppPercentage: typeof import('./components/AppPercentage.vue')['default']
