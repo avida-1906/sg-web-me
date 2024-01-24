@@ -120,7 +120,7 @@ watch(() => props.columns, () => {
         >
           <td class="m-td-empty" :colspan="columns.length">
             <div style="margin-top: var(--tg-table-margin-top-empty);">
-              <BaseEmpty :description="t('data_empty')" icon="uni-empty-betslip" />
+              <BaseEmpty :description="t('data_empty')" icon="empty-1" />
             </div>
           </td>
         </tr>

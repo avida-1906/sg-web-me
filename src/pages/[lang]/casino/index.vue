@@ -18,13 +18,10 @@ const { isLogin } = storeToRefs(useAppStore())
 const { isMobile } = storeToRefs(useWindowStore())
 const casinoStore = useCasinoStore()
 const { casinoNav, casinoGameList } = storeToRefs(casinoStore)
-const { openSwiperNoticeDialog } = useDialogSwiperNotice(430)
 const { openRegisterDialog } = useRegisterDialog()
 const router = useLocalRouter()
 const route = useRoute()
 const routeName = computed(() => route.name?.toString())
-// 站内公告
-const { openDialogSiteAnnouncement } = useDialogSiteAnnouncement()
 
 const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
@@ -37,9 +34,10 @@ const {
   runAsync: runMemberNoticeAllList,
 } = useRequest(ApiMemberNoticeAllList, {
   onSuccess(data) {
-    for (const item of data.notice)
-      item.value = item.id
-    data.notice.length > 0 && openSwiperNoticeDialog(data.notice)
+    if (data.notice && data.notice.length > 0 && !Local.get(STORAGE_NO_MORE_TIP_DAY)?.value) {
+      const { openDialogSiteAnnouncement } = useDialogSiteAnnouncement()
+      openDialogSiteAnnouncement(data.notice)
+    }
   },
 })
 
@@ -154,8 +152,6 @@ onMounted(() => {
   const parentUid = router.currentRoute.value.query.uid
   if (parentUid && parentUid.length && !isLogin.value)
     openRegisterDialog()
-
-  openDialogSiteAnnouncement()
 })
 
 await application.allSettled([runMemberNoticeAllList(), loadIcon()])
