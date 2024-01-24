@@ -223,9 +223,6 @@ if (props.vipBonusId) {
             </template>
           </BaseSelect>
         </template>
-        <!-- <template v-else #right-icon>
-          <AppCurrencyIcon currency-type="USDT" />
-        </template> -->
       </BaseInput>
     </BaseLabel>
     <div>
