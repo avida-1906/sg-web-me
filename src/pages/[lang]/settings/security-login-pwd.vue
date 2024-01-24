@@ -106,7 +106,6 @@ async function submitLoginPwd() {
   <div class="tg-settings-security">
     <AppSettingsContentItem
       :title="t('password')"
-      last-one
       :btn-loading="passwordUpdateLoading && logoutLoading"
       :show-hr="false"
       :depends-disabled="[!password && !newPassword && !repeatPassword]"
@@ -144,6 +143,7 @@ async function submitLoginPwd() {
         />
       </BaseLabel>
     </AppSettingsContentItem>
+    <AppPayPassword />
   </div>
 </template>
 
