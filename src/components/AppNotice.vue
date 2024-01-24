@@ -9,25 +9,25 @@ const { t } = useI18n()
 
 // const { isMobile } = storeToRefs(useWindowStore())
 
-const A = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
+// const A = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
 const B = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
 const C = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
-const D = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
+// const D = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
 const tab = ref(EnumPage[0])
 const tabList = [
-  { label: t('notification'), value: EnumPage[0] },
+  // { label: t('notification'), value: EnumPage[0] },
   { label: t('site_message'), value: EnumPage[1] },
   { label: t('notice'), value: EnumPage[2] },
-  { label: t('marquee'), value: EnumPage[3] },
+  // { label: t('marquee'), value: EnumPage[3] },
   { label: t('reward_feedback'), value: EnumPage[4] },
 ]
 
 const getComponent = computed(() => {
   switch (tab.value) {
-    case EnumPage[0]: return A
+    // case EnumPage[0]: return A
     case EnumPage[1]: return B
     case EnumPage[2]: return C
-    case EnumPage[3]: return D
+    // case EnumPage[3]: return D
     case EnumPage[4]: return showFeedbackChat.value ? AppFeedbackChat : AppFeedback
   }
 })
@@ -58,6 +58,7 @@ const getComponent = computed(() => {
         v-model="tab"
         :list="tabList"
         :center="false"
+        full
         need-scroll-into-view
       />
     </div>
