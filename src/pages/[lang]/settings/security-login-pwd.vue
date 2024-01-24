@@ -6,6 +6,9 @@ const { openNotify } = useNotify()
 const { runMemberLogout, logoutLoading } = useLogout()
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(true)
 const {
+  isOpenPayPwd,
+} = useBrandBaseDetail()
+const {
   bool: isShowPasswordVerify,
   setTrue: setShowPasswordVerifyTrue,
   setFalse: setShowPasswordVerifyFalse,
@@ -143,7 +146,9 @@ async function submitLoginPwd() {
         />
       </BaseLabel>
     </AppSettingsContentItem>
-    <AppPayPassword />
+    <template v-if="isOpenPayPwd">
+      <AppPayPassword />
+    </template>
   </div>
 </template>
 
