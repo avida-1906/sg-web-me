@@ -2047,25 +2047,25 @@ pop_up_login_button: ล็อกอิน
 pop_up_create_account_passcode_least_1_number: ประกอบด้วยตัวเลขอย่างน้อย 1 ตัว
 pop_up_create_account_uppercase_lowercase_letter: ต้องประกอบด้วยตัวพิมพ์ใหญ่และตัวพิมพ์เล็ก
 pop_up_create_account_password_least_1_number: รหัสผ่านต้องมีตัวเลขอย่างน้อย 1 ตัว
-pop_up_create_account_password_uppercase_lowercase_letter: 密码必须含有至少 1 个大写字母和 1 个小写字母
-tip_pop_up_reg_success_title: 欢迎
-registration_agree_terms_conditions: 请完整阅读条款与条件，然后滚动至末尾将其接受。
-registration_finally_play_now: 开始游戏
-pop_up_forgot_password_email_address: 电邮地址
-pop_up_forgot_password: 忘记密码
+pop_up_create_account_password_uppercase_lowercase_letter: รหัสผ่านต้องมีตัวพิมพ์ใหญ่อย่างน้อย 1 ตัวและตัวพิมพ์เล็ก 1 ตัว
+tip_pop_up_reg_success_title: ยินดีต้อนรับ
+registration_agree_terms_conditions: โปรดอ่านข้อกำหนดเงื่อนไขให้ครบถ้วน จากนั้นเลื่อนไปที่ส่วนท้ายเพื่อยอมรับ.
+registration_finally_play_now: เริ่มเกม
+pop_up_forgot_password_email_address: ที่อยู่อีเมล
+pop_up_forgot_password: ลืมรหัสผ่าน
 pop_up_create_account_password_least_8_characters: 您的密码必须含有至少 8 个字符
-pop_up_create_account_name_14_char: 您的 username 不得超过 14 个字符
-pop_up_create_account_name_3_char: 您的 username 必须含有至少 3 个字符
-pop_up_create_account_no_support_email: 电子邮件域不受支持
-pop_up_create_account_email_add_char: 请在您的电邮地址中加入 “{delta}” 符号
-pop_up_create_account_username_incorrect: 您的用户名长度必须为 3 – 14 个字符。
-pop_up_create_account_no_dot_email_add_char: 请在您的电邮地址中加入 “{delta}” 符号
-pop_up_create_account_label_email_address: 电邮地址
-pop_up_create_account_label_reg_step1: 步骤 1/2： 填写您的详细信息
-pop_up_create_account_header_register: 创建账户
-site_announcement: 站内公告
-dont_tip_today: 今日不再提示
-pop_up_finally_create_account_name_no_equal_pwd: 您的用户名和密码不能相同
+pop_up_create_account_name_14_char: ชื่อผู้ใช้ของคุณต้องมีความยาวไม่เกิน 14 ตัวอักษร
+pop_up_create_account_name_3_char: ชื่อผู้ใช้ของคุณต้องมีตัวอักษรอย่างน้อย 3 ตัว
+pop_up_create_account_no_support_email: ไม่รองรับอีเมลโดเมน
+pop_up_create_account_email_add_char: กรุณาเดิมเครื่องหมาย “{delta}” ในอีเมลของคุณ
+pop_up_create_account_username_incorrect: ชื่อผู้ใช้ของคุณต้องมีตัวอักษร 3 - 14 ตัว
+pop_up_create_account_no_dot_email_add_char: กรุณาเดิมเครื่องหมาย “{delta}” ในอีเมลของคุณ
+pop_up_create_account_label_email_address: ที่อยู่อีเมล
+pop_up_create_account_label_reg_step1: ขั้นตอนที่ 1/2 กรอกรายละเอียดข้อมูลของคุณ
+pop_up_create_account_header_register: สร้างบัญชี
+site_announcement: ประกาศจากเว็บไซต์
+dont_tip_today: วันนี้ไม่มีการแจ้งเตือน
+pop_up_finally_create_account_name_no_equal_pwd: ชื่อผู้ใช้และรหัสผ่านของคุณต้องไม่เหมือนกัน
 top_bar_drop_down_search_currency: 搜索货币
 responsible_safe_text_1: Meibo is committed to providing a safe environment for all its players to gamble with us, which is why it’s so important to Meibo Safe!
 responsible_safe_text_2: Online casino gambling should be a form of entertainment that should not cause harm to other areas of your life.
