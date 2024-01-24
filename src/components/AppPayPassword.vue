@@ -4,6 +4,7 @@ const router = useLocalRouter()
 const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
 const { updateUserInfo } = useAppStore()
+const { openService } = useService()
 const {
   value: oldPayPassword,
   errorMessage: oldPayPwdErrorMsg,
@@ -250,7 +251,7 @@ onUnmounted(() => {
         </BaseLabel>
         <div v-if="getPayPwdState" class="forget-pwd">
           {{ t('forget_safe_pwd') }}
-          <BaseButton size="none" type="text">
+          <BaseButton size="none" type="text" @click="openService">
             {{ t('connect_service') }}
           </BaseButton>
         </div>
