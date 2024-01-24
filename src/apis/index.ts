@@ -2307,3 +2307,13 @@ export function ApiMemberVipBonusUpgradeApplyAll(data: {
 }) {
   return httpClient.post<string>('/member/vip/bonus/upgrade/apply/all', data)
 }
+
+/**
+ * 没有登录发送邮箱验证码
+ * @see null
+ */
+export function ApiMemberSendMailReg(params: {
+  email: string
+}) {
+  return httpClient.get<string>('/member/send/mail/reg', { params })
+}
