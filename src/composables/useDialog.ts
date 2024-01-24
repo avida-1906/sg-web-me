@@ -15,7 +15,7 @@ interface DialogOptions {
   onConfirm?: () => void
   onDialogClose?: () => void
   default: (params?: any) => Component
-  bottomSlot: () => Component
+  bottomSlot?: () => Component
 }
 
 export function useDialog({
