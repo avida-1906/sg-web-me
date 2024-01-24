@@ -1,4 +1,5 @@
 import BaseDialog from '~/components/BaseDialog.vue'
+import AppEmptyDiv from '~/components/AppEmptyDiv.vue'
 import { install } from '~/modules'
 
 interface DialogOptions {
@@ -14,14 +15,14 @@ interface DialogOptions {
   onConfirm?: () => void
   onDialogClose?: () => void
   default: (params?: any) => Component
+  bottomSlot: () => Component
 }
 
 export function useDialog({
   title,
   icon,
-  default:
-  defaultSlot, maxWidth, showButtons, transparent, onCancel, onConfirm, onDialogClose,
-  showClose, closeOnClickOverlay, noMoreToday,
+  default: defaultSlot, maxWidth, showButtons, transparent, onCancel, onConfirm, onDialogClose,
+  showClose, closeOnClickOverlay, noMoreToday, bottomSlot,
 }: DialogOptions) {
   const app = ref()
   const div = ref()
@@ -55,6 +56,7 @@ export function useDialog({
       },
     }, {
       default: () => defaultSlot(params),
+      bottom: bottomSlot ? bottomSlot() : h(AppEmptyDiv),
     }))
     install(app.value)
     app.value.mount(div.value)
