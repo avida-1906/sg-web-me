@@ -1,8 +1,13 @@
 <script setup lang="ts">
 usePageTitle({ prefix: 'Casino Game Providers - Best Creators of Gambling Games' })
 const router = useLocalRouter()
-const { cateProviderData } = storeToRefs(useCasinoStore())
+const casinoStore = useCasinoStore()
+const { cateProviderData } = storeToRefs(casinoStore)
 const { appContentWidth } = storeToRefs(useWindowStore())
+
+const bannerSrc = computed(() => {
+  return casinoStore.getBg('5')
+})
 
 function handleItemClick(item: any) {
   if (item.maintained === '2')
@@ -25,8 +30,9 @@ function handleItemClick(item: any) {
           <div class="right">
             <BaseImage
               style="height: 100%;width: auto;"
-              url="/png/casino/group-banner-default.png"
+              :url="bannerSrc ? bannerSrc : '/png/casino/group-banner-default.png'"
               loading="eager"
+              :is-cloud="!!bannerSrc"
             />
           </div>
         </div>
