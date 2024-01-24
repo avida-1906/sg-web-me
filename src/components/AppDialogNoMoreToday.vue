@@ -11,7 +11,11 @@ function onNoMoreTipChecked(v: boolean) {
 
 <template>
   <div class="flex items-center">
-    <BaseCheckBox v-model="checked" @check="onNoMoreTipChecked">
+    <BaseCheckBox
+      v-model="checked"
+      style="--tg-base-checkbox-label-color:var(--tg-text-white);"
+      @check="onNoMoreTipChecked"
+    >
       {{ t('dont_tip_today') }}
     </BaseCheckBox>
   </div>
