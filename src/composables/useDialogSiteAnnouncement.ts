@@ -1,4 +1,5 @@
 import AppDialogSiteAnnouncement from '~/components/AppDialogSiteAnnouncement.vue'
+import AppDialogNoMoreToday from '~/components/AppDialogNoMoreToday.vue'
 import { i18n } from '~/modules/i18n'
 
 export function useDialogSiteAnnouncement() {
@@ -12,6 +13,7 @@ export function useDialogSiteAnnouncement() {
     icon: 'uni-speaker',
     noMoreToday: true,
     default: data => h(AppDialogSiteAnnouncement, { data }),
+    bottomSlot: () => h(AppDialogNoMoreToday),
   })
 
   return {

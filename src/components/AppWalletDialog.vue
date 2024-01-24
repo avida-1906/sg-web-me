@@ -10,13 +10,11 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const { t } = useI18n()
-// const router = useLocalRouter()
-// const closeDialog = inject('closeDialog', () => { })
 const {
-  // isSetAuth, isOpenVerify,
   brandBaseDetail, runAsyncBrandBaseDetail,
 } = useBrandBaseDetail()
 const { getComponent, isEmailVerify } = useUserVerify()
+const { bool: loadFirst, setFalse: setLoadFirstFalse } = useBoolean(true)
 const {
   currentCurrency: currentCur,
 } = useCurrencyData()
@@ -55,13 +53,17 @@ const isExchange = computed(() => currentTab.value === 'exchange')
 //   })
 // }
 
+// onMounted(() => {
+//   setLoadFirstFalse()
+// })
+
 await application.allSettled([runAsyncBrandBaseDetail({ tag: 'base' })])
 </script>
 
 <template>
   <div class="app-wallet-dialog">
     <div class="content">
-      <BaseTab v-model="currentTab" :list="tabList" />
+      <BaseTab v-model="currentTab" :list="tabList" @change="setLoadFirstFalse()" />
     </div>
     <template v-if="isWithdraw || isCardHolder">
       <template v-if="!getComponent">
@@ -102,14 +104,19 @@ await application.allSettled([runAsyncBrandBaseDetail({ tag: 'base' })])
     <template v-else>
       <!-- 存款 -->
       <template v-if="isDeposit">
-        <Suspense timeout="0">
+        <template v-if="loadFirst">
           <AppWalletDeposit v-model="currencyType" />
-          <template #fallback>
-            <div class="center dialog-loading-height">
-              <BaseLoading />
-            </div>
-          </template>
-        </Suspense>
+        </template>
+        <template v-else>
+          <Suspense timeout="0">
+            <AppWalletDeposit v-model="currencyType" />
+            <template #fallback>
+              <div class="center dialog-loading-height">
+                <BaseLoading />
+              </div>
+            </template>
+          </Suspense>
+        </template>
       </template>
       <!-- 转换 -->
       <AppMoneyExchange v-else-if="isExchange" />
