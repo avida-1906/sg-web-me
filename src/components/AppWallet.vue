@@ -104,7 +104,7 @@ function handleHide() {
               v-model="searchValue"
               class="top-search"
               :clearable="searchValue?.length > 0"
-              :place-holder="$t('search_currency')"
+              :place-holder="$t('top_bar_drop_down_search_currency')"
               shape="square"
               white-style
             />
