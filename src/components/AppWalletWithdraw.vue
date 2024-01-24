@@ -25,7 +25,6 @@ const {
   runAsync: runAsyncWithdrawCurrency,
 } = useRequest(ApiFinanceWithdrawCurrency, {
   onSuccess(data) {
-    console.log(props.modelValue)
     const list = renderFinanceCurrencyList.value(data)
     activeCurrency.value = list.find(item => item.type === props.modelValue) ?? list[0]
     emit('update:modelValue', activeCurrency.value.type)
