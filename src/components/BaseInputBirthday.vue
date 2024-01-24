@@ -163,12 +163,12 @@ const isEnough = computed(() => {
 })
 
 const msg = computed(() => {
+  if (day.value > dayMax.value)
+    return t('day_no_max', { delta: dayMax.value })
   if (!day.value || !month.value || !year.value)
     return t('surveys_birthday_error')
   if (isOver120.value === true)
     return t('max_age', { delta: 120 })
-  if (month.value && day.value && day.value > dayMax.value)
-    return t('day_no_max', { delta: dayMax.value })
   if (!isEnough.value)
     return t('you_have_to_enough_18')
 
@@ -280,7 +280,7 @@ defineExpose({ valiBirthday, msg, isValid, resetBirthday })
         >
       </div>
     </div>
-    <div v-show="showAllRed" class="msg">
+    <div v-show="showAllRed || errorDayMsg" class="msg">
       <!-- <BaseIcon class="error-icon" name="uni-warning" /> -->
       <BaseIcon class="error-icon" name="uni-warning-color" />
       <span>{{ msg || t('surveys_birthday_error') }}</span>

@@ -9,6 +9,7 @@ const props = withDefaults(defineProps<Props>(), {
   isRegister: false,
 })
 
+// #region 变量
 const { t } = useI18n()
 const { openNotify } = useNotify()
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(true)
@@ -18,12 +19,8 @@ const {
   setTrue: setShowPasswordVerifyTrue,
   setFalse: setShowPasswordVerifyFalse,
 } = useBoolean(false)
-const {
-  bool: needSaveFormData,
-  setTrue: setNeedSaveFormDataTrue,
-} = useBoolean(true)
+const { bool: needSaveFormData, setTrue: setNeedSaveFormDataTrue } = useBoolean(true)
 const router = useRouter()
-
 const emailRef = ref()
 const userNameRef = ref()
 const passwordRef = ref()
@@ -32,7 +29,12 @@ const code = ref('')
 const birthdayInputRef = ref()
 const birthday = ref('')
 const parentUid = ref(router.currentRoute.value.query.uid)
+const mailCodeRef = ref()
+const timer = ref()
+const countdown = ref(60)
+// #endregion
 
+// #region 表单字段验证
 const {
   value: password,
   errorMessage: pwdErrorMsg,
@@ -109,10 +111,6 @@ const {
   // 您的用户名长度必须为 3 – 14 个字符。
   return ''
 })
-
-const mailCodeRef = ref()
-const timer = ref()
-const countdown = ref(60)
 const {
   value: emailCode,
   errorMessage: emailCodeErrorMsg,
@@ -125,6 +123,8 @@ const {
     return t('validate_msg_regexp_code')
   return ''
 })
+// #endregion
+
 const {
   runAsync: runAsyncMemberSendMailCode,
   loading: sendMailCodeLoading,
@@ -167,12 +167,6 @@ if (regParams.value) {
 //   return ''
 // }, { initialValue: true })
 
-const needEmail = computed(() => true) // regWebCfg.value && regWebCfg.value.email !== false)
-const needName = computed(() => true) // regWebCfg.value && regWebCfg.value.username !== false)
-const needCheckEmail = computed(() =>
-  false) // regWebCfg.value && regWebCfg.value.email_check !== false)
-const pwdTouched = computed(() => passwordRef.value?.isTouched)
-
 // const {
 //   run: runMemberReg,
 //   loading: isLoading,
@@ -200,6 +194,29 @@ const { runAsync: runExists } = useRequest(ApiMemberExists, {
   },
 })
 
+const { data: brandRegDetail, runAsync: runAsyncBrandRegDetail } = useRequest(ApiMemberBrandDetail)
+
+const regDetailConfig = computed(() => {
+  if (!brandRegDetail.value) {
+    return {
+      email: false,
+      email_validation: false,
+      username: false,
+      birthday: false,
+    }
+  }
+  return {
+    email: brandRegDetail.value.web.email,
+    email_validation: brandRegDetail.value.web.email_validation,
+    birthday_check: brandRegDetail.value.web.birthday_check,
+  }
+})
+const needEmail = computed(() => regDetailConfig.value.email)
+const needName = computed(() => true)
+const needCheckEmail = computed(() => regDetailConfig.value.email_validation)
+const needBirthday = computed(() => regDetailConfig.value.birthday_check)
+const pwdTouched = computed(() => passwordRef.value?.isTouched)
+
 async function getMemberReg(callBack: (data: any) => void) {
   if (needName.value) {
     userNameRef.value?.setTouchTrue()
@@ -224,9 +241,11 @@ async function getMemberReg(callBack: (data: any) => void) {
     await valiemailCode()
   }
 
-  await birthdayInputRef.value.valiBirthday()
-  if (!birthdayInputRef.value.isValid)
-    return
+  if (needBirthday.value) {
+    await birthdayInputRef.value.valiBirthday()
+    if (!birthdayInputRef.value.isValid)
+      return
+  }
 
   // 这个不要删：有错误时直接返回，否则重复的邮箱或用户名会因通过格式校验从而进行注册请求
   if (
@@ -290,6 +309,16 @@ function resetForm() {
   resetEmailCode()
   birthdayInputRef.value.resetBirthday()
 }
+async function sendEmailCode() {
+  if (needCheckEmail.value) {
+    emailRef.value.setTouchTrue()
+    await validateEmail()
+    if (emailErrorMsg.value)
+      return
+
+    runAsyncMemberSendMailCode()
+  }
+}
 
 onMounted(() => {
   emailRef.value?.getFocus()
@@ -314,12 +343,14 @@ onUnmounted(() => {
 })
 
 defineExpose({ getMemberReg, resetForm })
+
+await application.allSettled([runAsyncBrandRegDetail({ tag: 'reg' })])
 </script>
 
 <template>
   <div class="app-register">
     <div class="app-register-input-box">
-      <BaseLabel v-if="needEmail" :label="t('pop_up_create_account_label_email_address')" must-small need-focus>
+      <BaseLabel v-if="needEmail" :label="t('pop_up_create_account_label_email_address')" need-focus must-small>
         <BaseInput
           ref="emailRef" v-model="email"
           :msg="emailErrorMsg" msg-after-touched type="email" name="email"
@@ -363,15 +394,15 @@ defineExpose({ getMemberReg, resetForm })
             :disabled="!!timer" custom-padding :style="{
               '--tg-base-button-style-bg': timer ? 'var(--tg-text-grey)' : '',
               'min-width': '105px',
-              '--tg-base-button-padding-y': '12.5px',
-            }" @click.stop="runAsyncMemberSendMailCode"
+              '--tg-base-button-padding-y': '11px',
+            }" @click.stop="sendEmailCode"
           >
             <span v-if="timer">{{ `${t('re_get')}${countdown}s` }}</span>
             <span v-else>{{ t('get_email_code') }}</span>
           </BaseButton>
         </div>
       </BaseLabel>
-      <BaseLabel :label="t('time_birthday')" must-small>
+      <BaseLabel v-if="needBirthday" :label="t('time_birthday')" must-small>
         <BaseInputBirthday ref="birthdayInputRef" v-model="birthday" />
       </BaseLabel>
       <div v-if="isRegister" style="display: flex;flex-direction: column;">

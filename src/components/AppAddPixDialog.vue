@@ -29,7 +29,7 @@ const validationSchema = yup.object({
   country: yup.string().trim().required(t('enter_your_content')),
   city: yup.string().trim().required(t('enter_your_content')),
   bank_name: yup.string().trim().required(t('enter_your_content')),
-  bank_account: yup.string().required(t('enter_your_content')).matches(/^[a-zA-Z0-9]{4,30}$/, t('validate_msg_regexp_pix_account')),
+  bank_account: yup.string().required(t('enter_your_content')),
   pay_password: yup.string().trim().required(t('enter_your_content')),
 })
 // #endregion
