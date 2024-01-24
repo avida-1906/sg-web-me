@@ -112,6 +112,7 @@ declare global {
   const ApiMemberVipBonusApply: typeof import('./apis/index')['ApiMemberVipBonusApply']
   const ApiMemberVipBonusAvailable: typeof import('./apis/index')['ApiMemberVipBonusAvailable']
   const ApiMemberVipBonusRecord: typeof import('./apis/index')['ApiMemberVipBonusRecord']
+  const ApiMemberVipBonusUpgradeApplyAll: typeof import('./apis/index')['ApiMemberVipBonusUpgradeApplyAll']
   const ApiMemberVipConfig: typeof import('./apis/index')['ApiMemberVipConfig']
   const ApiMemberVipMultiple: typeof import('./apis/index')['ApiMemberVipMultiple']
   const ApiMemberVipRebateConfig: typeof import('./apis/index')['ApiMemberVipRebateConfig']
@@ -808,6 +809,7 @@ declare module 'vue' {
     readonly ApiMemberVipBonusApply: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusApply']>
     readonly ApiMemberVipBonusAvailable: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusAvailable']>
     readonly ApiMemberVipBonusRecord: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusRecord']>
+    readonly ApiMemberVipBonusUpgradeApplyAll: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusUpgradeApplyAll']>
     readonly ApiMemberVipConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberVipConfig']>
     readonly ApiMemberVipMultiple: UnwrapRef<typeof import('./apis/index')['ApiMemberVipMultiple']>
     readonly ApiMemberVipRebateConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberVipRebateConfig']>
@@ -1498,6 +1500,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberVipBonusApply: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusApply']>
     readonly ApiMemberVipBonusAvailable: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusAvailable']>
     readonly ApiMemberVipBonusRecord: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusRecord']>
+    readonly ApiMemberVipBonusUpgradeApplyAll: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusUpgradeApplyAll']>
     readonly ApiMemberVipConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberVipConfig']>
     readonly ApiMemberVipMultiple: UnwrapRef<typeof import('./apis/index')['ApiMemberVipMultiple']>
     readonly ApiMemberVipRebateConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberVipRebateConfig']>
