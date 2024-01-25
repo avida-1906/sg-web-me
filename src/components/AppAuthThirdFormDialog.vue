@@ -95,7 +95,9 @@ async function submit() {
     third_type: props.ty,
     device_number: application.getDeviceNumber(),
   }
+  // 把第三方注册信息存储到session中，就把正常注册信息删除
   Session.set(STORAGE_THIRDREG_PARAMS_KEYWORDS, thirdReg)
+  Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
   openTermsDialog()
   // runThirdReg({
   //   email: props.data.email ?? email.value,
