@@ -2030,29 +2030,31 @@ export function ApiMemberBetList(params: {
 }) {
   return httpClient.get<IResponseList<{
     /** 注单流水号 */
-    'bill_no': string
+    bill_no: string
     /** 投注时间 */
-    'bet_time': number
+    bet_time: number
     /** 平台ID */
-    'platform_id': string
+    platform_id: string
     /** 平台名称 */
-    'platform_name': string
+    platform_name: string
     /** 投注人 */
-    'username': string
+    username: string
     /** 游戏类型 */
-    'game_class': string
+    game_class: string
     /** 游戏名称 */
-    'game_name': string
+    game_name: string
     /** 游戏编码 */
-    'game_code': string
+    game_code: string
     /** 投注金额 */
-    'bet_amount': string
+    bet_amount: string
     /** 有效投注金额 */
-    'valid_bet_amount': string
+    valid_bet_amount: string
     /** 玩家输赢金额 */
-    'net_amount': string
+    net_amount: string
     /** 币种ID */
-    'currency_id': CurrencyCode
+    currency_id: CurrencyCode
+    /** 乘数 */
+    factor: string
   }[]>>('/member/bet/list', { params })
 }
 
