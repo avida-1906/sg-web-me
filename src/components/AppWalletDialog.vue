@@ -38,10 +38,6 @@ const isWithdraw = computed(() => currentTab.value === 'withdraw')
 const isCardHolder = computed(() => currentTab.value === 'cardHolder')
 const isExchange = computed(() => currentTab.value === 'exchange')
 
-// watch(() => currencyType.value, (val) => {
-//   console.log(val, 11111111)
-// })
-
 // function awaitHandle() {
 //   return new Promise((resolve) => {
 //     const timer = setInterval(() => {
@@ -52,10 +48,6 @@ const isExchange = computed(() => currentTab.value === 'exchange')
 //     }, 3000)
 //   })
 // }
-
-// onMounted(() => {
-//   setLoadFirstFalse()
-// })
 
 await application.allSettled([runAsyncBrandBaseDetail({ tag: 'base' })])
 </script>

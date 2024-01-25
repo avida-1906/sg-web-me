@@ -1639,7 +1639,7 @@ or: 或
 only_6_num: 仅支持6位纯数字
 pwd_2_not_equal: 两次密码输入不一致
 edit_safe_pwd: 修改资金密码
-set_safe_pwd: 设置资金密码
+set_safe_pwd: 资金密码
 not_bind_email: 您还未绑定邮箱
 must_bind_email: 请先绑定邮箱后在设置资金密码
 go_bind: 前往绑定
@@ -2139,3 +2139,6 @@ responsible_safe_text_72: 'In order to ensure child safety on the Internet, Meib
 responsible_safe_text_73: Gamcare
 responsible_safe_text_74: Netnanny
 responsible_safe_text_75: Betblocker
+first_withdraw_money_need_verification: 您是首次提款,需要先设置双重验证
+first_withdraw_money_need_pay_password: 您是首次提款,需要先设置资金密码
+confirm_withdrawal: 确认提款

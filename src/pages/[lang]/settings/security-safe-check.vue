@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+interface Props {
+  tipText?: string
+}
+
+defineProps<Props>()
+
 const { t } = useI18n()
 usePageTitle({ prefix: t('two_step_verification') })
 const { openNotify } = useNotify()
@@ -102,7 +108,7 @@ function awaitHandle() {
         timer = null
         return resolve(true)
       }
-    }, 200)
+    }, 1000)
   })
 }
 
@@ -124,7 +130,7 @@ await application.allSettled([awaitHandle()])
       @submit="submitDoublePassword"
     >
       <template #top-desc>
-        {{ t('tip_start_double_check') }}
+        {{ tipText ? t('first_withdraw_money_need_verification') : t('tip_start_double_check') }}
       </template>
       <div class="two-step-verification">
         <template v-if="!isSetAuth">
