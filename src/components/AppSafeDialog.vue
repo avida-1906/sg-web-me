@@ -25,7 +25,7 @@ const passwordRef = ref()
 const { data: interestConfig, runAsync: runAsyncInterestConfig } = useRequest(ApiMemberInterestGetConfig)
 // 获取安全验证配置
 // const { isOpenVerify, isSetAuth } = useBrandBaseDetail()
-const { getComponent, isEmailVerify } = useUserVerify()
+const { getComponent } = useUserVerify()
 const {
   value: amount,
   errorMessage: errAmount,
@@ -238,7 +238,7 @@ await application.allSettled([runAsyncInterestConfig()])
         </template>
       </template>
     </div>
-    <AppAuthWarp v-if="isEmailVerify" show-more />
+    <AppAuthWarp show-more />
     <!-- <div class="safe-bottom">
       <template v-if="isOpenVerify && !isSetAuth">
         <div>
