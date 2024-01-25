@@ -117,6 +117,7 @@ const bindBanks = computed(() => {
         fullName: `${item.bank_name} ${item.bank_account}`,
         id: item.id,
         state: item.state,
+        disabled: item.state === 2,
       }
     })
   }
@@ -148,6 +149,7 @@ async function withDrawSubmit() {
     amountRef.value.setTouchTrue()
   await selectBankValidate()
   await amountValidate()
+  passwordRef.value.setTouchTrue()
   await passwordRef.value.validatePassword()
   if (!selectBankError.value && !amountError.value && !passwordRef.value.errPassword) {
     runWithdraw({
@@ -293,7 +295,7 @@ await application.allSettled(
             />
           </BaseLabel> -->
           <BaseButton bg-style="secondary" size="md" @click="withDrawSubmit">
-            {{ t('menu_title_settings_withdrawals') }}
+            {{ t('confirm_withdrawal') }}
           </BaseButton>
         </div>
       </div>

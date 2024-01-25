@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+interface Props {
+  tipText?: string
+}
+
+defineProps<Props>()
+
 const { t } = useI18n()
 usePageTitle({ prefix: t('menu_title_settings_update_safepwd') })
 const router = useLocalRouter()
@@ -175,6 +181,9 @@ onUnmounted(() => {
       :depends-disabled="[isEmptyInput]"
       @submit="submitPayPwd"
     >
+      <template v-if="tipText" #top-desc>
+        {{ t('first_withdraw_money_need_pay_password') }}
+      </template>
       <div v-if="getMailState" class="mail-not-bind">
         <div>{{ t('not_bind_email') }}</div>
         <div style="margin-bottom:var(--tg-spacing-15);">
