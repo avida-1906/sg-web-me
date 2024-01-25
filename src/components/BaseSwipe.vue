@@ -96,14 +96,20 @@ onMounted(() => {
           <template v-if="item.banner_style !== 3">
             <div class="other" :class="[item.align === 'left' ? 'other-left' : 'other-right']">
               <div class="banner-content">
+                <div class="name">
+                  促销活动
+                </div>
+                <div class="title">
+                  每日竞赛-瓜分$100,000美金
+                  每日竞赛-瓜分$100,000美金
+                  每日竞赛-瓜分$100,000美金
+                </div>
                 <div class="banner-content-text">
                   {{ item.content }}
                 </div>
               </div>
               <div
-                class="btn-flex" :class="[
-                  item.align === 'left' ? 'btn-flex-left' : 'btn-flex-right',
-                ]"
+                class="btn-flex"
               >
                 <BaseButton
                   v-if="item.button" type="line"
@@ -276,26 +282,48 @@ onMounted(() => {
   & > * {
     text-align: left;
   }
-
-  &.btn-flex-left {
-    justify-content: flex-start;
-  }
-
-  &.btn-flex-right {
-    justify-content: flex-end;
-  }
 }
 
 .banner-content {
   line-height: 1.3;
   height: 0;
   flex: 1;
-  .banner-content-text {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 6;
-    overflow: hidden;
-  }
+}
+
+.banner-content-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.name {
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tg-secondary-deepdark);
+  border-radius: 3px;
+  padding: 0 4px;
+  font-feature-settings: "tnum";
+  white-space: nowrap;
+  line-height: 1.5;
+  background-color: var(--tg-text-white);
+  font-size: 12px;
+}
+
+.title {
+  color: var(--tg-text-white);
+  font-size: 18px;
+  line-height: 120%;
+  font-weight: var(--tg-font-weight-bold);
+  margin: 8px 0 4px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 @container grid-size (width < 50rem) {
@@ -317,6 +345,10 @@ onMounted(() => {
 
     .hero-content > .hero:last-of-type {
       margin-right: 4px
+    }
+
+    .banner-content-text {
+      -webkit-line-clamp: 2;
     }
 }
 
