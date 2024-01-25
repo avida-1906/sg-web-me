@@ -2,7 +2,7 @@
 const params = { cash_type: '818' }
 
 const { t } = useI18n()
-const { openNotify } = useNotify()
+// const { openNotify } = useNotify()
 const { isMobile } = storeToRefs(useWindowStore())
 const { vip, score, nextLevel, isMaxLevel, vipConfigArray, max } = useVipInfo()
 const { isLogin } = storeToRefs(useAppStore())
@@ -19,9 +19,9 @@ const { openVipBonusDialog } = useDialogVipBonus(() => {
 })
 const { openVipExpRuleDialog } = useDialogVipExpRule()
 
-const bonusArray = computed(() => promoBonus.value && promoBonus.value.length
-  ? promoBonus.value
-  : [])
+// const bonusArray = computed(() => promoBonus.value && promoBonus.value.length
+//   ? promoBonus.value
+//   : [])
 const columns = computed<Column[]>(() => [
   {
     title: t('grade'),
@@ -53,16 +53,16 @@ const columns = computed<Column[]>(() => [
   },
 ])
 
-async function openReceive(item: any) {
-  if (+item.amount > 0 && +item.state === 1) {
-    openVipBonusDialog({
-      vipBonus: toFixed(Number(sub(Number(item.amount), Number(item.receive_amount))), 8),
-      vipBonusId: item.id,
-      bonusType: item.cash_type,
-    })
-  }
+async function openReceive() {
+  // if (+item.amount > 0 && +item.state === 1) {
+  openVipBonusDialog({
+    // vipBonus: toFixed(Number(sub(Number(item.amount), Number(item.receive_amount))), 8),
+    vipBonusId: '-1',
+    bonusType: '818',
+  })
+  // }
   // openReceiveBonusDialog({ vipBonus: item.amount, vipBonusId: item.id })
-  else { openNotify({ type: 'error', message: t('no_bonus_now'), title: t('fail_bonus') }) }
+  // else { openNotify({ type: 'error', message: t('no_bonus_now'), title: t('fail_bonus') }) }
 }
 
 function seeExpDialog() {
@@ -123,7 +123,7 @@ onMounted(() => {
             {{ record.score }}
           </div>
         </template>
-        <template #up_gift="{ record, index }">
+        <!-- <template #up_gift="{ record, index }">
           <div class="score-wrap">
             <div v-if="!index">
               -
@@ -153,6 +153,16 @@ onMounted(() => {
               </BaseButton>
               <span v-else class="small-text">{{ t('upgraded') }}</span>
             </template>
+          </div>
+        </template> -->
+        <template #up_gift="{ record, index }">
+          <div class="score-wrap">
+            <div v-if="!index">
+              -
+            </div>
+            <div v-else>
+              <AppAmount :amount="record.up_gift" currency-type="USDT" />
+            </div>
           </div>
         </template>
         <template #retain_score="{ record: { retain_score, level }, index }">
@@ -219,6 +229,11 @@ onMounted(() => {
           <span v-else>{{ retain_score }}</span>
         </template>
       </BaseTable>
+      <div v-if="route.path.includes('/vip/')" class="btn-box">
+        <BaseButton class="btn-receive" bg-style="secondary" custom-padding :disabled="!isLogin" @click="openReceive">
+          {{ t('receive_bonus') }}
+        </BaseButton>
+      </div>
     </div>
     <AppVipRuleDesc />
   </div>
@@ -304,6 +319,15 @@ onMounted(() => {
     background: var(--tg-secondary-dark);
     padding: 12px 12px;
     border-radius: var(--tg-radius-default);
+    .btn-box{
+      margin-top: 20px;
+    }
+    .btn-receive{
+      max-width: 400px;
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
   }
 }
 </style>

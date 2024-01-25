@@ -40,14 +40,12 @@ function menuItemClick(item: BaseMenuItem) {
 }
 
 watch(route, (val) => {
-  // console.log(props.data, val.path)
   const temp = props.data.filter(d => d.path ? val.path.includes(d.path) : false)[0]
-  // const temp = props.data.filter(d => d.path === val.path)[0]
   if (temp) {
     activeMenu.value = temp.path
     emit('update:modelValue', activeMenu.value)
   }
-})
+}, { immediate: true })
 </script>
 
 <template>
