@@ -155,14 +155,14 @@ onMounted(() => {
     <AppSettingsContentItem
       :last-one="isDialog"
       :dialog-box="isDialog"
-      :title="t('email_address')" :verified="emailSubmitBtnDisabled"
+      :title="t('pop_up_wallet_withdraw_verify_title_email_address')" :verified="emailSubmitBtnDisabled"
       :badge="emailVerified" @submit="emailSubmit"
     >
       <template v-if="isDialog" #top-desc>
         {{ t('must_verify_email_then', { delta: `${tipText}`.toLowerCase() }) }}{{ t('period') }}
       </template>
       <div :class="{ 'verify-content': isDialog }">
-        <BaseLabel :label="t('email_address')" must-small>
+        <BaseLabel :label="t('pop_up_wallet_withdraw_verify_label_email_address')" must-small>
           <div v-if="emailVerified" class="email-erified-box cursor-pointer">
             {{ email }}
           </div>
