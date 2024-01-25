@@ -889,7 +889,7 @@ sports_status_lose_part: แพ้บ้างส่วน
 sports_estimated_payment_amount: ยอดชำระเงินประมาณ
 sports_payment_amount: ยอดชำระ
 sports_single_bet: เดิมพันรายการเดี่ยว
-sports_multi_bet: สำเร็จแล้ว เดิมพันแบบผสม
+sports_multi_bet: เดิมพันแบบผสม
 sports_active: ยังไม่คำนวณ
 sports_settled: คำนวนเสร็จสิ้น
 sports_accept_any_odds: ยอมรับการเปลี่ยนแปลงอัตราต่อรองทั้งหมด
@@ -900,7 +900,7 @@ sports_betting_now: เริ่มวางเดิมพันทันที
 sports_total_odds: อัตราจ่ายทั้งหมด
 sports_total_bet_amount: ยอดเดิมพันทั้งหมด
 sports_odds_has_changed: อัตราจ่ายมีการแก้ไขแล้ว.
-sports_bet: วางเดิมพัน
+sports_bet: วาง
 sports_hot_event: รายการแข่งขันยอดนิยม
 sports_three_options: เดิมพันสามรายการ
 sports_standard: มาตรฐาน
@@ -1309,7 +1309,7 @@ tip_email_to: อีเมลยืนยันได้ถูกส่งไป
 success_update_email: อัปเดตที่อยู่อีเมลเรียบร้อยแล้ว
 email_update_to: ที่อยู่อีเมลได้รับการอัปเดตเป็น
 success_update_phone: อัปเดตหมายเลขโทรศัพท์มือถือเรียบร้อยแล้ว
-phone_update_to: โทรศัพท์ได้อัปเดตเป็น
+phone_update_to: เบอร์โทรศัพท์อัปเดตเป็น
 success_verify: ยืนยันสำเร็จ
 congratulate_email_success: ขอแสดงความยินดีด้วย อีเมลยืนยันสำเร็จ!
 resend_email: ส่งอีเมลใหม่อีกครั้ง
@@ -1378,7 +1378,7 @@ withdrawal_fee_tip: เราจะหักเงินจากยอดเง
 withdrawal_as_fee: เป็นค่าธรรมเนียมการทำธุรกรรมสำหรับการถอนเงินของคุณ
 present: ส่ง
 order_label: รายการ
-bet_tip_amount_tip: วางเดิมพันรวมมูลค่า {numStr} สำเร็จแล้ว เดิมพันแบบผสม!
+bet_tip_amount_tip: วางเดิมพันสำเร็จแล้ว จำนวน {numStr}
 de: ของ
 bet_more_than_balance: ยอดเดิมพันต้องไม่มากกว่ายอดคงเหลือของคุณ.
 order_by_alpha: เรียงลำดับตามตัวอักษร
