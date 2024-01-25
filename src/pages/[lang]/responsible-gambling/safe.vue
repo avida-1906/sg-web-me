@@ -27,7 +27,7 @@ const { t } = useI18n()
           {{ t('responsible_safe_text_3') }}
         </div>
       </div>
-      <ul class="text-tg-secondary-light mb-16 ml-[3vw] list-disc text-[16px] leading-[1.5] md:ml-[31px]">
+      <ul class="text-tg-secondary-light mb-16 ml-[32px] list-disc text-[16px] leading-[1.5]">
         <li class="my-4">
           <div>
             {{ t('responsible_safe_text_4') }}
@@ -73,7 +73,7 @@ const { t } = useI18n()
           {{ t('responsible_safe_text_11') }}
         </div>
       </div>
-      <ul class="text-tg-secondary-light mb-16 ml-[3vw] list-disc text-[16px] leading-[1.5] md:ml-[31px]">
+      <ul class="text-tg-secondary-light mb-16 ml-[32px] list-disc text-[16px] leading-[1.5]">
         <li class="my-4">
           <div>
             {{ t('responsible_safe_text_12') }}
@@ -283,7 +283,7 @@ const { t } = useI18n()
           {{ t('responsible_safe_text_48') }}
         </div>
       </div>
-      <ul class="text-tg-secondary-light mb-16 ml-[3vw] list-disc text-[16px] leading-[1.5] md:ml-[31px]">
+      <ul class="text-tg-secondary-light mb-16 ml-[32px] list-disc text-[16px] leading-[1.5]">
         <li class="my-4">
           <div>
             {{ t('responsible_safe_text_49') }}
@@ -311,7 +311,7 @@ const { t } = useI18n()
           {{ t('responsible_safe_text_53') }}
         </div>
       </div>
-      <ul class="text-tg-secondary-light mb-16 ml-[3vw] list-disc text-[16px] leading-[1.5] md:ml-[31px]">
+      <ul class="text-tg-secondary-light mb-16 ml-[32px] list-disc text-[16px] leading-[1.5]">
         <li class="my-4">
           <div>
             {{ t('responsible_safe_text_54') }}
@@ -373,7 +373,7 @@ const { t } = useI18n()
           {{ t('responsible_safe_text_64') }}
         </div>
       </div>
-      <ul class="text-tg-secondary-light mb-16 ml-[3vw] list-disc text-[16px] leading-[1.5] md:ml-[31px]">
+      <ul class="text-tg-secondary-light mb-16 ml-[32px] list-disc text-[16px] leading-[1.5]">
         <li class="my-4">
           <div>
             {{ t('responsible_safe_text_65') }}
@@ -416,7 +416,7 @@ const { t } = useI18n()
           {{ t('responsible_safe_text_72') }}
         </div>
       </div>
-      <ul class="text-tg-secondary-light mb-16 ml-[3vw] list-disc text-[16px] leading-[1.5] md:ml-[31px]">
+      <ul class="text-tg-secondary-light mb-16 ml-[32px] list-disc text-[16px] leading-[1.5]">
         <li class="my-4">
           <div>
             {{ t('responsible_safe_text_73') }}
