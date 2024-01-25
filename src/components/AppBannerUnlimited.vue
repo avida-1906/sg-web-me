@@ -49,7 +49,6 @@ const bannerData = computed(() => {
   ]
 })
 
-const dom = ref()
 const offSet = ref(0)
 const activeValue = ref(2)
 const {
@@ -137,7 +136,6 @@ const change = function (item: IBannerData) {
 }
 // 触碰
 const onTouchstart = throttle((e: TouchEvent) => {
-  dom.value.addEventListener('wheel', preventScroll)
   setDraggingTrue()
   startPosition.value = e.touches[0].clientX
   tempOffSet.value = offSet.value
@@ -151,7 +149,6 @@ const onTouchMove = function (e: TouchEvent) {
 }
 // 抬起
 const onTouchEnd = throttle((e: TouchEvent) => {
-  dom.value.removeEventListener('wheel', preventScroll)
   setDraggingFalse()
   const currentPosition = e.changedTouches[0].clientX
   offSet.value = tempOffSet.value
@@ -160,10 +157,6 @@ const onTouchEnd = throttle((e: TouchEvent) => {
   else if (startPosition.value < currentPosition)
     onPrev()
 }, 1000, { leading: true, trailing: false })
-
-function preventScroll(event: any) {
-  event.preventDefault()
-}
 
 watch(() => isSm.value, () => {
   if (isSm.value)
@@ -183,7 +176,6 @@ watch(() => appContentWidth.value, () => {
 })
 
 onMounted(() => {
-  dom.value = document.getElementById('main-content-scrollable')
   setTimeout(() => {
     offSet.value = -offSetInit.value
     offSetNumber.value = Math.abs(
@@ -210,6 +202,7 @@ onUnmounted(() => {
           :style="{
             transform: `translate(${offSet}px, 0px)`,
             width: `${sliderWidth}px`,
+            touchAction: isDragging ? 'pan-x' : '',
           }"
           :class="{ 'is-transition': activeTransition }"
         >
