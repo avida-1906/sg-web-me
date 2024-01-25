@@ -1,7 +1,14 @@
 <script setup lang='ts'>
 const { t } = useI18n()
-const { currentNoticeId, saveCurrentNoticeId, removeCurrentNoticeId } = useDialogSiteAnnouncementList()
+const {
+  currentNoticeId,
+  saveCurrentNoticeId,
+  removeCurrentNoticeId,
+  checkIsNoMore,
+  checkHideNoMoreTip,
+} = useDialogSiteAnnouncementList()
 const { bool: checked } = useBoolean(false)
+const { bool: hide } = useBoolean(false)
 
 function onNoMoreTipChecked(v: boolean) {
   if (v)
@@ -10,12 +17,18 @@ function onNoMoreTipChecked(v: boolean) {
 }
 
 watch(currentNoticeId, (a) => {
-  console.log('🚀 ~ watch ~ a:', a)
+  checked.value = checkIsNoMore(a)
+  hide.value = checkHideNoMoreTip(a)
+})
+
+onMounted(() => {
+  checked.value = checkIsNoMore(currentNoticeId.value)
+  hide.value = checkHideNoMoreTip(currentNoticeId.value)
 })
 </script>
 
 <template>
-  <div class="flex items-center">
+  <div v-show="!hide" class="flex items-center">
     <BaseCheckBox
       v-model="checked"
       style="--tg-base-checkbox-label-color:var(--tg-text-white);"

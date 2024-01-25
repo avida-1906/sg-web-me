@@ -144,7 +144,7 @@ setTimeout(() => {
       <div class="title-right">
         <div v-if="!isXs" class="r-status">
           <BaseIcon name="uni-cup1" />
-          <!-- <span>66,666.00x</span> -->
+          <span>{{ application.numberToLocaleString(list[0]?.factor) }}x</span>
           <div v-if="luckyWinner" class="player">
             {{ luckyWinner }}
           </div>
