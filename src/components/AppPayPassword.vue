@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+interface Props {
+  tipText?: string
+}
+
+defineProps<Props>()
+
 const { t } = useI18n()
 const router = useLocalRouter()
 const { openNotify } = useNotify()
@@ -168,6 +174,7 @@ onUnmounted(() => {
       last-one
       :btn-loading="payPasswordUpdateLoading"
       :verified="getMailState"
+      :btn-text="tipText ? t('submit') : t('save')"
       :style="{
         '--tg-app-settings-content-item-style-max-width':
           getMailState ? '100%' : '420px',
@@ -175,6 +182,9 @@ onUnmounted(() => {
       :depends-disabled="[isEmptyInput]"
       @submit="submitPayPwd"
     >
+      <template v-if="tipText" #top-desc>
+        {{ t('first_withdraw_money_need_pay_password') }}
+      </template>
       <div v-if="getMailState" class="mail-not-bind">
         <div>{{ t('not_bind_email') }}</div>
         <div style="margin-bottom:var(--tg-spacing-15);">

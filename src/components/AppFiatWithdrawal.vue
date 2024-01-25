@@ -294,7 +294,7 @@ await application.allSettled(
             />
           </BaseLabel> -->
           <BaseButton bg-style="secondary" size="md" @click="withDrawSubmit">
-            {{ t('menu_title_settings_withdrawals') }}
+            {{ t('confirm_withdrawal') }}
           </BaseButton>
         </div>
       </div>

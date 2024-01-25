@@ -243,7 +243,7 @@ await application.allSettled(
         </BaseLabel> -->
         <AppPasswordInput ref="passwordRef" v-model="paypwd" />
         <BaseButton bg-style="secondary" size="md" @click="handleWithdraw">
-          {{ t('menu_title_settings_withdrawals') }}
+          {{ t('confirm_withdrawal') }}
         </BaseButton>
         <!-- <div class="tips">
             <span>{{ t('withdrawal_min_amount') }} 0.00020000</span>
