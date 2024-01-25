@@ -1092,7 +1092,7 @@ label_draw_time: Receipt time
 label_contribute_count: Number of contributors
 label_bind: Bind
 title_input_paypwd: Enter the fund password
-title_wallet_set: Wallet settings
+title_wallet_set: Wallet Settings
 success_bind: Bound successfully
 success_delete: Deleted sucessful
 tip_msg_bind_once: No changes allowed after bound
@@ -1421,8 +1421,8 @@ search_currency: Search currency
 card_wallet: Card wallet
 improve_safe_level: Improve your account security with two-factor verification
 turn_on_double_check: Turn on two-step verification
-hide_zero_wallet: Hide zero balance
-zero_wallet_hidden: Your zero balance will not show up in your wallet
+hide_zero_wallet: Hide zero balances
+zero_wallet_hidden: Your zero balances won't appear in your wallet
 address: Address
 withdrawal_min_amount: The minimum withdrawal amount is
 withdrawal_fee_tip: We will deduct this from your balance
@@ -2737,3 +2737,4 @@ pop_up_wallet_withdraw_verify_label_email_address: Email
 pop_up_wallet_tap_card_deposit: Deposit
 pop_up_currency_exchange_button_confirm_pay: Confirm payment
 header_drop_down_menu_stake_safety: '{site} Safety'
+pop_up_currency_exchange: Exchange

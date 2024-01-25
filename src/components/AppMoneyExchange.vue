@@ -169,7 +169,7 @@ onMounted(() => {
 
 <template>
   <div class="flex flex-col gap-14">
-    <BaseLabel :label="`${t('exchange')} ${currencyTypeGet}`" must>
+    <BaseLabel :label="`${t('pop_up_currency_exchange')} (${currencyTypeGet}):`" must>
       <BaseInput
         v-model="amountGet" type="number" :msg="errorGet" style="--tg-base-input-right-button-padding:0;"
         hide-spin-btn @input="onAmountGetInput"
