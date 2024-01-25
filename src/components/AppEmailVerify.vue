@@ -77,10 +77,10 @@ const emailSubmitBtnDisabled = computed(() => {
     return true
 
   const initEmailText = userInfo.value?.email
-  if (email.value !== initEmailText)
-    return false
+  if (email.value === initEmailText)
+    return true
 
-  return !emailVerified.value
+  return emailVerified.value
 })
 
 /**
