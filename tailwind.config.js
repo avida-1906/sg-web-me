@@ -8,6 +8,11 @@ export default {
     preflight: false,
   },
   theme: {
+    fontFamily: {
+      sans: [],
+      serif: [],
+      mono: [],
+    },
     extend: {
       colors: {
         'tg-primary': 'var(--tg-primary-main)',

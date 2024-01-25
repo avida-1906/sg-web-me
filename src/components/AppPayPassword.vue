@@ -186,10 +186,7 @@ onUnmounted(() => {
         {{ t('first_withdraw_money_need_pay_password') }}
       </template>
       <div v-if="getMailState" class="mail-not-bind">
-        <div>{{ t('not_bind_email') }}</div>
-        <div style="margin-bottom:var(--tg-spacing-15);">
-          {{ t('must_bind_email') }}
-        </div>
+        <div>{{ t('not_bind_email') + t('must_bind_email') }}</div>
         <BaseButton size="none" type="text" @click="router.push('/settings/general')">
           {{ t('go_bind') }}
         </BaseButton>

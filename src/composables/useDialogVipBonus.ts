@@ -9,9 +9,9 @@ export function useDialogVipBonus(callBack?: () => void) {
   } = useDialog({
     title: title.value,
     icon: 'uni-bonus',
-    default: ({ vipBonus, vipBonusId }) =>
+    default: ({ bonusType, vipBonusId }) =>
       h(AppVipBonusDialog, {
-        vipBonus,
+        bonusType,
         vipBonusId,
         callBack,
       }),
