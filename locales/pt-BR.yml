@@ -14,7 +14,7 @@ pls_enter_email_or_username: Digite o e-mail ou o nome de usuário
 email_or_username_incorrect: E-mail ou nome de usuário incorreto
 two_step_verification: 2FA
 pls_enter_two_step_verification: Digite o código de verificação em duas etapas
-tip_start_double_check: 'Para manter sua conta ainda mais segura, deixe o 2FA ativado'
+tip_start_double_check: Para manter sua conta ainda mais segura, deixe o 2FA ativado
 email_address: E-mail
 pls_enter_email_address: Digite o e-mail
 email_address_incorrect: Endereço de e-mail incorreto
@@ -47,7 +47,8 @@ code_optional: Código (Opcional)
 read_and_agree: Li e concordo
 terms_conditions: Termos e condições
 read_terms_conditions: Eu li e concordo com os termos e condições
-agree_terms_conditions: Por favor, leia os termos e condições na íntegra e role até o final para aceitar
+agree_terms_conditions: Por favor, leia os termos e condições na íntegra e role até
+  o final para aceitar
 read_and_accept: Leia e aceite os termos e condições
 or_use: OU
 forgot_password: Esqueci a senha
@@ -85,7 +86,8 @@ online_support: Suporte Ao Vivo
 vip_club: Clube VIP
 club: Clube
 logout: Sair
-logout_dont_foget: 'Não se esqueça de verificar nossa gigantesca seleção de promoções tanto do cassino quanto de esportes antes de sair!'
+logout_dont_foget: Não se esqueça de verificar nossa gigantesca seleção de promoções
+  tanto do cassino quanto de esportes antes de sair!
 chat_room: Chat
 bet_slip: Boletim de apostas
 my_bets: Minhas Apostas
@@ -93,7 +95,7 @@ all_bets: Todas as Apostas
 casino_bets: Apostas de cassino
 billboard: Grandes Apostadores
 competition_board: Classificação da Corrida
-competition: 'Corrida de {money}'
+competition: Corrida de {money}
 competition_name: Nome da competição
 currency: Moeda
 network: Rede
@@ -122,23 +124,23 @@ add_participant: Adicionar participante
 add_person: Adicionar participante
 ai_answer: Resposta de IA
 ai_answer_information: Resposta de IA, mensagem
-ai_answers_english_only: As respostas de IA no momento estão disponíveis apenas
-  em inglês
+ai_answers_english_only: As respostas de IA no momento estão disponíveis apenas em
+  inglês
 ai_bot: Robô de IA
-alexandria_unauthorized: Você pode testar enviar-nos uma mensagem ou conectar-se
-  ao {app_name}
+alexandria_unauthorized: Você pode testar enviar-nos uma mensagem ou conectar-se ao
+  {app_name}
 almost_there: Estamos quase encontrando a resposta...
 also_in_this_conversation: Também está nesta conversa
 amazing: Excelente!
 answer: Resposta
 answer_is_generated_with_ai: Esta resposta é baseada exclusivamente nos dados fornecidos
-  por {company_name}. É gerado por inteligência artificial e, portanto, pode não
-  ser totalmente preciso.
+  por {company_name}. É gerado por inteligência artificial e, portanto, pode não ser
+  totalmente preciso.
 answer_is_generated_with_ai_may_be_incorrect: Esta resposta foi gerada por inteligência
   artificial e pode não ser totalmente precisa.
-answer_is_generated_with_ai_sources: As respostas de IA são geradas a partir de
-  fontes de dados públicas e privadas fornecidas por {company_name}.
-april_date: "{date} de abril"
+answer_is_generated_with_ai_sources: As respostas de IA são geradas a partir de fontes
+  de dados públicas e privadas fornecidas por {company_name}.
+april_date: '{date} de abril'
 article: Artigo
 article_double_author: 'Autor(a): {author_first_name1} e {author_first_name2}'
 article_multiple_authors: 'Autor(a): {author_first_name1} e {number_of_other_authors}
@@ -158,7 +160,7 @@ asked_about: Perguntou sobre
 assigned_to_admin: Atribuído ao {admin}
 attribute_collector_negative: Não
 attribute_collector_positive: Sim
-august_date: "{date} de agosto"
+august_date: '{date} de agosto'
 avatar: Avatar
 avatars: Avatares
 away_state: Ausente
@@ -186,7 +188,7 @@ checklist_in_progress_time_remaining_singular: Tempo restante 1 min.
 checklist_mark_step_as_complete: Marcar como finalizado
 checklist_not_started_time_remaining_plural: Tempo estimado {minutes} minutos
 checklist_not_started_time_remaining_singular: Tempo estimado 1 minuto
-checklist_number_of_steps_plural: "{number_of_steps} passo"
+checklist_number_of_steps_plural: '{number_of_steps} passo'
 checklist_number_of_steps_progress_plural: Concluído {steps_completed} de {total_steps}
   passo(s)
 checklist_number_of_steps_progress_singular: Concluído 1 de {total_steps} passo(s)
@@ -221,7 +223,7 @@ custom_response_delay_1: Normalmente responde em algumas horas
 custom_response_delay_2: Normalmente responde em um dia
 custom_response_delay_3: Normalmente responde em uma semana
 custom_response_delay_unknown: Responderá em breve
-december_date: "{date}  de dezembro"
+december_date: '{date}  de dezembro'
 discovery_launcher: Lançador descoberto
 discovery_mode_entry_text: Você precisa de ajuda?
 dismiss: Fechar
@@ -257,10 +259,10 @@ expected_response_delay_604800: Em até uma semana
 expected_response_delay_7200: Em até 2 horas
 expected_response_delay_86400: 1 dia
 expected_response_delay_900: Em até 15 minutos
-extra_labels_count: "#ERROR!"
+extra_labels_count: '#ERROR!'
 failed_message: Falha na mensagem
 failed_to_send: Não é possivel ser enviada
-february_date: "{date} de fevereiro"
+february_date: '{date} de fevereiro'
 field_is_required: O campo {field_name} precisa ser preenchido
 file_max_limit: Limite máximo {limit} arquivos
 file_too_big: O arquivo não pode ultrapassar {limit}MB
@@ -279,30 +281,30 @@ gif_picker: Selecionador de GIFs
 gifs_load_error: Não é possível carregar o GIF
 go_to: Ir para {app_name}
 great: Ótimo
-group_conversation_1_other_participant_count_short: "#ERROR!"
-group_conversation_multiple_other_participant_count_short: "#ERROR!"
-group_conversation_multiple_person_also_participating: "{other_participant_count}
-  também estão participando"
-group_conversation_name_also_participating: "{participant_name} também está participando"
-group_conversation_name_and_1_other_also_particiapting: "{participant_name} e 1
-  pessoa também estão participando"
-group_conversation_name_and_multiple_others_also_participating: "{participant_name}
-  e {other_participant_count} também estão participando"
+group_conversation_1_other_participant_count_short: '#ERROR!'
+group_conversation_multiple_other_participant_count_short: '#ERROR!'
+group_conversation_multiple_person_also_participating: '{other_participant_count}
+  também estão participando'
+group_conversation_name_also_participating: '{participant_name} também está participando'
+group_conversation_name_and_1_other_also_particiapting: '{participant_name} e 1 pessoa
+  também estão participando'
+group_conversation_name_and_multiple_others_also_participating: '{participant_name}
+  e {other_participant_count} também estão participando'
 group_conversation_one_person_also_participating: 1 pessoa também está participando
 help_space_title: Ajuda
-hi_name: "Olá, {first_name} 👋"
-hi_there: "Olá 👋"
+hi_name: Olá, {first_name} 👋
+hi_there: Olá 👋
 home_space_title: Página Inicial
 how_can_we_help: Como podemos ajudar?
 how_would_you_rate_this: Como você avalia este conteúdo?
-january_date: "{date} de janeiro"
+january_date: '{date} de janeiro'
 join_conversation: Participar da conversa
-july_date: "{date} de julho "
-june_date: "{date} de junho "
-last_seconds: "{delta} segundos atrás"
-last_minutes: "{delta} minutos atrás"
-last_hours: "{delta} horas atrás"
-last_days: "{delta} dias atrás"
+july_date: '{date} de julho '
+june_date: '{date} de junho '
+last_seconds: '{delta} segundos atrás'
+last_minutes: '{delta} minutos atrás'
+last_hours: '{delta} horas atrás'
+last_days: '{delta} dias atrás'
 last_active_hours_ago: Visto por último {mins} h. atrás
 last_active_mins_ago: Visto por último {mins} min. atrás
 last_active_over_a_week: Visto por último mais de 1 semana atrás
@@ -312,8 +314,8 @@ leave_your_email: Deixe o seu e-mail
 loading: Carregando
 more: Mais
 seq: Vezes
-march_date: "{date} de março"
-may_date: "{date} de maio"
+march_date: '{date} de março'
+may_date: '{date} de maio'
 message: Mensagem
 message_seen: Visualizado
 message_state_sending: Enviando
@@ -325,13 +327,13 @@ messages_empty_state_title: Não há mensagens
 messages_space_title: Mensagem
 messenger: Messenger
 messenger_bot_reply_time: Nosso robô responderá imediatamente
-multiple_articles: "{total_articles} artigos"
-multiple_collections: "{total_collection} favoritos"
+multiple_articles: '{total_articles} artigos'
+multiple_collections: '{total_collection} favoritos'
 mute_sound: Modo silencioso
-name_and_1_other: "{name} e 1 pessoa"
-name_and_one_other: "{name} e 1 pessoa"
-name_and_two_others: "{name} e 2 pessoas"
-name_and_x_others: "{name} e {count} pessoas"
+name_and_1_other: '{name} e 1 pessoa'
+name_and_one_other: '{name} e 1 pessoa'
+name_and_two_others: '{name} e 2 pessoas'
+name_and_x_others: '{name} e {count} pessoas'
 nature: Natural
 navigation_back: Voltar
 new_conversation: Nova conversa
@@ -355,10 +357,10 @@ no_tasks: Não há tarefas
 no_tasks_available_currently: Não há tarefas disponíveis no momento
 nothing_to_see_here_yet: Não há conteúdo disponível
 notification: Notificação
-november_date: "{date} de novembro"
+november_date: '{date} de novembro'
 number_is_incorrect: O número está incorreto
 objects: Objetos
-october_date: "{date} de outubro"
+october_date: '{date} de outubro'
 office_hours_client_response_1h: Atendimento ao cliente após 1 hora
 office_hours_client_response_2h: Atendimento ao cliente após 2 horas
 office_hours_client_response_30m: Atendimento ao cliente após 30 minutos
@@ -370,8 +372,8 @@ office_hours_client_response_day_3: O atendimento ao cliente iniciará na quinta
 office_hours_client_response_day_4: O atendimento ao cliente iniciará na sexta-feira
 office_hours_client_response_day_5: O atendimento ao cliente iniciará no sábado
 office_hours_client_response_day_6: O atendimento ao cliente iniciará no domingo
-office_hours_client_response_later_today: O atendimento ao cliente iniciará hoje
-  em breve
+office_hours_client_response_later_today: O atendimento ao cliente iniciará hoje em
+  breve
 office_hours_client_response_next_week: O atendimento ao cliente iniciará na próxima
   semana
 office_hours_client_response_tomorrow: O atendimento ao cliente iniciará amanhã
@@ -390,7 +392,7 @@ places: Local
 play: Transmitir
 play_sound: Transmitir áudio
 play_video: Transmitir vídeo
-plus_x_participants: '+ {count}'
+plus_x_participants: + {count}
 pointer: Ponteiro
 post: Post
 powered_by_intercom: Apoiado por Intercom
@@ -426,9 +428,9 @@ product_tours_name: Tour dos produtos
 product_tours_next: Próximo passo
 product_tours_restart: Reiniciar
 product_tours_snooze: Modo soneca
-product_tours_tour_step_number: "{start_number} / {end_number}"
+product_tours_tour_step_number: '{start_number} / {end_number}'
 product_tours_view: Visualizar tour
-profile_location: "{time} em {location}"
+profile_location: '{time} em {location}'
 rate_your_conversation: Avalie a conversa
 receive_replies_there: Você receberá uma notificação aqui quando a equipe responder
 recent_ticket: Ordens de trabalho mais recentes
@@ -473,7 +475,7 @@ sent_you_a_video_reply: respondeu ao seu vídeo
 sent_you_an_app: te enviou um aplicativo
 sent_you_an_attachment: te enviou um anexo
 sent_you_an_image: te enviou uma imagem
-september_date: "{date} de setembro"
+september_date: '{date} de setembro'
 shared_by: 'Compartilhado por:'
 show_admin_name: Exibir nome do administrador
 show_less: Mostrar menos
@@ -509,8 +511,8 @@ surveys_from_company: Pesquisa feita por {company}
 surveys_from_teammate: Pesquisa feita por {company} e enviada por {sender_name}
 surveys_multi_select_too_few_responses: Para esta pergunta, você deve escolher pelo
   menos {response_count} alternativa(s)
-surveys_multi_select_too_many_responses: Para esta pergunta, você deve escolher
-  {response_count} alternativa(s)
+surveys_multi_select_too_many_responses: Para esta pergunta, você deve escolher {response_count}
+  alternativa(s)
 surveys_multiselect_other_option: Outro (por favor, especifique)
 surveys_multiselect_other_option_input_label: Por favor, especifique
 surveys_multiselect_other_option_input_placeholder: Digite a resposta
@@ -531,12 +533,12 @@ surveys_birthday_error: Digite a sua data de nascimento
 surveys_text_input_question_placeholder: Por favor, digite aqui a sua resposta...
 symbols: Símbolos
 tasks_space_title: Tarefas
-team_name_custom_response_delay_2: "{app_name} normalmente responde em um dia"
-team_name_custom_response_delay_3: "{app_name} normalmente responde em uma semana"
-team_name_proactive_expected_response_delay_one_business_day: "{app_name} normalmente
-  responde em um dia útil"
-team_name_proactive_expected_response_delay_two_business_days: "{app_name} normalmente
-  responde em dois dias úteis"
+team_name_custom_response_delay_2: '{app_name} normalmente responde em um dia'
+team_name_custom_response_delay_3: '{app_name} normalmente responde em uma semana'
+team_name_proactive_expected_response_delay_one_business_day: '{app_name} normalmente
+  responde em um dia útil'
+team_name_proactive_expected_response_delay_two_business_days: '{app_name} normalmente
+  responde em dois dias úteis'
 teammate_calendar_link: Calendário do colega de equipe
 teammate_profile: Perfil do colega de equipe {provider}
 tell_us_more: Conte-nos mais
@@ -544,10 +546,10 @@ tell_us_what_you_need: Diga-nos o que você precisa, o nosso robô fará o seu m
   para responder
 terrible: Horrível
 thank_you: Obrigado
-thanks_custom_response_delay_one_business_day: Obrigado! A equipe irá responder
-  em um dia útil
-thanks_custom_response_delay_two_business_days: Obrigado! A equipe irá responder
-  em dois dia úteis
+thanks_custom_response_delay_one_business_day: Obrigado! A equipe irá responder em
+  um dia útil
+thanks_custom_response_delay_two_business_days: Obrigado! A equipe irá responder em
+  dois dia úteis
 thanks_for_letting_us_know: Obrigado pelo feedback
 thanks_proactive_expected_response_delay_unknown: Obrigado! A equipe irá responder
   o mais breve possível
@@ -585,8 +587,8 @@ the_team_typically_replies_in_900: A equipe normalmente responde em 15 minutos
 the_team_typically_replies_in_day: A equipe normalmente responde em um dia
 the_team_typically_replies_in_hours: A equipe normalmente responde em algumas horas
 the_team_typically_replies_in_minutes: A equipe normalmente responde em alguns minutos
-the_team_typically_replies_in_one_business_day: A equipe normalmente responde em
-  um dia útil
+the_team_typically_replies_in_one_business_day: A equipe normalmente responde em um
+  dia útil
 the_team_typically_replies_in_two_business_days: A equipe normalmente responde em
   dois dias úteis
 the_team_typically_replies_in_under_n_hours: A equipe normalmente responde em {hours}
@@ -597,31 +599,32 @@ the_team_typically_replies_in_unknown: A equipe irá responder o mais breve poss
 the_team_typically_replies_in_week: A equipe normalmente responde em uma semana
 thinking: Pensando...
 this_chat_is_powered_by_intercom: Este bate-papo é apoiado por Intercom
-ticket_status_event_moved_automation_with_bullet_point: Ordem de trabalho movida
-  {status} • {timestamp}
-ticket_status_event_moved_with_bullet_point: "{teammate} moveu a ordem de trabalho
-  {status} • {timestamp}"
+ticket_status_event_moved_automation_with_bullet_point: Ordem de trabalho movida {status}
+  • {timestamp}
+ticket_status_event_moved_with_bullet_point: '{teammate} moveu a ordem de trabalho
+  {status} • {timestamp}'
 tickets_add_file: Adicionar arquivo
 tickets_add_files: Adicionar arquivo
 tickets_create_ticket: Criar ordem de trabalho
 tickets_create_ticket_fallback: Por favor responda esta mensagem, você será atendido
   o mais breve possível.
 tickets_cta_text: Alguma dúvida referente à ordem de trabalho?
-tickets_email_copy: Respostas e atualizações de ordem de trabalho serão enviadas
-  para o seguinte endereço de e-mail
+tickets_email_copy: Respostas e atualizações de ordem de trabalho serão enviadas para
+  o seguinte endereço de e-mail
 tickets_email_subject: Sua ordem de trabalho {ticket_type_name}
 tickets_email_subject_with_ticket_id: 'Your {ticket_type_name} ticket #{ticket_id}'
 tickets_estimated_resolution: 'Tempo estimado de resolução: {duration}'
 tickets_files_added: Arquivo adicionado
 tickets_have_a_question: Alguma dúvida?
-tickets_in_progress_status_detail: Estamos trabalhando duro em relação a este assunto 🙌
-tickets_in_progress_status_detail_with_assignee: "{first_name} está trabalhando
-  em relação a este assunto"
+tickets_in_progress_status_detail: Estamos trabalhando duro em relação a este assunto
+  🙌
+tickets_in_progress_status_detail_with_assignee: '{first_name} está trabalhando em
+  relação a este assunto'
 tickets_is_resolved: Esta ordem de trabalho já foi solucionada?
 tickets_log_a_ticket: Notas da ordem de trabalho
 tickets_resolved_status_detail: Concluímos a sua ordem de trabalho
-tickets_resolved_status_detail_with_assignee: "{first_name} concluiu a sua ordem
-  de trabalho"
+tickets_resolved_status_detail_with_assignee: '{first_name} concluiu a sua ordem de
+  trabalho'
 tickets_sla: Tempo estimado de resolução {time}
 tickets_space_title: Ordem de trabalho
 tickets_status_change_event: A ordem de trabalho agora {status} • {timestamp}
@@ -644,16 +647,14 @@ tickets_submitted_confirmation_header: Ordem de trabalho submetida
 tickets_submitted_confirmation_paragraph: Iremos notificar assim que houverem atualizações
   disponíveis para a sua ordem de trabalho
 tickets_submitted_status_detail: Iremos solucionar esta questão o mais breve possível
-tickets_submitted_status_detail_with_assignee: "{first_name} irá solucionar esta
-  questão o mais breve possível"
-tickets_updates_prompt: Você receberá as atualizações através do Messenger e do
-  e-mail
+tickets_submitted_status_detail_with_assignee: '{first_name} irá solucionar esta questão
+  o mais breve possível'
+tickets_updates_prompt: Você receberá as atualizações através do Messenger e do e-mail
 tickets_view_ticket: Visualizar detalhes da ordem de trabalho
-tickets_waiting_on_customer_status_detail: Precisamos que você envie informações
-  adicionais
-tickets_waiting_on_customer_status_detail_with_assignee: "{first_name} precisa de
-  informações adicionais"
-time_day_ago: "{delta} dias atrás"
+tickets_waiting_on_customer_status_detail: Precisamos que você envie informações adicionais
+tickets_waiting_on_customer_status_detail_with_assignee: '{first_name} precisa de
+  informações adicionais'
+time_day_ago: '{delta} dias atrás'
 time_future_1h: 1 hora
 time_future_2h: 2 horas
 time_future_30m: 30 minutos
@@ -668,12 +669,12 @@ time_future_day_6: Domingo
 time_future_later_today: Hoje mais tarde
 time_future_next_week: Próxima semana
 time_future_tomorrow: Amanhã
-time_hour_ago: "{delta} horas atrás"
+time_hour_ago: '{delta} horas atrás'
 time_hour_after: Daqui há {delta} horas
-time_hour: "{delta} horas"
+time_hour: '{delta} horas'
 time_just_now: Há pouco
-time_minute_ago: "{delta} minutos atrás"
-time_week_ago: "{delta} semanas atrás"
+time_minute_ago: '{delta} minutos atrás'
+time_week_ago: '{delta} semanas atrás'
 time_yesterday: Ontem
 time_january: Janeiro
 time_february: Fevereiro
@@ -726,7 +727,7 @@ upload_attachment: Enviar anexo
 upload_failed: Falha no envio
 upload_max_files_allowed: Limite máximo {limit} arquivos
 upload_max_files_size: Tamanho máx. de arquivos {limit}MB
-user_says: "{firstName} disse"
+user_says: '{firstName} disse'
 usual_reply_time_header_label: Tempo médio de resposta
 view_label: Visualizar
 view_all: Ver Todos
@@ -799,8 +800,8 @@ finance_other_tab_race_payout: Prêmio do concurso
 finance_other_tab_rains_received: Receber chuva de envelopes vermelhos
 finance_other_tab_rains_sent: Enviar chuva de envelopes vermelhos
 finance_other_tab_rakeback_received: O desconto foi retirado
-finance_other_tab_sportsbook_promotion_payout: Pagamento de bônus promocional de
-  apostas esportivas
+finance_other_tab_sportsbook_promotion_payout: Pagamento de bônus promocional de apostas
+  esportivas
 finance_other_tab_tips_received: Gorjetas recebidas
 finance_other_tab_tips_sent: Gorjetas enviadas
 finance_other_tab_vault_deposit: Depositar no cofre
@@ -812,12 +813,12 @@ finance_funds_campaign_sort_created: Data de criação
 finance_funds_campaign_sort_deposit_count: Número de depósitos
 finance_funds_transfer_commission_withdraw: Sacar comissão disponível
 finance_funds_vault_draw: Sacar do cofreq
-success_deposit: "{amount} {icon} depositado com sucesso no cofre"
+success_deposit: '{amount} {icon} depositado com sucesso no cofre'
 confirm_draw_vault: Confirmar saque de {amount} {icon} do cofre
 avai_commission: Comissão disponível
 total_commission: Comissão total
 page_label: Página
-page_sizer_label: "/pág."
+page_sizer_label: /pág.
 page_prev: Página anterior
 page_next: Próxima página
 jump_to: Pular para
@@ -966,15 +967,15 @@ sports_starts_in: 'Início: daqui a {minutos} minutos'
 welcome_guest: Bem-vindo
 language_title: Idioma
 language_current: Chinês
-casino_index_description: Navegue pela nossa ampla variedade de jogos de cassino
-  e deixe que a {site} lhe proporcione uma experiência de jogo online justa e divertida.
+casino_index_description: Navegue pela nossa ampla variedade de jogos de cassino e
+  deixe que a {site} lhe proporcione uma experiência de jogo online justa e divertida.
   Faça apostas em caça-níqueis, cassino ao vivo, blackjack, bacará, roleta e milhares
   de jogos clássicos de cassino, incluindo seus originais {site} favoritos, diretamente
   do seu navegador.
-sports_index_description: Aposte em times, jogadores e ligas de todo o mundo com
-  a nossa plataforma de apostas esportivas. Desfrute de uma experiência de apostas
-  esportivas incomparável, apostando numa variedade de opções de apostas em MMA,
-  basquetel, futebol e muitos outros esportes, bem como em mercados ao vivo.
+sports_index_description: Aposte em times, jogadores e ligas de todo o mundo com a
+  nossa plataforma de apostas esportivas. Desfrute de uma experiência de apostas esportivas
+  incomparável, apostando numa variedade de opções de apostas em MMA, basquetel, futebol
+  e muitos outros esportes, bem como em mercados ao vivo.
 chat_been_hide: A sala de bate-papo foi ocultada
 chat_show_room: Exibir sala de bate-papo
 chat_stop_by_scroll: Sala de bate-papo pausada devido à rolagem
@@ -991,7 +992,7 @@ chat_close_side: Minimizar Barra Lateral
 chat_send_tip_label: Enviar gorjeta
 chat_rule_full_title: Todas as regras podem ser encontradas em nosso
 chat_forum: Fórum
-chat_rule_find: '.'
+chat_rule_find: .
 about_us: Sobre Nós
 sponsor_activity: Patrocínios
 online_shopping: Loja
@@ -1032,7 +1033,7 @@ current_wait_receive_desc: Você pode escolher o tipo de moeda que gostaria de r
 commission_wallet_money_label: Carteira de comissão e saldo
 currency_exchange_rate: Taxa de câmbio do valor total
 vip: VIP
-vip_promotion_bonus: 'Bônus de promoção'
+vip_promotion_bonus: Bônus de promoção
 vip_water_back: Desconto
 vip_day_salary: Salário diário
 vip_week_salary: Salário semanal
@@ -1048,7 +1049,7 @@ effective_bet: Apostas válidas
 total_win_lose: Vitórias e derrotas totais
 rebate_amount: Valor do desconto
 bet_order_num: Número de boletins de apostas
-rule_desc: 'Regulamento {vip}'
+rule_desc: Regulamento {vip}
 vip_rule_1: 'Critérios de promoção: Se você atender aos requisitos da promoção VIP
   (ou seja, todos os requisitos forem atendidos), você poderá ser promovido ao nível
   VIP correspondente e receber o bônus de promoção correspondente. Se você avançar
@@ -1059,10 +1060,13 @@ vip_rule_2: 'Salário diário: Se cumprir os requisitos salariais diários corre
 vip_rule_3: 'Salário semanal: Se você atingir o nível VIP correspondente aos requisitos
   salariais semanais, poderá receber o bônus semanal correspondente, que é zerado
   todas as segundas-feiras às 00:00'
-vip_rule_4: 'Salário mensal: Se você recarregar e codificar todos os meses para
-  atender aos requisitos salariais mensais correspondentes ao nível VIP atual, poderá
-  receber o bônus mensal correspondente, zerado às 00:00 do dia 1º de cada mês'
-vip_rule_5: 在晋级或降级后90天内满足保级要求（即打码都满足条件），即可保留当前VIP等级。如果90天内无法满足打码需求，则会降低一级VIP等级
+vip_rule_4: 'Salário mensal: Se você recarregar e codificar todos os meses para atender
+  aos requisitos salariais mensais correspondentes ao nível VIP atual, poderá receber
+  o bônus mensal correspondente, zerado às 00:00 do dia 1º de cada mês'
+vip_rule_5: Se você atender aos requisitos de rebaixamento dentro de 90 dias após
+  ter sido promovido ou rebaixado (ou seja, todos os requisitos do código foram atendidos),
+  você poderá manter seu nível VIP atual. Se a demanda de codificação não puder ser
+  atendida em 90 dias, o nível VIP será reduzido.
 vip_rule_6: 'Instruções de auditoria: O bônus dado pelo VIP requer 1 vez de rollover
   (ou seja, auditoria, codificação ou apostas válidas) antes de poder ser retirado.
   A codificação não está limitada à plataforma de jogo'
@@ -1119,10 +1123,13 @@ vip_banner_tip_1: Trabalhe com seu representante de serviço VIP dedicado para a
   os benefícios às suas necessidades de apostas.
 vip_banner_tip_2: Você pode esperar bônus semanais e mensais com base no seu volume
   de jogo. Quanto mais você joga, mais bônus você ganha.
-vip_banner_tip_3: 'Em má fase de sorte? A Meibo está aqui para mudar o jogo! A cada upgrade, receba fundos extras com base nas suas perdas. Deixe-nos transformar sua sorte e faça parte de uma experiência única no mundo dos cassinos!'
+vip_banner_tip_3: Em má fase de sorte? A Meibo está aqui para mudar o jogo! A cada
+  upgrade, receba fundos extras com base nas suas perdas. Deixe-nos transformar sua
+  sorte e faça parte de uma experiência única no mundo dos cassinos!
 vip_banner_tip_4: Seja designado um representante de serviço VIP dedicado que irá
   apoiar e atender às suas necessidades de apostas.
-vip_banner_tip_5: Ganhe bônus depois de atingir cada nível seguinte. Quanto maior o nível alcançado, maior será o bônus de atualização.
+vip_banner_tip_5: Ganhe bônus depois de atingir cada nível seguinte. Quanto maior
+  o nível alcançado, maior será o bônus de atualização.
 booster_bonus: Bônus de reforço
 upgrade_bonus: Bônus de atualização
 monthly_bonus: Bônus mensal
@@ -1143,25 +1150,30 @@ service_transfer: Atendimento ao cliente - transferências
 bind_pix_account: Vincular PIX
 bind_bank_card: 'Vincular cartão '
 data_empty: Sem dados
-chat_rule_1: Não faça nenhum tipo de spam e não use letras maiúsculas em excesso ao conversar.
+chat_rule_1: Não faça nenhum tipo de spam e não use letras maiúsculas em excesso ao
+  conversar.
 chat_rule_2: Não assedie ou seja ofensivo com outros usuários ou funcionários da {site}.
-  Usar palavras ofensivas, tal como "lixo", "scam", "ladrão", "roubo" ou
-  quaisquer variáveis das mesmas para se referir ao site ou qualquer um de seus
-  jogos também é estritamente proibido.
-chat_rule_3: Não compartilhe nenhuma informação pessoal (incluindo redes sociais) suas ou
-  de outros jogadores.
+  Usar palavras ofensivas, tal como "lixo", "scam", "ladrão", "roubo" ou quaisquer
+  variáveis das mesmas para se referir ao site ou qualquer um de seus jogos também
+  é estritamente proibido.
+chat_rule_3: Não compartilhe nenhuma informação pessoal (incluindo redes sociais)
+  suas ou de outros jogadores.
 chat_rule_4: Não peça nenhum tipo de ajuda financeira, tal como empréstimos, chuvas,
   gorjetas, "rachadinha", "metadinha", "pingos", "miora" ou afins.
-chat_rule_5: Não use contas alternativas (alts) para falar no chat, isso é estritamente proibido.
+chat_rule_5: Não use contas alternativas (alts) para falar no chat, isso é estritamente
+  proibido.
 chat_rule_6: Nenhum comportamento suspeito que possa ser visto como potencial fraude.
-chat_rule_7: Não se envolva em nenhuma forma de publicidade / troca / venda / compra ou oferta de serviços.
-chat_rule_8: Nenhuma discussão sobre a Twitch, Youtube, Facebook, Booyah, Trovo ou qualquer outra plataforma semelhante..
+chat_rule_7: Não se envolva em nenhuma forma de publicidade / troca / venda / compra
+  ou oferta de serviços.
+chat_rule_8: Nenhuma discussão sobre a Twitch, Youtube, Facebook, Booyah, Trovo ou
+  qualquer outra plataforma semelhante..
 chat_rule_9: Não use serviços de encurtamento de URL. Sempre envie o link completo.
-chat_rule_10: Não compartilhe nenhum tipo de código, scripts ou qualquer outro serviço de bot. Códigos de Ofertas ou Bônus de
-  qualquer forma também são estritamente proibidos.
-chat_rule_11: Use apenas o idioma específico do chat em que você está ou
-  penalidades poderão ser aplicadas.
-chat_rule_12: Sem conversas sobre política e religião no chat, estes assuntos são estritamente proibidos.
+chat_rule_10: Não compartilhe nenhum tipo de código, scripts ou qualquer outro serviço
+  de bot. Códigos de Ofertas ou Bônus de qualquer forma também são estritamente proibidos.
+chat_rule_11: Use apenas o idioma específico do chat em que você está ou penalidades
+  poderão ser aplicadas.
+chat_rule_12: Sem conversas sobre política e religião no chat, estes assuntos são
+  estritamente proibidos.
 user_confirm_delete_draw_way: Confirme a exclusão dos seguintes métodos de retirada?
 confirm_delete: Confirmar exclusão
 big_winner: O grande vencedor
@@ -1201,16 +1213,15 @@ success_submit_feedback: Feedback enviado com sucesso!
 feedback_content: Conteúdo do feedback
 image: Imagem
 image_upload_only: 'Só é possível fazer upload: formato {ty}'
-image_upload_tip: 'Só é possível fazer upload de: formato png/jpg, até 5 fotos,
-  tamanho máximo por imagem 1M'
+image_upload_tip: 'Só é possível fazer upload de: formato png/jpg, até 5 fotos, tamanho
+  máximo por imagem 1M'
 image_upload_size: O tamanho máximo de uma única imagem é {size}
 image_upload_failed: Falha no upload da imagem
 bonus_rule: Regras de bônus
 bonus_label: Recompensas
 feedback_bonus_tip: Criamos um grande bônus para coletar feedback para que possamos
-  otimizar o sistema e as funções e proporcionar uma experiência melhor! Uma vez
-  adotado, as recompensas serão dadas com base na importância (exceto se não for
-  adotado)
+  otimizar o sistema e as funções e proporcionar uma experiência melhor! Uma vez adotado,
+  as recompensas serão dadas com base na importância (exceto se não for adotado)
 bonus_not_apply: Bônus a ser reivindicado
 feedback_status: Status do feedback
 feedback_status_done: Processado
@@ -1226,8 +1237,8 @@ deposit_name_tip: Para evitar atrasos no depósito, certifique-se de inserir o n
 deposit_amount: Valor de recarga
 confirm_pay: Confirmar pagament
 payee_info: Informações do beneficiário
-transfer_amount_equal_order: O valor da transferência deve corresponder ao valor
-  do depósito
+transfer_amount_equal_order: O valor da transferência deve corresponder ao valor do
+  depósito
 cancel_deposit: Cancelar solicitação de depósito
 already_deposit: Depositado
 confirm_transfer_ontime: Para evitar atrasos na pontuação, confirme a transferência
@@ -1249,8 +1260,8 @@ scan: Procurar
 change_byte_addr: Tem certeza de que deseja alterar seu endereço de depósito {delta}?
 attention: Atenção
 change_byte_addr_1: Depois de alterar seu endereço de depósito, seu endereço antigo
-  será desativado. Somente o novo endereço poderá ser usado para depósitos. Por
-  favor, não utilize mais o seu endereço antigo.
+  será desativado. Somente o novo endereço poderá ser usado para depósitos. Por favor,
+  não utilize mais o seu endereço antigo.
 change_byte_addr_2: Certifique-se de que não possui transações de depósito pendentes
   antes de alterar seu endereço de depósito.
 action_no_cancel: Essa ação não pode ser desfeita
@@ -1260,8 +1271,8 @@ need_login_tip: Você deve estar conectado para executar esta ação
 mark_all_read: Marcar tudo como lido
 empty_notify: Nenhuma Notificação
 tip_show_action: Suas interações estarão visíveis aqui
-tip_for_set_safepwd: Para a segurança dos seus fundos, defina primeiro uma senha
-  de fundo.
+tip_for_set_safepwd: Para a segurança dos seus fundos, defina primeiro uma senha de
+  fundo.
 tip_set_safe: Por favor, defina a senha do fundo primeiro
 go_set: Ir para as configurações
 showing: Exibindo
@@ -1314,13 +1325,13 @@ new_active: Criar nova atividade
 activity: Atividade
 commission_cal_tip: Todos os nossos jogos vêm com diferentes porcentagens de vantagem
   da casa. Você pode usar a seguinte fórmula para calcular sua comissão
-sports_cal_tip: Todas as apostas esportivas são feitas com uma vantagem teórica
-  da casa de {rate}. Você pode usar a seguinte fórmula para calcular a sua comissão
+sports_cal_tip: Todas as apostas esportivas são feitas com uma vantagem teórica da
+  casa de {rate}. Você pode usar a seguinte fórmula para calcular a sua comissão
 commission_encourage: Se você é um afiliado com grande influência e pode alcançar
-  um grande número de pessoas, ou está em outras circunstâncias especiais, entre
-  em contato com nossa super equipe de suporte. Após discussão com o gerente de
-  afiliados, podemos tentar personalizar um programa de afiliados para você. Isso
-  pode incluir comissões mais altas.
+  um grande número de pessoas, ou está em outras circunstâncias especiais, entre em
+  contato com nossa super equipe de suporte. Após discussão com o gerente de afiliados,
+  podemos tentar personalizar um programa de afiliados para você. Isso pode incluir
+  comissões mais altas.
 statistical_time: Tempo estatístico
 withdraw_amount: Valor de saque
 deposit_amount_label: Valor de depósito
@@ -1376,17 +1387,22 @@ success_verify: Verificado com sucesso
 congratulate_email_success: Parabéns! Seu e-mail foi verificado com sucesso
 resend_email: Reenviar E-mail
 phone: Número do Telefone
-tip_phone: Nós atendemos apenas as áreas que estão listadas na lista de códigos de países disponíveis.
+tip_phone: Nós atendemos apenas as áreas que estão listadas na lista de códigos de
+  países disponíveis.
 intl_phone_pre: Código do País
 social_account: Conta da rede social
 action: Ação
 cancel_ignore: Remover da lista negra
 level_desc: Descrição do nível
-preferences_tip_1: 'A privacidade do usuário é um dos valores mais importantes da {site}. Essas configurações permitem que você fique completamente anônimo do resto dos jogadores.'
-preferences_tip_2: 'Suas apostas não aparecerão no feed de apostas público e na visualização da aposta'
-preferences_tip_3: 'Outros usuários não poderão visualizar suas vitórias, derrotas e estatísticas de apostas'
+preferences_tip_1: A privacidade do usuário é um dos valores mais importantes da {site}.
+  Essas configurações permitem que você fique completamente anônimo do resto dos jogadores.
+preferences_tip_2: Suas apostas não aparecerão no feed de apostas público e na visualização
+  da aposta
+preferences_tip_3: Outros usuários não poderão visualizar suas vitórias, derrotas
+  e estatísticas de apostas
 preferences_tip_4: Outros usuários não conseguirão ver suas estatísticas de corrida
-preferences_tip_5: Por favor, aguarde até 30 segundos para que a atualização entre em vigor
+preferences_tip_5: Por favor, aguarde até 30 segundos para que a atualização entre
+  em vigor
 preferences_tip_6: Impedir que você receba chuvas no chat
 preferences_tip_7: Status da assinatura de e-mails ou ofertas de marketing
 turn_on_hide_mode: Ativar Modo Anônimo
@@ -1433,7 +1449,8 @@ pls_confirm_deposit_addr: Por favor, confirme se o endereço de pagamento é dep
 use_in_game: Jogo em uso
 search_currency: Buscar Moedas
 card_wallet: Carteira de cartões
-improve_safe_level: Melhore a segurança da sua conta com a Autenticação de Dois Fatores (2FA)
+improve_safe_level: Melhore a segurança da sua conta com a Autenticação de Dois Fatores
+  (2FA)
 turn_on_double_check: Habilitar 2FA
 hide_zero_wallet: Esconder saldos zerados
 zero_wallet_hidden: Seus saldos zerados não aparecerão em sua carteira
@@ -1464,82 +1481,86 @@ transaction_vip_day: Envelope vermelho VIP diário
 transaction_vip_week: Envelope vermelho VIP semanal
 transaction_vip_monthly: Envelope vermelho VIP mensal
 transaction_vip_birthday: Envelope vermelho VIP de aniversário
-promotion_tutorial_example_desc: Os descontos neste site são baseados em apostas
-  válidas, assumindo que a proporção do desconto é mostrada na tabela no canto superior
-  esquerdo. A foi o primeiro a descobrir oportunidades de negócios neste site e
-  imediatamente desenvolveu B1, B2 e B3. B1 desenvolveu então C1 e C2. B2 não tinha
-  subordinados e B3 desenvolveu apenas o relativamente poderoso C3.
+promotion_tutorial_example_desc: Os descontos neste site são baseados em apostas válidas,
+  assumindo que a proporção do desconto é mostrada na tabela no canto superior esquerdo.
+  A foi o primeiro a descobrir oportunidades de negócios neste site e imediatamente
+  desenvolveu B1, B2 e B3. B1 desenvolveu então C1 e C2. B2 não tinha subordinados
+  e B3 desenvolveu apenas o relativamente poderoso C3.
 promotion_tutorial_example_desc1: Alguns dias depois, a aposta efetiva de B1 é 80.000,
-  a aposta efetiva de B2 é 50.000, a aposta
-  efetiva de B3 é 30.000, a aposta efetiva de C1 é 100.000, a aposta efetiva de
-  C2 é 40.000 e C3 Minha aposta efetiva chega a 710.000, então o desempenho total
-  de B1 vem de C1 e C2, que é 140.000, e o índice de desconto correspondente é 80/10.000;
-  o desempenho de B2 sem subordinados é 0; o subordinado C3 de B3 é poderoso, o
-  desempenho total é 710.000, e o desconto correspondente é O índice é 1 milhão/10.000;
-  A tem 160.000 da equipe direta e 850.000 de outras equipes. O desempenho total
-  é de 1,01 milhão e a proporção de desconto correspondente é de 1 milhão/10.000.
-promotion_tutorial_example_desc2: Então a renda entre eles é calculada da seguinte forma
-promotion_tutorial_example_desc3: Refere-se aos membros que se desenvolvem verticalmente e são chamados coletivamente de equipes diretas.
-promotion_tutorial_direct_team_1: "(1) B1, B2 e B3 contribuem para A: (80.000 +
-  50.000 + 30.000) x 100/10.000 = 1.600."
-promotion_tutorial_direct_team_2: "(2) C1 e C2 contribuem para B1: (100.000+40.000)x80/10.000=1120."
-promotion_tutorial_direct_team_3: "(3) C3 contribui para B3: 710.000 x 100/10.000
-  = 7.100."
+  a aposta efetiva de B2 é 50.000, a aposta efetiva de B3 é 30.000, a aposta efetiva
+  de C1 é 100.000, a aposta efetiva de C2 é 40.000 e C3 Minha aposta efetiva chega
+  a 710.000, então o desempenho total de B1 vem de C1 e C2, que é 140.000, e o índice
+  de desconto correspondente é 80/10.000; o desempenho de B2 sem subordinados é 0;
+  o subordinado C3 de B3 é poderoso, o desempenho total é 710.000, e o desconto correspondente
+  é O índice é 1 milhão/10.000; A tem 160.000 da equipe direta e 850.000 de outras
+  equipes. O desempenho total é de 1,01 milhão e a proporção de desconto correspondente
+  é de 1 milhão/10.000.
+promotion_tutorial_example_desc2: Então a renda entre eles é calculada da seguinte
+  forma
+promotion_tutorial_example_desc3: Refere-se aos membros que se desenvolvem verticalmente
+  e são chamados coletivamente de equipes diretas.
+promotion_tutorial_direct_team_1: '(1) B1, B2 e B3 contribuem para A: (80.000 + 50.000
+  + 30.000) x 100/10.000 = 1.600.'
+promotion_tutorial_direct_team_2: '(2) C1 e C2 contribuem para B1: (100.000+40.000)x80/10.000=1120.'
+promotion_tutorial_direct_team_3: '(3) C3 contribui para B3: 710.000 x 100/10.000
+  = 7.100.'
 promotion_tutorial_other_team_1: Refere-se aos membros que se desenvolvem em subordinados,
   subordinados, subordinados, etc., e são chamados coletivamente de outras equipes;
   porque este sistema pode desenvolver subordinados infinitamente, para conveniência
   da explicação, este artigo toma apenas a estrutura de 2 níveis como exemplo .
-promotion_tutorial_other_team_2: "(1) De C1 e C2: Como B1 tem um desempenho total
+promotion_tutorial_other_team_2: '(1) De C1 e C2: Como B1 tem um desempenho total
   de 140.000 e desfruta apenas de uma relação de desconto de 80/dez mil, enquanto
-  o desempenho total de A é de 1,01 milhão e desfruta de uma relação de desconto
-  de 1 milhão/dez mil, então há um desconto entre A e B1 A diferença de comissão
-  é: 100-80=20/10.000. Essa diferença é a parte contribuída por C1 e C2 para A,
-  então C1 e C2 contribuem para A: (100.000+40.000)×20/10.000= 280."
-promotion_tutorial_other_team_3: "(2) De C3: Como B3 tem um desempenho total de
-  710.000 e desfruta de uma relação de descontos de 1 milhão/10.000, e A tem um
-  desempenho total de 1,01 milhão e desfruta de uma relação de descontos de 1 milhão/10.000,
-  então a diferença de descontos entre A e B3 é: 100-100=0/10.000, C3 contribui
-  para A: 710.000x0/10.000=0."
-promotion_tutorial_summary_1: "(1) C3 é tão poderoso que indiretamente permite que
-  A desfrute de uma taxa de comissão mais elevada por todo o seu desempenho."
-promotion_tutorial_summary_2: "(2) B2 pode ser preguiçoso e não se beneficiará se
-  não desenvolver seus subordinados."
-promotion_tutorial_summary_3: "(3) Embora B3 tenha aderido relativamente tarde e seja subordinado de A,
-  o seu subordinado C3 é muito poderoso, permitindo que B3 desfrute diretamente de um rácio de
-  comissão mais elevado. Portanto, não importa quando B3 se junta, de quem é subordinado,
-  independentemente do nível que ele está em vigor, a renda nunca será afetada, você não sofrerá mais com as perdas dos
-  subordinados de outras pessoas e seu desenvolvimento não será restringido."
-promotion_tutorial_summary_4: "(4) Este é um modelo de representação extremamente justo e não deixará ninguém em desvantagem devido à participação tardia."
+  o desempenho total de A é de 1,01 milhão e desfruta de uma relação de desconto de
+  1 milhão/dez mil, então há um desconto entre A e B1 A diferença de comissão é: 100-80=20/10.000.
+  Essa diferença é a parte contribuída por C1 e C2 para A, então C1 e C2 contribuem
+  para A: (100.000+40.000)×20/10.000= 280.'
+promotion_tutorial_other_team_3: '(2) De C3: Como B3 tem um desempenho total de 710.000
+  e desfruta de uma relação de descontos de 1 milhão/10.000, e A tem um desempenho
+  total de 1,01 milhão e desfruta de uma relação de descontos de 1 milhão/10.000,
+  então a diferença de descontos entre A e B3 é: 100-100=0/10.000, C3 contribui para
+  A: 710.000x0/10.000=0.'
+promotion_tutorial_summary_1: (1) C3 é tão poderoso que indiretamente permite que
+  A desfrute de uma taxa de comissão mais elevada por todo o seu desempenho.
+promotion_tutorial_summary_2: (2) B2 pode ser preguiçoso e não se beneficiará se não
+  desenvolver seus subordinados.
+promotion_tutorial_summary_3: (3) Embora B3 tenha aderido relativamente tarde e seja
+  subordinado de A, o seu subordinado C3 é muito poderoso, permitindo que B3 desfrute
+  diretamente de um rácio de comissão mais elevado. Portanto, não importa quando B3
+  se junta, de quem é subordinado, independentemente do nível que ele está em vigor,
+  a renda nunca será afetada, você não sofrerá mais com as perdas dos subordinados
+  de outras pessoas e seu desenvolvimento não será restringido.
+promotion_tutorial_summary_4: (4) Este é um modelo de representação extremamente justo
+  e não deixará ninguém em desvantagem devido à participação tardia.
 pls_input_min_max_amount: Insira um valor entre {min} - {max}
 bet_no_close_tip: Seu boletim de apostas não pode conter apostas fechadas
-same_event_no_multi: Apostas múltiplas do mesmo evento não podem ser combinadas
-  em apostas múltiplas.
+same_event_no_multi: Apostas múltiplas do mesmo evento não podem ser combinadas em
+  apostas múltiplas.
 multi_bet_max: As combinações múltiplas de apostas não podem exceder {max}.
 reuse_bet: Reutilizar boletim de apostas
 reg_bet: Registre-se para fazer apostas
 accept_odd: Aceite novas probabilidades
-company_intro_tip_1: '{host} é líder global em apostas em criptomoedas, com uma
-  das melhores plataformas de cassino e apostas esportivas para apostas em Bitcoin
-  e outras criptomoedas. Fundada em 2017, {host} cresceu e se tornou um dos nomes
-  mais confiáveis ​​na indústria de jogos de azar online e oferece uma ampla variedade
-  de jogos de cassino em muitos mercados ao redor do mundo. Os jogadores podem desfrutar
-  de uma experiência de jogo online segura, confiável e divertida em uma única plataforma
-  chamada {site}! Além do cassino, {host} também oferece uma plataforma dinâmica
-  de apostas esportivas para apostar nos maiores esportes, ligas e competições do
-  mundo. Com as probabilidades atualizadas mais recentes e uma ampla variedade de
-  opções de apostas, é fácil ver porque o {site} é a forma mais prática de apostar
-  em esportes usando criptomoeda.'
-company_intro_tip_2: '{host} é um dos cassinos de criptomoeda e plataformas de
-  apostas esportivas mais conceituados do setor. Como parceira oficial de apostas
-  do UFC na América Latina e na Ásia e principal patrocinadora do Watford Football
-  Club, a {site} é parceira de muitos dos maiores nomes do setor, incluindo Drake,
-  Isley Adesanya, Jose Aldo e muitos mais. parceiro de apostas confiável por superestrelas.'
-company_intro_tip_3: '{host} está licenciado em Curaçao e oferece uma plataforma
-  segura e justa. {host} é operado pela Medium Rare N.V. sob licença de jogo
-  8048/JAZ emitida para Antillephone, que é licenciada e regulamentada pelo governo
-  de Curaçao. Com uma forte reputação, uma plataforma segura e uma ampla gama de
-  opções de apostas em cassinos e casas de apostas esportivas, a {site} é uma plataforma
-  de apostas online com uma comunidade ativa em todo o mundo.'
+company_intro_tip_1: '{host} é líder global em apostas em criptomoedas, com uma das
+  melhores plataformas de cassino e apostas esportivas para apostas em Bitcoin e outras
+  criptomoedas. Fundada em 2017, {host} cresceu e se tornou um dos nomes mais confiáveis
+  ​​na indústria de jogos de azar online e oferece uma ampla variedade de jogos de
+  cassino em muitos mercados ao redor do mundo. Os jogadores podem desfrutar de uma
+  experiência de jogo online segura, confiável e divertida em uma única plataforma
+  chamada {site}! Além do cassino, {host} também oferece uma plataforma dinâmica de
+  apostas esportivas para apostar nos maiores esportes, ligas e competições do mundo.
+  Com as probabilidades atualizadas mais recentes e uma ampla variedade de opções
+  de apostas, é fácil ver porque o {site} é a forma mais prática de apostar em esportes
+  usando criptomoeda.'
+company_intro_tip_2: '{host} é um dos cassinos de criptomoeda e plataformas de apostas
+  esportivas mais conceituados do setor. Como parceira oficial de apostas do UFC na
+  América Latina e na Ásia e principal patrocinadora do Watford Football Club, a {site}
+  é parceira de muitos dos maiores nomes do setor, incluindo Drake, Isley Adesanya,
+  Jose Aldo e muitos mais. parceiro de apostas confiável por superestrelas.'
+company_intro_tip_3: '{host} está licenciado em Curaçao e oferece uma plataforma segura
+  e justa. {host} é operado pela Medium Rare N.V. sob licença de jogo 8048/JAZ emitida
+  para Antillephone, que é licenciada e regulamentada pelo governo de Curaçao. Com
+  uma forte reputação, uma plataforma segura e uma ampla gama de opções de apostas
+  em cassinos e casas de apostas esportivas, a {site} é uma plataforma de apostas
+  online com uma comunidade ativa em todo o mundo.'
 company_intro_tip_title_1: Experiência de cassino com criptomoeda {site}
 company_intro_tip_4: O {site} Cryptocurrency Casino apresenta milhares de jogos de
   cassino de muitos fornecedores de jogos, proporcionando aos jogadores uma experiência
@@ -1550,9 +1571,9 @@ company_intro_tip_5: Para proporcionar aos jogadores uma experiência de jogo en
   aos jogadores ter uma experiência autêntica de jogo de casino numa variedade de
   jogos de casino ao vivo através de vídeo ao vivo.
 company_intro_tip_6: Além de a {site} oferecer diferentes tipos de jogos de cassino
-  de muitos fornecedores de jogos, também temos nossos próprios jogos originais
-  da {site} que estão entre os mais populares em {host}, como Dice, Plinko, Mines,
-  Crash, Limbo, Hilo e outros clássicos. jogos.
+  de muitos fornecedores de jogos, também temos nossos próprios jogos originais da
+  {site} que estão entre os mais populares em {host}, como Dice, Plinko, Mines, Crash,
+  Limbo, Hilo e outros clássicos. jogos.
 company_intro_tip_7: Criados por nossa talentosa equipe para oferecer a experiência
   de jogo de cassino mais justa e da mais alta qualidade do setor, os jogos originais
   da {site} são comprovadamente justos e apresentam a menor vantagem da casa do setor,
@@ -1561,65 +1582,62 @@ company_intro_tip_7: Criados por nossa talentosa equipe para oferecer a experiê
 company_intro_tip_8: Além de uma grande variedade de jogos, belos designs de jogos
   originais e uma ampla gama de opções de apostas, a {site} também oferece serviços
   para jogadores que usam Bitcoin (BTC), Ethereum (ETH), Dogecoin (DOGE), Bitcoin
-  Cash (BCH) , Os jogadores que apostam em Ripple (XRP), Tron (TRX) e EOS (EOS)
-  oferecem uma das experiências de casino online mais envolventes e divertidas.
+  Cash (BCH) , Os jogadores que apostam em Ripple (XRP), Tron (TRX) e EOS (EOS) oferecem
+  uma das experiências de casino online mais envolventes e divertidas.
 company_intro_tip_title_2: Apostas esportivas em criptomoeda {host}
-company_intro_tip_9: As apostas esportivas online da {host} tornam mais fácil
-  para os jogadores apostarem nos maiores eventos esportivos do mundo. Os apostadores
-  esportivos podem apostar em nossa plataforma em seus esportes favoritos, como
-  Futebol, Basquete, MMA, Esports, Hóquei no Gelo, Críquete, Futebol Americano,
-  Tênis, Tênis de Mesa, Beisebol, Dardos, Equações da Divisão I e muito mais, isso
-  inclui até política e entretenimento !
+company_intro_tip_9: As apostas esportivas online da {host} tornam mais fácil para
+  os jogadores apostarem nos maiores eventos esportivos do mundo. Os apostadores esportivos
+  podem apostar em nossa plataforma em seus esportes favoritos, como Futebol, Basquete,
+  MMA, Esports, Hóquei no Gelo, Críquete, Futebol Americano, Tênis, Tênis de Mesa,
+  Beisebol, Dardos, Equações da Divisão I e muito mais, isso inclui até política e
+  entretenimento !
 company_intro_tip_10: '{host} oferece aos jogadores acesso a várias grandes ligas
   e torneios, como UFC, Premier League, NBA, NFL, CFL, MLB, Serie A, La Liga e até
   ligas de e-sports como League of Legends e Dota 2. Oportunidade de fazer apostas
   em torneios. Não importa qual seja a liga esportiva, você encontrará seus mercados
   em {site}!'
-company_intro_tip_11: A {site} oferece apostas esportivas ao vivo para jogadores
-  que desejam apostar em eventos ao vivo, atendendo aos apostadores esportivos mais
-  ativos com uma variedade de opções de apostas ao vivo.
+company_intro_tip_11: A {site} oferece apostas esportivas ao vivo para jogadores que
+  desejam apostar em eventos ao vivo, atendendo aos apostadores esportivos mais ativos
+  com uma variedade de opções de apostas ao vivo.
 company_intro_tip_title_3: Promoções, bônus e programas VIP da {site}
 company_intro_tip_12: '{site} possui uma interface de usuário simples e fácil de usar
-  e uma experiência de usuário de alta qualidade, trazendo diversas promoções e
-  bônus para membros ativos da comunidade {site}.'
+  e uma experiência de usuário de alta qualidade, trazendo diversas promoções e bônus
+  para membros ativos da comunidade {site}.'
 company_intro_tip_13: As promoções da {site} para jogadores incluem promoções regulares
   de apostas esportivas e promoções de cassino.
-company_intro_tip_14: Além de organizar incríveis prêmios semanais de US$ 50.000
-  e competições diárias da {site} para jogadores de cassino e apostas esportivas,
-  a {site} também realiza frequentemente promoções e bônus especiais com base em
-  grandes eventos como UFC, NBA, Premier League, etc. ou jogos recém-lançados.
-company_intro_tip_15: Depois de se inscrever em uma conta {host}, você poderá
-  se tornar um VIP e aumentar o nível de associação do seu clube VIP com base no
-  total de apostas na plataforma {site}. Os membros VIP poderão desfrutar de benefícios
-  especiais, como bônus de recarga, descontos, bônus de atualização, bônus de reforço
-  semanais e bônus mensais enviados por e-mail.
-company_intro_tip_16: Os membros VIP elegíveis do Birkin IV também receberão um
-  representante de serviço VIP dedicado. Além disso, a {site} oferece um programa
-  VIP abrangente que atende a diferentes tipos de jogadores com base no uso cumulativo.
-  Para obter mais informações sobre o programa VIP, consulte nossa visão geral do
-  programa VIP.
-company_intro_tip_title_4: Aposte em depósitos e saques instantâneos em jogos de
-  criptomoeda
+company_intro_tip_14: Além de organizar incríveis prêmios semanais de US$ 50.000 e
+  competições diárias da {site} para jogadores de cassino e apostas esportivas, a
+  {site} também realiza frequentemente promoções e bônus especiais com base em grandes
+  eventos como UFC, NBA, Premier League, etc. ou jogos recém-lançados.
+company_intro_tip_15: Depois de se inscrever em uma conta {host}, você poderá se tornar
+  um VIP e aumentar o nível de associação do seu clube VIP com base no total de apostas
+  na plataforma {site}. Os membros VIP poderão desfrutar de benefícios especiais,
+  como bônus de recarga, descontos, bônus de atualização, bônus de reforço semanais
+  e bônus mensais enviados por e-mail.
+company_intro_tip_16: Os membros VIP elegíveis do Birkin IV também receberão um representante
+  de serviço VIP dedicado. Além disso, a {site} oferece um programa VIP abrangente
+  que atende a diferentes tipos de jogadores com base no uso cumulativo. Para obter
+  mais informações sobre o programa VIP, consulte nossa visão geral do programa VIP.
+company_intro_tip_title_4: Aposte em depósitos e saques instantâneos em jogos de criptomoeda
 company_intro_tip_17: 'É fácil fazer apostas e gerenciar seu dinheiro usando Bitcoin
-  ou outras criptomoedas disponíveis no cassino online e nas apostas esportivas
-  da {site}. Para depositar fundos em sua conta {host} para apostas esportivas
-  na criptomoeda de sua escolha, siga estes passos simples:'
+  ou outras criptomoedas disponíveis no cassino online e nas apostas esportivas da
+  {site}. Para depositar fundos em sua conta {host} para apostas esportivas na criptomoeda
+  de sua escolha, siga estes passos simples:'
 company_intro_tip_step_1: 'Passo 1: Vá para Carteira > Depósito.'
-company_intro_tip_step_2: 'Passo 2: Selecione a moeda que deseja usar. Apoiamos
-  Bitcoin (BTC), Ethereum (ETH), Dogecoin (DOGE), Litecoin (LTC) e outras moedas.
-  Copie o endereço de depósito para a moeda de sua escolha.'
+company_intro_tip_step_2: 'Passo 2: Selecione a moeda que deseja usar. Apoiamos Bitcoin
+  (BTC), Ethereum (ETH), Dogecoin (DOGE), Litecoin (LTC) e outras moedas. Copie o
+  endereço de depósito para a moeda de sua escolha.'
 company_intro_tip_step_3: 'Passo 3: insira seu endereço de depósito como endereço
   de recebimento ao enviar moeda de sua carteira ou exchange de criptomoedas.'
 company_intro_tip_step_4: 'Notas adicionais: Se desejar depositar usando moeda fiduciária,
-  você pode ir para Carteira> Comprar criptomoeda para comprar criptomoeda para
-  sua conta {site} com MoonPay usando moeda fiduciária.'
-company_intro_tip_18: Seus depósitos e saques da {site} são instantâneos e estão
-  disponíveis em qualquer criptomoeda disponível de sua escolha. Quer queira apostar
-  nos nossos jogos de casino ou eventos desportivos, a {site} oferece um processo
-  simples e direto.
-company_intro_tip_19: MoonPay tem muitos métodos de pagamento suportados e você
-  pode comprar criptomoedas para depositar em apostas usando Visa, MasterCard, Apple
-  Pay, Google Pay e muito mais. Para obter uma lista completa dos métodos de pagamento
+  você pode ir para Carteira> Comprar criptomoeda para comprar criptomoeda para sua
+  conta {site} com MoonPay usando moeda fiduciária.'
+company_intro_tip_18: Seus depósitos e saques da {site} são instantâneos e estão disponíveis
+  em qualquer criptomoeda disponível de sua escolha. Quer queira apostar nos nossos
+  jogos de casino ou eventos desportivos, a {site} oferece um processo simples e direto.
+company_intro_tip_19: MoonPay tem muitos métodos de pagamento suportados e você pode
+  comprar criptomoedas para depositar em apostas usando Visa, MasterCard, Apple Pay,
+  Google Pay e muito mais. Para obter uma lista completa dos métodos de pagamento
   suportados em sua jurisdição, consulte a documentação do MoonPay.
 company_intro_tip_20: Com uma comunidade próspera, salas de bate-papo ativas e uma
   equipe de suporte dedicada a ajudar os clientes com quaisquer dúvidas sobre seus
@@ -1646,7 +1664,9 @@ vip_club_tip_5: Cada aposta que você faz afeta o seu progresso em direção ao 
   VIP. Alcance o próximo nível para desbloquear mais benefícios.
 vip_club_tip_6: Reivindique seus ganhos imediatamente. O processo de reivindicação
   de bônus diários, semanais e mensais é simples e fácil.
-vip_club_tip_7: 'Descubra a inigualável e envolvente experiência proporcionada pela Meibo, onde os bônus fluem de forma contínua, tornando cada momento uma oportunidade única. '
+vip_club_tip_7: 'Descubra a inigualável e envolvente experiência proporcionada pela
+  Meibo, onde os bônus fluem de forma contínua, tornando cada momento uma oportunidade
+  única. '
 vip_club_tip_8: Obtenha melhores recompensas a cada atualização
 vip_club_tip_9: Entre em contato com nossa premiada equipe de suporte
 vip_club_tip_10: Por que o programa VIP da {site} é o melhor?
@@ -1679,41 +1699,40 @@ vip_club_tip_24: O que é o bônus de desempenho de jogo recente?
 vip_club_tip_25: Este é um bônus concedido a critério do seu representante de serviço
   VIP, principalmente com base na sua aposta total e na sorte.
 vip_club_tip_26: O que é desconto?
-vip_club_tip_27: Desconto é uma porcentagem da comissão do jogador (vantagem da
-  casa) devolvida a você.
-vip_club_tip_28: Qual é o bônus de recarga? Como faço para coletar meu bônus de
-  recarga?
+vip_club_tip_27: Desconto é uma porcentagem da comissão do jogador (vantagem da casa)
+  devolvida a você.
+vip_club_tip_28: Qual é o bônus de recarga? Como faço para coletar meu bônus de recarga?
 vip_club_tip_29: Os bônus de recarga são calculados com base no desempenho recente
   das apostas do jogador. Os jogadores podem escolher um intervalo de reivindicação
   diário, de hora em hora ou a cada 10 minutos.
 vip_club_tip_30: Clique no menu principal do usuário no canto superior direito da
-  conta e clique em VIP no menu suspenso. Clique na aba Bônus de Recarga na
-  janela modal que aparece e depois clique em Receber Bônus de Recarga. A designação
-  de um representante de serviço dependerá da sua participação total.
+  conta e clique em VIP no menu suspenso. Clique na aba Bônus de Recarga na janela
+  modal que aparece e depois clique em Receber Bônus de Recarga. A designação de um
+  representante de serviço dependerá da sua participação total.
 vip_club_tip_31: Quando será pago o bônus mensal?
-vip_club_tip_32: Os bônus mensais serão distribuídos uma vez por mês, geralmente
-  por volta do dia 15. Mas em alguns casos, a data de lançamento pode ser um pouco
-  mais tarde ou até mais cedo, e é por isso que é um dos bônus mais esperados do
-  {site}. Assim que o bônus mensal for concedido, você receberá uma notificação por
-  e-mail. Para ter certeza de que você não perderá seus ganhos, lembre-se de verificar
-  também a pasta de spam do seu e-mail.
-vip_club_tip_33: Os jogadores Bronze, Prata e Ouro receberão seus bônus através
-  de bônus diários, enquanto os jogadores Platina e Diamante receberão seus bônus
-  de uma só vez.
+vip_club_tip_32: Os bônus mensais serão distribuídos uma vez por mês, geralmente por
+  volta do dia 15. Mas em alguns casos, a data de lançamento pode ser um pouco mais
+  tarde ou até mais cedo, e é por isso que é um dos bônus mais esperados do {site}.
+  Assim que o bônus mensal for concedido, você receberá uma notificação por e-mail.
+  Para ter certeza de que você não perderá seus ganhos, lembre-se de verificar também
+  a pasta de spam do seu e-mail.
+vip_club_tip_33: Os jogadores Bronze, Prata e Ouro receberão seus bônus através de
+  bônus diários, enquanto os jogadores Platina e Diamante receberão seus bônus de
+  uma só vez.
 vip_club_tip_34: Como calcular o valor da aposta necessária para atingir o próximo
   nível?
-vip_club_tip_35: Comece clicando no menu principal do usuário no canto superior
-  direito da sua conta, clique em "VIP" no menu suspenso para ver a porcentagem
-  na barra de progresso VIP e subtraia esse número de 100% para obter a porcentagem
-  restante. Basta multiplicar a percentagem restante pelo total de requisitos de
-  apostas que lhe restam para alcançar o nível seguinte.
+vip_club_tip_35: Comece clicando no menu principal do usuário no canto superior direito
+  da sua conta, clique em "VIP" no menu suspenso para ver a porcentagem na barra de
+  progresso VIP e subtraia esse número de 100% para obter a porcentagem restante.
+  Basta multiplicar a percentagem restante pelo total de requisitos de apostas que
+  lhe restam para alcançar o nível seguinte.
 vip_club_tip_36: Que recompensas receberei após cada atualização?
-vip_club_tip_37: 'Bônus de atualização: Este é um bônus fixo que aumenta a cada
-  atualização. Adicionaremos valores adicionais na forma de bônus de desempenho
-  de jogo recentes com base em seus lucros e perdas antes da atualização.'
-vip_club_tip_38: 'Bônus Semanais e Mensais: Você receberá um valor base baseado
-  no seu nível VIP e valores adicionais para cada US$ 1.000 apostados durante o
-  período correspondente.'
+vip_club_tip_37: 'Bônus de atualização: Este é um bônus fixo que aumenta a cada atualização.
+  Adicionaremos valores adicionais na forma de bônus de desempenho de jogo recentes
+  com base em seus lucros e perdas antes da atualização.'
+vip_club_tip_38: 'Bônus Semanais e Mensais: Você receberá um valor base baseado no
+  seu nível VIP e valores adicionais para cada US$ 1.000 apostados durante o período
+  correspondente.'
 vip_club_tip_39: 'Bônus Diário: O bônus de recarga será atualizado pelo seu representante
   de serviço VIP após o vencimento.'
 vip_club_tip_40: Como é calculado o valor do bônus?
@@ -1730,20 +1749,20 @@ vip_club_tip_43: Seu representante de serviço VIP garantirá que seu desempenho
 vip_club_tip_44: O bônus de recarga recebido após a atribuição de um Representante
   de Serviço VIP é um benefício contínuo ou renovável?
 vip_club_tip_45: Depois de atingir o nível Platinum IV e receber um representante
-  de serviço VIP, você começará a receber bônus de recarga semanais renováveis.
-  Sempre que seu bônus de recarga semanal expirar, você poderá entrar em contato
-  com seu representante de atendimento VIP para atualizar seu bônus de recarga disponível
+  de serviço VIP, você começará a receber bônus de recarga semanais renováveis. Sempre
+  que seu bônus de recarga semanal expirar, você poderá entrar em contato com seu
+  representante de atendimento VIP para atualizar seu bônus de recarga disponível
   para os próximos 7 dias.
-vip_club_tip_46: O valor do bônus de recarga depende do seu desempenho no jogo a
-  cada semana, e se você tiver azar com os lucros durante essa semana, receberá
-  um bônus adicional.
+vip_club_tip_46: O valor do bônus de recarga depende do seu desempenho no jogo a cada
+  semana, e se você tiver azar com os lucros durante essa semana, receberá um bônus
+  adicional.
 vip_club_tip_47: O que incluem as responsabilidades de um representante de serviço
   VIP e como elas diferem da equipe regular de suporte on-line?
 vip_club_tip_48: Os Representantes de Serviço VIP são atribuídos apenas a jogadores
   acima do nível Platinum IV. Eles podem responder às suas perguntas sobre o programa
   VIP e garantir que você receba todos os ganhos que merece. Os representantes de
-  serviço VIP também podem enviar bônus maiores com mais frequência, garantindo
-  que os bônus atendam às suas necessidades.
+  serviço VIP também podem enviar bônus maiores com mais frequência, garantindo que
+  os bônus atendam às suas necessidades.
 vip_club_tip_49: O suporte online pode ajudá-lo a resolver quaisquer problemas técnicos
   encontrados na plataforma.
 vip_club_tip_50: Quando posso ser designado como representante de serviço VIP?
@@ -1784,7 +1803,7 @@ vip_up_tip: Seu progresso é acumulado através do total de apostas no Cassino e
 vip_up_tip_2: Todas as apostas desportivas liquidadas serão recompensadas com uma
   progressão 3x mais rápida. As apostas que forem consideradas nulas não serão incluídas.
 learn_more_vip: Saiba mais sobre como tornar-se {site} VIP
-index_title_prefix: "{site}: Cassino em criptomoeda e apostas esportivas"
+index_title_prefix: '{site}: Cassino em criptomoeda e apostas esportivas'
 index_title_suffix: Cassino online em BTC
 btc_sport_title: Apostas esportivas online em criptomoeda e Bitcoin
 affiliate_activity: Atividade de afiliados
@@ -1809,17 +1828,17 @@ transaction_withdraw: Transações de saque
 today: Hoje
 last_days_mid: Últimos {delta} dias
 one_receive: Obtenha com um clique
-on: 'No'
+true: 'No'
 add_one_bet: Adicione uma aposta no meu boletim de apostas
 copied: Copiado com sucesso
-footer_desc: "{site} pertence e é operado pela Medium Rare N.V., número de registro:
+footer_desc: '{site} pertence e é operado pela Medium Rare N.V., número de registro:
   145353, endereço registrado: Korporaalweg 10, Willemstad, Curaçao. Entre em contato
   conosco em {email}. A empresa agente de pagamento é a Medium Rare Limited com endereço
   em 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia,
   Chipre e número de registro: HE 410775 {site} é autorizada e regulamentada pelo
   Governo de Curaçao e emitida para operar sob a licença número 8048/JAZ concedida
   à Antillephone. {site} foi aprovado em todas as análises de conformidade e está
-  legalmente autorizado a conduzir todas as operações de jogos de azar e apostas."
+  legalmente autorizado a conduzir todas as operações de jogos de azar e apostas.'
 order: Pedido
 plat_not_sup_currency: Este local não suporta a moeda que você selecionou
 has_stop_bet: Você tem uma aposta suspensa
@@ -1913,11 +1932,11 @@ casino_intro_19: Com milhares de jogadores leais fazendo milhões de apostas a c
   hora, o {site} é um dos cassinos online mais confiáveis ​​e legítimos da web.
 get_email_code: Obter código de verificação
 re_get: Obter novamente
-footer_description: "{name} pertence e é operado pela Medium Rare N.V., número de
+footer_description: '{name} pertence e é operado pela Medium Rare N.V., número de
   registro: 145353, endereço registrado: Korporaalweg 10, Willemstad, Curaçao. Entre
   em contato conosco em {email}. O organismo pagador é Medium Rare Limited, 7-9 Riga
   Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Chipre e número
-  de registo: HE 410775"
+  de registo: HE 410775'
 empty_fav_event: Ainda não há eventos favoritos
 reject: Recusar
 emoji_title: Emoji
@@ -1967,7 +1986,7 @@ input_draw_coin_addr: Insira o endereço de saque
 withdraw_detail: Detalhes do saque
 direct_vip: Membro direto
 up_rule: Critérios de promoção
-keep_level_desc: 保级标准
+keep_level_desc: Critérios de rebaixamento
 check_desc: Instruções de auditoria
 activity_desc: Declaração de atividade
 explain_desc: Instruções da explicação
@@ -1975,7 +1994,8 @@ day_no_max: A data não pode exceder o número {delta}
 max_age: Sua idade não pode ultrapassar {delta} anos
 max_value: O valor precisa ser maior ou igual a {delta}
 qr_code: QR code
-bet_comp_coin: Seu valor apostado em qualquer moeda é convertido para a moeda usada na corrida
+bet_comp_coin: Seu valor apostado em qualquer moeda é convertido para a moeda usada
+  na corrida
 exp_rule: Regras de cálculo empírico
 electric_game: E-sports
 max_odd: As probabilidades de apostas múltiplas excedem o limite superior
@@ -2109,9 +2129,9 @@ casino_new_intro_32: Um dos jogos mais simples em {host}, Crash exige que você 
   até que ponto o multiplicador irá antes de travar! RTP 99%. Se você quiser experimentar
   algo diferente, visite Cash ou Crash Live da Evolution Gaming.
 casino_new_intro_33: Blackjack
-casino_new_intro_34: "{site} Original Blackjack é um jogo que requer uma introdução
+casino_new_intro_34: '{site} Original Blackjack é um jogo que requer uma introdução
   simples e permite que você vença a casa com uma vantagem super baixa. RTP 99,53%.
-  O cassino {site} também oferece muitas variações de blackjack."
+  O cassino {site} também oferece muitas variações de blackjack.'
 casino_new_intro_35: Hilo é um jogo de cassino Bitcoin. No jogo você precisa prever
   o valor da próxima carta em comparação com o valor da carta exibida atualmente.
   RTP 99%.
@@ -2125,10 +2145,10 @@ casino_new_intro_39: Neste exclusivo jogo de roleta, você pode escolher entre 1
   exibido. RTP 99%. Confira Money Wheel, o jogo de roleta da Play'n GO, e experimente
   a diversão das roletas!
 casino_new_intro_40: Apostas em roleta
-casino_new_intro_41: "{site} Roleta Original é um dos jogos mais populares de {host},
+casino_new_intro_41: '{site} Roleta Original é um dos jogos mais populares de {host},
   e o jogo apresenta uma grande variedade de apostas internas e externas para você
   fazer suas apostas. RTP 97,30%. Confira o lobby da roleta para ver o que outros
-  jogos de roleta {host} tem a oferecer."
+  jogos de roleta {host} tem a oferecer.'
 casino_new_intro_42: Experimente o jogo exclusivo de {site} que está revolucionando
   a indústria de cripto-cassinos! RTP 98,29%.
 casino_new_intro_43: Como jogar e ganhar jogos de cassino online – estratégias e dicas
@@ -2166,13 +2186,13 @@ casino_new_intro_53: Outros jogos populares de cassino online
 casino_new_intro_54: 'Se você quiser experimentar mais jogos excelentes em {host},
   confira estes jogos populares dos principais fornecedores da indústria de jogos
   de cassino:'
-casino_new_intro_55: "{site} Original do Bacará"
-sport_new_intro_1: "{site} Apostas Esportivas – As apostas esportivas online favoritas
-  de todos"
-sport_new_intro_2: "{host} oferece uma ampla gama de opções de apostas esportivas
+casino_new_intro_55: '{site} Original do Bacará'
+sport_new_intro_1: '{site} Apostas Esportivas – As apostas esportivas online favoritas
+  de todos'
+sport_new_intro_2: '{host} oferece uma ampla gama de opções de apostas esportivas
   para o apostador moderno – nossas apostas esportivas online oferecem apostas esportivas
   ao vivo em uma variedade de esportes, incluindo MMA, Basquete, Futebol, Hóquei,
-  Beisebol e muito mais."
+  Beisebol e muito mais.'
 sport_new_intro_3: Nossa plataforma de apostas esportivas online fácil de usar permite
   aos usuários apostar em seus times, jogadores e ligas favoritas de todo o mundo,
   bem como assistir aos maiores eventos esportivos ao vivo. Saiba mais sobre como
@@ -2185,8 +2205,8 @@ sport_new_intro_4: Dependendo do esporte e do jogo ao vivo, uma grande variedade
 sport_new_intro_5: Saiba mais sobre como apostar em seus esportes, jogos e jogadores
   favoritos com nosso guia definitivo de apostas esportivas!
 sport_new_intro_6: Probabilidades e tipos de apostas esportivas online
-sport_new_intro_7: "{site} tem orgulho de oferecer aos nossos fiéis apostadores esportivos
-  uma experiência de apostas online de alto nível."
+sport_new_intro_7: '{site} tem orgulho de oferecer aos nossos fiéis apostadores esportivos
+  uma experiência de apostas online de alto nível.'
 sport_new_intro_8: Basta acessar o esporte, categoria ou liga esportiva de seu interesse
   para ver os eventos ao vivo e os próximos eventos disponíveis para apostas. Além
   de apostar no resultado de eventos esportivos, existem muitas formas de apostar!
@@ -2241,11 +2261,11 @@ sport_new_intro_25: Não importa se você quer apostar num único jogo ou numa t
   variedade de opções de apostas em ligas simuladas da vida real, incluindo SRL Football
   e SRL Cricket. Saiba mais sobre como apostar na Liga de Realidade Simulada (SRL)
   com nosso guia de apostas na Liga de Realidade Simulada.
-sport_new_intro_26: "{site} é um site de apostas online que oferece uma plataforma
+sport_new_intro_26: '{site} é um site de apostas online que oferece uma plataforma
   de apostas esportivas em tempo real, intuitiva e fácil de usar, para apostar nos
   próximos eventos esportivos. Não há nada mais emocionante do que apostas esportivas
   ao vivo – apostar num evento esportivo que já começou, ajustar as probabilidades
-  com base no estado atual do jogo e correr contra o relógio."
+  com base no estado atual do jogo e correr contra o relógio.'
 sport_new_intro_27: As apostas esportivas ao vivo são as favoritas de quem tem um
   olhar atento para o jogo e está confiante de que o jogo vai virar no final. As apostas
   esportivas ao vivo populares incluem futebol ao vivo, tênis ao vivo, basquete ao
@@ -2268,57 +2288,60 @@ cash_profit: lucro em dinheiro
 vip_win_lose: Vitórias e derrotas dos membros
 register_time: Hora do registro
 statistical_date: Data das estatísticas
-phone_invalid: 'Número de telefone inválido'
+phone_invalid: Número de telefone inválido
 colon: ':'
 period: .
-vip_total_bonus: 'Bônus acumulado'
-type_select: 'Seleção de tipo'
-rule_text_one: 'A taxa de câmbio será sincronizada em tempo real de acordo com as flutuações do mercado'
-rule_text_two: 'A taxa de câmbio prevalecerá quando a sua aposta for liquidada.'
-rule_text_three: 'As apostas válidas que foram contadas não serão afetadas pelas taxas de câmbio subsequentes'
+vip_total_bonus: Bônus acumulado
+type_select: Seleção de tipo
+rule_text_one: A taxa de câmbio será sincronizada em tempo real de acordo com as flutuações
+  do mercado
+rule_text_two: A taxa de câmbio prevalecerá quando a sua aposta for liquidada.
+rule_text_three: As apostas válidas que foram contadas não serão afetadas pelas taxas
+  de câmbio subsequentes
 rule_text_title: Os pontos VIP serão calculados com base nas suas apostas válidas.
-after_transfer_withdraw_money: 'Depois de transferir para a carteira,  você precisa de 1 vez rollover em aposta válida antes de poder retirá-la.'
-mini_manual_bet: 'Apostas manuais'
-mini_auto_bet: 'Apostas automáticas'
-mini_bet_amount: 'Valor da aposta'
-mini_profit: 'Obtenha lucro'
-mini_bet_frequency: 'Número de apostas'
-mini_if_win: 'Em caso de vitória'
+after_transfer_withdraw_money: Depois de transferir para a carteira,  você precisa
+  de 1 vez rollover em aposta válida antes de poder retirá-la.
+mini_manual_bet: Apostas manuais
+mini_auto_bet: Apostas automáticas
+mini_bet_amount: Valor da aposta
+mini_profit: Obtenha lucro
+mini_bet_frequency: Número de apostas
+mini_if_win: Em caso de vitória
 mini_reset: Reiniciar
 mini_add: 'Adicionar:'
-mini_if_lose: 'Em caso de derrota'
-mini_take_profit: 'Obter lucros'
-mini_stop_lose: 'Parar perda'
-mini_start_auto_bet: 'Iniciar apostas automáticas'
-mini_stop_auto_bet: 'Parar apostas automáticas'
-mini_auto_bet_finish: 'As apostas estão sendo concluídas'
-mini_target_multi: 'Multiplicador alvo'
-mini_win_odd: 'Probabilidades de ganhar'
+mini_if_lose: Em caso de derrota
+mini_take_profit: Obter lucros
+mini_stop_lose: Parar perda
+mini_start_auto_bet: Iniciar apostas automáticas
+mini_stop_auto_bet: Parar apostas automáticas
+mini_auto_bet_finish: As apostas estão sendo concluídas
+mini_target_multi: Multiplicador alvo
+mini_win_odd: Probabilidades de ganhar
 mini_touzhu: Aposta
-mini_more_than_balance: 'Sua aposta não pode ser maior que seu saldo!'
-mini_must_than_zero: 'Deve ser maior ou igual a 0'
-mini_game_set: 'Configurações do jogo'
-mini_ju_mode: 'Modo teatro'
-mini_sstj: 'Estatísticas em tempo real'
-mini_collect_game: 'Jogos favoritos'
+mini_more_than_balance: Sua aposta não pode ser maior que seu saldo!
+mini_must_than_zero: Deve ser maior ou igual a 0
+mini_game_set: Configurações do jogo
+mini_ju_mode: Modo teatro
+mini_sstj: Estatísticas em tempo real
+mini_collect_game: Jogos favoritos
 mini_fairness: Justiça
-mini_start_auto_bet_tip: 'Início de apostas automáticas'
-mini_stop_auto_bet_tip: 'Término de apostas automáticas'
-commission_record: 'Registro de comissões'
-commission_grant: 'Emissão de comissão'
-commission_draw: 'Retirada da Comissão'
-order_id: 'Número do pedido'
+mini_start_auto_bet_tip: Início de apostas automáticas
+mini_stop_auto_bet_tip: Término de apostas automáticas
+commission_record: Registro de comissões
+commission_grant: Emissão de comissão
+commission_draw: Retirada da Comissão
+order_id: Número do pedido
 score: Placar
-v_sports: 'Esportes virtuais'
-commission_draw_success: 'Retirada de comissão bem-sucedida'
-receive_bonus_amount: 'Valor a receber'
-integral: 'Nível de classificação'
+v_sports: Esportes virtuais
+commission_draw_success: Retirada de comissão bem-sucedida
+receive_bonus_amount: Valor a receber
+integral: Nível de classificação
 reg_success_title: Sucesso
 reg_day: Dia
 login_ip_title: IP
-gameble_aware: 'Aposta com responsabilidade'
-transfer_to_wallet: 'Transferir para carteira'
-statistical_data_dialog_title: 'Dados estatísticos'
+gameble_aware: Aposta com responsabilidade
+transfer_to_wallet: Transferir para carteira
+statistical_data_dialog_title: Dados estatísticos
 end_time_table: 'Término: após {time} horas'
 user_no_statistics_display: Este usuário não tem estatísticas para exibir
 this_week: Esta semana
@@ -2327,57 +2350,90 @@ this_quarter: Este trimestre
 sports_tab_starting_soon2: Prestes a começar
 recent_game_record2: Recente
 keep_integral: Pontos de rebaixamento
-min_deposit_amount: 'Valor mínimo de depósito'
+min_deposit_amount: Valor mínimo de depósito
 annual_interest_rate: Taxa de juros anual
 vault_des_1: 'The Meibo Vault Explained: How to Use Our Online Vault to Store Crypto'
-vault_des_2_1: 'Although betting at Meibo.com is highly secure, the Vault is an additional layer of protection for your funds. Every user at Meibo.com can access the Vault, whether you play'
-vault_des_casino: 'casino games'
-vault_des_2_2: 'or place bets on your favourite'
-vault_des_sports: 'sports.'
-vault_des_3: 'Here, we explain everything you need to know about the Meibo Vault, including how to access it and why it’s worth utilising as you place your bets at'
-vault_des_4: 'What is the Vault on Meibo.com?'
-vault_des_5: 'The Meibo Vault is a safe place to store funds without worrying about transaction fees or blockchain delays. The Vault acts like your own digital wallet or even like a savings account you would have with a bank. It is extremely secure – thanks to 2FA – and you can implement enhanced safety measures to take care of the crypto within. The Vault is also where you can access several Meibo.com promotions, so it’s well worth taking advantage of your Vault when placing your bets at Meibo.'
-vault_des_6: 'How Do You Access the Vault?'
-vault_des_7: 'Accessing the Vault is straightforward and can be done via any desktop or mobile device. Here are the steps to access your Meibo Vault:'
+vault_des_2_1: Although betting at Meibo.com is highly secure, the Vault is an additional
+  layer of protection for your funds. Every user at Meibo.com can access the Vault,
+  whether you play
+vault_des_casino: casino games
+vault_des_2_2: or place bets on your favourite
+vault_des_sports: sports.
+vault_des_3: Here, we explain everything you need to know about the Meibo Vault, including
+  how to access it and why it’s worth utilising as you place your bets at
+vault_des_4: What is the Vault on Meibo.com?
+vault_des_5: The Meibo Vault is a safe place to store funds without worrying about
+  transaction fees or blockchain delays. The Vault acts like your own digital wallet
+  or even like a savings account you would have with a bank. It is extremely secure
+  – thanks to 2FA – and you can implement enhanced safety measures to take care of
+  the crypto within. The Vault is also where you can access several Meibo.com promotions,
+  so it’s well worth taking advantage of your Vault when placing your bets at Meibo.
+vault_des_6: How Do You Access the Vault?
+vault_des_7: 'Accessing the Vault is straightforward and can be done via any desktop
+  or mobile device. Here are the steps to access your Meibo Vault:'
 vault_des_li1: 'Step 1: Log in to your Meibo.com account.'
 vault_des_li2: 'Step 2: Navigate to the main user menu.'
 vault_des_li3_1: 'Step 3: Go to'
-vault_des_li3_2: 'Account > Vault.'
+vault_des_li3_2: Account > Vault.
 vault_des_li4: 'Step 4: Access your Vault and set up your security features.'
 vault_des_li5: 'Step 5: Deposit crypto into your Vault.'
-vault_des_8: 'When you access the Vault for the first time, you will need to verify which security features to activate, including 2FA (two-factor authentication). You will also need to enter your password to access the crypto that you store within.'
-vault_des_9: 'How Do You Use the Vault?'
-vault_des_10: 'The primary use of the Vault is to keep your funds safe. When you complete a crypto deposit at Meibo.com, you can add your cryptocurrency to the Vault for an added layer of protection to keep your funds safe.'
-vault_des_11: 'The Vault ensures secure transmission of digital payments, and the easy-to-use interface means that you can easily access your crypto when you want to use it at Meibo, whether you’re playing '
-vault_des_card: 'cards,'
-vault_des_dice: 'dice,'
-vault_des_slots: 'slots,'
-vault_des_12: 'or placing bets on the biggest'
-vault_des_live: 'live'
-vault_des_upcoming: 'upcoming'
-vault_des_13: 'sporting events.'
-vault_des_14: 'What is the Vault Used for?'
-vault_des_15: 'The Vault is used to store cryptocurrency; in this regard, it’s similar to a cryptocurrency wallet. However, we also use the Vault to deposit some of our casino offers, giveaway prizes and weekly promotions.'
-vault_des_16: 'Learn more about how our monthly bonuses work and find out how to become a Meibo VIP and what exclusive rewards members of the Meibo VIP Club can access.'
-vault_des_17: 'The easiest way to think of the Vault is to compare it to a bank vault. You can keep your funds in an account at the bank, but storing them within the Vault is an extra layer of security so that only you can access them.'
-vault_des_18: 'What Are the Benefits of Using the Vault?'
+vault_des_8: When you access the Vault for the first time, you will need to verify
+  which security features to activate, including 2FA (two-factor authentication).
+  You will also need to enter your password to access the crypto that you store within.
+vault_des_9: How Do You Use the Vault?
+vault_des_10: The primary use of the Vault is to keep your funds safe. When you complete
+  a crypto deposit at Meibo.com, you can add your cryptocurrency to the Vault for
+  an added layer of protection to keep your funds safe.
+vault_des_11: 'The Vault ensures secure transmission of digital payments, and the
+  easy-to-use interface means that you can easily access your crypto when you want
+  to use it at Meibo, whether you’re playing '
+vault_des_card: cards,
+vault_des_dice: dice,
+vault_des_slots: slots,
+vault_des_12: or placing bets on the biggest
+vault_des_live: live
+vault_des_upcoming: upcoming
+vault_des_13: sporting events.
+vault_des_14: What is the Vault Used for?
+vault_des_15: The Vault is used to store cryptocurrency; in this regard, it’s similar
+  to a cryptocurrency wallet. However, we also use the Vault to deposit some of our
+  casino offers, giveaway prizes and weekly promotions.
+vault_des_16: Learn more about how our monthly bonuses work and find out how to become
+  a Meibo VIP and what exclusive rewards members of the Meibo VIP Club can access.
+vault_des_17: The easiest way to think of the Vault is to compare it to a bank vault.
+  You can keep your funds in an account at the bank, but storing them within the Vault
+  is an extra layer of security so that only you can access them.
+vault_des_18: What Are the Benefits of Using the Vault?
 vault_des_19: 'There are lots of benefits to using the Vault at Meibo.com:'
-vault_des_li6: 'Additional security for your funds via 2FA.'
-vault_des_li7: 'Store multiple cryptocurrencies simultaneously.'
-vault_des_li8: 'Save crypto in your Vault alongside your Meibo.com balance.'
-vault_des_li9: 'Receive prizes and giveaways securely to your Vault.'
-vault_des_li10: 'Access your crypto immediately without transaction fees and avoid blockchain delays.'
-vault_des_li11: 'Instant access to your crypto as and when you need it to fund your gameplay at the Meibo Casino or sports bets.'
-vault_des_20: 'Is Storing Funds in the Vault Safe?'
-vault_des_21: 'Yes, storing funds in the Meibo.com Vault is 100% safe. In addition to the site-wide security measures we implement to protect the funds in your balance, the Vault is bolstered by 2FA, offering additional protection and security.'
-vault_des_22: 'That being said, it’s easy to access your funds as and when you want them – simply log in and pass through the 2FA to get to your crypto.'
-vault_des_23: 'How Do You Withdraw Funds from the Vault?'
-vault_des_24: 'To withdraw funds from your Vault, first, decide how much of which currency you would like to withdraw. Then, enter your password and complete the 2FA. You can then transfer the funds to your Meibo.com balance to play your favourite casino games or to bet on sports. Alternatively, you can withdraw the funds to your crypto wallet with the help of Moonpay.'
-vault_des_25: "If you're after more information about our deposit and withdrawal methods on Meibo.com, check out our guide to online payment methods."
-vault_des_26: 'How Long Can You Store Funds in the Vault?'
-vault_des_27: 'You can store cryptocurrency in your Vault for as long as you maintain a Meibo.com account. We haven’t put any time constraints on the Vault, and you can feel free to use it for as long as you wish to keep your cryptocurrency safe.'
-vault_des_28: 'What Crypto Can You Store in the Vault?'
-vault_des_29: 'You can place bets at Meibo.com with a wide selection of cryptocurrencies. As such, the following currencies can all be stored in the Vault:'
+vault_des_li6: Additional security for your funds via 2FA.
+vault_des_li7: Store multiple cryptocurrencies simultaneously.
+vault_des_li8: Save crypto in your Vault alongside your Meibo.com balance.
+vault_des_li9: Receive prizes and giveaways securely to your Vault.
+vault_des_li10: Access your crypto immediately without transaction fees and avoid
+  blockchain delays.
+vault_des_li11: Instant access to your crypto as and when you need it to fund your
+  gameplay at the Meibo Casino or sports bets.
+vault_des_20: Is Storing Funds in the Vault Safe?
+vault_des_21: Yes, storing funds in the Meibo.com Vault is 100% safe. In addition
+  to the site-wide security measures we implement to protect the funds in your balance,
+  the Vault is bolstered by 2FA, offering additional protection and security.
+vault_des_22: That being said, it’s easy to access your funds as and when you want
+  them – simply log in and pass through the 2FA to get to your crypto.
+vault_des_23: How Do You Withdraw Funds from the Vault?
+vault_des_24: To withdraw funds from your Vault, first, decide how much of which currency
+  you would like to withdraw. Then, enter your password and complete the 2FA. You
+  can then transfer the funds to your Meibo.com balance to play your favourite casino
+  games or to bet on sports. Alternatively, you can withdraw the funds to your crypto
+  wallet with the help of Moonpay.
+vault_des_25: If you're after more information about our deposit and withdrawal methods
+  on Meibo.com, check out our guide to online payment methods.
+vault_des_26: How Long Can You Store Funds in the Vault?
+vault_des_27: You can store cryptocurrency in your Vault for as long as you maintain
+  a Meibo.com account. We haven’t put any time constraints on the Vault, and you can
+  feel free to use it for as long as you wish to keep your cryptocurrency safe.
+vault_des_28: What Crypto Can You Store in the Vault?
+vault_des_29: 'You can place bets at Meibo.com with a wide selection of cryptocurrencies.
+  As such, the following currencies can all be stored in the Vault:'
 vault_des_li12: Bitcoin (BTC)
 vault_des_li13: Ethereum (ETH)
 vault_des_li14: Litecoin (LTC)
@@ -2397,44 +2453,63 @@ vault_des_li27: The Sandbox (SAND)
 vault_des_li28: Shiba Inu (SHIB)
 vault_des_li29: Uniswap (UNI)
 vault_des_li30: Polygon (MATIC)
-vault_des_30: "Learn more about how to buy crypto if you're just getting started."
+vault_des_30: Learn more about how to buy crypto if you're just getting started.
 vault_des_31: 'Conclusion: Why You Should Utilise the Vault Feature on Meibo.com'
-vault_des_32: "The Meibo.com Vault is the ideal place to store your cryptocurrency to fund your bets at Meibo Casino or Sportsbook. Whether you’re playing our best games (such as live casino games and table games) or looking to place bets on the upcoming basketball or American football season, you can quickly move crypto from your Vault to your balance to fund your bets - it's that simple."
-vault_des_33: 'Remember, we also send funds securely to the Vault as part of certain casino promotions and sports offers, so make sure you set up your Vault to avoid missing out on all our special deals, weekly giveaways, and exclusive prizes!'
-vault_des_34: "New to Meibo.com and want to learn more before placing your bets? Browse through our online casino guide and our guide to sports betting and you'll be an expert in no time."
-vault_des_35: 'Please remember to always gamble responsibly. Learn more tips when betting online with our responsible gambling guide . You can use our budget calculator to stay on top of your spending habits and read up on our guide to knowing how much to gamble with.'
-success_close_double_check: '2FA desativado com sucesso'
+vault_des_32: The Meibo.com Vault is the ideal place to store your cryptocurrency
+  to fund your bets at Meibo Casino or Sportsbook. Whether you’re playing our best
+  games (such as live casino games and table games) or looking to place bets on the
+  upcoming basketball or American football season, you can quickly move crypto from
+  your Vault to your balance to fund your bets - it's that simple.
+vault_des_33: Remember, we also send funds securely to the Vault as part of certain
+  casino promotions and sports offers, so make sure you set up your Vault to avoid
+  missing out on all our special deals, weekly giveaways, and exclusive prizes!
+vault_des_34: New to Meibo.com and want to learn more before placing your bets? Browse
+  through our online casino guide and our guide to sports betting and you'll be an
+  expert in no time.
+vault_des_35: Please remember to always gamble responsibly. Learn more tips when betting
+  online with our responsible gambling guide . You can use our budget calculator to
+  stay on top of your spending habits and read up on our guide to knowing how much
+  to gamble with.
+success_close_double_check: 2FA desativado com sucesso
 close_verification: Desativar 2FA
-vip_sports_tip_title: A pontuação dos estádios esportivos equivalem a {rate} vezes a seguinte lista
-vip_sports_tip_content: '(Exemplo: 1 USDT = 1 ponto de associação. Ao fazer uma aposta esportiva de 1 USDT, você receberá {rate} pontos de associação)'
+vip_sports_tip_title: A pontuação dos estádios esportivos equivalem a {rate} vezes
+  a seguinte lista
+vip_sports_tip_content: '(Exemplo: 1 USDT = 1 ponto de associação. Ao fazer uma aposta
+  esportiva de 1 USDT, você receberá {rate} pontos de associação)'
 money_exchange: Câmbio
 exchange: Câmbio
 pay_with: Pague em {currency}
 rate: Taxa de câmbio
 birthday_bonus: Bônus de aniversário
-collection_instructions: 'Instruções para recebimento: Os bônus deste evento são todos emitidos em USDT, você pode escolher a moeda que deseja receber e a taxa de câmbio entre as moedas adota a taxa de câmbio do mercado em tempo real.'
+collection_instructions: 'Instruções para recebimento: Os bônus deste evento são todos
+  emitidos em USDT, você pode escolher a moeda que deseja receber e a taxa de câmbio
+  entre as moedas adota a taxa de câmbio do mercado em tempo real.'
 activity_bonus: Bônus de atividade
 success_received: '{label} {amount} {renderSvg} recebido com sucesso'
 add_withdraw_info: Por favor, vincule as informações de retirada
-three_withdraw_info_only: Cada moeda pode ter apenas 3 informações de recebimento vinculadas
+three_withdraw_info_only: Cada moeda pode ter apenas 3 informações de recebimento
+  vinculadas
 want_more_del_first: Caso precise vincular mais, exclua as menos utilizadas
 withdraw_account: Conta de pagamento
 withdraw_address: Endereço de pagamento
 wrong_format: Formato incorreto
-vip_integral: 'VIP Rank'
+vip_integral: VIP Rank
 sports_events2: Eventos esportivos
-choose_proto_pls: 'Protocolo'
+choose_proto_pls: Protocolo
 vir_address: Endereço de moeda virtual
 input_vir_address_pls: Por favor insira o endereço da moeda virtual
 digital_pwd: Senha numérica
-check_vir_address_pls: Por favor, verifique o endereço com atenção. Se o endereço estiver incorreto, os fundos não serão recebidos.
-check_account_pls: Por favor, verifique o número da conta com atenção. Se o número da conta estiver incorreto, os fundos não serão recebidos.
+check_vir_address_pls: Por favor, verifique o endereço com atenção. Se o endereço
+  estiver incorreto, os fundos não serão recebidos.
+check_account_pls: Por favor, verifique o número da conta com atenção. Se o número
+  da conta estiver incorreto, os fundos não serão recebidos.
 first_name: Nome
-last_name : Sobrenome
+last_name: Sobrenome
 country_pls: Selecione o país
 city_pls: Preencha a cidade
 select_pix_type_pls: Selecione o tipo de conta PIX
-diff_game_diff_rate: Apostar em locais diferentes resultará em diferentes acumulações de pontos VIP. Consulte a imagem abaixo para obter detalhes.
+diff_game_diff_rate: Apostar em locais diferentes resultará em diferentes acumulações
+  de pontos VIP. Consulte a imagem abaixo para obter detalhes.
 bet_currency: Moeda de apostas
 sports_integral: Pontuação de Estádio
 casino_integral: Pontuação de locais ao vivo
@@ -2477,14 +2552,19 @@ plinko_maxquestion1: Tem certeza de que deseja ativar o botão Aposta Máxima?
 plinko_maxquestion2: Tem certeza de que deseja ativar o botão Aposta Máxima?
 plinko_turnOn: Ativar
 plinko_turnOff: Ativar
-plinko_info1: 1. O modelo de alocação determinará diferentes pagamentos potenciais por meio de risco e multiplicadores.
-plinko_info2: 2. Não vire seu dispositivo ou tela para desafiar a gravidade enquanto o jogo estiver em andamento.
+plinko_info1: 1. O modelo de alocação determinará diferentes pagamentos potenciais
+  por meio de risco e multiplicadores.
+plinko_info2: 2. Não vire seu dispositivo ou tela para desafiar a gravidade enquanto
+  o jogo estiver em andamento.
 plinko_rules: Regras do jogo
 plinko_hotkey1: Fazer uma aposta
 plinko_hotkey2: Duplique sua aposta
 plinko_hotkey3: Meia aposta
 plinko_hotkey4: Valor ímpar de apostas
-plinko_hotkeyInfo: Depois que a tecla de atalho for ativada, ela afetará todos os jogos até que seja desativada. Embora alguns jogos tenham as mesmas combinações de teclas, é recomendável que você confirme a interação da tecla bloqueada em jogos diferentes antes de usá-la.
+plinko_hotkeyInfo: Depois que a tecla de atalho for ativada, ela afetará todos os
+  jogos até que seja desativada. Embora alguns jogos tenham as mesmas combinações
+  de teclas, é recomendável que você confirme a interação da tecla bloqueada em jogos
+  diferentes antes de usá-la.
 plinko_hotkeyUse: Ativar teclas de atalho
 plinko_statistics: Estatísticas em tempo real
 plinko_type1: Todos
@@ -2526,9 +2606,11 @@ plinko_fairnesses_text3: Número de apostas feitas no par inicial
 plinko_fairnesses_text4: Rodar pares de sementes
 plinko_fairnesses_text5: Nova Semente de Cliente
 plinko_fairnesses_text6: Próxima semente do servidor (hashed)
-plinko_fairnesses_text7: 'Você deve completar os seguintes jogos para alternar as partidas iniciais:'
+plinko_fairnesses_text7: 'Você deve completar os seguintes jogos para alternar as
+  partidas iniciais:'
 plinko_fairnesses_button: Substituir
-plinko_fairnesses_verifyText1: Mais informações são necessárias para verificar os resultados
+plinko_fairnesses_verifyText1: Mais informações são necessárias para verificar os
+  resultados
 plinko_fairnesses_calcButton: Ver detalhes do cálculo
 plinko_verifyTexts_game: Jogo
 plinko_verifyTexts_clientSeed: Semente do cliente
@@ -2537,99 +2619,158 @@ plinko_verifyTexts_nonce: Sinal de realidade
 plinko_copyText: Copiado com sucesso!
 plinko_copyId: Copiado com sucesso!
 currency_min_deposit_amount: Valor mínimo de depósito：{amount}{icon}
-bind_more_bank_tip: Cada moeda só pode ser vinculada a 3 informações de pagamento. Se você precisar vincular mais, exclua primeiro as usadas com pouca frequência.
-check_card_account_pls: 请认真核对卡号，卡号错误资金将无法到账
+bind_more_bank_tip: Cada moeda só pode ser vinculada a 3 informações de pagamento.
+  Se você precisar vincular mais, exclua primeiro as usadas com pouca frequência.
+check_card_account_pls: Por favor, verifique o número do cartão com atenção. Se o
+  número do cartão estiver incorreto, os fundos não estarão disponíveis.
 all_currencies: Todas as moedas
-check_card_account_pls_brl: 请认真核对账户，卡号错误资金将无法到账
-is_default_addr_brl: 是否设为默认账户
-go_card_pack: 前往卡包
-please_go_package_bind_payment_information: 请前往卡包绑定收款信息
-not_payment_information_currency: 该币种您暂无收款信息
-back_to_home: 回到主页
-maintain_time: 维护时间
-sports_under_maintain: 体育场馆维护中...
-to: 至
-label_bind_crypto_address : 绑定
-no_withdraw_information_about_the_currency: Você ainda não tem informações de pagamento para esta moeda
-please_go_card_wallet_bind_withdraw_information: 请前往卡包绑定收款信息
-go_card_wallet: 前往卡包
+check_card_account_pls_brl: Verifique sua conta com atenção. Se o número do cartão
+  estiver incorreto, os fundos não estarão disponíveis.
+is_default_addr_brl: Se deve ser definida como conta padrão
+go_card_pack: Ir para meus cartões
+please_go_package_bind_payment_information: Acesse meus cartões para vincular as informações
+  de pagamento.
+not_payment_information_currency: Você ainda não tem informações de pagamento para
+  esta moeda
+back_to_home: Retornar a página inicial
+maintain_time: Em manutenção
+sports_under_maintain: O local do evento está em manutenção...
+to: para
+label_bind_crypto_address: Vincular
+no_withdraw_information_about_the_currency: Você ainda não tem informações de pagamento
+  para esta moeda
+please_go_card_wallet_bind_withdraw_information: Acesse meus cartões para vincular
+  as informações de pagamento.
+go_card_wallet: Ir para meus cartões
 Directly_subordinate_to_all_currencies: Todas as moedas
 Directly_subordinate_to_collect_all_currencies: Todas as moedas
-all_data_all_currencies: 全部币种
+all_data_all_currencies: Todas as moedas
 top_bar_login_button: Entrar
 pop_up_login_label: Entrar
 pop_up_login_button: Entrar
 pop_up_create_account_passcode_least_1_number: Pelo menos 1 número
 pop_up_create_account_uppercase_lowercase_letter: Inclui maiúsculas e minúsculas
-pop_up_create_account_password_least_1_number: 密码必须含有至少一个数字
-pop_up_create_account_password_uppercase_lowercase_letter: A senha deve incluir um caractere minúsculo e outro maiúsculo
+pop_up_create_account_password_least_1_number: Sua senha deve ter pelo menos 1 número
+pop_up_create_account_password_uppercase_lowercase_letter: A senha deve incluir um
+  caractere minúsculo e outro maiúsculo
 tip_pop_up_reg_success_title: Bem-vindo(a)
-registration_agree_terms_conditions: Por favor, leia os termos e condições na íntegra e role até o final para aceitar.
+registration_agree_terms_conditions: Por favor, leia os termos e condições na íntegra
+  e role até o final para aceitar.
 registration_finally_play_now: Jogar Agora
 pop_up_forgot_password_email_address: E-mail
 pop_up_forgot_password: Esqueci a Senha
-pop_up_create_account_password_least_8_characters: Sua senha deve ter no mínimo 8 caracteres
+pop_up_create_account_password_least_8_characters: Sua senha deve ter no mínimo 8
+  caracteres
 pop_up_create_account_name_14_char: Seu username deve conter menos de 14 caracteres
 pop_up_create_account_name_3_char: Seu username deve conter pelo menos 3 caracteres
 pop_up_create_account_no_support_email: Domínio de e-mail não suportado
-pop_up_create_account_email_add_char: Por favor, inclua um “{delta}” em seu endereço de e-mail
-pop_up_create_account_username_incorrect: Seu nome de usuário deve conter de 3 a 14 caracteres.
-pop_up_create_account_no_dot_email_add_char: Por favor, inclua um “{delta}” em seu endereço de e-mail
+pop_up_create_account_email_add_char: Por favor, inclua um “{delta}” em seu endereço
+  de e-mail
+pop_up_create_account_username_incorrect: Seu nome de usuário deve conter de 3 a 14
+  caracteres.
+pop_up_create_account_no_dot_email_add_char: Por favor, inclua um “{delta}” em seu
+  endereço de e-mail
 pop_up_create_account_label_email_address: E-mail
 pop_up_create_account_label_reg_step1: 'Etapa 1/2: Preencha seus dados'
 pop_up_create_account_header_register: Criar uma Conta
 site_announcement: Anúncio
 dont_tip_today: No more prompts today
-pop_up_finally_create_account_name_no_equal_pwd: A senha não pode ser igual ao nome de usuário
-top_bar_drop_down_search_currency: 搜索货币
-responsible_safe_text_1: Meibo is committed to providing a safe environment for all its players to gamble with us, which is why it’s so important to Meibo Safe!
-responsible_safe_text_2: Online casino gambling should be a form of entertainment that should not cause harm to other areas of your life.
+pop_up_finally_create_account_name_no_equal_pwd: A senha não pode ser igual ao nome
+  de usuário
+top_bar_drop_down_search_currency: Buscar Moedas
+responsible_safe_text_1: Meibo is committed to providing a safe environment for all
+  its players to gamble with us, which is why it’s so important to Meibo Safe!
+responsible_safe_text_2: Online casino gambling should be a form of entertainment
+  that should not cause harm to other areas of your life.
 responsible_safe_text_3: 'Meibo does this through:'
-responsible_safe_text_4: Providing information to customers regarding their play and spend so they can make informed decisions about their gambling.
-responsible_safe_text_5: Having safer gambling tools available in (such as limits, breaks and self-exclusions) that are available to all customers to place on their account at any time.
-responsible_safe_text_6: Providing information regarding external support to assist with preventing gambling harm and problem gambling.
-responsible_safe_text_7: A Customer Service Team available 24/7 to assist with safer gambling enquiries.
+responsible_safe_text_4: Providing information to customers regarding their play and
+  spend so they can make informed decisions about their gambling.
+responsible_safe_text_5: Having safer gambling tools available in (such as limits,
+  breaks and self-exclusions) that are available to all customers to place on their
+  account at any time.
+responsible_safe_text_6: Providing information regarding external support to assist
+  with preventing gambling harm and problem gambling.
+responsible_safe_text_7: A Customer Service Team available 24/7 to assist with safer
+  gambling enquiries.
 responsible_safe_text_8: Ensuring minors are not able to create Meibo.com accounts.
 responsible_safe_text_9: What is Safe Gambling?
-responsible_safe_text_10: Understanding about safe gambling is key to making sure you are maximising the Meibo.com experience.
+responsible_safe_text_10: Understanding about safe gambling is key to making sure
+  you are maximising the Meibo.com experience.
 responsible_safe_text_11: 'Tips to gambling safely are:'
-responsible_safe_text_12: Your gambling is balanced with other recreational activities/pastimes you have.
-responsible_safe_text_13: Before you start to gamble, you have a plan in mind of how much you want to spend gambling, and how long you will be gambling for.
+responsible_safe_text_12: Your gambling is balanced with other recreational activities/pastimes
+  you have.
+responsible_safe_text_13: Before you start to gamble, you have a plan in mind of how
+  much you want to spend gambling, and how long you will be gambling for.
 responsible_safe_text_14: Betting with money that is affordable to you.
 responsible_safe_text_15: Taking breaks or stopping gambling for the day.
-responsible_safe_text_16: Understanding the odds and knowing the risks associated with gambling.
-responsible_safe_text_17: Not being overly upset and angry by losses when you are gambling.
+responsible_safe_text_16: Understanding the odds and knowing the risks associated
+  with gambling.
+responsible_safe_text_17: Not being overly upset and angry by losses when you are
+  gambling.
 responsible_safe_text_18: Learn more tips with our responsible gambling guide.
 responsible_safe_text_19: Knowing the Odds
-responsible_safe_text_20: There are a lot of myths and misconceptions about gambling - understanding the odds of gambling helps put the chances of winning into perspective.
+responsible_safe_text_20: There are a lot of myths and misconceptions about gambling
+  - understanding the odds of gambling helps put the chances of winning into perspective.
 responsible_safe_text_21: Meibo offers two products, Casino and Sportsbook.
-responsible_safe_text_22: Both products have different win rates and probability that players need to be aware of, which will help to understand the risks associated with gaming.
+responsible_safe_text_22: Both products have different win rates and probability that
+  players need to be aware of, which will help to understand the risks associated
+  with gaming.
 responsible_safe_text_23: House Advantage/House Edge
-responsible_safe_text_24: Games have a house edge to ensure a percentage of the total amount wagered is returned to the House, which in this case is Meibo.
+responsible_safe_text_24: Games have a house edge to ensure a percentage of the total
+  amount wagered is returned to the House, which in this case is Meibo.
 responsible_safe_text_25: Randomness
-responsible_safe_text_26: All gambling has an element of randomness - there is no way to control the outcome of any casino game or sporting event.
+responsible_safe_text_26: All gambling has an element of randomness - there is no
+  way to control the outcome of any casino game or sporting event.
 responsible_safe_text_27: Independent Outcomes
-responsible_safe_text_28: Games/Spins are not related. Their outcomes are not dependent on how much, or how long, you’ve previously played the game for.
+responsible_safe_text_28: Games/Spins are not related. Their outcomes are not dependent
+  on how much, or how long, you’ve previously played the game for.
 responsible_safe_text_29: Odds and Probability
-responsible_safe_text_30: Odds and probability are ways to describe your chances of winning. Whilst the odds can appear to be low, there are no certainties in betting.
+responsible_safe_text_30: Odds and probability are ways to describe your chances of
+  winning. Whilst the odds can appear to be low, there are no certainties in betting.
 responsible_safe_text_31: Ways We Can Help You Stay Meibo Safe!
-responsible_safe_text_32: Meibo is committed to promoting players to consider their own activity, whilst providing the tools they need to ensure they are in control, and playing with money they can afford.
+responsible_safe_text_32: Meibo is committed to promoting players to consider their
+  own activity, whilst providing the tools they need to ensure they are in control,
+  and playing with money they can afford.
 responsible_safe_text_33: Using Safer Gambling Tools on Your Account
-responsible_safe_text_34: Meibo has a range of tools that can be applied to your account to set safe limits for you to play within.
+responsible_safe_text_34: Meibo has a range of tools that can be applied to your account
+  to set safe limits for you to play within.
 responsible_safe_text_35: Budget Calculator
-responsible_safe_text_36: Use our Monthly Budget Calculator to help monitor your spending habits and review how much of your income is spent on gambling. Learn more about how much you should gamble with our guide.
+responsible_safe_text_36: Use our Monthly Budget Calculator to help monitor your spending
+  habits and review how much of your income is spent on gambling. Learn more about
+  how much you should gamble with our guide.
 responsible_safe_text_37: Gambling Limits
 responsible_safe_text_38: Loss limit
-responsible_safe_text_39: A loss limit allows you to set a limit on how much you can afford to lose over your set period of time. The limit can be set over a period of one day, one week or one month. It is a net loss limit. Profits made during your set period will not count towards your limit amount. If you are profitable during the set period, you are able to use your profits to continue to wager and bet until you reach your loss limit. Unsettled bets count towards the limit. Please check your unsettled bets if you are unable to place bets, as these unsettled bets may be causing you to reach your limit.
+responsible_safe_text_39: A loss limit allows you to set a limit on how much you can
+  afford to lose over your set period of time. The limit can be set over a period
+  of one day, one week or one month. It is a net loss limit. Profits made during your
+  set period will not count towards your limit amount. If you are profitable during
+  the set period, you are able to use your profits to continue to wager and bet until
+  you reach your loss limit. Unsettled bets count towards the limit. Please check
+  your unsettled bets if you are unable to place bets, as these unsettled bets may
+  be causing you to reach your limit.
 responsible_safe_text_40: Wager limit
-responsible_safe_text_41: A wager limit (or betting limit) allows you to set a limit on how much you can wager over your set period of time. The maximum bet limit can be set over a period of one day, one week or one month. The limit is not a net limit so profits are excluded. This means, if you are profitable during the period these profits are not offset against your maximum bet limit.
-responsible_safe_text_42: To increase or decrease your limits you must remove existing limits and create new limits. Upon removing limits a 24-hour cool off period will commence before you are able to create your new limit.
+responsible_safe_text_41: A wager limit (or betting limit) allows you to set a limit
+  on how much you can wager over your set period of time. The maximum bet limit can
+  be set over a period of one day, one week or one month. The limit is not a net limit
+  so profits are excluded. This means, if you are profitable during the period these
+  profits are not offset against your maximum bet limit.
+responsible_safe_text_42: To increase or decrease your limits you must remove existing
+  limits and create new limits. Upon removing limits a 24-hour cool off period will
+  commence before you are able to create your new limit.
 responsible_safe_text_43: Self-Exclusion
-responsible_safe_text_44: Lock yourself out of your Meibo.com for a longer period of time if gambling is becoming a concern for you. You can opt for a 6 month, 1 year, 2 year and 5 year self exclusion. If you would like detailed information about how self exclusion works, please click here.
+responsible_safe_text_44: Lock yourself out of your Meibo.com for a longer period
+  of time if gambling is becoming a concern for you. You can opt for a 6 month, 1
+  year, 2 year and 5 year self exclusion. If you would like detailed information about
+  how self exclusion works, please click here.
 responsible_safe_text_45: Gamban
-responsible_safe_text_46: Gamban is a gambling blocking software that you can elect to install on your devices for the duration of your self exclusion. Eligible customers can receive a complimentary Gamban subscription on us when excluding for the periods of 3 months, 6 months or 1 year.
+responsible_safe_text_46: Gamban is a gambling blocking software that you can elect
+  to install on your devices for the duration of your self exclusion. Eligible customers
+  can receive a complimentary Gamban subscription on us when excluding for the periods
+  of 3 months, 6 months or 1 year.
 responsible_safe_text_47: What is Problem Gambling?
-responsible_safe_text_48: 'A small population of people who gamble are considered to be problem gamblers. For these people, gambling stops being fun and starts to negatively affect other areas of your personal life such as:'
+responsible_safe_text_48: 'A small population of people who gamble are considered
+  to be problem gamblers. For these people, gambling stops being fun and starts to
+  negatively affect other areas of your personal life such as:'
 responsible_safe_text_49: Mental wellbeing
 responsible_safe_text_50: Physical health
 responsible_safe_text_51: Personal relationships
@@ -2638,22 +2779,30 @@ responsible_safe_text_53: 'Signs you May be developing Problem Gambling:'
 responsible_safe_text_54: Getting overly upset by losses.
 responsible_safe_text_55: Chasing your losses back.
 responsible_safe_text_56: Not being able to stop or cut back gambling.
-responsible_safe_text_57: Hiding your gambling from others and being defensive about losses or time spent gambling.
+responsible_safe_text_57: Hiding your gambling from others and being defensive about
+  losses or time spent gambling.
 responsible_safe_text_58: Neglecting responsibilities (financial and personal relationships).
 responsible_safe_text_59: Using gambling to escape other problems.
 responsible_safe_text_60: Minors
 responsible_safe_text_61: Meibo.com does not support underage gambling.
-responsible_safe_text_62: Underage gambling is illegal, and is defined as anyone who is under the age of 18 years old at the time of account registration.
-responsible_safe_text_63: No winnings should be paid to such players if identified as someone who is underage.
+responsible_safe_text_62: Underage gambling is illegal, and is defined as anyone who
+  is under the age of 18 years old at the time of account registration.
+responsible_safe_text_63: No winnings should be paid to such players if identified
+  as someone who is underage.
 responsible_safe_text_64: Tips for Parents
-responsible_safe_text_65: Do not leave your computer unattended when your casino software is running.
+responsible_safe_text_65: Do not leave your computer unattended when your casino software
+  is running.
 responsible_safe_text_66: Password-protect your casino program.
 responsible_safe_text_67: Do not allow minors to participate in any gambling activity.
-responsible_safe_text_68: Keep your casino account number and payment card(s) out of reach of minors.
+responsible_safe_text_68: Keep your casino account number and payment card(s) out
+  of reach of minors.
 responsible_safe_text_69: Do not save passwords onto your computer.
-responsible_safe_text_70: Limit the amount of time your children spend online and make use of software to prevent your children from accessing inappropriate material.
+responsible_safe_text_70: Limit the amount of time your children spend online and
+  make use of software to prevent your children from accessing inappropriate material.
 responsible_safe_text_71: Gambling Bet Blocking and Filtering Tools
-responsible_safe_text_72: 'In order to ensure child safety on the Internet, Meibo encourages its players to make use of filtering software to prevent minors from accessing certain online material:'
+responsible_safe_text_72: 'In order to ensure child safety on the Internet, Meibo
+  encourages its players to make use of filtering software to prevent minors from
+  accessing certain online material:'
 responsible_safe_text_73: Gamcare
 responsible_safe_text_74: Netnanny
 responsible_safe_text_75: Betblocker

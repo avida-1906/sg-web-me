@@ -1,4 +1,4 @@
-login: 'Đăng Nhập'
+login: Đăng Nhập
 reg: Đăng ký
 register: Tạo Tài khoản
 continue: Tiếp tục
@@ -11,13 +11,13 @@ chess: Đánh bài
 live: Đánh bài với nhân viên trực tuyến
 email_or_username: Email hoặc Tên đăng nhập
 pls_enter_email_or_username: Vui lòng nhập địa chỉ hòm thư và tài khoản khách chơi
-email_or_username_incorrect: Địa chỉ hòm thư vàtài khoản khách chơi không chính
-  xác
+email_or_username_incorrect: Địa chỉ hòm thư vàtài khoản khách chơi không chính xác
 two_step_verification: Hai Yếu Tố
 pls_enter_two_step_verification: Vui lòng nhập xác nhận hai bước
-tip_start_double_check: 'Để giữ cho tài khoản của bạn thêm an toàn, hãy bật xác thực hai yếu tố.'
+tip_start_double_check: Để giữ cho tài khoản của bạn thêm an toàn, hãy bật xác thực
+  hai yếu tố.
 email_address: Email
-pls_enter_email_address: 'Trường này là bắt buộc'
+pls_enter_email_address: Trường này là bắt buộc
 email_address_incorrect: Địa chỉ hòm thư không chính xác
 reset_pwd_email: Thư thiết lập lại mật khẩu đã được gửi vào địa chỉ hòm thư
 already_send_email_user: Tài khoản khôi phục đã được gửi vào địa chỉ hòm thư
@@ -33,8 +33,8 @@ confirm_pwd: Xác nhận mật khẩu
 pls_enter_password: Vui lòng nhậpmật khẩu
 pls_enter_birthday: Vui lòng nhậpngày tháng năm sinh
 password_incorrect: Mật khẩu đăng nhập khôngchính xác
-password_uppercase_lowercase_letter: Mật khẩu yêu cầu phải có 1 ký tự in hoa và
-  1 ký tự viết thường
+password_uppercase_lowercase_letter: Mật khẩu yêu cầu phải có 1 ký tự in hoa và 1
+  ký tự viết thường
 password_least_8_characters: Mật khẩu phải bao gồm ít nhất 8 ký tự
 password_least_8_characters_2: Mật khẩu phải bao gồm ít nhất 8 ký tự
 password_least_1_number: mật khẩu phải có ít nhất 1 con số
@@ -71,7 +71,7 @@ balance: Số dư
 amount: Số tiền
 casino: Casino
 sports: Thể thao
-game: 'Trò chơi'
+game: Trò chơi
 wallet: Ví
 safe: Kho
 affiliate: Liên kết
@@ -87,7 +87,8 @@ online_support: Hỗ Trợ Trực Tuyến
 vip_club: VIP Club
 club: Clup
 logout: Đăng xuất
-logout_dont_foget: 'Đừng quên kiểm tra các khuyến mãi thể thao và trên casino khổng lồ của chúng tôi trước khi bạn rời đi!'
+logout_dont_foget: Đừng quên kiểm tra các khuyến mãi thể thao và trên casino khổng
+  lồ của chúng tôi trước khi bạn rời đi!
 chat_room: Chat
 bet_slip: Phiếu Cược
 my_bets: Cược Của Tôi
@@ -95,7 +96,7 @@ all_bets: Tất Cả Cược
 casino_bets: Đơn cược đánh bài
 billboard: Người Chơi Lớn
 competition_board: Bảng xếp hạng cuộc đua
-competition: 'Cuộc đua {money}'
+competition: Cuộc đua {money}
 competition_name: Tên cuộc thi
 currency: Tiền
 network: Mạng lưới
@@ -133,8 +134,8 @@ also_in_this_conversation: Cũng trong cuộc trò chuyện này
 amazing: Tuyệt vời
 answer: Trả lời
 answer_is_generated_with_ai: Câu trả lời này chỉ dựa trên những gì {company_name}
-  chỉ định. Nó được tạo ra bởi trí tuệ nhân tạo và do đó có thể không hoàn toàn
-  chính xác.
+  chỉ định. Nó được tạo ra bởi trí tuệ nhân tạo và do đó có thể không hoàn toàn chính
+  xác.
 answer_is_generated_with_ai_may_be_incorrect: Câu trả lời này được tạo tự động bằng
   trí tuệ nhân tạo. Có thể nó không hoàn toàn chính xác.
 answer_is_generated_with_ai_sources: Phản hồi AI được tạo từ các nguồn dữ liệu công
@@ -187,9 +188,9 @@ checklist_in_progress_time_remaining_singular: Còn khoảng 1 phút
 checklist_mark_step_as_complete: Đánh dấu là đã hoàn thành
 checklist_not_started_time_remaining_plural: Khoảng {minutes}
 checklist_not_started_time_remaining_singular: Khoảng 1 phút
-checklist_number_of_steps_plural: "{number_of_steps} bước"
-checklist_number_of_steps_progress_plural: Đã hoàn thành {steps_completed} bước trong tổng
-  số {total_steps}
+checklist_number_of_steps_plural: '{number_of_steps} bước'
+checklist_number_of_steps_progress_plural: Đã hoàn thành {steps_completed} bước trong
+  tổng số {total_steps}
 checklist_number_of_steps_progress_singular: Đã hoàn thành 1 bước trong số {total_steps}
 checklist_number_of_steps_singular: 1 bước
 checklist_sender_name: 'Được chia sẻ bởi: {name}'
@@ -205,8 +206,7 @@ close_intercom_messenger: Đóng liên lạc Messenger
 connecting: Đang kết nối
 continue_on_whatsapp: Tiếp tục trên WhatsApp
 continue_the_conversation: Tiếp tục cuộc đối thoại
-continue_whatsapp_instead: Thay vào đó, bạn có thể tiếp tục cuộc trò chuyện trên
-  WhatsApp.
+continue_whatsapp_instead: Thay vào đó, bạn có thể tiếp tục cuộc trò chuyện trên WhatsApp.
 conversation_card_office_hours_header: Khi chúng tôi trực tuyến trở lại
 conversation_card_reply_time_header: Thời gian phản hồi thông thường của chúng tôi
 conversation_card_reply_time_header_m5: Thời gian phản hồi thông thường
@@ -258,7 +258,7 @@ expected_response_delay_604800: trong vòng 1 tuần
 expected_response_delay_7200: trong vòng2 giờ
 expected_response_delay_86400: 1 ngày
 expected_response_delay_900: 15 phút
-extra_labels_count: "#LỖI"
+extra_labels_count: '#LỖI'
 failed_message: Thông báo lỗi
 failed_to_send: Không gửi được
 february_date: tháng 2 ngày {date}
@@ -280,13 +280,13 @@ gif_picker: bộ chọn ảnh GIF
 gifs_load_error: Không thể tải GIF
 go_to: Đi tới {app_name}
 great: Tốt
-group_conversation_multiple_person_also_participating: "{other_participant_count}
-  người khác cũng đang tham gia"
-group_conversation_name_also_participating: "{participant_name} cũng đang tham gia"
-group_conversation_name_and_1_other_also_particiapting: "{participant_name} và 1
-  người khác cũng đang tham gia."
-group_conversation_name_and_multiple_others_also_participating: "{participant_name}
-  và {other_participant_count} người khác cũng đang tham gia"
+group_conversation_multiple_person_also_participating: '{other_participant_count}
+  người khác cũng đang tham gia'
+group_conversation_name_also_participating: '{participant_name} cũng đang tham gia'
+group_conversation_name_and_1_other_also_particiapting: '{participant_name} và 1 người
+  khác cũng đang tham gia.'
+group_conversation_name_and_multiple_others_also_participating: '{participant_name}
+  và {other_participant_count} người khác cũng đang tham gia'
 group_conversation_one_person_also_participating: 1 người khác cũng đang tham gia
 help_space_title: Hỗ trợ
 hi_name: Xin chào, {first_name} 👋
@@ -298,10 +298,10 @@ january_date: tháng 1 ngày {date}
 join_conversation: Tham gia cuộc trò chuyện
 july_date: tháng 7 ngày {date}
 june_date: tháng 6 ngày {date}
-last_seconds: "{delta} giây trước"
-last_minutes: "{delta} phút trước"
-last_hours: "{delta} giờ trước"
-last_days: "{delta} ngày trước"
+last_seconds: '{delta} giây trước'
+last_minutes: '{delta} phút trước'
+last_hours: '{delta} giờ trước'
+last_days: '{delta} ngày trước'
 last_active_hours_ago: Trực tuyến lần cuối {minutes} giờ trước
 last_active_mins_ago: Trực tuyến lần cuối {minutes} trước
 last_active_over_a_week: Lần cuối trực tuyến cách đây hơn 1 tuần
@@ -324,13 +324,13 @@ messages_empty_state_title: không có thông báo
 messages_space_title: thông báo
 messenger: Tin nhắn
 messenger_bot_reply_time: Người máy của chúng tôi sẽ trả lời ngay lập tức
-multiple_articles: "{total_articles} bài viết"
-multiple_collections: "{total_collection} bộ sưu tập"
+multiple_articles: '{total_articles} bài viết'
+multiple_collections: '{total_collection} bộ sưu tập'
 mute_sound: im lặng
-name_and_1_other: "{name} và 1 người khác"
-name_and_one_other: "{name} và 1 người khác"
-name_and_two_others: "{name} và 2 người khác"
-name_and_x_others: "{name} và {count} người khác"
+name_and_1_other: '{name} và 1 người khác'
+name_and_one_other: '{name} và 1 người khác'
+name_and_two_others: '{name} và 2 người khác'
+name_and_x_others: '{name} và {count} người khác'
 nature: tự nhiên
 navigation_back: quay lại
 new_conversation: cuộc trò chuyệnmới
@@ -368,8 +368,7 @@ office_hours_client_response_day_3: Dịch vụ khách hàng bắt đầu từ T
 office_hours_client_response_day_4: Dịch vụ khách hàng bắt đầu từ Thứ Sáu
 office_hours_client_response_day_5: Dịch vụ khách hàng bắt đầu từ Thứ Bảy
 office_hours_client_response_day_6: Dịch vụ khách hàng bắt đầu từ Chủ Nhật
-office_hours_client_response_later_today: Dịch vụ khách hàng có sẵn sau tối hôm
-  nay
+office_hours_client_response_later_today: Dịch vụ khách hàng có sẵn sau tối hôm nay
 office_hours_client_response_next_week: Dịch vụ khách hàng sẽ bắt đầu vào tuần sau
 office_hours_client_response_tomorrow: Dịch vụ khách hàng sẽ bắt đầu vào ngày mai
 ok_description: Vẫn tốt
@@ -387,7 +386,7 @@ places: Địa điểm
 play: Phát
 play_sound: Âm Thanh phát
 play_video: Hình ảnh phát
-plus_x_participants: '+ {count}'
+plus_x_participants: + {count}
 pointer: con trỏ chuột
 post: dán thông báo
 powered_by_intercom: Được hỗ trợ bởi liên lạc nội bộ
@@ -424,9 +423,9 @@ product_tours_name: xem xét sản phẩm
 product_tours_next: tiếp theo
 product_tours_restart: Khởi động lại
 product_tours_snooze: ngủ đông
-product_tours_tour_step_number: "{start_number} / {end_number}"
+product_tours_tour_step_number: '{start_number} / {end_number}'
 product_tours_view: kiểm tra sản phẩm
-profile_location: "{time} tại {location}"
+profile_location: '{time} tại {location}'
 rate_your_conversation: Đánh giá cuộc trò chuyện
 receive_replies_there: Khi nhóm phản hồi, bạn sẽ nhận đc câu trả lời trong nhóm
 recent_ticket: Lệnh làm việc gần đây
@@ -443,8 +442,8 @@ reply_to_conversation: Nhập câu trả lời
 reply_to_name: trả lời {name}
 scan_qr: Quét mã QR bằng điện thoại di động của bạn
 search: Tìm
-search_browse_empty_state_text: Xin lỗi, chúng tôi không thể tìm thấy bất kỳ kết
-  quả tương ứng. Hãy thử viết lại cụm từ tìm kiếm của bạn.
+search_browse_empty_state_text: Xin lỗi, chúng tôi không thể tìm thấy bất kỳ kết quả
+  tương ứng. Hãy thử viết lại cụm từ tìm kiếm của bạn.
 search_for_answers: tìm kiếm đáp án
 search_for_emoji: Tìm kiếm biểu tượng cảm xúc…
 search_for_help: tìm kiếm sự trợ giúp
@@ -461,8 +460,8 @@ send_a_message_reply_time_card: Thời gian phản hồi thông thường là {r
 send_prefilled_message: Khi WhatsApp mở ra, hãy gửi tin nhắn điền sẵn để tiếp tục
   cuộc trò chuyện
 send_us_a_message: Gửi tin nhắn cho chúng tôi
-send_us_a_message_bot: Gửi tin nhắn cho chúng tôi và người máy của chúng tôi sẽ
-  trả lời ngay lập tức
+send_us_a_message_bot: Gửi tin nhắn cho chúng tôi và người máy của chúng tôi sẽ trả
+  lời ngay lập tức
 sent_a_video: 'Đoạn ghi hình đã được gửi '
 sent_an_app: Ứng dụng đã được gửi
 sent_an_attachment: Đã gửi tệp đính kèm
@@ -506,8 +505,10 @@ surveys_email_error: Vui lòng nhập địa chỉ email hợp lệ
 surveys_fixed_response_count_response_hint: 'Vui lòng chọn {response_count} tùy chọn '
 surveys_from_company: Khảo sát từ {company}
 surveys_from_teammate: Khảo sát từ {company} tại {sender_name}
-surveys_multi_select_too_few_responses: Câu hỏi này yêu cầu phải chọn ít nhất {response_count} tùy chọn
-surveys_multi_select_too_many_responses: Câu hỏi này yêu cầu chọn {response_count} tùy chọn
+surveys_multi_select_too_few_responses: Câu hỏi này yêu cầu phải chọn ít nhất {response_count}
+  tùy chọn
+surveys_multi_select_too_many_responses: Câu hỏi này yêu cầu chọn {response_count}
+  tùy chọn
 surveys_multiselect_other_option: Khác (vui lòng nêu rõ)
 surveys_multiselect_other_option_input_label: Vui lòng nêu rõ
 surveys_multiselect_other_option_input_placeholder: Nhập câu trả lời
@@ -518,29 +519,38 @@ surveys_nps_upper_label: Hoàn toàn khả thi
 surveys_number_error: Vui lòng nhập một số
 surveys_required_question: Đây là câu hỏi phải trả lời
 surveys_required_response: Đây là câu trả lời bắt buộc
-surveys_response_range_response_hint: Vui lòng chọn ít nhất {minimum_response_count} và tối đa {maximum_response_count} tùy chọn
-surveys_response_too_long: Vui lòng giữ câu trả lời của bạn dài tối đa {character_count} ký tự
+surveys_response_range_response_hint: Vui lòng chọn ít nhất {minimum_response_count}
+  và tối đa {maximum_response_count} tùy chọn
+surveys_response_too_long: Vui lòng giữ câu trả lời của bạn dài tối đa {character_count}
+  ký tự
 surveys_single_response_hint: Hãy chọn 1 phương án
 surveys_submit_response: Gửi phản hồi của bạn
 surveys_telephone_error: Xin vui lòng nhập một số điện thoại hợp lệ
 surveys_birthday_error: Xin vui lòng nhập ngày sinh của bạn
-surveys_text_input_question_placeholder: Xin vui lòng nhập câu trả lời của bạn vào đây…
+surveys_text_input_question_placeholder: Xin vui lòng nhập câu trả lời của bạn vào
+  đây…
 symbols: Biểu tưởng
 tasks_space_title: Nhiệm vụ
-team_name_custom_response_delay_2: "{app_name} thường phản hồi trong vòng một ngày"
-team_name_custom_response_delay_3: "{app_name} thường phản hồi trong vòng một tuần"
-team_name_proactive_expected_response_delay_one_business_day: "{app_name} thường phản hồi trong ngày làm việc đó"
-team_name_proactive_expected_response_delay_two_business_days: "{app_name} thường phản hồi trong hai ngày làm việc"
+team_name_custom_response_delay_2: '{app_name} thường phản hồi trong vòng một ngày'
+team_name_custom_response_delay_3: '{app_name} thường phản hồi trong vòng một tuần'
+team_name_proactive_expected_response_delay_one_business_day: '{app_name} thường phản
+  hồi trong ngày làm việc đó'
+team_name_proactive_expected_response_delay_two_business_days: '{app_name} thường
+  phản hồi trong hai ngày làm việc'
 teammate_calendar_link: Lịch đồng đội
-teammate_profile: "{provider} Hồ sơ đồng đội"
+teammate_profile: '{provider} Hồ sơ đồng đội'
 tell_us_more: Hãy cho chúng tôi hiểu rõ thêm…
-tell_us_what_you_need: Hãy cho chúng tôi biết bạn cần trợ giúp gì và người máy của chúng tôi sẽ cố gắng trả lời
+tell_us_what_you_need: Hãy cho chúng tôi biết bạn cần trợ giúp gì và người máy của
+  chúng tôi sẽ cố gắng trả lời
 terrible: Rắc rối
 thank_you: Cảm ơn bạn
-thanks_custom_response_delay_one_business_day: Cảm ơn! Nhóm sẽ phản hồi trong vòng một ngày làm việc
-thanks_custom_response_delay_two_business_days: Cảm ơn! Nhóm sẽ phản hồi trong vòng hai ngày làm việc
+thanks_custom_response_delay_one_business_day: Cảm ơn! Nhóm sẽ phản hồi trong vòng
+  một ngày làm việc
+thanks_custom_response_delay_two_business_days: Cảm ơn! Nhóm sẽ phản hồi trong vòng
+  hai ngày làm việc
 thanks_for_letting_us_know: Cảm ơn bạn đã phản ánh
-thanks_proactive_expected_response_delay_unknown: Cảm ơn bạn! Nhóm sẽ trả lời sớm nhất có thể
+thanks_proactive_expected_response_delay_unknown: Cảm ơn bạn! Nhóm sẽ trả lời sớm
+  nhất có thể
 that_country_code_doesnt_look_quite_right: Mã quốc gia có vẻ không chính xác
 that_email_address_doesnt_look_quite_right: Địa chỉ email có vẻ không chính xác
 that_number_doesnt_look_quite_right: Con số có vẻ không chính xác
@@ -574,41 +584,50 @@ the_team_typically_replies_in_900: Nhóm thường phản hồi trong vòng 15 p
 the_team_typically_replies_in_day: Nhóm thường phản hồi trong 1 ngày
 the_team_typically_replies_in_hours: Nhóm thường phản hồi trong vòng vài giờ
 the_team_typically_replies_in_minutes: Nhóm thường phản hồi trong vòng vài phút
-the_team_typically_replies_in_one_business_day: Nhóm thường phản hồi trong một ngày làm việc
-the_team_typically_replies_in_two_business_days: Nhóm thường phản hồi trong hai ngày làm việc
+the_team_typically_replies_in_one_business_day: Nhóm thường phản hồi trong một ngày
+  làm việc
+the_team_typically_replies_in_two_business_days: Nhóm thường phản hồi trong hai ngày
+  làm việc
 the_team_typically_replies_in_under_n_hours: Nhóm thường phản hồi trong vòng {hours}
 the_team_typically_replies_in_under_n_min: Nhóm thường phản hồi trong vòng {minutes}
 the_team_typically_replies_in_unknown: Nhóm thường phản hồi càng sớm càng tốt
 the_team_typically_replies_in_week: Nhóm thường phản hồi trong 1 tuần
 thinking: Đang xem xét
 this_chat_is_powered_by_intercom: Cuộc trò chuyện này được cung cấp bởi Intercom
-ticket_status_event_moved_automation_with_bullet_point: 'Vé đã được chuyển sang {status} • {timestamp}'
-ticket_status_event_moved_with_bullet_point: "{teammate} đã chuyển vé vào {status} • {timestamp}"
-tickets_add_file: 'Thêm các tệp tin'
-tickets_add_files: 'Thêm các tệp tin'
+ticket_status_event_moved_automation_with_bullet_point: Vé đã được chuyển sang {status}
+  • {timestamp}
+ticket_status_event_moved_with_bullet_point: '{teammate} đã chuyển vé vào {status}
+  • {timestamp}'
+tickets_add_file: Thêm các tệp tin
+tickets_add_files: Thêm các tệp tin
 tickets_create_ticket: Tạo một lệnh công việc
-tickets_create_ticket_fallback: Vui lòng trả lời kèm theo thông tin bên dưới và sẽ có người liên hệ lại với bạn trong thời gian sớm nhất.
+tickets_create_ticket_fallback: Vui lòng trả lời kèm theo thông tin bên dưới và sẽ
+  có người liên hệ lại với bạn trong thời gian sớm nhất.
 tickets_cta_text: Bạn có thắc mắc về lệnh công việc này?
-tickets_email_copy: Thư trả lời và cập nhật lệnh công việc sẽ được gửi đến địa chỉ email này
+tickets_email_copy: Thư trả lời và cập nhật lệnh công việc sẽ được gửi đến địa chỉ
+  email này
 tickets_email_subject: lệnh {ticket_type_name} của bạn
 tickets_email_subject_with_ticket_id: 'Lệnh {ticket_type_name} của bạn #{ticket_id}'
 tickets_estimated_resolution: 'Thời gian giải quyết ước tính: {duration}'
 tickets_files_added: Đã thêm tệp tin
 tickets_have_a_question: Bạn có thắc mắc về vấn đề này?
-tickets_in_progress_status_detail: "Chúng tôi đang nỗ lực giải quyết vấn đề này 🙌"
-tickets_in_progress_status_detail_with_assignee: "{first_name} đang giải quyết vấn đề này!"
+tickets_in_progress_status_detail: Chúng tôi đang nỗ lực giải quyết vấn đề này 🙌
+tickets_in_progress_status_detail_with_assignee: '{first_name} đang giải quyết vấn
+  đề này!'
 tickets_is_resolved: Lệnh này đã được giải quyết chưa?
 tickets_log_a_ticket: Đăng nhập lệnh làm việc
 tickets_resolved_status_detail: Chúng tôi đã hoàn thành lệnh của bạn
-tickets_resolved_status_detail_with_assignee: "{first_name} đã hoàn thành lệnh của bạn"
+tickets_resolved_status_detail_with_assignee: '{first_name} đã hoàn thành lệnh của
+  bạn'
 tickets_sla: 'Thời gian giải quyết dự kiến: {time}'
 tickets_space_title: Lệnh làm việc
 tickets_status_change_event: Lệnh bây giờ {status} • {timestamp}
 tickets_status_description_completed: Chúng tôi đã hoàn thành lệnh của bạn
 tickets_status_description_more_info: Chúng tôi cần thêm thông tin
-tickets_status_description_well_pick_up_soon: Chúng tôi sẽ xử lý yêu cầu công việc của bạn trong thời gian sớm nhất
+tickets_status_description_well_pick_up_soon: Chúng tôi sẽ xử lý yêu cầu công việc
+  của bạn trong thời gian sớm nhất
 tickets_status_description_working_on: Chúng tôi đang xử lý lệnh của bạn
-tickets_status_event_moved: "{teammate} đã chuyển lệnh vào {timestamp} trên {status}"
+tickets_status_event_moved: '{teammate} đã chuyển lệnh vào {timestamp} trên {status}'
 tickets_status_event_moved_automation: Lệnh đã được chuyển sang {timestamp} vào {status}
 tickets_status_event_submitted: Lệnh đã được {submitted_status} • {status}
 tickets_status_in_progress: Đang tiến hành
@@ -616,14 +635,17 @@ tickets_status_resolved: Đã xử lý
 tickets_status_submitted: Đã gửi đi
 tickets_status_waiting_on_you: Đang đợi bạn
 tickets_submitted_confirmation_header: Lệnh đã được gửi đi
-tickets_submitted_confirmation_paragraph: Chúng tôi sẽ thông báo cho bạn ngay khi có thông tin cập nhật về lệnh của bạn
+tickets_submitted_confirmation_paragraph: Chúng tôi sẽ thông báo cho bạn ngay khi
+  có thông tin cập nhật về lệnh của bạn
 tickets_submitted_status_detail: Chúng tôi sẽ sớm giải quyết vấn đề này
-tickets_submitted_status_detail_with_assignee: "{first_name} sẽ sớm giải quyết vấn đề này"
+tickets_submitted_status_detail_with_assignee: '{first_name} sẽ sớm giải quyết vấn
+  đề này'
 tickets_updates_prompt: Bạn sẽ nhận được thông tin cập nhật qua Messenger và email
 tickets_view_ticket: Xem chi tiết lệnh làm việc
 tickets_waiting_on_customer_status_detail: Chúng tôi cần thêm thông tin từ bạn
-tickets_waiting_on_customer_status_detail_with_assignee: "{first_name} cần thêm thông tin"
-time_day_ago: "{delta} ngày trước"
+tickets_waiting_on_customer_status_detail_with_assignee: '{first_name} cần thêm thông
+  tin'
+time_day_ago: '{delta} ngày trước'
 time_future_1h: 1 giờ
 time_future_2h: 2 giờ
 time_future_30m: 30 phút
@@ -638,12 +660,12 @@ time_future_day_6: Chủ nhật
 time_future_later_today: Tối hôm nay
 time_future_next_week: Tuần sau
 time_future_tomorrow: Ngày mai
-time_hour_ago: "{delta} giờ trước"
-time_hour_after: "{delta} giờ nữa"
+time_hour_ago: '{delta} giờ trước'
+time_hour_after: '{delta} giờ nữa'
 time_hour: '{delta} giờ'
 time_just_now: Vừa mới
-time_minute_ago: "{delta} phút trước"
-time_week_ago: "{delta} tuần trước"
+time_minute_ago: '{delta} phút trước'
+time_week_ago: '{delta} tuần trước'
 time_yesterday: Hôm qua
 time_january: Tháng giếng
 time_february: Tháng hai
@@ -666,7 +688,8 @@ blog: Blog
 help_center: Trung Tâm Hỗ Trợ
 try_again: Thử lại
 try_help_center: Hãy thử vào trung tâm trợ giúp của chúng tôi
-try_use_different_keywords: Hãy thử sử dụng các từ khóa khác hoặc nhập câu hỏi hoàn chỉnh của bạn
+try_use_different_keywords: Hãy thử sử dụng các từ khóa khác hoặc nhập câu hỏi hoàn
+  chỉnh của bạn
 two_business_days: Hai ngày làm việc
 type_a_number: Hãy nhập 1 con số
 typically_replies_in_one_business_day: Thường trả lời trong vòng một ngày làm việc
@@ -680,9 +703,13 @@ updated_over_a_week_ago: Đã cập nhật một tuần trước
 updated_this_week: Cập nhật tuần này
 updated_today: Cập nhật hôm nay
 updated_yesterday: Cập nhật hôm qua
-upfront_collection_form_close_out: Bạn có thể quay lại đây bất kỳ lúc nào để xem lại phản hồi và gửi thông tin cập nhật.
-upfront_collection_form_introduction: Chia sẻ một số bối cảnh để giúp nhóm phản hồi tốt hơn và nhanh hơn.
-upfront_collection_form_submission_confirmation: Cảm ơn bạn đã gửi thông tin cơ bản này. Để tiết kiệm thời gian sau này, bạn có thể bổ sung thêm thông tin chi tiết ngay bây giờ.
+upfront_collection_form_close_out: Bạn có thể quay lại đây bất kỳ lúc nào để xem lại
+  phản hồi và gửi thông tin cập nhật.
+upfront_collection_form_introduction: Chia sẻ một số bối cảnh để giúp nhóm phản hồi
+  tốt hơn và nhanh hơn.
+upfront_collection_form_submission_confirmation: Cảm ơn bạn đã gửi thông tin cơ bản
+  này. Để tiết kiệm thời gian sau này, bạn có thể bổ sung thêm thông tin chi tiết
+  ngay bây giờ.
 upfront_collection_form_subtitle: Gửi một số thông tin cơ bản cho nhóm
 upfront_collection_form_subtitle_submitted: Họ sẽ ghi nhớ thông tin cơ bản này
 upfront_collection_form_title: Nhận trợ giúp nhanh hơn
@@ -691,7 +718,7 @@ upload_attachment: Tải Tệp đính kèm
 upload_failed: Tải lên thất bại
 upload_max_files_allowed: Kích thước tệp tối đa là {limit}MB
 upload_max_files_size: Kích thước tệp tối đa là {limit}MB
-user_says: "{firstName} đã nói…"
+user_says: '{firstName} đã nói…'
 usual_reply_time_header_label: Thời gian phản hồi thông thường
 view_label: Kiểm tra
 view_all: Xem Tất Cả
@@ -763,7 +790,8 @@ finance_other_tab_race_payout: Tiền thưởng cuộc thi
 finance_other_tab_rains_received: Nhận được phong bao đỏ
 finance_other_tab_rains_sent: Gửi tặng phong bao đỏ
 finance_other_tab_rakeback_received: Tiền vòng cược đã được thu hồi
-finance_other_tab_sportsbook_promotion_payout: Tiền thưởng khuyến mại cá cược thể thao
+finance_other_tab_sportsbook_promotion_payout: Tiền thưởng khuyến mại cá cược thể
+  thao
 finance_other_tab_tips_received: Nhận được tiền bo
 finance_other_tab_tips_sent: Gửi tặng tiền bo
 finance_other_tab_vault_deposit: Tiền đặt cọc bảo hiểm
@@ -884,7 +912,7 @@ sports_status_tie: hòa
 sports_status_win_half: Ăn nửa tiền
 sports_status_lose_half: Thua nửa tiền
 sports_status_lose_part: Thua một phần
-sports_estimated_payment_amount: 'Est. Thanh toán'
+sports_estimated_payment_amount: Est. Thanh toán
 sports_payment_amount: Thanh toán
 sports_single_bet: Đơn
 sports_multi_bet: Nhiều
@@ -898,7 +926,7 @@ sports_betting_now: Bắt đầu đặt cược ngay bây giờ!
 sports_total_odds: Tổng Tỉ Lệ
 sports_total_bet_amount: Tổng Cược
 sports_odds_has_changed: Tỷ lệ cược đã thay đổi.
-sports_bet: 'Đặt cược'
+sports_bet: Đặt cược
 sports_hot_event: Sự Kiện Phổ Biến
 sports_three_options: đặt cược 3 chiều
 sports_standard: Tiêu chuẩn
@@ -915,7 +943,7 @@ sports_live_tv: Phát trực tiếp
 sports_live_favourites: Vòng cược phổ biến của trận đấu đang diễn ra
 sports_upcoming_favourites: Sắp diễn ra trận đấu phổ biến
 sports_provider: Mục thể thao
-sports_odds_title: 'Tỉ lệ {other}'
+sports_odds_title: Tỉ lệ {other}
 DECIMAL: Số thập phân
 FRACTION: Phân số
 AMERICAN: American
@@ -923,7 +951,7 @@ INDONESIA: Indonesian
 MALAYSIA: Malaysian
 HONGKONG: Hong Kong
 sports_live_unlogin_tip: Vui lòng đăng nhập để xem truyền hình trực tiếp
-sports_starts_in: 'Bắt Đầu Sau {minutes} Phút Nữa'
+sports_starts_in: Bắt Đầu Sau {minutes} Phút Nữa
 welcome_guest: Chào mừng
 language_title: Ngôn ngữ
 language_current: Tiếng Trung
@@ -932,11 +960,10 @@ casino_index_description: Duyệt qua nhiều trò chơi sòng bạc đa dạng 
   vị. Đặt cược vào các trò đánh bạc, sòng bạc trực tiếp, blackjack, baccarat, roulette
   và hàng nghìn trò chơi sòng bạc cổ điển bao gồm cả trò chơi {site} gốc yêu thích
   của bạn, ngay tại trình duyệt của bạn.
-sports_index_description: 'Đặt cược vào các đội thể thao, người chơi và giải đấu
-  từ khắp nơi trên thế giới với nền tảng cá cược thể thao của chúng tôi. Tận hưởng
-  trải nghiệm cá cược thể thao tuyệt vời bằng cách đặt cược vào nhiều tùy chọn cá
-  cược khác nhau trên sóng trực tiếp như MMA, bóng rổ, bóng đá và nhiều môn thể
-  thao khác '
+sports_index_description: 'Đặt cược vào các đội thể thao, người chơi và giải đấu từ
+  khắp nơi trên thế giới với nền tảng cá cược thể thao của chúng tôi. Tận hưởng trải
+  nghiệm cá cược thể thao tuyệt vời bằng cách đặt cược vào nhiều tùy chọn cá cược
+  khác nhau trên sóng trực tiếp như MMA, bóng rổ, bóng đá và nhiều môn thể thao khác '
 chat_been_hide: Phòng trò chuyện đã bị ẩn
 chat_show_room: hiển thị phòng trò chuyện
 chat_stop_by_scroll: Chát bị tạm dừng do cuộn
@@ -953,7 +980,7 @@ chat_close_side: Minimizar Barra Lateral
 chat_send_tip_label: Gửi tặng tiền tip
 chat_rule_full_title: Tất cả quy tắc có thể tìm thấy tại
 chat_forum: Diễn đàn
-chat_rule_find: '.'
+chat_rule_find: .
 about_us: Về Chúng Tôi
 sponsor_activity: Tài trợ
 online_shopping: Cửa hàng
@@ -1019,27 +1046,30 @@ vip_rule_2: 'Thu nhập hàng ngày: Nếu bạn đáp ứng yêu cầu về thu
   ứng với cấp VIP, bạn có thể nhận được tiền thưởng hàng ngày tương ứng, được đặt
   lại vào 00:00 hàng ngày.'
 vip_rule_3: 'Thu nhập hàng tuần: Nếu bạn đạt cấp VIP tương ứng với yêu cầu về thu
-  nhập hàng tuần, bạn có thể nhận được tiền thưởng hàng tuần tương ứng, được đặt
-  lại vào lúc 00:00 Thứ Hai hàng tuần'
+  nhập hàng tuần, bạn có thể nhận được tiền thưởng hàng tuần tương ứng, được đặt lại
+  vào lúc 00:00 Thứ Hai hàng tuần'
 vip_rule_4: 'Thu nhập hàng tháng: Nếu bạn nạp tiền và code hàng tháng đạt yêu cầu
   về thu nhập hàng tháng tương ứng với cấp VIP hiện tại thì có thể nhận thưởng hàng
   tháng tương ứng, reset vào lúc 00:00 ngày mùng 1 hàng tháng'
-vip_rule_5: 在晋级或降级后90天内满足保级要求（即打码都满足条件），即可保留当前VIP等级。如果90天内无法满足打码需求，则会降低一级VIP等级
+vip_rule_5: Nếu bạn đáp ứng các yêu cầu hạng trong vòng 90 ngày sau khi được thăng
+  hạng hoặc bị hạ cấp (nghĩa là đáp ứng tất cả các yêu cầu về tiền vòng cược), bạn
+  có thể duy trì cấp VIP hiện tại của mình. Nếu như tiền vòng cược không đủ điều kiện
+  trong vòng 90 ngày thì cấp VIP sẽ bị hạ xuống.
 vip_rule_6: 'Hướng dẫn kiểm tra: Phần thưởng do VIP đưa ra yêu cầu dòng tiền 1 lần
   (tức là kiểm toán, mã hóa hoặc đặt cược hợp lệ) trước khi có thể rút. Mã hóa không
   giới hạn ở nền tảng trò chơi'
-vip_rule_7: 'Nêu rõ hoạt động: Chức năng này được chủ tài khoản giới hạn cho cá
-  cược trò chơi thông thường. Cấm cho thuê tài khoản, cá cược không mang tính rủi
-  ro (đánh đối trang, đánh đối đơn cược, đơn cược tỷ lệ thấp), chênh lệch giá độc
-  hại, sử dụng plug-in, robot, khai thác giao thức, sơ hở , giao diện, Nếu có liên
-  quan đến việc kiểm soát nhóm hoặc các phương tiện kỹ thuật khác và sau khi được
-  xác minh là đúng, nền tảng có quyền chấm dứt hoạt động đăng nhập của thành viên,
-  đình chỉ việc sử dụng trang web của thành viên và tịch thu tiền thưởng và lợi
-  nhuận không chính đáng mà không cần thông báo đặc biệt.'
-vip_rule_8: 'Giải thích: Khi một thành viên nhận được phần thưởng VIP, trang bet
-  sẽ cho rằng thành viên đó đồng ý và tuân thủ các điều kiện tương ứng và các quy
-  định liên quan khác. Để tránh sự mơ hồ trong cách hiểu văn bản, trang bet có quyền
-  bảo lưu sự giải thích về hoạt động này'
+vip_rule_7: 'Nêu rõ hoạt động: Chức năng này được chủ tài khoản giới hạn cho cá cược
+  trò chơi thông thường. Cấm cho thuê tài khoản, cá cược không mang tính rủi ro (đánh
+  đối trang, đánh đối đơn cược, đơn cược tỷ lệ thấp), chênh lệch giá độc hại, sử dụng
+  plug-in, robot, khai thác giao thức, sơ hở , giao diện, Nếu có liên quan đến việc
+  kiểm soát nhóm hoặc các phương tiện kỹ thuật khác và sau khi được xác minh là đúng,
+  nền tảng có quyền chấm dứt hoạt động đăng nhập của thành viên, đình chỉ việc sử
+  dụng trang web của thành viên và tịch thu tiền thưởng và lợi nhuận không chính đáng
+  mà không cần thông báo đặc biệt.'
+vip_rule_8: 'Giải thích: Khi một thành viên nhận được phần thưởng VIP, trang bet sẽ
+  cho rằng thành viên đó đồng ý và tuân thủ các điều kiện tương ứng và các quy định
+  liên quan khác. Để tránh sự mơ hồ trong cách hiểu văn bản, trang bet có quyền bảo
+  lưu sự giải thích về hoạt động này'
 validate_msg_input_name: Vui lòng nhập đúng họ tên
 validate_msg_choose_bank: Vui lòng chọn ngân hàng
 validate_msg_choose_pix_account_type: Vui lòng chọn loại tài khoản PIX
@@ -1077,23 +1107,23 @@ tip_msg_name_edit: 'Hãy cẩn thận khi xác nhận họ tên của bạn mộ
 promo_activity: Khuyến mãi
 promo_lottery_activity: Rút thăm trúng thưởng
 weekly_share: Chia sẻ hàng tuần
-vip_banner_tip_1: Làm việc với đại diện Dịch vụ VIP chuyên dụng của bạn để điều
-  chỉnh lợi ích cho phù hợp với nhu cầu cá cược của bạn.
+vip_banner_tip_1: Làm việc với đại diện Dịch vụ VIP chuyên dụng của bạn để điều chỉnh
+  lợi ích cho phù hợp với nhu cầu cá cược của bạn.
 vip_banner_tip_2: Bạn có thể mong đợi tiền thưởng hàng tuần và hàng tháng dựa trên
   số lượng chơi của bạn. Càng chơi nhiều, bạn càng nhận được nhiều tiền thưởng.
 vip_banner_tip_3: Chưa may mắn? {site} cung cấp thêm tiền dựa trên số tiền thua của
   bạn mỗi khi bạn lên cấp.
 vip_banner_tip_4: Được chỉ định một Đại diện Dịch vụ VIP tận tâm, người sẽ hỗ trợ
   và đáp ứng nhu cầu cá cược của bạn.
-vip_banner_tip_5: Nhận tiền thưởng sau khi đạt đến từng cấp độ tiếp theo. Cấp độ
-  đạt được càng cao thì tiền thưởng nâng cấp càng lớn.
+vip_banner_tip_5: Nhận tiền thưởng sau khi đạt đến từng cấp độ tiếp theo. Cấp độ đạt
+  được càng cao thì tiền thưởng nâng cấp càng lớn.
 booster_bonus: Tiền thưởng tăng cường
 upgrade_bonus: Tiền thưởng tăng cấp
 monthly_bonus: Tiền thưởng hàng tháng
 weekly_bonus: Tiền thưởng hàng tuần
 day_deposit_bonus: Tiền thưởng hàng ngày/tiền thưởng nạp tiền
 recent_game_perform_bonus: Tiền thưởng hiệu suất trò chơi gần đây
-dedicated_vip_servicer: 'Người chăm sóc VIP'
+dedicated_vip_servicer: Người chăm sóc VIP
 multiple_count: Hệ số
 ranking: Hạng
 hidden_user: Ẩn
@@ -1109,18 +1139,23 @@ bind_bank_card: Liên kết tài khoản ngân hàng
 data_empty: Không có dữ liệu
 chat_rule_1: Không spam và không sử dụng quá nhiều chữ in hoa khi trò chuyện.
 chat_rule_2: Không quấy rối hoặc gây khó chịu cho người dùng khác hoặc nhân viên {site}.
-chat_rule_3: Không chia sẻ bất kỳ thông tin cá nhân nào (bao gồm cả mạng xã hội ) của bạn hoặc những người chơi khác.
+chat_rule_3: Không chia sẻ bất kỳ thông tin cá nhân nào (bao gồm cả mạng xã hội )
+  của bạn hoặc những người chơi khác.
 chat_rule_4: Đừng năn nỉ hay hỏi vay tiền,mưa hay tiền boa
-chat_rule_5: không sử dụng tài khoản thay thế (alts) trên trò chuyện, điều đó bị nghiêm cấm.
+chat_rule_5: không sử dụng tài khoản thay thế (alts) trên trò chuyện, điều đó bị nghiêm
+  cấm.
 chat_rule_6: Các hành vi đáng ngờ đều có thể được coi là lừa đảo tiềm năng.
-chat_rule_7: Không tham gia vào bất kỳ hình thức quảng cáo/ giao dịch/ bán/mua/ hoặc cung cấp dịch vụ nào.
-chat_rule_8: Không có thảo luận về cách trình phát trực tuyến hoặc Twitch hoặc bất kỳ nền tảng tương tự nào khác.
+chat_rule_7: Không tham gia vào bất kỳ hình thức quảng cáo/ giao dịch/ bán/mua/ hoặc
+  cung cấp dịch vụ nào.
+chat_rule_8: Không có thảo luận về cách trình phát trực tuyến hoặc Twitch hoặc bất
+  kỳ nền tảng tương tự nào khác.
 chat_rule_9: Không sử dụng dịch vụ rút ngắn URL .Luôn gửi liên kết đầy đủ.
 chat_rule_10: Không chia sẻ mã , tập lệnh hoặc bất kỳ dịch vụ bot nào khác.
-chat_rule_11: Chỉ sử dụng ngôn ngữ được chỉ định trong kênh trò chuyện , hành vi lạm dụng tiềm ẩn sẽ bị xử phạt.
-chat_rule_12: không bàn về chính trị & tôn giáo trong trò chuyện , điều này bị nghiêm cấm.
-user_confirm_delete_draw_way: Vui lòng xác nhận để xóa các phương thức rút tiền
-  sau?
+chat_rule_11: Chỉ sử dụng ngôn ngữ được chỉ định trong kênh trò chuyện , hành vi lạm
+  dụng tiềm ẩn sẽ bị xử phạt.
+chat_rule_12: không bàn về chính trị & tôn giáo trong trò chuyện , điều này bị nghiêm
+  cấm.
+user_confirm_delete_draw_way: Vui lòng xác nhận để xóa các phương thức rút tiền sau?
 confirm_delete: xác nhận xóa
 big_winner: Thắng Lớn
 lucky_winner: Chiến Thắng May Mắn
@@ -1148,10 +1183,10 @@ success_send_code: Mã xác nhận đã được gửi thành công
 code: 'Mã xác nhận '
 after_seconds_send_code: Gửi lại thư sau vài giây
 resend_code: Gửi lại mã xác nhận
-feedback_placeholder: Mọi ý kiến ​​của bạn đều rất quan trọng đối với chúng tôi.
-  Tất cả các ý kiến ​​có giá trị sẽ được thông qua. Sau khi được thông qua, các
-  phần thưởng tiền mặt khác nhau sẽ được trao tùy theo mức độ quan trọng. Bạn có
-  thể thoải mái phát biểu!
+feedback_placeholder: Mọi ý kiến ​​của bạn đều rất quan trọng đối với chúng tôi. Tất
+  cả các ý kiến ​​có giá trị sẽ được thông qua. Sau khi được thông qua, các phần thưởng
+  tiền mặt khác nhau sẽ được trao tùy theo mức độ quan trọng. Bạn có thể thoải mái
+  phát biểu!
 feedback: Đóng góp
 create_feedback: Tạo sự phản hồi
 user_feedback: Phản hồi của tôi
@@ -1166,10 +1201,10 @@ image_upload_size: Kích thước tối đa của một hình ảnh là {size}
 image_upload_failed: Tải hình ảnh lên không thành công
 bonus_rule: Quy tắc tiền thưởng
 bonus_label: Tiền thưởng
-feedback_bonus_tip: Chúng tôi đã thiết lập một khoản tiền thưởng khổng lồ để thu
-  thập phản hồi để có thể tối ưu hóa hệ thống và chức năng, đồng thời mang đến cho
-  bạn trải nghiệm tốt hơn! Sau khi được thông qua, tiềnt hưởng sẽ được trao dựa
-  trên tầm quan trọng (trừ khi không được thông qua)
+feedback_bonus_tip: Chúng tôi đã thiết lập một khoản tiền thưởng khổng lồ để thu thập
+  phản hồi để có thể tối ưu hóa hệ thống và chức năng, đồng thời mang đến cho bạn
+  trải nghiệm tốt hơn! Sau khi được thông qua, tiềnt hưởng sẽ được trao dựa trên tầm
+  quan trọng (trừ khi không được thông qua)
 bonus_not_apply: Tiền thường chờ được nhận
 feedback_status: Tình trạng phản hồi
 feedback_status_done: Đã xử lý
@@ -1180,16 +1215,16 @@ input_amount: Vui lòng nhập số tiền
 min_amount_is: Số tiền tối thiểu là
 max_amount_is: Số tiền tối đa là
 deposit_name: Tên người nạp tiền
-deposit_name_tip: Để đảm bảo thanh toán kịp thời, vui lòng đảm bảo nhập đúng tên
-  người nạp tiền
+deposit_name_tip: Để đảm bảo thanh toán kịp thời, vui lòng đảm bảo nhập đúng tên người
+  nạp tiền
 deposit_amount: Số tiền nạp
 confirm_pay: Nạp tiền
 payee_info: Thông tin người nhận thanh toán
 transfer_amount_equal_order: Số tiền chuyển phải phù hợp với mã đơn cược
 cancel_deposit: Hủy lệnh nạp tiền
 already_deposit: Tôi đã nạp tiền
-confirm_transfer_ontime: Vui lòng xác nhận ngay sau khi chuyển khoản thành công!
-  Nếu không, nó có thể gây ra sự chậm trễ trong việc lên điểm!
+confirm_transfer_ontime: Vui lòng xác nhận ngay sau khi chuyển khoản thành công! Nếu
+  không, nó có thể gây ra sự chậm trễ trong việc lên điểm!
 bank_choose: Lựa chọn ngân hàng
 channel_choose: Lựa chọn kênh
 choose_draw_bank: Vui lòng chọn ngân hàng thanh toán
@@ -1204,11 +1239,12 @@ pix_account: Tài khoản PIX
 max: Tối đa
 sports_rule: Cách Đặt Cược Thể Thao
 scan: Duyệt
-change_byte_addr: Bạn có chắc chắn muốn thay đổi địa chỉ gửi tiền {delta} của mình không?
+change_byte_addr: Bạn có chắc chắn muốn thay đổi địa chỉ gửi tiền {delta} của mình
+  không?
 attention: Vui lòng chú ý
-change_byte_addr_1: Khi bạn thay đổi địa chỉ nạp tiền, địa chỉ cũ của bạn sẽ bị
-  vô hiệu hóa. Chỉ có địa chỉ mới có thể được sử dụng để nạp tiền. Vui lòng không
-  bao giờ nạp thêm tiền bằng địa chỉ cũ của bạn.
+change_byte_addr_1: Khi bạn thay đổi địa chỉ nạp tiền, địa chỉ cũ của bạn sẽ bị vô
+  hiệu hóa. Chỉ có địa chỉ mới có thể được sử dụng để nạp tiền. Vui lòng không bao
+  giờ nạp thêm tiền bằng địa chỉ cũ của bạn.
 change_byte_addr_2: Vui lòng đảm bảo rằng bạn không có giao dịch tiền nạp nào đang
   chờ xử lý trước khi thay đổi địa chỉ tiền nạp của mình.
 action_no_cancel: Hành động này không thể được hoàn tác
@@ -1225,15 +1261,15 @@ go_set: Đi tới cài đặt
 showing: Đang hiển thị
 in_all_game: Số tiền trong trò chơi
 now_show_game_num: Đang hiển thị {percentage} {total} các trò chơi
-validate_msg_user_name_tip: "    Tên người dùng của bạn phải có 3 – 14 chữ cái và
-  số viết thường"
+validate_msg_user_name_tip: '    Tên người dùng của bạn phải có 3 – 14 chữ cái và
+  số viết thường'
 success_register: Đăng ký thành công
 user_name_exist: Tên người dùng đã tồn tại, vui lòng điền lại tên người dùng
 currency_disable: Không thể sử dụng tiền tệ
 save: Lưu
 verified: Đã xác minh
 raffle_ticket: Phiếu rút thăm
-in_date: 'Tham gia vào'
+in_date: Tham gia vào
 fresh_competition: cuộc thi mới nhất
 deal_pend: Chờ xử lý
 adopted: Đã thông qua
@@ -1270,15 +1306,15 @@ activity_clicks: Số lần nhận hoạt động
 recommend_users: Người dùng được đề xuất
 new_active: Tạo hoạt động mới
 activity: Hoạt động
-commission_cal_tip: Tất cả các trò chơi của chúng tôi đều có tỷ lệ lợi nhuận nhà
-  cái khác nhau. Bạn có thể sử dụng công thức sau để tính hoa hồng của mình
-sports_cal_tip: Tất cả cược thể thao đều được đặt với tỷ lệ lợi nhuận nhà cái lý
-  thuyết là {rate}. Bạn có thể sử dụng công thức sau để tính hoa hồng của mình
-commission_encourage: Nếu bạn có tầm ảnh hưởng lớn và có thể tiếp cận được nhiều
-  người hoặc đang trong những trường hợp đặc biệt khác, vui lòng liên hệ với nhóm
-  hỗ trợ xuất sắc của chúng tôi. Sau khi thảo luận với người quản lý liên kết, chúng
-  tôi có thể cố gắng tùy chỉnh chương trình liên kết cho bạn. Điều này có thể bao
-  gồm hoa hồng cao hơn.
+commission_cal_tip: Tất cả các trò chơi của chúng tôi đều có tỷ lệ lợi nhuận nhà cái
+  khác nhau. Bạn có thể sử dụng công thức sau để tính hoa hồng của mình
+sports_cal_tip: Tất cả cược thể thao đều được đặt với tỷ lệ lợi nhuận nhà cái lý thuyết
+  là {rate}. Bạn có thể sử dụng công thức sau để tính hoa hồng của mình
+commission_encourage: Nếu bạn có tầm ảnh hưởng lớn và có thể tiếp cận được nhiều người
+  hoặc đang trong những trường hợp đặc biệt khác, vui lòng liên hệ với nhóm hỗ trợ
+  xuất sắc của chúng tôi. Sau khi thảo luận với người quản lý liên kết, chúng tôi
+  có thể cố gắng tùy chỉnh chương trình liên kết cho bạn. Điều này có thể bao gồm
+  hoa hồng cao hơn.
 statistical_time: Thời gian thống kê
 withdraw_amount: Số tiền rút
 deposit_amount_label: Số tiền nạp
@@ -1323,8 +1359,7 @@ activity_name: Tên hoạt động
 label_no_collect: Chưa có mục yêu thích, sử dụng
 put_collect: để thêm trò chơi yêu thích.
 success_edit: Sửa đổi thành công
-this_contains_invalid_email_characters: Điều này chứa các ký tự email không hợp
-  lệ
+this_contains_invalid_email_characters: Điều này chứa các ký tự email không hợp lệ
 tip_email_sent: Thư điện tử đã được gửi đi
 tip_email_to: Thư xác minh đã được gửi tới
 success_update_email: Thành công cập nhật địa chỉ thư điện tử
@@ -1332,19 +1367,23 @@ email_update_to: Địa chỉ thư điện tử đã được cập nhật thàn
 success_update_phone: Thành công cập nhật số điện thoại di động
 phone_update_to: Số điện thoại di động đã được cập nhật thành
 success_verify: Xác minh thành công
-congratulate_email_success: Chúc mừng bạn đã xác minh địa chỉ thư điện tử thành
-  công!
+congratulate_email_success: Chúc mừng bạn đã xác minh địa chỉ thư điện tử thành công!
 resend_email: Gửi lại Email
 phone: Số Điện Thoại
-tip_phone: Chúng tôi chỉ phục vụ các khu vực được liệt kê trong danh sách mã quốc gia có sẳn.
+tip_phone: Chúng tôi chỉ phục vụ các khu vực được liệt kê trong danh sách mã quốc
+  gia có sẳn.
 intl_phone_pre: Mã Nước
 social_account: tài khoản mạng xã hội
 action: Hành động
 cancel_ignore: Xóa bỏ danh sách đen
 level_desc: Miêu tả cấp độ
-preferences_tip_1: Quyền riêng tư của người dùng là một trong những giá trị cốt lõi của {site}. Các cài đặt này cho phép bạn ẩn danh hoàn toàn với những người chơi còn lại.
-preferences_tip_2: Cược của bạn sẽ không xuất hiện trên phần đặt cược công khai và bản xem trước đặt cược
-preferences_tip_3: Những người dùng khác sẽ không thể xem số liệu thống kê thắng, thua và đặt cược của bạn
+preferences_tip_1: Quyền riêng tư của người dùng là một trong những giá trị cốt lõi
+  của {site}. Các cài đặt này cho phép bạn ẩn danh hoàn toàn với những người chơi
+  còn lại.
+preferences_tip_2: Cược của bạn sẽ không xuất hiện trên phần đặt cược công khai và
+  bản xem trước đặt cược
+preferences_tip_3: Những người dùng khác sẽ không thể xem số liệu thống kê thắng,
+  thua và đặt cược của bạn
 preferences_tip_4: Những người chơi khác sẽ không thể xem thống kê cuộc đua của bạn
 preferences_tip_5: Vui lòng cho phép tối đa 30 giây để cập nhật có hiệu lực.
 preferences_tip_6: Không nhận mưa trên kênh chát
@@ -1365,8 +1404,8 @@ hide_from_others: Không để ai xem cái này!
 success_set_safepwd: Đặt mật khẩu quỹ thành công
 tip_safepwd_six: Mật khẩu quỹ của bạn chứa 6 chữ số
 email_uncheck: Địa chỉ hòm thư điện tử chưa được xác minh
-tip_safepwd: Mật khẩu quỹ sẽ được sử dụng để bảo vệ việc rút tiền và rút tiền an
-  toàn từ kho tiền.
+tip_safepwd: Mật khẩu quỹ sẽ được sử dụng để bảo vệ việc rút tiền và rút tiền an toàn
+  từ kho tiền.
 login_time: Sử Dụng Lần Cuối
 browser: Trình duyệt
 area: Gần
@@ -1387,9 +1426,9 @@ confirm_pls_addr_tip: Vui lòng xác nhận gửi {type} đến địa chỉ nà
   cần có xác nhận từ toàn bộ mạng trước khi có thể được ghi có. Vui lòng kiên nhẫn
   chờ đợi!
 transfer_in_amount: Số tiền chuyển khoản
-pls_confirm_deposit_addr: Vui lòng xác nhận rằng địa chỉ thanh toán đã được nạp
-  đầy đủ số tiền (không bao gồm phí xử lý), nếu không có thể dẫn đến việc không
-  thể lên điểm.
+pls_confirm_deposit_addr: Vui lòng xác nhận rằng địa chỉ thanh toán đã được nạp đầy
+  đủ số tiền (không bao gồm phí xử lý), nếu không có thể dẫn đến việc không thể lên
+  điểm.
 use_in_game: Trò chơi đang được sử dụng
 search_currency: Tìm kiếm tiền tệ
 card_wallet: Ví thẻ
@@ -1426,171 +1465,169 @@ transaction_vip_day: Hồng bao ngày Vip
 transaction_vip_week: Hồng bao tuần vip
 transaction_vip_monthly: Hồng bao tháng vip
 transaction_vip_birthday: quà sinh nhật vip
-promotion_tutorial_example_desc: Việc giảm giá trên trang này dựa trên các cược
-  hợp lệ, giả sử tỷ lệ hoàn tiền được hiển thị trong bảng ở góc trên bên trái. A
-  là người đầu tiên phát hiện ra cơ hội kinh doanh trên địa điểm này và ngay lập
-  tức phát triển B1, B2, B3, B1 sau đó phát triển C1 và C2, B2 không có cấp dưới,
-  còn B3 chỉ phát triển C3 tương đối mạnh.
-promotion_tutorial_example_desc1: Vài ngày sau, mức đặt cược hiệu quả của
-  B1 là 80.000, mức đặt cược hiệu quả của B2 là 50.000, mức đặt cược hiệu quả của
-  B3 là 30.000, mức đặt cược hiệu quả của C1 là 100.000, mức đặt cược hiệu quả của
-  C2 là 40.000 và C3 của tôi đạt 710.000, sau đó tổng hiệu suất của B1 đến từ C1
-  và C2 là 140.000 và tỷ lệ chi trả hoa hồng tương ứng là 80/10.000; hiệu suất của
-  B2 không có cấp dưới là 0; cấp dưới C3 của B3 rất mạnh, tổng hiệu suất là 710.000
-  và tỷ lệ chi trả hoa hồng tương ứng là Tỷ lệ là 1 triệu/10.000, A có 160.000 từ
-  đội trực tiếp và 850.000 từ các đội khác, tổng hiệu suất là 1,01 triệu và tỷ lệ
-  chi trả hoa hồng tương ứng là 1 triệu/10.000.
+promotion_tutorial_example_desc: Việc giảm giá trên trang này dựa trên các cược hợp
+  lệ, giả sử tỷ lệ hoàn tiền được hiển thị trong bảng ở góc trên bên trái. A là người
+  đầu tiên phát hiện ra cơ hội kinh doanh trên địa điểm này và ngay lập tức phát triển
+  B1, B2, B3, B1 sau đó phát triển C1 và C2, B2 không có cấp dưới, còn B3 chỉ phát
+  triển C3 tương đối mạnh.
+promotion_tutorial_example_desc1: Vài ngày sau, mức đặt cược hiệu quả của B1 là 80.000,
+  mức đặt cược hiệu quả của B2 là 50.000, mức đặt cược hiệu quả của B3 là 30.000,
+  mức đặt cược hiệu quả của C1 là 100.000, mức đặt cược hiệu quả của C2 là 40.000
+  và C3 của tôi đạt 710.000, sau đó tổng hiệu suất của B1 đến từ C1 và C2 là 140.000
+  và tỷ lệ chi trả hoa hồng tương ứng là 80/10.000; hiệu suất của B2 không có cấp
+  dưới là 0; cấp dưới C3 của B3 rất mạnh, tổng hiệu suất là 710.000 và tỷ lệ chi trả
+  hoa hồng tương ứng là Tỷ lệ là 1 triệu/10.000, A có 160.000 từ đội trực tiếp và
+  850.000 từ các đội khác, tổng hiệu suất là 1,01 triệu và tỷ lệ chi trả hoa hồng
+  tương ứng là 1 triệu/10.000.
 promotion_tutorial_example_desc2: Khi đó thu nhập giữa họ được tính như sau
-promotion_tutorial_example_desc3: Nó dùng để chỉ những thành viên phát triển theo chiều dọc và được gọi chung là đội trực tiếp.
-promotion_tutorial_direct_team_1: "(1) B1, B2, B3 đóng góp vào A: (80.000 + 50.000
-  + 30.000) x 100/10.000 = 1.600."
-promotion_tutorial_direct_team_2: "(2) C1 và C2 đóng góp vào B1: (100.000+40.000)x80/10.000=1120."
-promotion_tutorial_direct_team_3: "(3) C3 góp vào B3: 710.000 x 100/10.000 = 7100."
-promotion_tutorial_other_team_1: Nó dùng để chỉ các thành viên phát triển thành
-  cấp dưới, cấp dưới kế tiếp, cấp dưới tiếp theo, v.v. và được gọi chung là các
-  đội nhóm khác; vì hệ thống này có thể phát triển cấp dưới vô hạn nên để thuận
-  tiện cho việc giải thích, bài viết này chỉ lấy cấu trúc 2 cấp làm ví dụ .
-promotion_tutorial_other_team_2: "(1) Từ C1 và C2: Vì B1 có tổng hiệu suất là 140.000
-  và chỉ được hưởng tỷ lệ chi trả hoa hồng 80/10 nghìn, trong khi tổng hiệu suất
-  của A là 1,01 triệu và được hưởng tỷ lệ chi trả hoa hồng 1 triệu/10 nghìn nên
-  có khoản giảm giá giữa A và B1 Chênh lệch hoa hồng là: 100-80=20/10.000. Chênh
-  lệch này là phần đóng góp của C1 và C2 cho A, do đó C1 và C2 đóng góp cho A: (100.000+40.000)×20/10.000=
-  280."
-promotion_tutorial_other_team_3: "(2) Từ C3: Vì B3 có tổng hiệu suất là 710.000
-  và được hưởng tỷ lệ giảm giá là 1 triệu/10.000 và A có tổng hiệu suất là 1,01
-  triệu và được hưởng tỷ lệ chi trả hoa hồng là 1 triệu/10.000, nên chênh lệch chi
-  trả hoa hồng giữa A và B3 là: 100-100=0/10.000, C3 đóng góp vào A: 710.000x0/10.000=0."
-promotion_tutorial_summary_1: "(1) C3 mạnh đến mức nó gián tiếp cho phép A được
-  hưởng tỷ lệ hoa hồng cao hơn cho tất cả hiệu suất của nó."
-promotion_tutorial_summary_2: "(2) B2 có thể không chăm chỉ và sẽ không được lợi
-  gì nếu không phát triển cấp dưới của mình."
-promotion_tutorial_summary_3: "(3) Mặc dù B3 tham gia tương đối muộn và là cấp dưới
+promotion_tutorial_example_desc3: Nó dùng để chỉ những thành viên phát triển theo
+  chiều dọc và được gọi chung là đội trực tiếp.
+promotion_tutorial_direct_team_1: '(1) B1, B2, B3 đóng góp vào A: (80.000 + 50.000
+  + 30.000) x 100/10.000 = 1.600.'
+promotion_tutorial_direct_team_2: '(2) C1 và C2 đóng góp vào B1: (100.000+40.000)x80/10.000=1120.'
+promotion_tutorial_direct_team_3: '(3) C3 góp vào B3: 710.000 x 100/10.000 = 7100.'
+promotion_tutorial_other_team_1: Nó dùng để chỉ các thành viên phát triển thành cấp
+  dưới, cấp dưới kế tiếp, cấp dưới tiếp theo, v.v. và được gọi chung là các đội nhóm
+  khác; vì hệ thống này có thể phát triển cấp dưới vô hạn nên để thuận tiện cho việc
+  giải thích, bài viết này chỉ lấy cấu trúc 2 cấp làm ví dụ .
+promotion_tutorial_other_team_2: '(1) Từ C1 và C2: Vì B1 có tổng hiệu suất là 140.000
+  và chỉ được hưởng tỷ lệ chi trả hoa hồng 80/10 nghìn, trong khi tổng hiệu suất của
+  A là 1,01 triệu và được hưởng tỷ lệ chi trả hoa hồng 1 triệu/10 nghìn nên có khoản
+  giảm giá giữa A và B1 Chênh lệch hoa hồng là: 100-80=20/10.000. Chênh lệch này là
+  phần đóng góp của C1 và C2 cho A, do đó C1 và C2 đóng góp cho A: (100.000+40.000)×20/10.000=
+  280.'
+promotion_tutorial_other_team_3: '(2) Từ C3: Vì B3 có tổng hiệu suất là 710.000 và
+  được hưởng tỷ lệ giảm giá là 1 triệu/10.000 và A có tổng hiệu suất là 1,01 triệu
+  và được hưởng tỷ lệ chi trả hoa hồng là 1 triệu/10.000, nên chênh lệch chi trả hoa
+  hồng giữa A và B3 là: 100-100=0/10.000, C3 đóng góp vào A: 710.000x0/10.000=0.'
+promotion_tutorial_summary_1: (1) C3 mạnh đến mức nó gián tiếp cho phép A được hưởng
+  tỷ lệ hoa hồng cao hơn cho tất cả hiệu suất của nó.
+promotion_tutorial_summary_2: (2) B2 có thể không chăm chỉ và sẽ không được lợi gì
+  nếu không phát triển cấp dưới của mình.
+promotion_tutorial_summary_3: (3) Mặc dù B3 tham gia tương đối muộn và là cấp dưới
   của A nhưng cấp dưới C3 của nó rất mạnh, cho phép B3 trực tiếp được hưởng tỷ lệ
-  hoa hồng cao hơn, vì vậy, bất kể B3 tham gia khi nào, cấp dưới của ai, bất kể
-  cấp bậc nào đã vào, Thu nhập sẽ không bao giờ bị ảnh hưởng, bạn sẽ không còn phải
-  gánh chịu sự thiệt thòi của cấp dưới người khác và sự phát triển của B3 sẽ không
-  bị hạn chế."
-promotion_tutorial_summary_4: "(4) Đây là một mô hình đại lý hoàn toàn công bằng
-  và chính đáng, không ai sẽ bị thiệt thòi mãi chỉ vì tham gia muộn."
+  hoa hồng cao hơn, vì vậy, bất kể B3 tham gia khi nào, cấp dưới của ai, bất kể cấp
+  bậc nào đã vào, Thu nhập sẽ không bao giờ bị ảnh hưởng, bạn sẽ không còn phải gánh
+  chịu sự thiệt thòi của cấp dưới người khác và sự phát triển của B3 sẽ không bị hạn
+  chế.
+promotion_tutorial_summary_4: (4) Đây là một mô hình đại lý hoàn toàn công bằng và
+  chính đáng, không ai sẽ bị thiệt thòi mãi chỉ vì tham gia muộn.
 pls_input_min_max_amount: Vui lòng nhập số tiền trong khoảng từ {min} - {max}
 bet_no_close_tip: Đơn cược của bạn không được chứa các kèo đã đóng
-same_event_no_multi: Nhiều đơn cược từ cùng một trận đấu không thể cấu thành đơn
-  cược nhiều lần.
+same_event_no_multi: Nhiều đơn cược từ cùng một trận đấu không thể cấu thành đơn cược
+  nhiều lần.
 multi_bet_max: Nhiều kết hợp đặt cược không thể vượt quá {max}.
 reuse_bet: Tái sử dụng đơn cược
 reg_bet: Đăng ký đặt cược
 accept_odd: Chấp Nhận Tỉ Lệ Mới
-company_intro_tip_1: '{host} là công ty hàng đầu thế giới về cá cược tiền điện
-  tử, với một trong những nền tảng cá cược thể thao và sòng bạc tốt nhất để đặt
-  cược bằng Bitcoin và các loại tiền điện tử khác. Được thành lập vào năm 2017,
-  {host} đã phát triển để trở thành một trong những tên tuổi đáng tin cậy nhất
-  trong ngành cờ bạc trực tuyến và cung cấp nhiều loại trò chơi sòng bạc ở nhiều
-  thị trường trên thế giới. Người chơi có thể tận hưởng trải nghiệm cờ bạc trực
-  tuyến an toàn, đáng tin cậy và thú vị trên một nền tảng duy nhất có tên là {site}!
-  Ngoài sòng bạc, {host} còn cung cấp nền tảng cá cược thể thao năng động để
-  đặt cược vào các môn thể thao, giải đấu và cuộc thi lớn nhất thế giới. Với tỷ
-  lệ cược được cập nhật mới nhất và nhiều tùy chọn cá cược khác nhau, thật dễ hiểu
-  tại sao {site} là cách thiết thực nhất để đặt cược vào các môn thể thao bằng cách
-  sử dụng tiền điện tử.'
+company_intro_tip_1: '{host} là công ty hàng đầu thế giới về cá cược tiền điện tử,
+  với một trong những nền tảng cá cược thể thao và sòng bạc tốt nhất để đặt cược bằng
+  Bitcoin và các loại tiền điện tử khác. Được thành lập vào năm 2017, {host} đã phát
+  triển để trở thành một trong những tên tuổi đáng tin cậy nhất trong ngành cờ bạc
+  trực tuyến và cung cấp nhiều loại trò chơi sòng bạc ở nhiều thị trường trên thế
+  giới. Người chơi có thể tận hưởng trải nghiệm cờ bạc trực tuyến an toàn, đáng tin
+  cậy và thú vị trên một nền tảng duy nhất có tên là {site}! Ngoài sòng bạc, {host}
+  còn cung cấp nền tảng cá cược thể thao năng động để đặt cược vào các môn thể thao,
+  giải đấu và cuộc thi lớn nhất thế giới. Với tỷ lệ cược được cập nhật mới nhất và
+  nhiều tùy chọn cá cược khác nhau, thật dễ hiểu tại sao {site} là cách thiết thực
+  nhất để đặt cược vào các môn thể thao bằng cách sử dụng tiền điện tử.'
 company_intro_tip_2: '{host} là một trong những nền tảng cá cược thể thao và sòng
   bạc tiền điện tử uy tín nhất trong ngành. Là đối tác cá cược chính thức của UFC
   ở Châu Mỹ Latinh và Châu Á và là nhà tài trợ chính của Câu lạc bộ bóng đá Watford,
   {site} là đối tác của nhiều tên tuổi lớn nhất trong ngành, bao gồm Drake, Isley
-  Adesanya, Jose Aldo và nhiều người khác. đối tác cá cược được các siêu sao tin
-  cậy.'
-company_intro_tip_3: '{host} được cấp phép ở Curacao và cung cấp một nền tảng
-  an toàn, bảo mật và công bằng. {host} được điều hành bởi Medium Rare N.V. theo
-  giấy phép trò chơi 8048/JAZ cấp cho Antillephone, được Chính phủ Curacao cấp phép
-  và quản lý. Với danh tiếng vững chắc, nền tảng an toàn và bảo mật cũng như nhiều
-  lựa chọn cá cược tại sòng bạc và cá cược thể thao, {site} là một nền tảng cá cược
-  trực tuyến có cộng đồng năng động trên toàn thế giới.'
+  Adesanya, Jose Aldo và nhiều người khác. đối tác cá cược được các siêu sao tin cậy.'
+company_intro_tip_3: '{host} được cấp phép ở Curacao và cung cấp một nền tảng an toàn,
+  bảo mật và công bằng. {host} được điều hành bởi Medium Rare N.V. theo giấy phép
+  trò chơi 8048/JAZ cấp cho Antillephone, được Chính phủ Curacao cấp phép và quản
+  lý. Với danh tiếng vững chắc, nền tảng an toàn và bảo mật cũng như nhiều lựa chọn
+  cá cược tại sòng bạc và cá cược thể thao, {site} là một nền tảng cá cược trực tuyến
+  có cộng đồng năng động trên toàn thế giới.'
 company_intro_tip_title_1: Trải nghiệm sòng bạc tiền điện tử
 company_intro_tip_4: Sòng bạc tiền điện tử {site} có hàng trò chơi sòng bạc từ nhiều
   nhà cung cấp trò chơi, mang đến cho người chơi trải nghiệm trải nghiệm tuyệt vời.
-  chơi cổ điển như slot, blackjack, roulette, baccarat và các trò chơi trên bàn
-  khác.
+  chơi cổ điển như slot, blackjack, roulette, baccarat và các trò chơi trên bàn khác.
 company_intro_tip_5: Để mang đến cho người chơi trải nghiệm cờ bạc phong phú, các
   trò chơi sòng bạc trực tiếp do {site} cung cấp có những người chia bài thực sự,
   cho phép người chơi có trải nghiệm chơi trò chơi sòng bạc đích thực trong nhiều
   trò chơi sòng bạc trực tiếp thông qua video trực tiếp.
 company_intro_tip_6: Ngoài {site} cung cấp các loại trò chơi sòng bạc khác nhau từ
   nhiều nhà cung cấp trò chơi, chúng tôi còn có các trò chơi gốc {site} của riêng
-  mình, nằm trong số những trò chơi phổ biến nhất trên {host}, chẳng hạn như
-  Dice, Plinko, Mines, Crash, Limbo, Hilo và các trò chơi cổ điển khác Trò chơi.
-company_intro_tip_7: Được tạo ra bởi đội ngũ tài năng của chúng tôi để mang lại
-  trải nghiệm chơi trò chơi sòng bạc công bằng nhất, chất lượng cao nhất trong ngành,
-  các trò chơi {site} gốc được chứng minh là công bằng và có tỷ lệ lợi nhuận nhà
-  cái thấp nhất trong ngành, đảm bảo cho người chơi trải nghiệm chơi trò chơi đáng
-  tin cậy và Lợi nhuận cao cho người chơi (RTP)
-company_intro_tip_8: Ngoài nhiều trò chơi đa dạng, thiết kế đẹp mắt của trò chơi
-  gốc và nhiều lựa chọn cá cược, {site} còn cung cấp dịch vụ cho người chơi sử dụng
-  Bitcoin (BTC), Ethereum (ETH), Dogecoin (DOGE), Bitcoin Cash (BCH) , Người chơi
-  đặt cược vào Ripple (XRP), Tron (TRX) và EOS (EOS) mang đến một trong những trải
-  nghiệm sòng bạc trực tuyến hấp dẫn và thú vị nhất.
-company_intro_tip_title_2: "{host} Cá cược thể thao tiền điện tử"
-company_intro_tip_9: Thể thao trực tuyến của {host} giúp người chơi dễ dàng đặt
-  cược vào các sự kiện thể thao lớn nhất thế giới. Người đặt cược thể thao có thể
-  đặt cược trên nền tảng của chúng tôi vào các môn thể thao yêu thích của họ như
-  Bóng đá, Bóng rổ, MMA, Thể thao điện tử, Khúc côn cầu trên băng, Cricket, Bóng
-  đá Mỹ, Quần vợt, Bóng bàn, Bóng chày, Phi tiêu, Phương trình Division I và hơn
-  thế nữa, điều này thậm chí bao gồm cả chính trị và giải trí !
-company_intro_tip_10: '{host} cung cấp cho người chơi quyền truy cập vào nhiều
-  giải đấu và giải đấu lớn khác nhau như UFC, Premier League, NBA, NFL, CFL, MLB,
-  Serie A, La Liga và thậm chí cả các giải đấu thể thao điện tử như Liên minh huyền
-  thoại và Dota 2. đặt cược vào các giải đấu. Bất kể đó là giải đấu thể thao nào,
-  bạn sẽ tìm thấy thị trường của nó tại {site}!'
+  mình, nằm trong số những trò chơi phổ biến nhất trên {host}, chẳng hạn như Dice,
+  Plinko, Mines, Crash, Limbo, Hilo và các trò chơi cổ điển khác Trò chơi.
+company_intro_tip_7: Được tạo ra bởi đội ngũ tài năng của chúng tôi để mang lại trải
+  nghiệm chơi trò chơi sòng bạc công bằng nhất, chất lượng cao nhất trong ngành, các
+  trò chơi {site} gốc được chứng minh là công bằng và có tỷ lệ lợi nhuận nhà cái thấp
+  nhất trong ngành, đảm bảo cho người chơi trải nghiệm chơi trò chơi đáng tin cậy
+  và Lợi nhuận cao cho người chơi (RTP)
+company_intro_tip_8: Ngoài nhiều trò chơi đa dạng, thiết kế đẹp mắt của trò chơi gốc
+  và nhiều lựa chọn cá cược, {site} còn cung cấp dịch vụ cho người chơi sử dụng Bitcoin
+  (BTC), Ethereum (ETH), Dogecoin (DOGE), Bitcoin Cash (BCH) , Người chơi đặt cược
+  vào Ripple (XRP), Tron (TRX) và EOS (EOS) mang đến một trong những trải nghiệm sòng
+  bạc trực tuyến hấp dẫn và thú vị nhất.
+company_intro_tip_title_2: '{host} Cá cược thể thao tiền điện tử'
+company_intro_tip_9: Thể thao trực tuyến của {host} giúp người chơi dễ dàng đặt cược
+  vào các sự kiện thể thao lớn nhất thế giới. Người đặt cược thể thao có thể đặt cược
+  trên nền tảng của chúng tôi vào các môn thể thao yêu thích của họ như Bóng đá, Bóng
+  rổ, MMA, Thể thao điện tử, Khúc côn cầu trên băng, Cricket, Bóng đá Mỹ, Quần vợt,
+  Bóng bàn, Bóng chày, Phi tiêu, Phương trình Division I và hơn thế nữa, điều này
+  thậm chí bao gồm cả chính trị và giải trí !
+company_intro_tip_10: '{host} cung cấp cho người chơi quyền truy cập vào nhiều giải
+  đấu và giải đấu lớn khác nhau như UFC, Premier League, NBA, NFL, CFL, MLB, Serie
+  A, La Liga và thậm chí cả các giải đấu thể thao điện tử như Liên minh huyền thoại
+  và Dota 2. đặt cược vào các giải đấu. Bất kể đó là giải đấu thể thao nào, bạn sẽ
+  tìm thấy thị trường của nó tại {site}!'
 company_intro_tip_11: '{site} cung cấp cá cược thể thao trực tiếp cho những người
-  chơi muốn đặt cược vào các sự kiện trực tiếp, phục vụ những người đặt cược thể
-  thao tích cực nhất với nhiều tùy chọn cá cược trực tiếp.'
+  chơi muốn đặt cược vào các sự kiện trực tiếp, phục vụ những người đặt cược thể thao
+  tích cực nhất với nhiều tùy chọn cá cược trực tiếp.'
 company_intro_tip_title_3: Các chương trình khuyến mãi, tiền thưởng và chương trình
   VIP của {site}
 company_intro_tip_12: '{site} có giao diện người dùng đơn giản, dễ sử dụng và trải
-  nghiệm người dùng chất lượng cao, mang đến các chương trình khuyến mãi và tiền
-  thưởng khác nhau cho các thành viên tích cực của cộng đồng {site}.'
-company_intro_tip_13: Các chương trình khuyến mãi của {site} dành cho người chơi
-  bao gồm khuyến mãi cá cược thể thao thông thường và khuyến mãi sòng bạc.
+  nghiệm người dùng chất lượng cao, mang đến các chương trình khuyến mãi và tiền thưởng
+  khác nhau cho các thành viên tích cực của cộng đồng {site}.'
+company_intro_tip_13: Các chương trình khuyến mãi của {site} dành cho người chơi bao
+  gồm khuyến mãi cá cược thể thao thông thường và khuyến mãi sòng bạc.
 company_intro_tip_14: Ngoài việc tổ chức các giải thưởng hấp dẫn hàng tuần trị giá
-  50.000 USD và các cuộc thi {site} hàng ngày cho người chơi cá cược thể thao và
-  sòng bạc, {site} còn thường xuyên tiến hành các chương trình khuyến mãi và tiền
-  thưởng đặc biệt dựa trên các sự kiện lớn như UFC, NBA, Premier League, v.v. hoặc
-  các trò chơi mới ra mắt. .
-company_intro_tip_15: Sau khi đăng ký tài khoản {host}, bạn có thể trở thành
-  VIP và tăng cấp thành viên câu lạc bộ VIP dựa trên tổng số cổ phần của bạn trên
-  nền tảng {site}. Thành viên VIP sẽ có thể tận hưởng các lợi ích đặc biệt như nạp
-  lại tiền thưởng, giảm giá, tiền thưởng nâng cấp, tiền thưởng tăng hàng tuần và
-  tiền thưởng hàng tháng được gửi qua email.
+  50.000 USD và các cuộc thi {site} hàng ngày cho người chơi cá cược thể thao và sòng
+  bạc, {site} còn thường xuyên tiến hành các chương trình khuyến mãi và tiền thưởng
+  đặc biệt dựa trên các sự kiện lớn như UFC, NBA, Premier League, v.v. hoặc các trò
+  chơi mới ra mắt. .
+company_intro_tip_15: Sau khi đăng ký tài khoản {host}, bạn có thể trở thành VIP và
+  tăng cấp thành viên câu lạc bộ VIP dựa trên tổng số cổ phần của bạn trên nền tảng
+  {site}. Thành viên VIP sẽ có thể tận hưởng các lợi ích đặc biệt như nạp lại tiền
+  thưởng, giảm giá, tiền thưởng nâng cấp, tiền thưởng tăng hàng tuần và tiền thưởng
+  hàng tháng được gửi qua email.
 company_intro_tip_16: Các thành viên VIP Bạch Kim IV đủ điều kiện cũng sẽ được chỉ
   định một Đại diện Dịch vụ VIP chuyên dụng. Ngoài ra, {site} còn cung cấp một chương
   trình VIP toàn diện phục vụ cho nhiều loại người chơi khác nhau dựa trên mức sử
-  dụng tích lũy của họ. Để biết thêm thông tin về chương trình VIP, hãy xem tổng
-  quan về chương trình VIP của chúng tôi.
+  dụng tích lũy của họ. Để biết thêm thông tin về chương trình VIP, hãy xem tổng quan
+  về chương trình VIP của chúng tôi.
 company_intro_tip_title_4: '{site} tăng cường bảo mật Tiền điện tử nạp và rút trong
   trò chơi Cờ bạc  '
 company_intro_tip_17: 'Thật dễ dàng để đặt cược và quản lý tiền của bạn bằng Bitcoin
   hoặc các loại tiền điện tử có sẵn khác tại sòng bạc và cá cược thể thao trực tuyến
-  của {site}. Để gửi tiền vào tài khoản {host} của bạn để cá cược thể thao bằng
-  loại tiền điện tử mà bạn chọn, hãy làm theo các bước đơn giản sau:'
+  của {site}. Để gửi tiền vào tài khoản {host} của bạn để cá cược thể thao bằng loại
+  tiền điện tử mà bạn chọn, hãy làm theo các bước đơn giản sau:'
 company_intro_tip_step_1: 'Bước 1: Vào Ví > Nạp tiền.'
-company_intro_tip_step_2: 'Bước 2: Chọn loại tiền bạn muốn sử dụng. Chúng tôi hỗ
-  trợ Bitcoin (BTC), Ethereum (ETH), Dogecoin (DOGE), Litecoin (LTC) và các loại
-  tiền tệ khác. Sao chép địa chỉ gửi tiền cho loại tiền bạn chọn.'
+company_intro_tip_step_2: 'Bước 2: Chọn loại tiền bạn muốn sử dụng. Chúng tôi hỗ trợ
+  Bitcoin (BTC), Ethereum (ETH), Dogecoin (DOGE), Litecoin (LTC) và các loại tiền
+  tệ khác. Sao chép địa chỉ gửi tiền cho loại tiền bạn chọn.'
 company_intro_tip_step_3: 'Bước ba: Nhập địa chỉ gửi tiền của bạn làm địa chỉ nhận
   khi gửi tiền từ ví hoặc sàn giao dịch tiền điện tử của bạn.'
-company_intro_tip_step_4: 'Ghi chú bổ sung: Nếu bạn muốn gửi tiền bằng tiền pháp
-  định, bạn có thể truy cập Ví > Mua tiền điện tử để mua tiền điện tử cho tài khoản
-  {site} của mình với MoonPay bằng tiền pháp định.'
+company_intro_tip_step_4: 'Ghi chú bổ sung: Nếu bạn muốn gửi tiền bằng tiền pháp định,
+  bạn có thể truy cập Ví > Mua tiền điện tử để mua tiền điện tử cho tài khoản {site}
+  của mình với MoonPay bằng tiền pháp định.'
 company_intro_tip_18: Việc gửi và rút tiền từ {site} của bạn là ngay lập tức và có
-  sẵn bằng bất kỳ loại tiền điện tử có sẵn nào mà bạn chọn. Cho dù bạn muốn đặt
-  cược vào các trò chơi sòng bạc hay sự kiện thể thao của chúng tôi, {site} đều cung
-  cấp một quy trình đơn giản và dễ hiểu.
-company_intro_tip_19: MoonPay có nhiều phương thức thanh toán được hỗ trợ và bạn
-  có thể mua tiền điện tử để gửi tiền cá cược bằng Visa, MasterCard, Apple Pay,
-  Google Pay, v.v. Để biết danh sách đầy đủ các phương thức thanh toán được hỗ trợ
-  trong phạm vi quyền hạn của bạn, vui lòng xem tài liệu MoonPay.
-company_intro_tip_20: Với một cộng đồng phát triển mạnh mẽ, các phòng trò chuyện
-  tích cực và nhóm hỗ trợ chuyên hỗ trợ khách hàng với bất kỳ câu hỏi nào liên quan
-  đến trò chơi hoặc tài khoản của họ, {host} đã chứng minh thành công lý do tại
-  sao đây là nền tảng cá cược thể thao và sòng bạc tiền điện tử hàng đầu.
+  sẵn bằng bất kỳ loại tiền điện tử có sẵn nào mà bạn chọn. Cho dù bạn muốn đặt cược
+  vào các trò chơi sòng bạc hay sự kiện thể thao của chúng tôi, {site} đều cung cấp
+  một quy trình đơn giản và dễ hiểu.
+company_intro_tip_19: MoonPay có nhiều phương thức thanh toán được hỗ trợ và bạn có
+  thể mua tiền điện tử để gửi tiền cá cược bằng Visa, MasterCard, Apple Pay, Google
+  Pay, v.v. Để biết danh sách đầy đủ các phương thức thanh toán được hỗ trợ trong
+  phạm vi quyền hạn của bạn, vui lòng xem tài liệu MoonPay.
+company_intro_tip_20: Với một cộng đồng phát triển mạnh mẽ, các phòng trò chuyện tích
+  cực và nhóm hỗ trợ chuyên hỗ trợ khách hàng với bất kỳ câu hỏi nào liên quan đến
+  trò chơi hoặc tài khoản của họ, {host} đã chứng minh thành công lý do tại sao đây
+  là nền tảng cá cược thể thao và sòng bạc tiền điện tử hàng đầu.
 vip_level_comp: So sánh đẳng cấp VIP
 bet_amount_label: Số tiền đặt cược
 bonus_up: tăng trưởng tiền thưởng
@@ -1603,74 +1640,114 @@ click_more: bấm vào đây để tìm hiểu thêm
 has_more_q: Có nhiều câu hỏi hơn không?
 online_24_sup: Hỗ trợ khách hàng trực tiếp , 24 giờ
 vip_club_tip_1: Trải nghiệm VIP tuyệt vời
-vip_club_tip_2: Mở khóa các lợi ích độc quyền và nhận tiền thưởng mà bạn có thể
-  rút ngay lập tức mà không cần ràng buộc.
+vip_club_tip_2: Mở khóa các lợi ích độc quyền và nhận tiền thưởng mà bạn có thể rút
+  ngay lập tức mà không cần ràng buộc.
 vip_club_tip_3: Trở thành VIP là một quá trình dễ dàng và bổ ích
 vip_club_tip_4: Đăng ký ngay để bắt đầu cá cược tại sòng bạc hoặc chợ thể thao.
-vip_club_tip_5: Mỗi lần đặt cược bạn thực hiện đều ảnh hưởng đến tiến trình đạt
-  cấp VIP của bạn. Đạt cấp độ tiếp theo để mở khóa nhiều lợi ích hơn.
-vip_club_tip_6: Yêu cầu tiền thắng cược của bạn ngay. Quá trình nhận tiền thưởng
-  hàng ngày, hàng tuần và hàng tháng rất đơn giản và dễ dàng.
+vip_club_tip_5: Mỗi lần đặt cược bạn thực hiện đều ảnh hưởng đến tiến trình đạt cấp
+  VIP của bạn. Đạt cấp độ tiếp theo để mở khóa nhiều lợi ích hơn.
+vip_club_tip_6: Yêu cầu tiền thắng cược của bạn ngay. Quá trình nhận tiền thưởng hàng
+  ngày, hàng tuần và hàng tháng rất đơn giản và dễ dàng.
 vip_club_tip_7: '{site} mang đến trải nghiệm độc đáo và tuyệt vời với các phần thưởng
   không ngừng được trao'
 vip_club_tip_8: Nhận phần thưởng tốt hơn với mỗi lần tăng cấp độ
 vip_club_tip_9: Liên hệ với nhóm hỗ trợ từng đoạt giải thưởng của chúng tôi
 vip_club_tip_10: Tại sao chương trình VIP của {site} là tốt nhất ?
-vip_club_tip_11: 'Chương trình VIP của {site} thường được đánh giá là một trong những trải nghiệm sòng bạc trực tuyến tốt nhất do số tiền thưởng mà chúng tôi phát cho người chơi.'
-vip_club_tip_12: 'Ngoài ra, nhóm hỗ trợ giành giải thưởng của chúng tôi trực tuyến 24/7 để trả lời bất kỳ câu hỏi nào của bạn. Chúng tôi có tỷ lệ hài lòng của khách hàng cao nhất trong số nhiều sòng bạc trực tuyến, nơi chúng tôi đã tích luỹ được một cộng đồng gồm một số người đam mê cờ bạc nhất trên toàn cầu .'
-vip_club_tip_13: 'Chúng tôi đã trao hơn 1 tỷ đô la tiền thưởng .Đây chủ yếu là lí do chúng tôi có chương trình VIP trực tuyến tốt nhất .'
-vip_club_tip_14: 'Chúng tôi thực sự tin tưởng vào việc thưởng cho người chơi của mình vì lối chơi và lòng trung thành của họ.'
+vip_club_tip_11: Chương trình VIP của {site} thường được đánh giá là một trong những
+  trải nghiệm sòng bạc trực tuyến tốt nhất do số tiền thưởng mà chúng tôi phát cho
+  người chơi.
+vip_club_tip_12: Ngoài ra, nhóm hỗ trợ giành giải thưởng của chúng tôi trực tuyến
+  24/7 để trả lời bất kỳ câu hỏi nào của bạn. Chúng tôi có tỷ lệ hài lòng của khách
+  hàng cao nhất trong số nhiều sòng bạc trực tuyến, nơi chúng tôi đã tích luỹ được
+  một cộng đồng gồm một số người đam mê cờ bạc nhất trên toàn cầu .
+vip_club_tip_13: Chúng tôi đã trao hơn 1 tỷ đô la tiền thưởng .Đây chủ yếu là lí do
+  chúng tôi có chương trình VIP trực tuyến tốt nhất .
+vip_club_tip_14: Chúng tôi thực sự tin tưởng vào việc thưởng cho người chơi của mình
+  vì lối chơi và lòng trung thành của họ.
 vip_club_tip_15: Tiền thưởng mà {site} đã cho đi là bao nhiêu ?
 vip_club_tip_16: Làm cách nào để tham gia xổ số hàng tuần trị giá $75.000 ?
-vip_club_tip_17: 'Để có một vé tham gia xổ số , bạn phải đặt cược $1000 vào {site}.com. Đặt cược càng nhiều, bạn càng nhận được nhiều vé, tăng cơ hội trúng thưởng .'
+vip_club_tip_17: Để có một vé tham gia xổ số , bạn phải đặt cược $1000 vào {site}.com.
+  Đặt cược càng nhiều, bạn càng nhận được nhiều vé, tăng cơ hội trúng thưởng .
 vip_club_tip_18: Tôi có thể tìm thấy Kênh Telegram {site} ở đâu ?
-vip_club_tip_19: 'Kênh Telegram của {site} là ({tg} )'
+vip_club_tip_19: Kênh Telegram của {site} là ({tg} )
 vip_club_tip_20: Nhấp vào đây để tham gia nếu bạn đã tải xuống Telegram.
-vip_club_tip_21: 'Tôi có thể tìm kênh Telegram VIP của {site} ở đâu )?'
-vip_club_tip_22: 'Sau khi đạt cấp Đồng , bạn có thể yêu cầu hỗ trợ trực tiếp để được thêm vào Kênh Telegram VIP của {site} .'
-vip_club_tip_23: 'Ngoài ra, bạn có thể tìm thêm thông tin về vấn đề này bằng cách tham gia kênh {site} Telegram ( {tg} ).'
+vip_club_tip_21: Tôi có thể tìm kênh Telegram VIP của {site} ở đâu )?
+vip_club_tip_22: Sau khi đạt cấp Đồng , bạn có thể yêu cầu hỗ trợ trực tiếp để được
+  thêm vào Kênh Telegram VIP của {site} .
+vip_club_tip_23: Ngoài ra, bạn có thể tìm thêm thông tin về vấn đề này bằng cách tham
+  gia kênh {site} Telegram ( {tg} ).
 vip_club_tip_24: Phần thưởng chơi trò chơi gần đây là gì ?
-vip_club_tip_25: 'Đây là phần thưởng được trao cho bạn theo quyết định của người chăm sóc hoặc người quản lý VIP của bạn và dựa trên sự đặt cược quan trọng của người chơi và sự may mắn .'
+vip_club_tip_25: Đây là phần thưởng được trao cho bạn theo quyết định của người chăm
+  sóc hoặc người quản lý VIP của bạn và dựa trên sự đặt cược quan trọng của người
+  chơi và sự may mắn .
 vip_club_tip_26: Rakeback là gì ?
-vip_club_tip_27: 'Rekeback là phần trăm số tiền phí của một người chơi ( lợi thế nhà cái) được hoàn lại cho bạn .'
-vip_club_tip_28: 'Reload là gì ? Làm cách nào để nhận Reload của tôi ?'
-vip_club_tip_29: 'Reload là tiền thưởng được tính dựa trên hoạt động gần đây của người chơi .Người chơi đủ điều kiện để chọn giữa các khoảng thời gian Reload Hàng ngày , Hàng giờ hoặc 10 Phút.'
-vip_club_tip_30: Đi tới bảng điều khiển người dùng ở phía bên phải của màn hình và nhấp vào VIP .
-  Một phương thức sẽ xuất hiện . Nhấp vào thẻ reload và nhấp vào reload để nhận phần thưởng reload của bạn .
+vip_club_tip_27: Rekeback là phần trăm số tiền phí của một người chơi ( lợi thế nhà
+  cái) được hoàn lại cho bạn .
+vip_club_tip_28: Reload là gì ? Làm cách nào để nhận Reload của tôi ?
+vip_club_tip_29: Reload là tiền thưởng được tính dựa trên hoạt động gần đây của người
+  chơi .Người chơi đủ điều kiện để chọn giữa các khoảng thời gian Reload Hàng ngày
+  , Hàng giờ hoặc 10 Phút.
+vip_club_tip_30: Đi tới bảng điều khiển người dùng ở phía bên phải của màn hình và
+  nhấp vào VIP . Một phương thức sẽ xuất hiện . Nhấp vào thẻ reload và nhấp vào reload
+  để nhận phần thưởng reload của bạn .
 vip_club_tip_31: Tiền thưởng hàng tháng được lên lịch vào lúc nào ?
-vip_club_tip_32: Tiền thưởng hàng tháng sẽ được phân phối mỗi tháng một lần .
-  Ngày thường là vào khoảng ngày 15. Trong một số trường hợp , nó có thể muộn hơn một chút hoặc thậm chí sớm hơn.
-  Đây là lí do tại sao nó là một trong những phần thưởng được mong đợi nhất trên Meibo. Khi nó được phát hành ,
-  bạn sẽ được thông báo qua email.Để đảm bảo bạn không bỏ lỡ phần thưởng , vui lòng kiểm tra lại thư mục thư rác trong email của bạn .
-vip_club_tip_33: 'Hội viên Đồng, Bạc và Vàng sẽ được nhận tiền thưởng dưới hình thức reload hàng ngày , trong khi người chơi Bạch kim và Kim cương sẽ nhận được tiền thưởng của họ dưới dạng yêu cầu nhận thưởng một lần .'
-vip_club_tip_34: 'Làm cách nào để tính số tiền tôi cần đặt cược để chuyển sang cấp độ tiếp theo ?'
-vip_club_tip_35: 'Đầu tiên, hãy xem phần trăm còn lại trên thanh tiến trình VIP trong trang tài khoản của bạn ở góc trên cùng bên phải . Nhân số phần trăm còn lại với thanh 100% đầy đủ với yêu cầu đặt cược bạn cần đáp ứng để mở khoá cấp độ mới .'
+vip_club_tip_32: Tiền thưởng hàng tháng sẽ được phân phối mỗi tháng một lần . Ngày
+  thường là vào khoảng ngày 15. Trong một số trường hợp , nó có thể muộn hơn một chút
+  hoặc thậm chí sớm hơn. Đây là lí do tại sao nó là một trong những phần thưởng được
+  mong đợi nhất trên Meibo. Khi nó được phát hành , bạn sẽ được thông báo qua email.Để
+  đảm bảo bạn không bỏ lỡ phần thưởng , vui lòng kiểm tra lại thư mục thư rác trong
+  email của bạn .
+vip_club_tip_33: Hội viên Đồng, Bạc và Vàng sẽ được nhận tiền thưởng dưới hình thức
+  reload hàng ngày , trong khi người chơi Bạch kim và Kim cương sẽ nhận được tiền
+  thưởng của họ dưới dạng yêu cầu nhận thưởng một lần .
+vip_club_tip_34: Làm cách nào để tính số tiền tôi cần đặt cược để chuyển sang cấp
+  độ tiếp theo ?
+vip_club_tip_35: Đầu tiên, hãy xem phần trăm còn lại trên thanh tiến trình VIP trong
+  trang tài khoản của bạn ở góc trên cùng bên phải . Nhân số phần trăm còn lại với
+  thanh 100% đầy đủ với yêu cầu đặt cược bạn cần đáp ứng để mở khoá cấp độ mới .
 vip_club_tip_36: Tôi sẽ nhận được những phần thưởng nào sau khi lên cấp?
-vip_club_tip_37: 'Tiền thưởng thăng cấp : Đây là những phần thưởng cố định sẽ lớn hơn mỗi khi bạn lên cấp .Tuy nhiên, chúng tôi bổ sung thêm ở trên dưới dạng tiền thưởng khi chơi trò chơi gần đây tuỳ thuộc vào lãi/lỗ của bạn giữa các cấp độ.'
-vip_club_tip_38: 'Tiền thưởng hàng tuần/hàng tháng : Đây được tính với số tiền cơ bản dựa trên cấp độ VIP của bạn.Sau đó , bạn sẽ nhận được thêm cho mỗi 1.000 đô la bạn đặt cược trong khoảng thời gian tương ứng .'
-vip_club_tip_39: 'Tiền thưởng hàng ngày : Reload được gia hạn bởi người chăm sóc VIP của bạn khi chúng hết hạn .'
+vip_club_tip_37: 'Tiền thưởng thăng cấp : Đây là những phần thưởng cố định sẽ lớn
+  hơn mỗi khi bạn lên cấp .Tuy nhiên, chúng tôi bổ sung thêm ở trên dưới dạng tiền
+  thưởng khi chơi trò chơi gần đây tuỳ thuộc vào lãi/lỗ của bạn giữa các cấp độ.'
+vip_club_tip_38: 'Tiền thưởng hàng tuần/hàng tháng : Đây được tính với số tiền cơ
+  bản dựa trên cấp độ VIP của bạn.Sau đó , bạn sẽ nhận được thêm cho mỗi 1.000 đô
+  la bạn đặt cược trong khoảng thời gian tương ứng .'
+vip_club_tip_39: 'Tiền thưởng hàng ngày : Reload được gia hạn bởi người chăm sóc VIP
+  của bạn khi chúng hết hạn .'
 vip_club_tip_40: Làm thế nào để bạn tính toán tiền thưởng ?
-vip_club_tip_41: 'Tiền thưởng được tính là sự kết hợp giữa cả số tiền đã đặt cược và lợi nhuận của bạn. Chúng tôi tin rằng người chơi phải luôn được thưởng bất kể bạn đang thắng hay thua .Sẽ là không công bằng nếu chỉ thưởng cho những người thua cuộc .Tuy nhiên, nếu bạn không may mắn, chúng tôi sẽ bổ sung thêm đầu trang !'
+vip_club_tip_41: Tiền thưởng được tính là sự kết hợp giữa cả số tiền đã đặt cược và
+  lợi nhuận của bạn. Chúng tôi tin rằng người chơi phải luôn được thưởng bất kể bạn
+  đang thắng hay thua .Sẽ là không công bằng nếu chỉ thưởng cho những người thua cuộc
+  .Tuy nhiên, nếu bạn không may mắn, chúng tôi sẽ bổ sung thêm đầu trang !
 vip_club_tip_42: Người chăm sóc VIP của tôi có thể làm gì cho tôi ?
-vip_club_tip_43: 'Người chăm sóc VIP của bạn ở đó để đảm bảo bạn đang được thưởng cho trải nghiệm chơi game của mình . Họ hỗ trợ gia hạn tải lại , hướng dẫn bạn tiến trình tăng cấp , xem xét giới hạn thể thao , đánh giá tiền thưởng bổ sung khi có sẵn và giải quyết bất kỳ vấn đề nào mà người dùng trên trang web gặp phải .'
-vip_club_tip_44: 'Khi tôi được chỉ định một người chăm sóc VIP , việc Reload của tôi có trở thành lợi ích liên tục hay có thể làm mới không？'
-vip_club_tip_45: 'Khi bạn đạt đến Bạch kim IV và được chỉ định một người chăm sóc , bạn sẽ bắt đầu nhận được các lần reload hàng tuần có thể gia hạn. Sau khi quá trình reload hàng tuần của bạn hết hạn , bạn có thể liên hệ với người chăm sóc của mình , người có thể gia hạn reload cho bạn trong khoảng thời gian 7 ngày tiếp theo .'
-vip_club_tip_46: 'Số tiền reload của bạn dựa trên hoạt động chơi trò chơi hàng tuần của bạn , nhằm mục đích kiếm tiền nếu bạn có một tuần kém may mắn về mặt lợi nhuận .'
-vip_club_tip_47: Trách nhiệm của Đại diện Dịch vụ VIP bao gồm những gì và chúng
-  khác với nhân viên hỗ trợ trực tuyến thông thường như thế nào?
+vip_club_tip_43: Người chăm sóc VIP của bạn ở đó để đảm bảo bạn đang được thưởng cho
+  trải nghiệm chơi game của mình . Họ hỗ trợ gia hạn tải lại , hướng dẫn bạn tiến
+  trình tăng cấp , xem xét giới hạn thể thao , đánh giá tiền thưởng bổ sung khi có
+  sẵn và giải quyết bất kỳ vấn đề nào mà người dùng trên trang web gặp phải .
+vip_club_tip_44: Khi tôi được chỉ định một người chăm sóc VIP , việc Reload của tôi
+  có trở thành lợi ích liên tục hay có thể làm mới không？
+vip_club_tip_45: Khi bạn đạt đến Bạch kim IV và được chỉ định một người chăm sóc ,
+  bạn sẽ bắt đầu nhận được các lần reload hàng tuần có thể gia hạn. Sau khi quá trình
+  reload hàng tuần của bạn hết hạn , bạn có thể liên hệ với người chăm sóc của mình
+  , người có thể gia hạn reload cho bạn trong khoảng thời gian 7 ngày tiếp theo .
+vip_club_tip_46: Số tiền reload của bạn dựa trên hoạt động chơi trò chơi hàng tuần
+  của bạn , nhằm mục đích kiếm tiền nếu bạn có một tuần kém may mắn về mặt lợi nhuận
+  .
+vip_club_tip_47: Trách nhiệm của Đại diện Dịch vụ VIP bao gồm những gì và chúng khác
+  với nhân viên hỗ trợ trực tuyến thông thường như thế nào?
 vip_club_tip_48: Đại diện dịch vụ VIP chỉ được chỉ định cho những người chơi trên
-  cấp độ Bạch kim IV. Họ có thể trả lời các câu hỏi của bạn về chương trình VIP
-  và đảm bảo bạn thu được tất cả số tiền thắng mà bạn xứng đáng. Đại diện dịch vụ
-  VIP cũng có thể gửi tiền thưởng lớn hơn thường xuyên hơn trong khi vẫn đảm bảo
-  tiền thưởng đáp ứng nhu cầu của bạn.
+  cấp độ Bạch kim IV. Họ có thể trả lời các câu hỏi của bạn về chương trình VIP và
+  đảm bảo bạn thu được tất cả số tiền thắng mà bạn xứng đáng. Đại diện dịch vụ VIP
+  cũng có thể gửi tiền thưởng lớn hơn thường xuyên hơn trong khi vẫn đảm bảo tiền
+  thưởng đáp ứng nhu cầu của bạn.
 vip_club_tip_49: Hỗ trợ trực tuyến có thể giúp bạn giải quyết mọi vấn đề kỹ thuật
   bạn gặp phải trên nền tảng.
 vip_club_tip_50: Khi nào tôi có thể được chỉ định làm Đại diện Dịch vụ VIP?
-vip_club_tip_51: Người chơi sẽ được chỉ định Đại diện dịch vụ VIP khi họ đạt cấp
-  Bạch kim IV. Đại diện dịch vụ này sẽ là người hỗ trợ tận tình, giúp bạn giải đáp
-  mọi thắc mắc và cung cấp mọi hướng dẫn cần thiết trong quá trình trải nghiệm chơi
-  trò chơi của bạn. Xin lưu ý rằng tính đủ điều kiện của bạn cũng dựa trên hoạt
-  động gần đây của bạn.
+vip_club_tip_51: Người chơi sẽ được chỉ định Đại diện dịch vụ VIP khi họ đạt cấp Bạch
+  kim IV. Đại diện dịch vụ này sẽ là người hỗ trợ tận tình, giúp bạn giải đáp mọi
+  thắc mắc và cung cấp mọi hướng dẫn cần thiết trong quá trình trải nghiệm chơi trò
+  chơi của bạn. Xin lưu ý rằng tính đủ điều kiện của bạn cũng dựa trên hoạt động gần
+  đây của bạn.
 vip_club_tip_52: Điều gì sẽ xảy ra nếu đại diện dịch vụ VIP của tôi đi nghỉ?
 vip_club_tip_53: Hãy nhớ yêu cầu người đại diện VIP của bạn cung cấp liên kết mời
   tới kênh VIP duy nhất của họ. Nếu bỏ lỡ bước này, bạn có thể liên hệ với bộ phận
@@ -1678,7 +1755,8 @@ vip_club_tip_53: Hãy nhớ yêu cầu người đại diện VIP của bạn cu
   thời cho đến khi đại diện dịch vụ của bạn quay lại.
 vip_club_tip_54: Sử dụng hướng dẫn kiến ​​thức của chúng tôi hoặc đặt câu hỏi trong
   diễn đàn cộng đồng của chúng tôi.
-vip_club_tip_55: 'Hỗ trợ thực sự từ những người thực sự .Chúng tôi sẵn sàng hỗ trợ bạn thông qua trò chuyện trực tiếp và email ngay lập tức .'
+vip_club_tip_55: Hỗ trợ thực sự từ những người thực sự .Chúng tôi sẵn sàng hỗ trợ
+  bạn thông qua trò chuyện trực tiếp và email ngay lập tức .
 chat_us: Trò chuyện với chúng tôi
 pls_input_deposit_name: Tên người nạp tiền là bắt buộc
 min_amount_0: Số tiền tối thiểu không thể nhỏ hơn hoặc bằng 0
@@ -1701,7 +1779,7 @@ vip_up_tip: Tiến trình của bạn được tích lũy thông qua tổng số
 vip_up_tip_2: Tất cả các đơn cược thể thao đã thanh toán sẽ được thưởng nhanh hơn
   gấp 3 lần. Các đơn cược vô hiệu sẽ không được tính.
 learn_more_vip: Tìm hiểu thêm về cách trở thành VIP của {site}
-index_title_prefix: "{site}: Sòng bạc tiền điện tử và cá cược thể thao"
+index_title_prefix: '{site}: Sòng bạc tiền điện tử và cá cược thể thao'
 index_title_suffix: Sòng bạc BTC trực tuyến
 btc_sport_title: Cá cược thể thao trực tuyến bằng tiền điện tử và Bitcoin
 affiliate_activity: 'Hoạt động liên minh '
@@ -1723,19 +1801,19 @@ transaction_deposit: Giao dịch nạp tiền
 transaction_other: Giao dịch khác
 transaction_withdraw: Giao dịch rút tiền
 today: Hôm nay
-last_days_mid: "{delta} ngày gần đây"
+last_days_mid: '{delta} ngày gần đây'
 one_receive: Nhận lãnh bằng một cú nhấp chuột
-on: Tại
+true: Tại
 add_one_bet: Thêm 1 cược ở trên vào phiếu cược của tôi
 copied: Đã sao chép thành công
-footer_desc: "{site} được sở hữu và điều hành bởi Medium Rare N.V., số đăng ký: 145353,
+footer_desc: '{site} được sở hữu và điều hành bởi Medium Rare N.V., số đăng ký: 145353,
   địa chỉ đăng ký: Korporaalweg 10, Willemstad, Curaçao. Liên hệ với chúng tôi tại
-  {email}. Công ty đại lý thanh toán là Medium Rare Limited có địa
-  chỉ tại 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia,
-  Cyprus và số đăng ký: HE 410775 {site} được Chính phủ Curacao ủy quyền và quản lý
-  và ban hành theo Hoạt động theo giấy phép số 8048/JAZ cấp cho Antillephone. {site}
-  đã vượt qua tất cả các đánh giá tuân thủ và được ủy quyền hợp pháp để tiến hành
-  tất cả các hoạt động chơi trò chơi may rủi và cá cược."
+  {email}. Công ty đại lý thanh toán là Medium Rare Limited có địa chỉ tại 7-9 Riga
+  Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Cyprus và số
+  đăng ký: HE 410775 {site} được Chính phủ Curacao ủy quyền và quản lý và ban hành
+  theo Hoạt động theo giấy phép số 8048/JAZ cấp cho Antillephone. {site} đã vượt qua
+  tất cả các đánh giá tuân thủ và được ủy quyền hợp pháp để tiến hành tất cả các hoạt
+  động chơi trò chơi may rủi và cá cược.'
 order: Mã đơn dược
 plat_not_sup_currency: phòng trò chơi này hiện không hỗ trợ loại tiền bạn đã chọn
 has_stop_bet: Bạn có một khoản cược bị đình chỉ
@@ -1743,7 +1821,8 @@ cant_form_multiple: Nhiều đơn cược từ cùng một trận đấu không 
   nhiều lần.
 no_sup_multiple: Bạn có một đơn cược không hỗ trợ cược nhiều lần
 bet_one_max: Chỉ có thể thêm cược {max} cùng lúc.
-bet_odd_change: Tỷ lệ đã thay đổi . Để đặt cược , trước tiên bạn cần xem lại và phê duyệt các thay đổi.
+bet_odd_change: Tỷ lệ đã thay đổi . Để đặt cược , trước tiên bạn cần xem lại và phê
+  duyệt các thay đổi.
 bet_sup_10x: Chỉ hỗ trợ số tiền đặt cược là bội số của 10
 bet_fixed_x: Số tiền đặt cược có nhiều hơn {fixed} chữ số thập phân không được hỗ
   trợ
@@ -1822,7 +1901,7 @@ casino_intro_15: Cho dù đó là tính năng cá cược, hệ số thanh toán
   tại {site} đều mang đẳng cấp thế giới và đảm bảo mang lại trải nghiệm sống động
   và đa dạng cho tất cả người chơi - bất kể sở thích của họ thì sao? sở thích chơi
   game!
-casino_intro_16: "{site} Tại sao sòng bạc an toàn và công bằng?"
+casino_intro_16: '{site} Tại sao sòng bạc an toàn và công bằng?'
 casino_intro_17: Tất cả đặt cược của bạn vào trò chơi gốc của {site} đều được chứng
   minh là công bằng và được xác minh trên trang web hoặc bên ngoài thông qua các trang
   web của bên thứ ba như {site} do các thành viên cộng đồng của chúng tôi tạo trên
@@ -1836,11 +1915,11 @@ casino_intro_19: Với hàng nghìn người chơi trung thành đặt hàng tri
   web.
 get_email_code: Lấy mã xác minh
 re_get: Yêu cầu lấy lại
-footer_description: "{name} được sở hữu và điều hành bởi Medium Rare N.V., số đăng
-  ký: 145353, địa chỉ đăng ký: Korporaalweg 10, Willemstad, Curaçao. Liên hệ với chúng tôi tại
-  {email}. Công ty đại lý thanh toán là Medium Rare Limited với địa chỉ
-  7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Cyprus
-  và Số đăng ký: HE 410775"
+footer_description: '{name} được sở hữu và điều hành bởi Medium Rare N.V., số đăng
+  ký: 145353, địa chỉ đăng ký: Korporaalweg 10, Willemstad, Curaçao. Liên hệ với chúng
+  tôi tại {email}. Công ty đại lý thanh toán là Medium Rare Limited với địa chỉ 7-9
+  Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Cyprus
+  và Số đăng ký: HE 410775'
 empty_fav_event: Chưa có sự kiện yêu thích nào
 reject: Từ chối
 emoji_title: Biểu tượng cảm xúc
@@ -1890,7 +1969,7 @@ input_draw_coin_addr: Vui lòng nhập địa chỉ rút tiền
 withdraw_detail: Chi tiết rút tiền
 direct_vip: Hội viên trực thuộc
 up_rule: Tiêu chuẩn khuyến mãi
-keep_level_desc: 保级标准
+keep_level_desc: Tiêu chí giữ hạng
 check_desc: Hướng dẫn kiểm tra
 activity_desc: Nêu rõ hoạt động
 explain_desc: Hướng dẫn giải thích
@@ -1898,7 +1977,8 @@ day_no_max: Ngày không thể vượt quá số {delta}
 max_age: Bạn không thể lớn hơn {delta} tuổi
 max_value: Giá trị phải lớn hơn hoặc bằng {delta}
 qr_code: Mã QR
-bet_comp_coin: Tất cả các loại tiền tệ bạn đặt cược sẽ được chuẩn hóa thành loại tiền tệ của cuộc thi
+bet_comp_coin: Tất cả các loại tiền tệ bạn đặt cược sẽ được chuẩn hóa thành loại tiền
+  tệ của cuộc thi
 exp_rule: quy tắc tính toán thử nghiệm
 electric_game: Trò chơi điện tử
 max_odd: Tỷ lệ cá cược nhiều lần vượt quá giới hạn trên
@@ -2040,9 +2120,9 @@ casino_new_intro_32: Một trong những trò chơi đơn giản nhất trên {h
   Nếu bạn muốn trải nghiệm điều gì đó khác biệt, hãy truy cập Cash hoặc Crash Live
   của Evolution Gaming.
 casino_new_intro_33: Blackjack
-casino_new_intro_34: "{site} Blackjack nguyên bản là một trò chơi yêu cầu phần giới
+casino_new_intro_34: '{site} Blackjack nguyên bản là một trò chơi yêu cầu phần giới
   thiệu đơn giản và cho phép bạn đánh bại nhà cái với tỷ lệ lợi nhuận nhà cái cực
-  thấp. RTP 99,53%. Sòng bạc {site} cũng cung cấp nhiều biến thể blackjack."
+  thấp. RTP 99,53%. Sòng bạc {site} cũng cung cấp nhiều biến thể blackjack.'
 casino_new_intro_35: Hilo là một trò chơi sòng bạc Bitcoin. Trong trò chơi bạn cần
   dự đoán giá trị của lá bài tiếp theo so với giá trị của lá bài hiện đang hiển thị.
   RTP 99%.
@@ -2056,10 +2136,10 @@ casino_new_intro_39: Trong trò chơi quay độc đáo này, bạn có thể ch
   được hiển thị. RTP 99%. Hãy xem Money Wheel, trò chơi quay vòng từ Play'n GO và
   trải nghiệm sự thú vị của trò chơi quay vòng!
 casino_new_intro_40: Trò chơi Roulette
-casino_new_intro_41: "{site} Roulette gốc là một trong những trò chơi phổ biến nhất
+casino_new_intro_41: '{site} Roulette gốc là một trong những trò chơi phổ biến nhất
   của {host} và trò chơi này có rất nhiều loại cược bên trong và bên ngoài để bạn
   đặt cược. RTP 97,30%. Hãy kiểm tra sảnh roulette để xem những trò chơi roulette
-  khác mà {host} cung cấp."
+  khác mà {host} cung cấp.'
 casino_new_intro_42: Hãy dùng thử trò chơi độc quyền của {site} đang làm mưa làm gió
   trong ngành sòng bạc tiền điện tử! RTP 98,29%.
 casino_new_intro_43: Cách chơi và thắng trò chơi sòng bài trực tuyến - Chiến lược
@@ -2097,13 +2177,13 @@ casino_new_intro_53: Các trò chơi sòng bạc trực tuyến phổ biến kh�
 casino_new_intro_54: 'Nếu bạn muốn thử nhiều trò chơi hay hơn tại {host}, hãy xem
   những trò chơi phổ biến này từ các nhà cung cấp hàng đầu trong ngành trò chơi sòng
   bạc:'
-casino_new_intro_55: "{site} Bản gốc của Baccarat"
-sport_new_intro_1: "{site} Cá cược thể thao – Trang thể thao trực tuyến được mọi người
-  yêu thích"
-sport_new_intro_2: "{host} cung cấp nhiều tùy chọn cá cược thể thao cho người đặt
+casino_new_intro_55: '{site} Bản gốc của Baccarat'
+sport_new_intro_1: '{site} Cá cược thể thao – Trang thể thao trực tuyến được mọi người
+  yêu thích'
+sport_new_intro_2: '{host} cung cấp nhiều tùy chọn cá cược thể thao cho người đặt
   cược hiện đại – cá cược thể thao trực tuyến của chúng tôi cung cấp cá cược thể thao
   trực tiếp cho nhiều môn thể thao, bao gồm MMA, Bóng rổ, Bóng đá, Khúc côn cầu, Bóng
-  chày, v.v."
+  chày, v.v.'
 sport_new_intro_3: Nền tảng cá cược thể thao trực tuyến dễ sử dụng của chúng tôi cho
   phép người dùng đặt cược vào các đội, cầu thủ và giải đấu yêu thích của họ từ khắp
   nơi trên thế giới, cũng như xem các sự kiện thể thao trực tiếp lớn nhất. Tìm hiểu
@@ -2116,8 +2196,8 @@ sport_new_intro_4: Tùy thuộc vào môn thể thao và sự kiện thể thao 
 sport_new_intro_5: Tìm hiểu thêm về cách đặt cược vào các môn thể thao, trò chơi và
   cầu thủ yêu thích của bạn với hướng dẫn cá cược thể thao đỉnh cao của chúng tôi!
 sport_new_intro_6: Tỷ lệ cá cược thể thao trực tuyến và các loại cá cược
-sport_new_intro_7: "{site} tự hào cung cấp cho những người đặt cược thể thao trung
-  thành của chúng tôi trải nghiệm cá cược thể thao trực tuyến hàng đầu."
+sport_new_intro_7: '{site} tự hào cung cấp cho những người đặt cược thể thao trung
+  thành của chúng tôi trải nghiệm cá cược thể thao trực tuyến hàng đầu.'
 sport_new_intro_8: Chỉ cần truy cập vào môn thể thao, danh mục hoặc giải đấu thể thao
   bạn quan tâm để xem các sự kiện trực tiếp và sắp tới có sẵn để cá cược. Ngoài việc
   đặt cược vào kết quả của các sự kiện thể thao, còn có rất nhiều cách đặt cược! Bạn
@@ -2175,11 +2255,11 @@ sport_new_intro_25: Cho dù bạn muốn đặt cược vào một trận đấu
   ngoài đời thực, bao gồm Bóng đá SRL và Cricket SRL. Tìm hiểu thêm về cách đặt cược
   vào Giải đấu thực tế mô phỏng (SRL) với hướng dẫn cá cược Giải đấu thực tế mô phỏng
   của chúng tôi.
-sport_new_intro_26: "{site} là trang web cá cược trực tuyến cung cấp nền tảng cá cược
+sport_new_intro_26: '{site} là trang web cá cược trực tuyến cung cấp nền tảng cá cược
   thể thao theo thời gian thực trực quan và dễ sử dụng để đặt cược vào các sự kiện
   thể thao sắp tới. Không có gì thú vị hơn cá cược thể thao trực tiếp – đặt cược vào
   một sự kiện thể thao đã bắt đầu, điều chỉnh tỷ lệ cược dựa trên trạng thái trận
-  đấu hiện tại và chạy đua với thời gian."
+  đấu hiện tại và chạy đua với thời gian.'
 sport_new_intro_27: Cá cược thể thao trực tiếp là trò chơi yêu thích của những người
   có con mắt quan sát trận đấu và tin tưởng rằng trận đấu sẽ lật kèo về cuối. Cá cược
   thể thao trực tiếp phổ biến bao gồm bóng đá trực tiếp, quần vợt trực tiếp, bóng
@@ -2204,58 +2284,60 @@ cash_profit: lợi nhuận tiền mặt
 vip_win_lose: Thành viên thắng hay thua
 register_time: Thời gian đăng ký
 statistical_date: Ngày thống kê
-phone_invalid: 'Số điện thoại không hợp lệ'
+phone_invalid: Số điện thoại không hợp lệ
 colon: ':'
 period: .
-vip_total_bonus: 'Tiền thưởng tích lũy'
-type_select: 'Loại hình lựa chọn'
-rule_text_one: 'Tỷ giá sẽ được đồng bộ theo thời gian biến động của thị trường'
-rule_text_two: 'Tỷ giá sẽ được áp dụng khi đơn cược của bạn được giải quyết'
-rule_text_three: 'Các cược hợp lệ đã được tính sẽ không bị ảnh hưởng bởi tỷ giá tiếp theo'
+vip_total_bonus: Tiền thưởng tích lũy
+type_select: Loại hình lựa chọn
+rule_text_one: Tỷ giá sẽ được đồng bộ theo thời gian biến động của thị trường
+rule_text_two: Tỷ giá sẽ được áp dụng khi đơn cược của bạn được giải quyết
+rule_text_three: Các cược hợp lệ đã được tính sẽ không bị ảnh hưởng bởi tỷ giá tiếp
+  theo
 rule_text_title: Điểm VIP sẽ được tính dựa trên mức cược hợp lệ của bạn.
-after_transfer_withdraw_money: 'Sau khi chuyển vào ví, bạn cần gấp đôi số tiền đặt cược hợp lệ trước khi có thể rút tiền'
-mini_manual_bet: 'Cược thủ công'
-mini_auto_bet: 'Cược tự động'
+after_transfer_withdraw_money: Sau khi chuyển vào ví, bạn cần gấp đôi số tiền đặt
+  cược hợp lệ trước khi có thể rút tiền
+mini_manual_bet: Cược thủ công
+mini_auto_bet: Cược tự động
 mini_bet_amount: 'Tiền cược '
-mini_profit: 'Nhận được lợi nhuận'
+mini_profit: Nhận được lợi nhuận
 mini_bet_frequency: 'Số lần đặt cược '
-mini_if_win: 'Nếu thắng'
-mini_reset: 'Đặt lại'
+mini_if_win: Nếu thắng
+mini_reset: Đặt lại
 mini_add: 'Tăng lên:'
-mini_if_lose: 'Nếu thua'
-mini_take_profit: 'Dừng lợi nhuận'
+mini_if_lose: Nếu thua
+mini_take_profit: Dừng lợi nhuận
 mini_stop_lose: 'Dừng thất thoát '
-mini_start_auto_bet: 'Bắt đầu đặt cược tự động'
-mini_stop_auto_bet: 'Dừng đặt cược tự động'
-mini_auto_bet_finish: 'Đặt cược đang được hoàn tất'
-mini_target_multi: 'Hệ số mục tiêu'
-mini_win_odd: 'Tỷ lệ thắng'
+mini_start_auto_bet: Bắt đầu đặt cược tự động
+mini_stop_auto_bet: Dừng đặt cược tự động
+mini_auto_bet_finish: Đặt cược đang được hoàn tất
+mini_target_multi: Hệ số mục tiêu
+mini_win_odd: Tỷ lệ thắng
 mini_touzhu: 'Đặt cược '
-mini_more_than_balance: 'Đặt cược của bạn không thể lớn hơn số dư của bạn!'
-mini_must_than_zero: 'Phải lớn hơn hoặc bằng 0'
-mini_game_set: 'Cài đặt trò chơi'
-mini_ju_mode: 'Chế độ rạp hát'
-mini_sstj: 'Thống kê thời gian thực tế'
-mini_collect_game: 'Trò chơi yêu thích'
-mini_fairness: 'Tính công bằng'
-mini_start_auto_bet_tip: 'Bắt đầu đặt cược tự động'
-mini_stop_auto_bet_tip: 'Cược tự động đã hoàn tất'
-commission_record: 'Lịch sử hoa hồng'
-commission_grant: 'Phát tiền hoa hồng'
-commission_draw: 'Rút tiền hoa hồng'
+mini_more_than_balance: Đặt cược của bạn không thể lớn hơn số dư của bạn!
+mini_must_than_zero: Phải lớn hơn hoặc bằng 0
+mini_game_set: Cài đặt trò chơi
+mini_ju_mode: Chế độ rạp hát
+mini_sstj: Thống kê thời gian thực tế
+mini_collect_game: Trò chơi yêu thích
+mini_fairness: Tính công bằng
+mini_start_auto_bet_tip: Bắt đầu đặt cược tự động
+mini_stop_auto_bet_tip: Cược tự động đã hoàn tất
+commission_record: Lịch sử hoa hồng
+commission_grant: Phát tiền hoa hồng
+commission_draw: Rút tiền hoa hồng
 order_id: 'Đơn đặt cược '
-score: 'Tỉ số'
-v_sports: 'Thể thao 3D'
-commission_draw_success: 'Rút tiền hoa hồng thành công'
-receive_bonus_amount: 'Số tiền nhận được'
-integral: 'Tích điểm'
-reg_success_title: 'Thành công'
+score: Tỉ số
+v_sports: Thể thao 3D
+commission_draw_success: Rút tiền hoa hồng thành công
+receive_bonus_amount: Số tiền nhận được
+integral: Tích điểm
+reg_success_title: Thành công
 reg_day: DD
-login_ip_title: 'Địa chỉ IP'
-gameble_aware: 'Điều Cần Biết'
-transfer_to_wallet: 'Chuyển vào ví'
-statistical_data_dialog_title: 'Thống kê'
-end_time_table: 'Kết thúc sau {time} giờ nữa'
+login_ip_title: Địa chỉ IP
+gameble_aware: Điều Cần Biết
+transfer_to_wallet: Chuyển vào ví
+statistical_data_dialog_title: Thống kê
+end_time_table: Kết thúc sau {time} giờ nữa
 user_no_statistics_display: Người dùng này thống kê bị ẩn.
 this_week: Tuần này
 this_month: Tháng này
@@ -2266,54 +2348,87 @@ keep_integral: Điểm xuống hạng
 min_deposit_amount: Số tiền gửi tối thiểu
 annual_interest_rate: Lợi nhuận hàng năm
 vault_des_1: 'The Meibo Vault Explained: How to Use Our Online Vault to Store Crypto'
-vault_des_2_1: 'Although betting at Meibo.com is highly secure, the Vault is an additional layer of protection for your funds. Every user at Meibo.com can access the Vault, whether you play'
-vault_des_casino: 'casino games'
-vault_des_2_2: 'or place bets on your favourite'
-vault_des_sports: 'sports.'
-vault_des_3: 'Here, we explain everything you need to know about the Meibo Vault, including how to access it and why it’s worth utilising as you place your bets at'
-vault_des_4: 'What is the Vault on Meibo.com?'
-vault_des_5: 'The Meibo Vault is a safe place to store funds without worrying about transaction fees or blockchain delays. The Vault acts like your own digital wallet or even like a savings account you would have with a bank. It is extremely secure – thanks to 2FA – and you can implement enhanced safety measures to take care of the crypto within. The Vault is also where you can access several Meibo.com promotions, so it’s well worth taking advantage of your Vault when placing your bets at Meibo.'
-vault_des_6: 'How Do You Access the Vault?'
-vault_des_7: 'Accessing the Vault is straightforward and can be done via any desktop or mobile device. Here are the steps to access your Meibo Vault:'
+vault_des_2_1: Although betting at Meibo.com is highly secure, the Vault is an additional
+  layer of protection for your funds. Every user at Meibo.com can access the Vault,
+  whether you play
+vault_des_casino: casino games
+vault_des_2_2: or place bets on your favourite
+vault_des_sports: sports.
+vault_des_3: Here, we explain everything you need to know about the Meibo Vault, including
+  how to access it and why it’s worth utilising as you place your bets at
+vault_des_4: What is the Vault on Meibo.com?
+vault_des_5: The Meibo Vault is a safe place to store funds without worrying about
+  transaction fees or blockchain delays. The Vault acts like your own digital wallet
+  or even like a savings account you would have with a bank. It is extremely secure
+  – thanks to 2FA – and you can implement enhanced safety measures to take care of
+  the crypto within. The Vault is also where you can access several Meibo.com promotions,
+  so it’s well worth taking advantage of your Vault when placing your bets at Meibo.
+vault_des_6: How Do You Access the Vault?
+vault_des_7: 'Accessing the Vault is straightforward and can be done via any desktop
+  or mobile device. Here are the steps to access your Meibo Vault:'
 vault_des_li1: 'Step 1: Log in to your Meibo.com account.'
 vault_des_li2: 'Step 2: Navigate to the main user menu.'
 vault_des_li3_1: 'Step 3: Go to'
-vault_des_li3_2: 'Account > Vault.'
+vault_des_li3_2: Account > Vault.
 vault_des_li4: 'Step 4: Access your Vault and set up your security features.'
 vault_des_li5: 'Step 5: Deposit crypto into your Vault.'
-vault_des_8: 'When you access the Vault for the first time, you will need to verify which security features to activate, including 2FA (two-factor authentication). You will also need to enter your password to access the crypto that you store within.'
-vault_des_9: 'How Do You Use the Vault?'
-vault_des_10: 'The primary use of the Vault is to keep your funds safe. When you complete a crypto deposit at Meibo.com, you can add your cryptocurrency to the Vault for an added layer of protection to keep your funds safe.'
-vault_des_11: 'The Vault ensures secure transmission of digital payments, and the easy-to-use interface means that you can easily access your crypto when you want to use it at Meibo, whether you’re playing '
-vault_des_card: 'cards,'
-vault_des_dice: 'dice,'
-vault_des_slots: 'slots,'
-vault_des_12: 'or placing bets on the biggest'
-vault_des_live: 'live'
-vault_des_upcoming: 'upcoming'
-vault_des_13: 'sporting events.'
-vault_des_14: 'What is the Vault Used for?'
-vault_des_15: 'The Vault is used to store cryptocurrency; in this regard, it’s similar to a cryptocurrency wallet. However, we also use the Vault to deposit some of our casino offers, giveaway prizes and weekly promotions.'
-vault_des_16: 'Learn more about how our monthly bonuses work and find out how to become a Meibo VIP and what exclusive rewards members of the Meibo VIP Club can access.'
-vault_des_17: 'The easiest way to think of the Vault is to compare it to a bank vault. You can keep your funds in an account at the bank, but storing them within the Vault is an extra layer of security so that only you can access them.'
-vault_des_18: 'What Are the Benefits of Using the Vault?'
+vault_des_8: When you access the Vault for the first time, you will need to verify
+  which security features to activate, including 2FA (two-factor authentication).
+  You will also need to enter your password to access the crypto that you store within.
+vault_des_9: How Do You Use the Vault?
+vault_des_10: The primary use of the Vault is to keep your funds safe. When you complete
+  a crypto deposit at Meibo.com, you can add your cryptocurrency to the Vault for
+  an added layer of protection to keep your funds safe.
+vault_des_11: 'The Vault ensures secure transmission of digital payments, and the
+  easy-to-use interface means that you can easily access your crypto when you want
+  to use it at Meibo, whether you’re playing '
+vault_des_card: cards,
+vault_des_dice: dice,
+vault_des_slots: slots,
+vault_des_12: or placing bets on the biggest
+vault_des_live: live
+vault_des_upcoming: upcoming
+vault_des_13: sporting events.
+vault_des_14: What is the Vault Used for?
+vault_des_15: The Vault is used to store cryptocurrency; in this regard, it’s similar
+  to a cryptocurrency wallet. However, we also use the Vault to deposit some of our
+  casino offers, giveaway prizes and weekly promotions.
+vault_des_16: Learn more about how our monthly bonuses work and find out how to become
+  a Meibo VIP and what exclusive rewards members of the Meibo VIP Club can access.
+vault_des_17: The easiest way to think of the Vault is to compare it to a bank vault.
+  You can keep your funds in an account at the bank, but storing them within the Vault
+  is an extra layer of security so that only you can access them.
+vault_des_18: What Are the Benefits of Using the Vault?
 vault_des_19: 'There are lots of benefits to using the Vault at Meibo.com:'
-vault_des_li6: 'Additional security for your funds via 2FA.'
-vault_des_li7: 'Store multiple cryptocurrencies simultaneously.'
-vault_des_li8: 'Save crypto in your Vault alongside your Meibo.com balance.'
-vault_des_li9: 'Receive prizes and giveaways securely to your Vault.'
-vault_des_li10: 'Access your crypto immediately without transaction fees and avoid blockchain delays.'
-vault_des_li11: 'Instant access to your crypto as and when you need it to fund your gameplay at the Meibo Casino or sports bets.'
-vault_des_20: 'Is Storing Funds in the Vault Safe?'
-vault_des_21: 'Yes, storing funds in the Meibo.com Vault is 100% safe. In addition to the site-wide security measures we implement to protect the funds in your balance, the Vault is bolstered by 2FA, offering additional protection and security.'
-vault_des_22: 'That being said, it’s easy to access your funds as and when you want them – simply log in and pass through the 2FA to get to your crypto.'
-vault_des_23: 'How Do You Withdraw Funds from the Vault?'
-vault_des_24: 'To withdraw funds from your Vault, first, decide how much of which currency you would like to withdraw. Then, enter your password and complete the 2FA. You can then transfer the funds to your Meibo.com balance to play your favourite casino games or to bet on sports. Alternatively, you can withdraw the funds to your crypto wallet with the help of Moonpay.'
-vault_des_25: "If you're after more information about our deposit and withdrawal methods on Meibo.com, check out our guide to online payment methods."
-vault_des_26: 'How Long Can You Store Funds in the Vault?'
-vault_des_27: 'You can store cryptocurrency in your Vault for as long as you maintain a Meibo.com account. We haven’t put any time constraints on the Vault, and you can feel free to use it for as long as you wish to keep your cryptocurrency safe.'
-vault_des_28: 'What Crypto Can You Store in the Vault?'
-vault_des_29: 'You can place bets at Meibo.com with a wide selection of cryptocurrencies. As such, the following currencies can all be stored in the Vault:'
+vault_des_li6: Additional security for your funds via 2FA.
+vault_des_li7: Store multiple cryptocurrencies simultaneously.
+vault_des_li8: Save crypto in your Vault alongside your Meibo.com balance.
+vault_des_li9: Receive prizes and giveaways securely to your Vault.
+vault_des_li10: Access your crypto immediately without transaction fees and avoid
+  blockchain delays.
+vault_des_li11: Instant access to your crypto as and when you need it to fund your
+  gameplay at the Meibo Casino or sports bets.
+vault_des_20: Is Storing Funds in the Vault Safe?
+vault_des_21: Yes, storing funds in the Meibo.com Vault is 100% safe. In addition
+  to the site-wide security measures we implement to protect the funds in your balance,
+  the Vault is bolstered by 2FA, offering additional protection and security.
+vault_des_22: That being said, it’s easy to access your funds as and when you want
+  them – simply log in and pass through the 2FA to get to your crypto.
+vault_des_23: How Do You Withdraw Funds from the Vault?
+vault_des_24: To withdraw funds from your Vault, first, decide how much of which currency
+  you would like to withdraw. Then, enter your password and complete the 2FA. You
+  can then transfer the funds to your Meibo.com balance to play your favourite casino
+  games or to bet on sports. Alternatively, you can withdraw the funds to your crypto
+  wallet with the help of Moonpay.
+vault_des_25: If you're after more information about our deposit and withdrawal methods
+  on Meibo.com, check out our guide to online payment methods.
+vault_des_26: How Long Can You Store Funds in the Vault?
+vault_des_27: You can store cryptocurrency in your Vault for as long as you maintain
+  a Meibo.com account. We haven’t put any time constraints on the Vault, and you can
+  feel free to use it for as long as you wish to keep your cryptocurrency safe.
+vault_des_28: What Crypto Can You Store in the Vault?
+vault_des_29: 'You can place bets at Meibo.com with a wide selection of cryptocurrencies.
+  As such, the following currencies can all be stored in the Vault:'
 vault_des_li12: Bitcoin (BTC)
 vault_des_li13: Ethereum (ETH)
 vault_des_li14: Litecoin (LTC)
@@ -2333,44 +2448,64 @@ vault_des_li27: The Sandbox (SAND)
 vault_des_li28: Shiba Inu (SHIB)
 vault_des_li29: Uniswap (UNI)
 vault_des_li30: Polygon (MATIC)
-vault_des_30: "Learn more about how to buy crypto if you're just getting started."
+vault_des_30: Learn more about how to buy crypto if you're just getting started.
 vault_des_31: 'Conclusion: Why You Should Utilise the Vault Feature on Meibo.com'
-vault_des_32: "The Meibo.com Vault is the ideal place to store your cryptocurrency to fund your bets at Meibo Casino or Sportsbook. Whether you’re playing our best games (such as live casino games and table games) or looking to place bets on the upcoming basketball or American football season, you can quickly move crypto from your Vault to your balance to fund your bets - it's that simple."
-vault_des_33: 'Remember, we also send funds securely to the Vault as part of certain casino promotions and sports offers, so make sure you set up your Vault to avoid missing out on all our special deals, weekly giveaways, and exclusive prizes!'
-vault_des_34: "New to Meibo.com and want to learn more before placing your bets? Browse through our online casino guide and our guide to sports betting and you'll be an expert in no time."
-vault_des_35: 'Please remember to always gamble responsibly. Learn more tips when betting online with our responsible gambling guide . You can use our budget calculator to stay on top of your spending habits and read up on our guide to knowing how much to gamble with.'
+vault_des_32: The Meibo.com Vault is the ideal place to store your cryptocurrency
+  to fund your bets at Meibo Casino or Sportsbook. Whether you’re playing our best
+  games (such as live casino games and table games) or looking to place bets on the
+  upcoming basketball or American football season, you can quickly move crypto from
+  your Vault to your balance to fund your bets - it's that simple.
+vault_des_33: Remember, we also send funds securely to the Vault as part of certain
+  casino promotions and sports offers, so make sure you set up your Vault to avoid
+  missing out on all our special deals, weekly giveaways, and exclusive prizes!
+vault_des_34: New to Meibo.com and want to learn more before placing your bets? Browse
+  through our online casino guide and our guide to sports betting and you'll be an
+  expert in no time.
+vault_des_35: Please remember to always gamble responsibly. Learn more tips when betting
+  online with our responsible gambling guide . You can use our budget calculator to
+  stay on top of your spending habits and read up on our guide to knowing how much
+  to gamble with.
 success_close_double_check: Tắt mật khẩu xác minh hai yếu tố thành công
 close_verification: Tắt xác minh hai yếu tố
-vip_sports_tip_title: Điểm dành cho sân vận động thể thao gấp {rate} lần số điểm được liệt kê bên dưới
-vip_sports_tip_content: '(Ví dụ: 1USDT=1 điểm thành viên, bạn sẽ nhận được 2 điểm thành viên khi đặt cược 1 USDT vào thể thao)'
+vip_sports_tip_title: Điểm dành cho sân vận động thể thao gấp {rate} lần số điểm được
+  liệt kê bên dưới
+vip_sports_tip_content: '(Ví dụ: 1USDT=1 điểm thành viên, bạn sẽ nhận được 2 điểm
+  thành viên khi đặt cược 1 USDT vào thể thao)'
 money_exchange: Đổi tệ
 exchange: Đổi
 pay_with: Thanh toán bằng {currency}
-rate: Tỷ giá 
+rate: Tỷ giá
 birthday_bonus: Tiền thưởng sinh nhật
-collection_instructions: 'Hướng dẫn nhận: Tiền thưởng cho hoạt động này đều được phát bằng USDT, bạn có thể chọn loại tiền bạn muốn nhận và tỷ giá giữa các loại tiền tệ áp dụng tỷ giá thị trường theo thời gian thực.'
+collection_instructions: 'Hướng dẫn nhận: Tiền thưởng cho hoạt động này đều được phát
+  bằng USDT, bạn có thể chọn loại tiền bạn muốn nhận và tỷ giá giữa các loại tiền
+  tệ áp dụng tỷ giá thị trường theo thời gian thực.'
 activity_bonus: Phần thưởng hoạt động
 success_received: Đã nhận thành công {label} {amount} {renderSvg}
 add_withdraw_info: Vui lòng liên kết tài khoản rút tiền
-three_withdraw_info_only: Mỗi loại tiền tệ chỉ có thể liên kết với 3 tài khoản nhận tiền
-want_more_del_first: Nếu bạn cần liên kết nhiều hơn, vui lòng xóa những cái không sử dụng thường xuyên trước.
+three_withdraw_info_only: Mỗi loại tiền tệ chỉ có thể liên kết với 3 tài khoản nhận
+  tiền
+want_more_del_first: Nếu bạn cần liên kết nhiều hơn, vui lòng xóa những cái không
+  sử dụng thường xuyên trước.
 withdraw_account: Số tài khoản nhận
 withdraw_address: Địa chỉ nhận
 wrong_format: Định dạng sai
-vip_integral: 'VIP Tích điểm'
+vip_integral: VIP Tích điểm
 sports_events2: Tất Cả
 choose_proto_pls: Vui lòng chọn một giao thức
 vir_address: Địa chỉ tiền tệ
 input_vir_address_pls: Vui lòng nhập địa chỉ tiền tệ
 digital_pwd: Mật khẩu số
-check_vir_address_pls: Vui lòng kiểm tra địa chỉ chính xác, nếu địa chỉ sai, sẽ không được nhận tiền
-check_account_pls: Vui lòng kiểm tra tài khoản chính xác, nếu tài khoản sai, sẽ không được nhận tiền
+check_vir_address_pls: Vui lòng kiểm tra địa chỉ chính xác, nếu địa chỉ sai, sẽ không
+  được nhận tiền
+check_account_pls: Vui lòng kiểm tra tài khoản chính xác, nếu tài khoản sai, sẽ không
+  được nhận tiền
 first_name: Tên
-last_name : Họ
+last_name: Họ
 country_pls: Vui lòng chọn Quốc gia
 city_pls: Vui lòng điền tên Thành phố
 select_pix_type_pls: Vui lòng chọn loại tài khoản PIX
-diff_game_diff_rate: Đặt cược ở các sân vận động khác nhau sẽ dẫn đến việc tích lũy điểm VIP khác nhau, vui lòng xem hình ảnh bên dưới để biết thêm chi tiết.
+diff_game_diff_rate: Đặt cược ở các sân vận động khác nhau sẽ dẫn đến việc tích lũy
+  điểm VIP khác nhau, vui lòng xem hình ảnh bên dưới để biết thêm chi tiết.
 bet_currency: Loại tiền tệ đặt cược
 sports_integral: Tích điểm trò chơi thể thao
 casino_integral: Tích điểm trò chơi Baccarat
@@ -2385,8 +2520,8 @@ plinko_auto: Đặt cược tự động
 plinko_amount: Số tiền đặt cược
 plinko_risk: Rủi ro
 plinko_rows: Số hàng
-plinko_bet: Đặt cược 
-plinko_betNumbers: Số lần đặt cược 
+plinko_bet: Đặt cược
+plinko_betNumbers: Số lần đặt cược
 plinko_autobetstart: Bắt đầu đặt cược tự động
 plinko_autobetstop: Dừng đặt cược tự động
 plinko_fairness: Công bằng
@@ -2396,9 +2531,9 @@ plinko_luckwins: Người chơi may mắn
 plinko_challenges: Thách đấu
 plinko_description: Mô tả
 plinko_rank: Xếp hạng
-plinko_user: Người chơi 
+plinko_user: Người chơi
 plinko_date: Ngày
-plinko_multiplier: Hệ số 
+plinko_multiplier: Hệ số
 plinko_payout: Số tiền thanh toán
 plinko_level1: Cấp dưới
 plinko_level2: Cấp trung
@@ -2413,22 +2548,26 @@ plinko_maxquestion1: Bạn có chắc chắn muốn bật nút đặt cược t�
 plinko_maxquestion2: Bạn có chắc chắn muốn bật nút đặt cược tối đa không ?
 plinko_turnOn: Bật
 plinko_turnOff: Bật
-plinko_info1: 1. Mô hình phân bổ sẽ xác định các khoản thanh toán tiềm năng khác nhau thông qua rủi ro và hệ số.
-plinko_info2: 2. Không xoay thiết bị hoặc màn hình của bạn để chống lại trọng lực trong khi trò chơi đang diễn ra.
+plinko_info1: 1. Mô hình phân bổ sẽ xác định các khoản thanh toán tiềm năng khác nhau
+  thông qua rủi ro và hệ số.
+plinko_info2: 2. Không xoay thiết bị hoặc màn hình của bạn để chống lại trọng lực
+  trong khi trò chơi đang diễn ra.
 plinko_rules: Quy tắc trò chơi
-plinko_hotkey1: Đặt cược 
+plinko_hotkey1: Đặt cược
 plinko_hotkey2: Nhân đôi số tiền đặt cược
 plinko_hotkey3: Giảm một nửa số tiền đặt cược
 plinko_hotkey4: Số tiền đặt cược lẻ
-plinko_hotkeyInfo: Khi phím tắt được bật, nó sẽ ảnh hưởng đến tất cả các trò chơi cho đến khi bị tắt. Mặc dù một số trò chơi có cùng tổ hợp phím nhưng bạn nên xác nhận tương tác phím bị khóa của các trò chơi khác nhau trước khi sử dụng.
+plinko_hotkeyInfo: Khi phím tắt được bật, nó sẽ ảnh hưởng đến tất cả các trò chơi
+  cho đến khi bị tắt. Mặc dù một số trò chơi có cùng tổ hợp phím nhưng bạn nên xác
+  nhận tương tác phím bị khóa của các trò chơi khác nhau trước khi sử dụng.
 plinko_hotkeyUse: Bật phím tắt
 plinko_statistics: Thống kê thời gian thực tế
-plinko_type1: "Tất cả"
-plinko_type2: Đặt cược 
+plinko_type1: Tất cả
+plinko_type2: Đặt cược
 plinko_type3: Cuộc đua
 plinko_type4: Ẩn
 plinko_left1: Lợi nhuận
-plinko_left2: Tổng số tiền cược 
+plinko_left2: Tổng số tiền cược
 plinko_right1: Thắng
 plinko_right2: Thua
 plinko_max: Giá trị lớn nhất
@@ -2443,7 +2582,7 @@ plinko_racespan: Đặt cược và cạnh tranh ngay bây giờ!
 plinko_scoreboard_time: 'Người đặt cược:'
 plinko_scoreboard_on: Tại
 plinko_scoreboard_at: Của
-plinko_scoreboard_multi: Hệ số 
+plinko_scoreboard_multi: Hệ số
 plinko_scoreboard_payout: Số tiền thanh toán
 plinko_scoreboard_play: Đi đến
 plinko_scoreboard_provable: Sự công bằng có thể chứng minh được
@@ -2462,7 +2601,8 @@ plinko_fairnesses_text3: Số cược đặt vào cặp hạt giống
 plinko_fairnesses_text4: Xoay cặp hạt giống
 plinko_fairnesses_text5: Hạt giống khách hàng mới
 plinko_fairnesses_text6: Hạt giống máy chủ tiếp theo (Băm)
-plinko_fairnesses_text7: 'Bạn phải hoàn thành các trò chơi sau để luân chuyển các cặp hạt giống:'
+plinko_fairnesses_text7: 'Bạn phải hoàn thành các trò chơi sau để luân chuyển các
+  cặp hạt giống:'
 plinko_fairnesses_button: Thay thế
 plinko_fairnesses_verifyText1: Cần nhập nhiều hơn để xác minh kết quả
 plinko_fairnesses_calcButton: Xem phân tích tính toán
@@ -2473,100 +2613,159 @@ plinko_verifyTexts_nonce: Dấu hiệu thực tế
 plinko_copyText: Sao chép thành công!
 plinko_copyId: Sao chép thành công!
 currency_min_deposit_amount: 'Số tiền gửi tối thiểu của loại tiền này là: {amount}{icon}'
-bind_more_bank_tip: Mỗi loại tiền tệ chỉ có thể liên kết với 3 tài khoản nhận tiền, nếu bạn cần liên kết nhiều hơn, vui lòng xóa những cái không sử dụng thường xuyên trước
-check_card_account_pls: 请认真核对卡号，卡号错误资金将无法到账
+bind_more_bank_tip: Mỗi loại tiền tệ chỉ có thể liên kết với 3 tài khoản nhận tiền,
+  nếu bạn cần liên kết nhiều hơn, vui lòng xóa những cái không sử dụng thường xuyên
+  trước
+check_card_account_pls: Vui lòng kiểm tra số thẻ chính xác, nếu số thẻ sai, sẽ không
+  được nhận tiền
 all_currencies: Tất cả các loại tiền tệ
-check_card_account_pls_brl: 请认真核对账户，卡号错误资金将无法到账
-is_default_addr_brl: 是否设为默认账户
-go_card_pack: 前往卡包
-please_go_package_bind_payment_information: 请前往卡包绑定收款信息
-not_payment_information_currency: 该币种您暂无收款信息
+check_card_account_pls_brl: Vui lòng kiểm tra tài khoản chính xác, nếu tài khoản sai,
+  sẽ không được nhận tiền
+is_default_addr_brl: Có đặt nó làm tài khoản mặc định hay không
+go_card_pack: Đi tới ví thẻ
+please_go_package_bind_payment_information: Vui lòng đi đến ví thẻ để liên kết thông
+  tin nhận tiền
+not_payment_information_currency: Bạn chưa có thông tin thanh toán cho loại tiền này
 all: Tất cả
-back_to_home: 回到主页
-maintain_time: 维护时间
-sports_under_maintain: 体育场馆维护中...
-to: 至
-label_bind_crypto_address : Liên kết
-no_withdraw_information_about_the_currency: Bạn chưa có thông tin thanh toán cho loại tiền này
-please_go_card_wallet_bind_withdraw_information: 请前往卡包绑定收款信息
-go_card_wallet: 前往卡包
+back_to_home: Trở về trang chủ
+maintain_time: Thời gian bảo trì
+sports_under_maintain: Trò chơi thể thao đang bảo trì...
+to: Đến
+label_bind_crypto_address: Liên kết
+no_withdraw_information_about_the_currency: Bạn chưa có thông tin thanh toán cho loại
+  tiền này
+please_go_card_wallet_bind_withdraw_information: Vui lòng đi đến ví thẻ để liên kết
+  thông tin nhận tiền
+go_card_wallet: Đi tới ví thẻ
 Directly_subordinate_to_all_currencies: Tất cả các loại tiền tệ
 Directly_subordinate_to_collect_all_currencies: Tất cả các loại tiền tệ
-all_data_all_currencies: 全部币种
+all_data_all_currencies: Tất cả các loại tiền tệ
 top_bar_login_button: Đăng Nhập
 pop_up_login_label: Đăng Nhập
 pop_up_login_button: Đăng Nhập
 pop_up_create_account_passcode_least_1_number: ít nhất 1 số
 pop_up_create_account_uppercase_lowercase_letter: bao gồm chữ thường và chữ hoa
 pop_up_create_account_password_least_1_number: mật khẩu phải có ít nhất 1 con số
-pop_up_create_account_password_uppercase_lowercase_letter: Mật khẩu phải bao gồm ký tự viết thường và viết hoa
+pop_up_create_account_password_uppercase_lowercase_letter: Mật khẩu phải bao gồm ký
+  tự viết thường và viết hoa
 tip_pop_up_reg_success_title: Chào mừng
-registration_agree_terms_conditions: Vui lòng đọc đầy đủ các điều khoản và điều kiện, vuốt đến cuối cùng để chấp nhận nó.
+registration_agree_terms_conditions: Vui lòng đọc đầy đủ các điều khoản và điều kiện,
+  vuốt đến cuối cùng để chấp nhận nó.
 registration_finally_play_now: Bắt đầu trò chơi
 pop_up_forgot_password_email_address: Địa chỉ email
 pop_up_forgot_password: Quên mật khẩu
-pop_up_create_account_password_least_8_characters: Mật khẩu của bạn phải dài ít nhất 8 ký tự
+pop_up_create_account_password_least_8_characters: Mật khẩu của bạn phải dài ít nhất
+  8 ký tự
 pop_up_create_account_name_14_char: username của bạn không thể vượt quá 14 ký tự
 pop_up_create_account_name_3_char: username của bạn phải chứa ít nhất 3 ký tự
 pop_up_create_account_no_support_email: Tên miền email không được hỗ trợ
-pop_up_create_account_email_add_char: Vui lòng thêm biểu tượng "{delta}" trong địa chỉ email của bạn
-pop_up_create_account_username_incorrect: Tên người dùng của bạn phải dài từ 3–14 ký tự.
-pop_up_create_account_no_dot_email_add_char: Vui lòng thêm biểu tượng "{delta}" trong địa chỉ email của bạn
+pop_up_create_account_email_add_char: Vui lòng thêm biểu tượng "{delta}" trong địa
+  chỉ email của bạn
+pop_up_create_account_username_incorrect: Tên người dùng của bạn phải dài từ 3–14
+  ký tự.
+pop_up_create_account_no_dot_email_add_char: Vui lòng thêm biểu tượng "{delta}" trong
+  địa chỉ email của bạn
 pop_up_create_account_label_email_address: Địa chỉ email
 pop_up_create_account_label_reg_step1: 'Bước 1/2: Điền thông tin của bạn'
 pop_up_create_account_header_register: Tạo tài khoản
 site_announcement: Thông báo trang web
 dont_tip_today: Hôm nay không nhắc lại nữa
-pop_up_finally_create_account_name_no_equal_pwd: Tên người dùng và mật khẩu của bạn không thể giống nhau
-top_bar_drop_down_search_currency: 搜索货币
-responsible_safe_text_1: Meibo is committed to providing a safe environment for all its players to gamble with us, which is why it’s so important to Meibo Safe!
-responsible_safe_text_2: Online casino gambling should be a form of entertainment that should not cause harm to other areas of your life.
+pop_up_finally_create_account_name_no_equal_pwd: Tên người dùng và mật khẩu của bạn
+  không thể giống nhau
+top_bar_drop_down_search_currency: Tìm
+responsible_safe_text_1: Meibo is committed to providing a safe environment for all
+  its players to gamble with us, which is why it’s so important to Meibo Safe!
+responsible_safe_text_2: Online casino gambling should be a form of entertainment
+  that should not cause harm to other areas of your life.
 responsible_safe_text_3: 'Meibo does this through:'
-responsible_safe_text_4: Providing information to customers regarding their play and spend so they can make informed decisions about their gambling.
-responsible_safe_text_5: Having safer gambling tools available in (such as limits, breaks and self-exclusions) that are available to all customers to place on their account at any time.
-responsible_safe_text_6: Providing information regarding external support to assist with preventing gambling harm and problem gambling.
-responsible_safe_text_7: A Customer Service Team available 24/7 to assist with safer gambling enquiries.
+responsible_safe_text_4: Providing information to customers regarding their play and
+  spend so they can make informed decisions about their gambling.
+responsible_safe_text_5: Having safer gambling tools available in (such as limits,
+  breaks and self-exclusions) that are available to all customers to place on their
+  account at any time.
+responsible_safe_text_6: Providing information regarding external support to assist
+  with preventing gambling harm and problem gambling.
+responsible_safe_text_7: A Customer Service Team available 24/7 to assist with safer
+  gambling enquiries.
 responsible_safe_text_8: Ensuring minors are not able to create Meibo.com accounts.
 responsible_safe_text_9: What is Safe Gambling?
-responsible_safe_text_10: Understanding about safe gambling is key to making sure you are maximising the Meibo.com experience.
+responsible_safe_text_10: Understanding about safe gambling is key to making sure
+  you are maximising the Meibo.com experience.
 responsible_safe_text_11: 'Tips to gambling safely are:'
-responsible_safe_text_12: Your gambling is balanced with other recreational activities/pastimes you have.
-responsible_safe_text_13: Before you start to gamble, you have a plan in mind of how much you want to spend gambling, and how long you will be gambling for.
+responsible_safe_text_12: Your gambling is balanced with other recreational activities/pastimes
+  you have.
+responsible_safe_text_13: Before you start to gamble, you have a plan in mind of how
+  much you want to spend gambling, and how long you will be gambling for.
 responsible_safe_text_14: Betting with money that is affordable to you.
 responsible_safe_text_15: Taking breaks or stopping gambling for the day.
-responsible_safe_text_16: Understanding the odds and knowing the risks associated with gambling.
-responsible_safe_text_17: Not being overly upset and angry by losses when you are gambling.
+responsible_safe_text_16: Understanding the odds and knowing the risks associated
+  with gambling.
+responsible_safe_text_17: Not being overly upset and angry by losses when you are
+  gambling.
 responsible_safe_text_18: Learn more tips with our responsible gambling guide.
 responsible_safe_text_19: Knowing the Odds
-responsible_safe_text_20: There are a lot of myths and misconceptions about gambling - understanding the odds of gambling helps put the chances of winning into perspective.
+responsible_safe_text_20: There are a lot of myths and misconceptions about gambling
+  - understanding the odds of gambling helps put the chances of winning into perspective.
 responsible_safe_text_21: Meibo offers two products, Casino and Sportsbook.
-responsible_safe_text_22: Both products have different win rates and probability that players need to be aware of, which will help to understand the risks associated with gaming.
+responsible_safe_text_22: Both products have different win rates and probability that
+  players need to be aware of, which will help to understand the risks associated
+  with gaming.
 responsible_safe_text_23: House Advantage/House Edge
-responsible_safe_text_24: Games have a house edge to ensure a percentage of the total amount wagered is returned to the House, which in this case is Meibo.
+responsible_safe_text_24: Games have a house edge to ensure a percentage of the total
+  amount wagered is returned to the House, which in this case is Meibo.
 responsible_safe_text_25: Randomness
-responsible_safe_text_26: All gambling has an element of randomness - there is no way to control the outcome of any casino game or sporting event.
+responsible_safe_text_26: All gambling has an element of randomness - there is no
+  way to control the outcome of any casino game or sporting event.
 responsible_safe_text_27: Independent Outcomes
-responsible_safe_text_28: Games/Spins are not related. Their outcomes are not dependent on how much, or how long, you’ve previously played the game for.
+responsible_safe_text_28: Games/Spins are not related. Their outcomes are not dependent
+  on how much, or how long, you’ve previously played the game for.
 responsible_safe_text_29: Odds and Probability
-responsible_safe_text_30: Odds and probability are ways to describe your chances of winning. Whilst the odds can appear to be low, there are no certainties in betting.
+responsible_safe_text_30: Odds and probability are ways to describe your chances of
+  winning. Whilst the odds can appear to be low, there are no certainties in betting.
 responsible_safe_text_31: Ways We Can Help You Stay Meibo Safe!
-responsible_safe_text_32: Meibo is committed to promoting players to consider their own activity, whilst providing the tools they need to ensure they are in control, and playing with money they can afford.
+responsible_safe_text_32: Meibo is committed to promoting players to consider their
+  own activity, whilst providing the tools they need to ensure they are in control,
+  and playing with money they can afford.
 responsible_safe_text_33: Using Safer Gambling Tools on Your Account
-responsible_safe_text_34: Meibo has a range of tools that can be applied to your account to set safe limits for you to play within.
+responsible_safe_text_34: Meibo has a range of tools that can be applied to your account
+  to set safe limits for you to play within.
 responsible_safe_text_35: Budget Calculator
-responsible_safe_text_36: Use our Monthly Budget Calculator to help monitor your spending habits and review how much of your income is spent on gambling. Learn more about how much you should gamble with our guide.
+responsible_safe_text_36: Use our Monthly Budget Calculator to help monitor your spending
+  habits and review how much of your income is spent on gambling. Learn more about
+  how much you should gamble with our guide.
 responsible_safe_text_37: Gambling Limits
 responsible_safe_text_38: Loss limit
-responsible_safe_text_39: A loss limit allows you to set a limit on how much you can afford to lose over your set period of time. The limit can be set over a period of one day, one week or one month. It is a net loss limit. Profits made during your set period will not count towards your limit amount. If you are profitable during the set period, you are able to use your profits to continue to wager and bet until you reach your loss limit. Unsettled bets count towards the limit. Please check your unsettled bets if you are unable to place bets, as these unsettled bets may be causing you to reach your limit.
+responsible_safe_text_39: A loss limit allows you to set a limit on how much you can
+  afford to lose over your set period of time. The limit can be set over a period
+  of one day, one week or one month. It is a net loss limit. Profits made during your
+  set period will not count towards your limit amount. If you are profitable during
+  the set period, you are able to use your profits to continue to wager and bet until
+  you reach your loss limit. Unsettled bets count towards the limit. Please check
+  your unsettled bets if you are unable to place bets, as these unsettled bets may
+  be causing you to reach your limit.
 responsible_safe_text_40: Wager limit
-responsible_safe_text_41: A wager limit (or betting limit) allows you to set a limit on how much you can wager over your set period of time. The maximum bet limit can be set over a period of one day, one week or one month. The limit is not a net limit so profits are excluded. This means, if you are profitable during the period these profits are not offset against your maximum bet limit.
-responsible_safe_text_42: To increase or decrease your limits you must remove existing limits and create new limits. Upon removing limits a 24-hour cool off period will commence before you are able to create your new limit.
+responsible_safe_text_41: A wager limit (or betting limit) allows you to set a limit
+  on how much you can wager over your set period of time. The maximum bet limit can
+  be set over a period of one day, one week or one month. The limit is not a net limit
+  so profits are excluded. This means, if you are profitable during the period these
+  profits are not offset against your maximum bet limit.
+responsible_safe_text_42: To increase or decrease your limits you must remove existing
+  limits and create new limits. Upon removing limits a 24-hour cool off period will
+  commence before you are able to create your new limit.
 responsible_safe_text_43: Self-Exclusion
-responsible_safe_text_44: Lock yourself out of your Meibo.com for a longer period of time if gambling is becoming a concern for you. You can opt for a 6 month, 1 year, 2 year and 5 year self exclusion. If you would like detailed information about how self exclusion works, please click here.
+responsible_safe_text_44: Lock yourself out of your Meibo.com for a longer period
+  of time if gambling is becoming a concern for you. You can opt for a 6 month, 1
+  year, 2 year and 5 year self exclusion. If you would like detailed information about
+  how self exclusion works, please click here.
 responsible_safe_text_45: Gamban
-responsible_safe_text_46: Gamban is a gambling blocking software that you can elect to install on your devices for the duration of your self exclusion. Eligible customers can receive a complimentary Gamban subscription on us when excluding for the periods of 3 months, 6 months or 1 year.
+responsible_safe_text_46: Gamban is a gambling blocking software that you can elect
+  to install on your devices for the duration of your self exclusion. Eligible customers
+  can receive a complimentary Gamban subscription on us when excluding for the periods
+  of 3 months, 6 months or 1 year.
 responsible_safe_text_47: What is Problem Gambling?
-responsible_safe_text_48: 'A small population of people who gamble are considered to be problem gamblers. For these people, gambling stops being fun and starts to negatively affect other areas of your personal life such as:'
+responsible_safe_text_48: 'A small population of people who gamble are considered
+  to be problem gamblers. For these people, gambling stops being fun and starts to
+  negatively affect other areas of your personal life such as:'
 responsible_safe_text_49: Mental wellbeing
 responsible_safe_text_50: Physical health
 responsible_safe_text_51: Personal relationships
@@ -2575,22 +2774,30 @@ responsible_safe_text_53: 'Signs you May be developing Problem Gambling:'
 responsible_safe_text_54: Getting overly upset by losses.
 responsible_safe_text_55: Chasing your losses back.
 responsible_safe_text_56: Not being able to stop or cut back gambling.
-responsible_safe_text_57: Hiding your gambling from others and being defensive about losses or time spent gambling.
+responsible_safe_text_57: Hiding your gambling from others and being defensive about
+  losses or time spent gambling.
 responsible_safe_text_58: Neglecting responsibilities (financial and personal relationships).
 responsible_safe_text_59: Using gambling to escape other problems.
 responsible_safe_text_60: Minors
 responsible_safe_text_61: Meibo.com does not support underage gambling.
-responsible_safe_text_62: Underage gambling is illegal, and is defined as anyone who is under the age of 18 years old at the time of account registration.
-responsible_safe_text_63: No winnings should be paid to such players if identified as someone who is underage.
+responsible_safe_text_62: Underage gambling is illegal, and is defined as anyone who
+  is under the age of 18 years old at the time of account registration.
+responsible_safe_text_63: No winnings should be paid to such players if identified
+  as someone who is underage.
 responsible_safe_text_64: Tips for Parents
-responsible_safe_text_65: Do not leave your computer unattended when your casino software is running.
+responsible_safe_text_65: Do not leave your computer unattended when your casino software
+  is running.
 responsible_safe_text_66: Password-protect your casino program.
 responsible_safe_text_67: Do not allow minors to participate in any gambling activity.
-responsible_safe_text_68: Keep your casino account number and payment card(s) out of reach of minors.
+responsible_safe_text_68: Keep your casino account number and payment card(s) out
+  of reach of minors.
 responsible_safe_text_69: Do not save passwords onto your computer.
-responsible_safe_text_70: Limit the amount of time your children spend online and make use of software to prevent your children from accessing inappropriate material.
+responsible_safe_text_70: Limit the amount of time your children spend online and
+  make use of software to prevent your children from accessing inappropriate material.
 responsible_safe_text_71: Gambling Bet Blocking and Filtering Tools
-responsible_safe_text_72: 'In order to ensure child safety on the Internet, Meibo encourages its players to make use of filtering software to prevent minors from accessing certain online material:'
+responsible_safe_text_72: 'In order to ensure child safety on the Internet, Meibo
+  encourages its players to make use of filtering software to prevent minors from
+  accessing certain online material:'
 responsible_safe_text_73: Gamcare
 responsible_safe_text_74: Netnanny
 responsible_safe_text_75: Betblocker
