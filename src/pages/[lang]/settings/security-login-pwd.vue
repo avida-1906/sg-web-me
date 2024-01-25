@@ -6,6 +6,9 @@ const { openNotify } = useNotify()
 const { runMemberLogout, logoutLoading } = useLogout()
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(true)
 const {
+  isOpenPayPwd,
+} = useBrandBaseDetail()
+const {
   bool: isShowPasswordVerify,
   setTrue: setShowPasswordVerifyTrue,
   setFalse: setShowPasswordVerifyFalse,
@@ -106,7 +109,6 @@ async function submitLoginPwd() {
   <div class="tg-settings-security">
     <AppSettingsContentItem
       :title="t('password')"
-      last-one
       :btn-loading="passwordUpdateLoading && logoutLoading"
       :show-hr="false"
       :depends-disabled="[!password && !newPassword && !repeatPassword]"
@@ -144,6 +146,9 @@ async function submitLoginPwd() {
         />
       </BaseLabel>
     </AppSettingsContentItem>
+    <template v-if="isOpenPayPwd">
+      <AppPayPassword />
+    </template>
   </div>
 </template>
 

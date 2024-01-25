@@ -1,12 +1,17 @@
 <script setup lang='ts'>
 const { t } = useI18n()
+const { currentNoticeId, saveCurrentNoticeId, removeCurrentNoticeId } = useDialogSiteAnnouncementList()
 const { bool: checked } = useBoolean(false)
 
 function onNoMoreTipChecked(v: boolean) {
   if (v)
-    return Local.set(STORAGE_NO_MORE_TIP_DAY, new Date().getDate())
-  Local.remove(STORAGE_NO_MORE_TIP_DAY)
+    return saveCurrentNoticeId()
+  removeCurrentNoticeId()
 }
+
+watch(currentNoticeId, (a) => {
+  console.log('🚀 ~ watch ~ a:', a)
+})
 </script>
 
 <template>

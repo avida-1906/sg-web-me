@@ -344,7 +344,7 @@ onMounted(() => {
           />
           <BaseInput
             v-model="paramsData[item.index as keyof typeof paramsData]"
-            :label="item.label"
+            :max="64" :label="item.label"
           />
         </div>
       </div>

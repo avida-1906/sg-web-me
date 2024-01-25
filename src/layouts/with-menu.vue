@@ -8,12 +8,13 @@ const { animatingMounted } = useLayoutAnimate({ aniMounted: true })
 const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
 const { isLogin, companyData } = storeToRefs(useAppStore())
 const { bool: isPopShow, setTrue: setPTrue, setFalse: setPFalse } = useBoolean(false)
+const { isOpenVerify } = useBrandBaseDetail()
 
 const path = computed(() => {
   return `/${route.path.split('/').slice(2).join('/')}`
 })
-const menuData = computed<any>(() =>
-  route.meta.withMenuMenu?.map((m, idx) => {
+const menuData = computed<any>(() => {
+  const menu = route.meta.withMenuMenu?.map((m, idx) => {
     if (m.title === 'stake_safety')
       m.title = t(m.title, { site: companyData.value?.name })
 
@@ -23,8 +24,13 @@ const menuData = computed<any>(() =>
       value: idx,
       label: m.isT ? t(m.title) : m.title,
     }
-  })
-    .filter(f => f.token ? isLogin.value : true))
+  }).filter(f => f.token ? isLogin.value : true)
+  // 设置页未开启双重验证则要去掉
+  if (path.value.includes('/settings/') && !isOpenVerify.value)
+    return menu?.filter(item => item.path !== '/settings/security-safe-check')
+  else
+    return menu
+})
 const icon = computed<any>(() => route.meta.withMenuIcon)
 const withMenuMobileType = computed(() => route.meta.withMenuMobileType)
 const noBg = computed(() => path.value.includes('/vip/')

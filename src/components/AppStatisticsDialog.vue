@@ -232,9 +232,9 @@ function closeDetail() {
 function formatBetTime(betTime: string) {
   switch (betTime) {
     case '1': return t('today')
-    case '7': return t('this_week')
-    case '30': return t('this_month')
-    case '90': return t('this_quarter')
+    case '7': return t('last_days_mid', { delta: 7 })
+    case '30': return t('last_days_mid', { delta: 30 })
+    case '90': return t('last_days_mid', { delta: 90 })
     default: return '-'
   }
 }

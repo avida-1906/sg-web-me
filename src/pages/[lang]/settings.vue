@@ -32,9 +32,9 @@ meta:
     - title: menu_title_settings_update_safecheck
       path: /settings/security-safe-check
       isT: true
-    - title: menu_title_settings_update_safepwd
-      path: /settings/security-safe-pwd
-      isT: true
+    # - title: menu_title_settings_update_safepwd
+    #   path: /settings/security-safe-pwd
+    #   isT: true
     - title: menu_title_settings_private
       path: /settings/preferences
       isT: true

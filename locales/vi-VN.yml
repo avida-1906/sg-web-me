@@ -2487,11 +2487,11 @@ maintain_time: 维护时间
 sports_under_maintain: 体育场馆维护中...
 to: 至
 label_bind_crypto_address : Liên kết
-no_withdraw_information_about_the_currency: 该币种您暂无收款信息
+no_withdraw_information_about_the_currency: Bạn chưa có thông tin thanh toán cho loại tiền này
 please_go_card_wallet_bind_withdraw_information: 请前往卡包绑定收款信息
 go_card_wallet: 前往卡包
-Directly_subordinate_to_all_currencies: 全部币种
-Directly_subordinate_to_collect_all_currencies: 全部币种
+Directly_subordinate_to_all_currencies: Tất cả các loại tiền tệ
+Directly_subordinate_to_collect_all_currencies: Tất cả các loại tiền tệ
 all_data_all_currencies: 全部币种
 top_bar_login_button: Đăng Nhập
 pop_up_login_label: Đăng Nhập
@@ -2500,24 +2500,24 @@ pop_up_create_account_passcode_least_1_number: ít nhất 1 số
 pop_up_create_account_uppercase_lowercase_letter: bao gồm chữ thường và chữ hoa
 pop_up_create_account_password_least_1_number: mật khẩu phải có ít nhất 1 con số
 pop_up_create_account_password_uppercase_lowercase_letter: Mật khẩu phải bao gồm ký tự viết thường và viết hoa
-tip_pop_up_reg_success_title: 欢迎
-registration_agree_terms_conditions: 请完整阅读条款与条件，然后滚动至末尾将其接受。
-registration_finally_play_now: 开始游戏
-pop_up_forgot_password_email_address: 电邮地址
-pop_up_forgot_password: 忘记密码
+tip_pop_up_reg_success_title: Chào mừng
+registration_agree_terms_conditions: Vui lòng đọc đầy đủ các điều khoản và điều kiện, vuốt đến cuối cùng để chấp nhận nó.
+registration_finally_play_now: Bắt đầu trò chơi
+pop_up_forgot_password_email_address: Địa chỉ email
+pop_up_forgot_password: Quên mật khẩu
 pop_up_create_account_password_least_8_characters: Mật khẩu của bạn phải dài ít nhất 8 ký tự
-pop_up_create_account_name_14_char: 您的 username 不得超过 14 个字符
-pop_up_create_account_name_3_char: 您的 username 必须含有至少 3 个字符
-pop_up_create_account_no_support_email: 电子邮件域不受支持
-pop_up_create_account_email_add_char: 请在您的电邮地址中加入 “{delta}” 符号
-pop_up_create_account_username_incorrect: 您的用户名长度必须为 3 – 14 个字符。
-pop_up_create_account_no_dot_email_add_char: 请在您的电邮地址中加入 “{delta}” 符号
-pop_up_create_account_label_email_address: 电邮地址
-pop_up_create_account_label_reg_step1: 步骤 1/2： 填写您的详细信息
-pop_up_create_account_header_register: 创建账户
-site_announcement: 站内公告
-dont_tip_today: 今日不再提示
-pop_up_finally_create_account_name_no_equal_pwd: 您的用户名和密码不能相同
+pop_up_create_account_name_14_char: username của bạn không thể vượt quá 14 ký tự
+pop_up_create_account_name_3_char: username của bạn phải chứa ít nhất 3 ký tự
+pop_up_create_account_no_support_email: Tên miền email không được hỗ trợ
+pop_up_create_account_email_add_char: Vui lòng thêm biểu tượng "{delta}" trong địa chỉ email của bạn
+pop_up_create_account_username_incorrect: Tên người dùng của bạn phải dài từ 3–14 ký tự.
+pop_up_create_account_no_dot_email_add_char: Vui lòng thêm biểu tượng "{delta}" trong địa chỉ email của bạn
+pop_up_create_account_label_email_address: Địa chỉ email
+pop_up_create_account_label_reg_step1: 'Bước 1/2: Điền thông tin của bạn'
+pop_up_create_account_header_register: Tạo tài khoản
+site_announcement: Thông báo trang web
+dont_tip_today: Hôm nay không nhắc lại nữa
+pop_up_finally_create_account_name_no_equal_pwd: Tên người dùng và mật khẩu của bạn không thể giống nhau
 top_bar_drop_down_search_currency: 搜索货币
 responsible_safe_text_1: Meibo is committed to providing a safe environment for all its players to gamble with us, which is why it’s so important to Meibo Safe!
 responsible_safe_text_2: Online casino gambling should be a form of entertainment that should not cause harm to other areas of your life.

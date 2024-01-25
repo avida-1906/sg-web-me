@@ -419,6 +419,7 @@ declare global {
   const tryOnMounted: typeof import('@vueuse/core')['tryOnMounted']
   const tryOnScopeDispose: typeof import('@vueuse/core')['tryOnScopeDispose']
   const tryOnUnmounted: typeof import('@vueuse/core')['tryOnUnmounted']
+  const uniq: typeof import('lodash-es')['uniq']
   const uniqBy: typeof import('lodash-es')['uniqBy']
   const uniqWith: typeof import('lodash-es')['uniqWith']
   const unref: typeof import('vue')['unref']
@@ -502,6 +503,7 @@ declare global {
   const useDialogNotice: typeof import('./composables/useDialogNotice')['useDialogNotice']
   const useDialogReceiveBonus: typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']
   const useDialogSiteAnnouncement: typeof import('./composables/useDialogSiteAnnouncement')['useDialogSiteAnnouncement']
+  const useDialogSiteAnnouncementList: typeof import('./composables/useDialogSiteAnnouncementList')['useDialogSiteAnnouncementList']
   const useDialogSwiperNotice: typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']
   const useDialogThirdAuthForm: typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']
   const useDialogVipBonus: typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']
@@ -1117,6 +1119,7 @@ declare module 'vue' {
     readonly tryOnMounted: UnwrapRef<typeof import('@vueuse/core')['tryOnMounted']>
     readonly tryOnScopeDispose: UnwrapRef<typeof import('@vueuse/core')['tryOnScopeDispose']>
     readonly tryOnUnmounted: UnwrapRef<typeof import('@vueuse/core')['tryOnUnmounted']>
+    readonly uniq: UnwrapRef<typeof import('lodash-es')['uniq']>
     readonly uniqBy: UnwrapRef<typeof import('lodash-es')['uniqBy']>
     readonly uniqWith: UnwrapRef<typeof import('lodash-es')['uniqWith']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
@@ -1200,6 +1203,7 @@ declare module 'vue' {
     readonly useDialogNotice: UnwrapRef<typeof import('./composables/useDialogNotice')['useDialogNotice']>
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
     readonly useDialogSiteAnnouncement: UnwrapRef<typeof import('./composables/useDialogSiteAnnouncement')['useDialogSiteAnnouncement']>
+    readonly useDialogSiteAnnouncementList: UnwrapRef<typeof import('./composables/useDialogSiteAnnouncementList')['useDialogSiteAnnouncementList']>
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
     readonly useDialogVipBonus: UnwrapRef<typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']>
@@ -1809,6 +1813,7 @@ declare module '@vue/runtime-core' {
     readonly tryOnMounted: UnwrapRef<typeof import('@vueuse/core')['tryOnMounted']>
     readonly tryOnScopeDispose: UnwrapRef<typeof import('@vueuse/core')['tryOnScopeDispose']>
     readonly tryOnUnmounted: UnwrapRef<typeof import('@vueuse/core')['tryOnUnmounted']>
+    readonly uniq: UnwrapRef<typeof import('lodash-es')['uniq']>
     readonly uniqBy: UnwrapRef<typeof import('lodash-es')['uniqBy']>
     readonly uniqWith: UnwrapRef<typeof import('lodash-es')['uniqWith']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
@@ -1892,6 +1897,7 @@ declare module '@vue/runtime-core' {
     readonly useDialogNotice: UnwrapRef<typeof import('./composables/useDialogNotice')['useDialogNotice']>
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
     readonly useDialogSiteAnnouncement: UnwrapRef<typeof import('./composables/useDialogSiteAnnouncement')['useDialogSiteAnnouncement']>
+    readonly useDialogSiteAnnouncementList: UnwrapRef<typeof import('./composables/useDialogSiteAnnouncementList')['useDialogSiteAnnouncementList']>
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
     readonly useDialogVipBonus: UnwrapRef<typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']>
