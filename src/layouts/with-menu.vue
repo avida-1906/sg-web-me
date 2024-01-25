@@ -26,7 +26,7 @@ const menuData = computed<any>(() => {
     }
   }).filter(f => f.token ? isLogin.value : true)
   // 设置页未开启双重验证则要去掉
-  if (path.value.includes('/settings/') && !isOpenVerify.value)
+  if (path.value.includes('/settings') && !isOpenVerify.value)
     return menu?.filter(item => item.path !== '/settings/security-safe-check')
   else
     return menu
