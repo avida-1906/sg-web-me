@@ -225,7 +225,7 @@ onMounted(() => {
       size="lg" bg-style="secondary" :disabled="submitDisabled || loading"
       :loading="loading" @click="confirm"
     >
-      {{ t('confirm_pay') }}
+      {{ t('pop_up_currency_exchange_button_confirm_pay') }}
     </BaseButton>
   </div>
 </template>

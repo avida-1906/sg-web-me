@@ -24,7 +24,7 @@ const currentTab = ref(props.activeTab)
 
 const tabList = computed(() => {
   const arr = [
-    { label: t('deposit'), value: 'deposit' },
+    { label: t('pop_up_wallet_tap_card_deposit'), value: 'deposit' },
     { label: t('menu_title_settings_withdrawals'), value: 'withdraw' },
     { label: t('card_wallet'), value: 'cardHolder' },
   ]
