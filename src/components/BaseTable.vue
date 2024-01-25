@@ -167,6 +167,7 @@ watch(() => props.columns, () => {
               </slot>
               <AppAmount
                 v-else-if="col.isAmount"
+                style="display: inline-block;"
                 :is-popper="isAmountPopper"
                 :show-color="col.showColor"
                 :amount="data[col.dataIndex]"
