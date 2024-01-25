@@ -126,6 +126,7 @@ async function handleWithdraw() {
     amountRef.value.setTouchTrue()
   await valiAddress()
   await valiAmount()
+  passwordRef.value.setTouchTrue()
   await passwordRef.value.validatePassword()
   if (!addressMsg.value && !amountMsg.value && !passwordRef.value.errPassword) {
     runAsyncWithdrawCoin({

@@ -149,6 +149,7 @@ async function withDrawSubmit() {
     amountRef.value.setTouchTrue()
   await selectBankValidate()
   await amountValidate()
+  passwordRef.value.setTouchTrue()
   await passwordRef.value.validatePassword()
   if (!selectBankError.value && !amountError.value && !passwordRef.value.errPassword) {
     runWithdraw({

@@ -85,7 +85,7 @@ defineExpose({ resetPassword, validatePassword, errPassword, setTouchTrue: getTo
 <template>
   <div class="password-box">
     <BaseInput
-      ref="passwordRef" v-model="password" :label="pwdLabel" :msg="errPassword || errPayPwd" :placeholder="placeholder"
+      ref="passwordRef" v-model="password" :label="pwdLabel" :msg="errPassword ?? errPayPwd" :placeholder="placeholder"
       type="password" max="6" must :msg-after-touched="!errPayPwd"
       @input="passwordChange"
     >
