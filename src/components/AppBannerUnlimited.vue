@@ -48,6 +48,7 @@ const bannerData = computed(() => {
     },
   ]
 })
+
 const offSet = ref(0)
 const activeValue = ref(2)
 const {

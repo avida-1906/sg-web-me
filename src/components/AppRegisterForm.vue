@@ -270,6 +270,7 @@ async function getMemberReg(callBack: (data: any) => void) {
     // runMemberReg(paramsReg)
     if (props.isRegister) {
       Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
+      Session.remove(STORAGE_THIRDREG_PARAMS_KEYWORDS)
       setNeedSaveFormDataTrue()
     }
     callBack && callBack(paramsReg)
@@ -336,11 +337,13 @@ onUnmounted(() => {
       birthday: birthday.value,
       captcha: emailCode.value,
     }
-    if (!needSaveFormData.value)
+    if (!needSaveFormData.value) {
       Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
-
-    else
+    }
+    else {
       Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
+      Session.remove(STORAGE_THIRDREG_PARAMS_KEYWORDS)
+    }
   }
 })
 
@@ -352,7 +355,7 @@ await application.allSettled([runAsyncBrandRegDetail({ tag: 'reg' })])
 <template>
   <div class="app-register">
     <div class="app-register-input-box">
-      <BaseLabel v-if="needEmail" :label="t('pop_up_create_account_label_email_address')" need-focus must-small>
+      <BaseLabel v-if="needEmail" :label="t('pop_up_create_account_label_email_address')" must-small need-focus>
         <BaseInput
           ref="emailRef" v-model="email"
           :msg="emailErrorMsg" msg-after-touched type="email" name="email"
