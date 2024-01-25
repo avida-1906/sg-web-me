@@ -202,7 +202,6 @@ onUnmounted(() => {
           :style="{
             transform: `translate(${offSet}px, 0px)`,
             width: `${sliderWidth}px`,
-            touchAction: isDragging ? 'pan-x' : '',
           }"
           :class="{ 'is-transition': activeTransition }"
         >
