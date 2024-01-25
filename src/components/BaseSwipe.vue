@@ -97,12 +97,10 @@ onMounted(() => {
             <div class="other" :class="[item.align === 'left' ? 'other-left' : 'other-right']">
               <div class="banner-content">
                 <div class="name">
-                  促销活动
+                  {{ item.title }}
                 </div>
                 <div class="title">
-                  每日竞赛-瓜分$100,000美金
-                  每日竞赛-瓜分$100,000美金
-                  每日竞赛-瓜分$100,000美金
+                  {{ item.superscript }}
                 </div>
                 <div class="banner-content-text">
                   {{ item.content }}

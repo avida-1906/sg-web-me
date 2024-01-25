@@ -28,20 +28,24 @@ const items = computed(() => {
     return []
 
   return bannerList.value.map<BannerItem>((item) => {
+    const bannerInfo = item.banner_info
+
     return {
       imgUrl: item.jump_url,
       type: item.jump_type,
-      backgroundUrl: item.banner_info.background,
-      rightImageUrl: item.banner_info.icon,
-      content: item.banner_info.content[getCurrentLanguageForBackend()],
+      backgroundUrl: bannerInfo.background,
+      rightImageUrl: bannerInfo.icon,
+      content: bannerInfo.content.zh_CN,
       align: item.banner_style === 1 ? 'left' : 'right',
       banner_style: item.banner_style,
-      banner_style3_background: item.banner_url[getCurrentLanguageForBackend()],
-      button: item.banner_info.button_state === 1
+      title: bannerInfo.title ? bannerInfo.title[getCurrentLanguageForBackend()] : '',
+      superscript: bannerInfo.superscript ? bannerInfo.superscript[getCurrentLanguageForBackend()] : '',
+      banner_style3_background: item.banner_url ? item.banner_url[getCurrentLanguageForBackend()] : '',
+      button: bannerInfo.button_state === 1
         ? {
-            text: item.banner_info.button_content[getCurrentLanguageForBackend()],
-            url: item.banner_info.button_jump_url,
-            type: item.banner_info.button_jump_type,
+            text: bannerInfo.button_content.zh_CN,
+            url: bannerInfo.button_jump_url,
+            type: bannerInfo.button_jump_type,
           }
         : undefined,
     }
@@ -79,7 +83,7 @@ await application.allSettled([fetchDataOrLoadImage()])
       marginTop: mgt,
     }"
   >
-    <BaseSwipe :items="items" />
+    <BaseSwipe v-if="items && items.length" :items="items" />
   </div>
 </template>
 

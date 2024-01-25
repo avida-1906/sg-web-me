@@ -2293,6 +2293,10 @@ export function ApiMemberBannerV2List(params: {
       button_content: { [key: string]: string }
       button_jump_type: number
       button_jump_url: string
+      /** 标题 */
+      title: { [key: string]: string }
+      /** 副标题 */
+      superscript: { [key: string]: string }
     }
     banner_url: { [key: string]: string }
     pc_seq: number

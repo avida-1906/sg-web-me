@@ -272,6 +272,8 @@ export interface BannerItem {
   content: string
   banner_style3_background: string
   banner_style: 1 | 2 | 3
+  title: string
+  superscript: string
   button?: {
     text: string
     url: string
