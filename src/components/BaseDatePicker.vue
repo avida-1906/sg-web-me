@@ -36,11 +36,18 @@ const maxDate = computed(() =>
 
 const isValid = computed(() => startDate.value <= endDate.value)
 
+onClickOutside(startDateEle, setUpFalse1)
+onClickOutside(endDateEle, setUpFalse2)
 function togglePicker(ty: DateLabel) {
-  if (ty === 'start')
+  if (ty === 'start') {
     startDateEle.value.showPicker()
-  else
+    setUpTrue1()
+  }
+
+  else {
     endDateEle.value.showPicker()
+    setUpTrue2()
+  }
 }
 
 function dateChange(e: any, ty: DateLabel) {
@@ -84,8 +91,6 @@ onMounted(() => {
             :min="minDate"
             :max="endDate"
             @change="e => dateChange(e, 'start')"
-            @focus="setUpTrue1"
-            @blur="setUpFalse1"
           >
         </label>
       </div>
@@ -103,8 +108,6 @@ onMounted(() => {
             :min="startDate"
             :max="maxDate"
             @change="e => dateChange(e, 'end')"
-            @focus="setUpTrue2"
-            @blur="setUpFalse2"
           >
         </label>
       </div>
