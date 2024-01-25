@@ -134,7 +134,6 @@ function onPopperOpen() {
               'popper-option-dark': theme,
               'popper-option': !theme,
               'active': item.value === modelValue,
-              'bankcard-disable': item.state === 2,
               'disabled': item.disabled,
               'is-pop-mobile': isMobile,
               'is-pop-not-mobile': !isMobile,
@@ -374,6 +373,9 @@ function onPopperOpen() {
     cursor: not-allowed;
     &:hover{
       color: var(--tg-popper-color-default);
+    }
+    &:active{
+      transform: none;
     }
   }
   &.active{
