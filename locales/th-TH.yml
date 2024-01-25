@@ -2255,7 +2255,7 @@ sports_integral: คะแนนกีฬา
 casino_integral: คะแนนไลฟ์สด
 slot_integral: คะแนนอีสปอร์ต
 fish_integral: คะแนนยิงปลา
-pay_methods: คะแนนยิงปลา
+pay_methods: วิธีชำระเงิน
 country: ประเทศ
 city: เมือง
 pix_account_type: ประเภทบัญชี PXI
@@ -2533,3 +2533,5 @@ responsible_safe_text_75: Betblocker
 first_withdraw_money_need_verification: 您是首次提款,需要先设置双重验证
 first_withdraw_money_need_pay_password: 您是首次提款,需要先设置资金密码
 confirm_withdrawal: 确认提款
+pop_up_wallet_withdraw_verify_title_email_address: อีเมล
+pop_up_wallet_withdraw_verify_label_email_address: อีเมล
