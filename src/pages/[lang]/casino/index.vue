@@ -14,14 +14,19 @@ defineOptions({
 
 usePageTitle({ prefix: 'btc_casino_title', suffix: 'casino_game', isT: true })
 
+const router = useLocalRouter()
+const route = useRoute()
+const routeName = computed(() => route.name?.toString())
 const { isLogin } = storeToRefs(useAppStore())
 const { isMobile } = storeToRefs(useWindowStore())
 const casinoStore = useCasinoStore()
 const { casinoNav, casinoGameList } = storeToRefs(casinoStore)
 const { openRegisterDialog } = useRegisterDialog()
-const router = useLocalRouter()
-const route = useRoute()
-const routeName = computed(() => route.name?.toString())
+const {
+  clearYesterdayNoMoreList,
+  checkIsNoMore,
+  hideNoMoreTipIds,
+} = useDialogSiteAnnouncementList()
 
 const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
@@ -33,10 +38,38 @@ const currentNav = computed(() => {
 const {
   runAsync: runMemberNoticeAllList,
 } = useRequest(ApiMemberNoticeAllList, {
+  onBefore() {
+    clearYesterdayNoMoreList()
+  },
   onSuccess(data) {
-    if (data.notice && data.notice.length > 0 && !Local.get(STORAGE_NO_MORE_TIP_DAY)?.value) {
-      const { openDialogSiteAnnouncement } = useDialogSiteAnnouncement()
-      openDialogSiteAnnouncement(data.notice.slice(0, 4))
+    if (data.notice && data.notice.length > 0) {
+      // 过滤已经勾选不再显示的公告
+      const arr = data.notice.filter(a => !checkIsNoMore(a.id))
+      // 保存所有隐藏‘今日不再提示’的id
+      hideNoMoreTipIds.value = arr.map((a) => {
+        if (a.bounce_frequency === 2 && a.bounce_frequency_limit < 3)
+          return a.id
+        return ''
+      }).filter(b => !!b)
+
+      if (arr.length > 0) {
+        // 不限制
+        const arrNoLimit = arr.filter(a => a.bounce_location === 1)
+        // 登陆前
+        const arrBeforeLogin = arr.filter(a => a.bounce_location === 2)
+        // 登录后
+        const arrAfterLogin = arr.filter(a => a.bounce_location === 3)
+
+        let finalArr
+        if (isLogin.value)
+          finalArr = arrNoLimit.concat(arrAfterLogin)
+
+        else
+          finalArr = arrNoLimit.concat(arrBeforeLogin)
+
+        const { openDialogSiteAnnouncement } = useDialogSiteAnnouncement()
+        openDialogSiteAnnouncement(finalArr.slice(0, 4))
+      }
     }
   },
 })
@@ -146,6 +179,10 @@ function setLobby() {
 casinoLobbyBus.on(setLobby)
 onBeforeUnmount(() => {
   casinoLobbyBus.off(setLobby)
+})
+
+watch(isLogin, () => {
+  runMemberNoticeAllList()
 })
 
 onMounted(() => {
