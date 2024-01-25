@@ -74,6 +74,9 @@ export default {
       containers: {
         lg: '1000px',
       },
+      boxShadow: {
+        'text-shadow': 'var(--tg-text-shadow)',
+      },
     },
   },
   plugins: [

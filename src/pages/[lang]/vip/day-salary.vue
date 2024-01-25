@@ -4,7 +4,7 @@
 const { t } = useI18n()
 const route = useRoute()
 // const { openNotify } = useNotify()
-const { vip, vipConfigArray } = useVipInfo()
+const { vipConfigArray } = useVipInfo()
 const { isMobile } = storeToRefs(useWindowStore())
 const { openVipBonusDialog } = useDialogVipBonus()
 const { isLogin } = storeToRefs(useAppStore())
