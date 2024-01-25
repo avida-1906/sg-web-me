@@ -754,9 +754,9 @@ casino_game_close_theatre: Disable theater mode
 casino_game_test_mode: Test mode
 casino_game_real_money_mode: Real mode
 search_need_at_least_3_word: Minimum 3 characters necessary for search.
-search_recent: Recent searches
+search_recent: Recent Searches
 search_no_result: No results
-search_clear: Clear searches
+search_clear: Clear Search
 search_game: Search games
 search_events: Search events
 casino_origin_game: Original games
@@ -1358,7 +1358,7 @@ success_update_phone: Phone number successfully updated
 phone_update_to: Phone number updated to
 success_verify: Successfully verified
 congratulate_email_success: Congratulations! Your e-mail was successfully verified
-resend_email: Resend e-mail
+resend_email: Resend Email
 phone: Phone number
 tip_phone: We only serve areas listed in the international calling code list.
 intl_phone_pre: International calling code
@@ -2732,3 +2732,5 @@ responsible_safe_text_75: Betblocker
 first_withdraw_money_need_verification: 您是首次提款,需要先设置双重验证
 first_withdraw_money_need_pay_password: 您是首次提款,需要先设置资金密码
 confirm_withdrawal: 确认提款
+pop_up_wallet_withdraw_verify_title_email_address: Email
+pop_up_wallet_withdraw_verify_label_email_address: Email
