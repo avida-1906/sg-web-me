@@ -152,6 +152,8 @@ export interface IMemberReg {
   /** 上级id，没有留空 */
   parent_uid?: string
   device_number: string
+  /** 邮箱验证码 */
+  captcha?: string
 }
 
 export interface IMemberThirdReg {

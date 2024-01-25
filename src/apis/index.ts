@@ -2312,8 +2312,9 @@ export function ApiMemberVipBonusUpgradeApplyAll(data: {
  * 没有登录发送邮箱验证码
  * @see null
  */
-export function ApiMemberSendMailReg(params: {
+export function ApiMemberSendMailCaptcha(data: {
+  /** 邮箱 */
   email: string
 }) {
-  return httpClient.get<string>('/member/send/mail/reg', { params })
+  return httpClient.post<string>('/member/send/mail/captcha', data)
 }

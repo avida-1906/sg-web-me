@@ -126,9 +126,9 @@ const {
 // #endregion
 
 const {
-  runAsync: runAsyncMemberSendMailReg,
-  loading: sendMailCodeLoading,
-} = useRequest(ApiMemberSendMailReg, {
+  runAsync: runAsyncMemberSendMailCaptcha,
+  loading: sendMailCaptchaLoading,
+} = useRequest(ApiMemberSendMailCaptcha, {
   onSuccess() {
     timer.value = setInterval(() => {
       if (countdown.value <= 1) {
@@ -264,6 +264,7 @@ async function getMemberReg(callBack: (data: any) => void) {
       parent_uid: parentUid.value,
       device_number: application.getDeviceNumber(),
       birthday: birthday.value,
+      captcha: emailCode.value,
     }
     // appStore.setMqttConnectedFalse()
     // runMemberReg(paramsReg)
@@ -316,7 +317,7 @@ async function sendEmailCode() {
     if (emailErrorMsg.value)
       return
 
-    runAsyncMemberSendMailReg({ email: email.value })
+    runAsyncMemberSendMailCaptcha({ email: email.value })
   }
 }
 
@@ -333,6 +334,7 @@ onUnmounted(() => {
       parent_uid: parentUid.value,
       device_number: application.getDeviceNumber(),
       birthday: birthday.value,
+      captcha: emailCode.value,
     }
     if (!needSaveFormData.value)
       Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
@@ -390,7 +392,7 @@ await application.allSettled([runAsyncBrandRegDetail({ tag: 'reg' })])
             />
           </div>
           <BaseButton
-            bg-style="primary" :loading="sendMailCodeLoading"
+            bg-style="primary" :loading="sendMailCaptchaLoading"
             :disabled="!!timer" custom-padding :style="{
               '--tg-base-button-style-bg': timer ? 'var(--tg-text-grey)' : '',
               'min-width': '105px',
