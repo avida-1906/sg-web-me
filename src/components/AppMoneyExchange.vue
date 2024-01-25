@@ -89,6 +89,9 @@ const {
 
 // 禁用提交按钮
 const submitDisabled = computed(() => {
+  if (!amountGet.value || !amountPay.value)
+    return true
+
   const isVirtual = application.isVirtualCurrency(currencyTypeGet.value)
   return isVirtual
     ? +amountGet.value < 0.00000001 || +amountPay.value < 0.00000001
@@ -118,11 +121,11 @@ function setAmountPayWithToFixed(amount: string) {
 }
 // 支付金额输入时
 function onAmountPayInput(v: string) {
-  setAmountGetWithToFixed(mul(+v, rate.value))
+  setAmountGetWithToFixed(mul(+v, +rate.value))
 }
 // 兑换金额输入时
 function onAmountGetInput(v: string) {
-  setAmountPayWithToFixed(div(+v, rate.value))
+  setAmountPayWithToFixed(div(+v, +rate.value))
 }
 // 确认
 function confirm() {
@@ -137,7 +140,7 @@ function confirm() {
 // 切换兑换货币
 function onCurrencyGetSelected() {
   nextTick(() => {
-    setAmountGetWithToFixed(mul(+amountPay.value, rate.value))
+    setAmountGetWithToFixed(mul(+amountPay.value, +rate.value))
   })
 }
 
@@ -147,20 +150,20 @@ watch(currencyTypePay, (a) => {
     currencyTypeGet.value = renderBalanceList.value.filter(a => a.type !== currencyTypePay.value)[0].type
 
   setAmountPay(userInfo.value?.balance[currencyTypePay.value] ?? '')
-  setAmountGetWithToFixed(mul(+amountPay.value, rate.value))
+  setAmountGetWithToFixed(mul(+amountPay.value, +rate.value))
 })
 // 监听支付金额
 watch(amountPay, (a) => {
   if (+a > +currencyMaxBalance.value) {
     setAmountPay(`${currencyMaxBalance.value}`)
-    setAmountGetWithToFixed(mul(+amountPay.value, rate.value))
+    setAmountGetWithToFixed(mul(+amountPay.value, +rate.value))
   }
 })
 
 onMounted(() => {
   runGetExchangeRate()
   setAmountPay(userInfo.value?.balance[currencyTypePay.value] ?? '')
-  setAmountGetWithToFixed(mul(+amountPay.value, rate.value))
+  setAmountGetWithToFixed(mul(+amountPay.value, +rate.value))
 })
 </script>
 
