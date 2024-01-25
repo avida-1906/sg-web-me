@@ -180,20 +180,34 @@ await application.allSettled([runAsyncWalletBankcardList()])
     <!-- 列表 -->
     <div class="mb-14 mt-17 flex flex-col gap-14">
       <!-- item -->
-      <div v-for="item in bankcardList" :key="item.id" class="flex overflow-hidden rounded-[4px]">
-        <div class="bg-tg-secondary-grey max-w-60 flex items-center justify-center p-23">
-          <BaseIcon class="text-[20px]" :name="getCurrencyIdToIconName(item.currency_id)" />
+      <div
+        v-for="item in bankcardList" :key="item.id" class="shadow-text-shadow relative flex overflow-hidden rounded-[4px]"
+        :class="item.state === 2 ? 'cursor-not-allowed' : ''"
+      >
+        <div
+          class="bg-tg-secondary-grey max-w-60 flex items-center justify-center p-23"
+          :class="item.state === 2 ? 'opacity-[0.5]' : ''"
+        >
+          <BaseIcon
+            class="text-[20px]"
+            :name="getCurrencyIdToIconName(item.currency_id)"
+          />
         </div>
-        <div class="bg-tg-secondary relative flex grow items-center px-14">
-          <div class="text-tg-text-white flex flex-col gap-6">
+        <div
+          class="bg-tg-secondary flex grow items-center px-14"
+        >
+          <div class="text-tg-text-white flex flex-col gap-6" :class="item.state === 2 ? 'opacity-[0.5]' : ''">
             <span class="font-semibold">{{ item.bank_name || item.contract_name }}</span>
             <span class="font-bold">{{ item.bank_account || item.address }}</span>
           </div>
-          <div class="absolute right-14" @click="deleteCard(item)">
-            <BaseButton size="none" type="text">
-              <BaseIcon class="text-[18px]" name="uni-bank-delete" />
-            </BaseButton>
-          </div>
+        </div>
+        <div
+          class="absolute right-14 top-[50%] translate-y-[-50%]"
+          @click="deleteCard(item)"
+        >
+          <BaseButton :disabled="item.state === 2" size="none" type="text" style="--tg-base-button-disabled-opacity:1;">
+            <BaseIcon class="text-[18px]" name="uni-bank-delete" />
+          </BaseButton>
         </div>
       </div>
     </div>
