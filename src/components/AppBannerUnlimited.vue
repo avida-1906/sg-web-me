@@ -202,7 +202,7 @@ onUnmounted(() => {
             transform: `translate(${offSet}px, 0px)`,
             width: `${sliderWidth}px`,
           }"
-          :class="{ 'is-transition': activeTransition }"
+          :class="{ 'is-transition': activeTransition, 'is-dragging': isDragging }"
         >
           <div
             v-for="item in mergeBannerData"
@@ -257,6 +257,9 @@ onUnmounted(() => {
         position: relative;
         overflow-x: auto;
         // width: 6000px;
+        &.is-dragging{
+          touch-action: pan-x;
+        }
         &.is-transition {
           transition: all .8s;
         }
