@@ -30,6 +30,8 @@ const {
   else if (!emailReg.test(value))
     return t('email_address_incorrect')
   return ''
+}, {
+  initialValue: props.data.email,
 })
 const {
   value: username,
