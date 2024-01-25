@@ -1975,7 +1975,7 @@ or: or
 only_6_num: Only supports 6-digit pure numbers
 pwd_2_not_equal: The two password inputs are inconsistent
 edit_safe_pwd: Change fund password
-set_safe_pwd: Set fund password
+set_safe_pwd: 资金密码
 not_bind_email: You have not bound your e-mail address yet
 must_bind_email: Please bind your e-mail first and then set the fund password
 go_bind: Go to Binding
@@ -2729,3 +2729,6 @@ responsible_safe_text_72: 'In order to ensure child safety on the Internet, Meib
 responsible_safe_text_73: Gamcare
 responsible_safe_text_74: Netnanny
 responsible_safe_text_75: Betblocker
+first_withdraw_money_need_verification: 您是首次提款,需要先设置双重验证
+first_withdraw_money_need_pay_password: 您是首次提款,需要先设置资金密码
+confirm_withdrawal: 确认提款

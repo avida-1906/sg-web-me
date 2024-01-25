@@ -1255,8 +1255,6 @@ sports_cal_tip: การเดิมพันกีฬาทั้งหมด�
 commission_encourage: 'หากคุณเป็นพันธมิตรที่มีอิทธิพลและสามารถเข้าถึงผู้คนจำนวนมาก
   หรืออยู่ในสถานการณ์พิเศษอื่นๆ โปรดติดต่อทีมงานของเรา.หากคุณเป็นพันธมิตรที่มีอิทธิพลอย่างมากและสามารถเข้าถึงผู้คนจำนวนมาก
   หรืออยู่ในสถานการณ์พิเศษอื่นๆ โปรดติดต่อทีมสนับสนุนที่โดดเด่นของเรา
-
-
   หลังจากหารือกับผู้จัดการพันธมิตรแล้ว เราสามารถปรับแต่งโปรแกรมพันธมิตรสำหรับคุณโดยเฉพาะ.
   รวมถึงค่าคอมมิชชั่นที่สูงขึ้น.'
 statistical_time: เวลาสถิติ
@@ -1839,7 +1837,7 @@ or: หรือ
 only_6_num: รองรับเฉพาะตัวเลข6หลัก
 pwd_2_not_equal: การกรอกรหัสยืนยันไม่สอดคล้องกัน
 edit_safe_pwd: แก้ไขรหัสผ่านกองทุน
-set_safe_pwd: ตั้งค่ารหัสผ่านกองทุน
+set_safe_pwd: 资金密码
 not_bind_email: คุณยังไม่ได้ผูกมัดอีเมล์
 must_bind_email: โปรดผูกมัดอีเมลก่อนตั้งค่ารหัสผ่านกองทุน
 go_bind: ไปผูกมัด
@@ -2532,3 +2530,6 @@ responsible_safe_text_72: 'In order to ensure child safety on the Internet, Meib
 responsible_safe_text_73: Gamcare
 responsible_safe_text_74: Netnanny
 responsible_safe_text_75: Betblocker
+first_withdraw_money_need_verification: 您是首次提款,需要先设置双重验证
+first_withdraw_money_need_pay_password: 您是首次提款,需要先设置资金密码
+confirm_withdrawal: 确认提款
