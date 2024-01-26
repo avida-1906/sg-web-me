@@ -111,7 +111,7 @@ async function submitLoginPwd() {
       :title="t('login_pwd')"
       :btn-loading="passwordUpdateLoading && logoutLoading"
       :show-hr="false"
-      :depends-disabled="[!password && !newPassword && !repeatPassword]"
+      :depends-disabled="[password, newPassword, repeatPassword]"
       @submit="submitLoginPwd"
     >
       <BaseLabel :label="t('old_pwd')" must-small>
