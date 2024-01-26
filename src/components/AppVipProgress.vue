@@ -9,7 +9,7 @@ const { vip, progress, currentLevel, nextLevel, isMaxLevel } = useVipInfo()
     <div class="percent-top">
       <slot><p>{{ t('yours') }}<span> VIP </span>{{ t('progress') }}</p></slot>
       <p class="percent">
-        {{ toFixed(+progress) }}%
+        {{ toFixed(progress > 100 ? 100 : progress) }}%
       </p>
     </div>
     <div class="percent-mid">
