@@ -2324,3 +2324,25 @@ export function ApiMemberSendMailCaptcha(data: {
 }) {
   return httpClient.post<string>('/member/send/mail/captcha', data)
 }
+
+/**
+ * 竞赛排行榜
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=5aae7b44-6e55-4ccb-a4c7-36c03e1d2ac3
+ */
+export function ApiMemberCompetitionList(params?: {
+  page?: number
+  page_size?: number
+}) {
+  return httpClient.get<IResponseList<{
+    /** 投注人 */
+    username: string
+    /** 币种ID */
+    currency_id: CurrencyCode
+    /** 投注金额 */
+    bet_amount: string
+    /** 支付金额 */
+    net_amount: string
+    /** 1正常2隐藏 */
+    state: string
+  }[]>>('/member/competition/list', { params })
+}

@@ -753,7 +753,7 @@ casino_game_open_theatre: Enable theater mode
 casino_game_close_theatre: Disable theater mode
 casino_game_test_mode: Test mode
 casino_game_real_money_mode: Real mode
-search_need_at_least_3_word: Minimum 3 characters necessary for search.
+search_need_at_least_3_word: Search requires at least 3 characters.
 search_recent: Recent Searches
 search_no_result: No results
 search_clear: Clear Search
@@ -1092,7 +1092,7 @@ label_draw_time: Receipt time
 label_contribute_count: Number of contributors
 label_bind: Bind
 title_input_paypwd: Enter the fund password
-title_wallet_set: Wallet settings
+title_wallet_set: Wallet Settings
 success_bind: Bound successfully
 success_delete: Deleted sucessful
 tip_msg_bind_once: No changes allowed after bound
@@ -1421,8 +1421,8 @@ search_currency: Search currency
 card_wallet: Card wallet
 improve_safe_level: Improve your account security with two-factor verification
 turn_on_double_check: Turn on two-step verification
-hide_zero_wallet: Hide zero balance
-zero_wallet_hidden: Your zero balance will not show up in your wallet
+hide_zero_wallet: Hide zero balances
+zero_wallet_hidden: Your zero balances won't appear in your wallet
 address: Address
 withdrawal_min_amount: The minimum withdrawal amount is
 withdrawal_fee_tip: We will deduct this from your balance
@@ -1915,7 +1915,7 @@ min_len_char: Min.  {delta} characters
 max_len_char: Max.  {delta} characters
 name_has_invalid_char: The username contains invalid characters
 pls_select_name: Please select a display name
-must_verify_email_then: You must verify your email address to {delta}
+must_verify_email_then: In order to {delta} you need to verify your email
 open: Open
 additional_time: Additional time
 no_support_email: E-mail domain not supported
@@ -2734,3 +2734,7 @@ first_withdraw_money_need_pay_password: 您是首次提款,需要先设置资金
 confirm_withdrawal: 确认提款
 pop_up_wallet_withdraw_verify_title_email_address: Email
 pop_up_wallet_withdraw_verify_label_email_address: Email
+pop_up_wallet_tap_card_deposit: Deposit
+pop_up_currency_exchange_button_confirm_pay: Confirm payment
+header_drop_down_menu_stake_safety: '{site} Safety'
+pop_up_currency_exchange: Exchange

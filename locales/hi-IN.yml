@@ -2144,3 +2144,7 @@ first_withdraw_money_need_pay_password: 您是首次提款,需要先设置资金
 confirm_withdrawal: 确认提款
 pop_up_wallet_withdraw_verify_title_email_address: 电邮地址
 pop_up_wallet_withdraw_verify_label_email_address: 电邮地址
+pop_up_wallet_tap_card_deposit: 存款
+pop_up_currency_exchange_button_confirm_pay: 确认支付
+header_drop_down_menu_stake_safety: '{site}安全'
+pop_up_currency_exchange: 兑换

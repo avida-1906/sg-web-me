@@ -68,7 +68,7 @@ const userMenu = computed(() => ([
   {
     id: 9,
     icon: 'spt-secure',
-    title: t('stake_safety', { site: companyData.value?.name }),
+    title: t('header_drop_down_menu_stake_safety', { site: companyData.value?.name }),
     name: 'stake-safety',
   },
   {
