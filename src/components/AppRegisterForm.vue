@@ -355,7 +355,7 @@ await application.allSettled([runAsyncBrandRegDetail({ tag: 'reg' })])
 <template>
   <div class="app-register">
     <div class="app-register-input-box">
-      <BaseLabel v-if="needEmail" :label="t('pop_up_create_account_label_email_address')" must-small need-focus>
+      <BaseLabel v-if="needEmail" :label="t('pop_up_create_account_label_email_address')" need-focus must-small>
         <BaseInput
           ref="emailRef" v-model="email"
           :msg="emailErrorMsg" msg-after-touched type="email" name="email"
@@ -371,7 +371,7 @@ await application.allSettled([runAsyncBrandRegDetail({ tag: 'reg' })])
           {{ t('pop_up_create_account_username_incorrect') }}
         </div>
       </BaseLabel>
-      <BaseLabel :label="t('password')" must-small need-focus>
+      <BaseLabel :label="t('password')" must-small>
         <BaseInput
           ref="passwordRef" v-model="password"
           :msg="pwdErrorMsg" type="password" name="password"

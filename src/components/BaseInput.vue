@@ -38,6 +38,7 @@ const {
 } = useBoolean(false)
 const iTextarea = ref()
 const iInput = ref()
+const inputBoxRef = ref()
 const _type = ref(props.type)
 
 const error = computed(() => {
@@ -69,6 +70,7 @@ function onBlur(event: any) {
   !!event.target.value && setTouchTrue()
   emit('blur')
 }
+onClickOutside(inputBoxRef, onBlur)
 
 function getFocus() {
   iTextarea.value?.focus()
@@ -119,7 +121,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
       <label v-if="label">{{ label }} <span v-if="must">*</span></label>
       <div class="input-wrap" :class="{ mb0 }">
         <div
-          class="input-box"
+          ref="inputBoxRef" class="input-box"
           :class="{
             'active': isFocus,
             'error': error && !isFocus,
@@ -146,7 +148,6 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
               :readonly="readonly"
               @input="onInput"
               @focus="onFocus"
-              @blur="onBlur"
               @keydown.enter="keyDownEnter"
               @paste="onPaste"
               @compositionstart="onCompositionStart"
@@ -175,7 +176,6 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
             :name="name"
             @input="onInput"
             @focus="onFocus"
-            @blur="onBlur"
             @paste="onPaste"
             @keydown.enter="keyDownEnter"
             @compositionstart="onCompositionStart"
