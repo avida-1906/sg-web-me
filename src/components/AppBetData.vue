@@ -459,7 +459,9 @@ onUnmounted(() => {
         <template #gameName="{ record }">
           <div class="game-box">
             <BaseImage :url="`${record.icon}`" width="14px" is-network />
-            <span>{{ record.game_name }}</span>
+            <div class="game-name">
+              {{ record.game_name }}
+            </div>
           </div>
         </template>
         <template #bet_time="{ record }">
@@ -525,7 +527,7 @@ onUnmounted(() => {
         <template #bonusAmount="{ record }">
           <div style="display:inline-block">
             <!-- <div v-if="isMobile"> -->
-            {{ record.net_amount }}
+            {{ `${record.percent}%` }}
             <!-- </div> -->
             <!-- <AppAmount
               v-else
@@ -589,7 +591,11 @@ onUnmounted(() => {
     align-items: center;
     justify-content: flex-start;
     font-weight: var(--tg-font-weight-semibold);
-    span{
+    .game-name{
+      max-width: 12ch;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       padding-left: 10px;
       color:var(--tg-text-white);
     }
