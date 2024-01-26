@@ -159,7 +159,7 @@ async function submitBonus() {
   if (!amountMsg.value) {
     if (typeVal.value !== '-1') {
       runAsyncVipBonusApply({
-        id: typeVal.value,
+        id: props.vipBonusId ? typeVal.value : ((lvPromoBonus.value && lvPromoBonus.value[0].id) ?? ''),
         cur: activeCurrency.value?.cur ?? '',
         amount: amount.value,
       }).then((data) => {

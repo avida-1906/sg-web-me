@@ -64,9 +64,9 @@ const { run: runThirdReg } = useRequest(ApiMemberThirdReg, {
     Session.remove(STORAGE_THIRDREG_PARAMS_KEYWORDS)
     setNeedBackFalse()
     openNotify({
-      title: t('reg_success_title'),
+      title: t('tip_pop_up_reg_success_title'),
       type: 'success',
-      message: t('success_register', { username: regThirdParams.value?.username }),
+      message: `${t('tip_pop_up_reg_success_title')},${regThirdParams.value?.username}`,
     })
     await nextTick()
     closeDialog()

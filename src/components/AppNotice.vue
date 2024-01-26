@@ -13,7 +13,7 @@ const { t } = useI18n()
 const B = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
 const C = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
 // const D = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
-const tab = ref(EnumPage[0])
+const tab = ref(EnumPage[1])
 const tabList = [
   // { label: t('notification'), value: EnumPage[0] },
   { label: t('site_message'), value: EnumPage[1] },
