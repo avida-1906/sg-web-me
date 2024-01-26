@@ -2109,11 +2109,16 @@ export function ApiAgencyCommissionModelsList() {
 }
 
 /**
-   * 获取二阶段验证密钥
-   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=2532eddb-96cd-44b5-be7c-4ac43bf92656
+   * 获取二阶段验证密钥 && 验证qrcode
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=8674babe-f9ba-4798-abc6-87cae49bf2f8
    */
-export function ApiMemberAuthSecret() {
-  return httpClient.get<string>('/member/auth/secret')
+export function ApiMemberAuthQrcode() {
+  return httpClient.get<{
+    /** 二阶段密钥 */
+    secret: string
+    /** 生成qrcode用的url */
+    qrcode: string
+  }>('/member/auth/qrcode')
 }
 
 /**
