@@ -182,7 +182,6 @@ await application.allSettled([runAsyncWalletBankcardList()])
       <!-- item -->
       <div
         v-for="item in bankcardList" :key="item.id" class="shadow-text-shadow relative flex overflow-hidden rounded-[4px]"
-        :class="item.state === 2 ? 'cursor-not-allowed' : ''"
       >
         <div
           class="bg-tg-secondary-grey max-w-60 flex items-center justify-center p-23"
@@ -205,7 +204,7 @@ await application.allSettled([runAsyncWalletBankcardList()])
           class="absolute right-14 top-[50%] translate-y-[-50%]"
           @click="deleteCard(item)"
         >
-          <BaseButton :disabled="item.state === 2" size="none" type="text" style="--tg-base-button-disabled-opacity:1;">
+          <BaseButton size="none" type="text">
             <BaseIcon class="text-[18px]" name="uni-bank-delete" />
           </BaseButton>
         </div>
