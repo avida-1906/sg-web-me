@@ -41,7 +41,7 @@ const onSubmit = function () {
   }, 150)
 }
 
-watch(dependsData, (val, old) => {
+watch(() => dependsData.value, (val, old) => {
   if (val.length && old.length) {
     for (let i = 0; i < val.length; i++) {
       if (val[i] !== old[i]) {

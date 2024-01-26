@@ -53,8 +53,6 @@ const {
     return t('validate_msg_regexp_code')
   return ''
 })
-const isEmptyInput = computed(() =>
-  !oldPayPassword.value && !payPassword.value && !aginPayPassword.value)
 const {
   run: runMemberPayPasswordUpdate,
   loading: payPasswordUpdateLoading,
@@ -108,6 +106,8 @@ const getPayPwdState = computed(() => {
 const getMailState = computed(() => {
   return userInfo.value?.email_check_state === 2
 })
+const isEmptyEmail = computed(() => (getPayPwdState.value ? oldPayPassword.value : true) && payPassword.value && aginPayPassword.value)
+const isEmptyInput = computed(() => [oldPayPassword.value, payPassword.value, aginPayPassword.value, emailCode.value])
 
 function fieldVerifyPayPwd(value: string) {
   if (!payPasswordReg.test(value))
@@ -241,7 +241,7 @@ onUnmounted(() => {
             <BaseButton
               bg-style="primary"
               :loading="sendMailCodeLoading"
-              :disabled="!!timer || isEmptyInput"
+              :disabled="!!timer || !isEmptyEmail"
               custom-padding
               :style="{
                 '--tg-base-button-style-bg': timer ? 'var(--tg-text-grey)' : '',

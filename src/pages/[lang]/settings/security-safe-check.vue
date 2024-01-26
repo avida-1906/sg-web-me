@@ -126,7 +126,7 @@ await application.allSettled([awaitHandle()])
       :title="isSetAuth ? t('close_verification') : t('two_step_verification') "
       last-one
       :btn-loading="loadMemberAuthSet || loadMemberAuthClose || loadingAuthConfig"
-      :depends-disabled="[!doublePassword && !doublePassword]"
+      :depends-disabled="[doublePassword, doublePassword]"
       :btn-text="isSetAuth ? 'close' : 'submit'"
       @submit="submitDoublePassword"
     >
