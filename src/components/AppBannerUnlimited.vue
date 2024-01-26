@@ -9,6 +9,7 @@ interface IBannerData {
 const { companyData } = storeToRefs(useAppStore())
 const { t } = useI18n()
 const {
+  width,
   appContentWidth,
   widthBoundaryXs,
   widthBoundarySm,
@@ -59,13 +60,9 @@ const {
 const sliderRef = ref<HTMLElement>()
 const baseNumber = ref(0.3333)
 const offSetNumber = ref(0)
-const {
-  bool: isDragging, setTrue:
-  setDraggingTrue, setFalse:
-  setDraggingFalse,
-} = useBoolean(false)
-const startPosition = ref(0)
-const tempOffSet = ref(0)
+
+const { x } = useScroll(sliderRef, { behavior: 'smooth' })
+const isOver678 = computed(() => width.value > 678)
 
 const isXs = computed(() => appContentWidth.value < widthBoundaryXs.value)
 const isSm = computed(() => {
@@ -134,29 +131,34 @@ const change = function (item: IBannerData) {
       onNext()
   }
 }
-// 触碰
-const onTouchstart = throttle((e: TouchEvent) => {
-  setDraggingTrue()
-  startPosition.value = e.touches[0].clientX
-  tempOffSet.value = offSet.value
-}, 1000, { leading: true, trailing: false })
-// 移动
-const onTouchMove = function (e: TouchEvent) {
-  if (!isDragging.value)
-    return
-  const currentPosition = e.touches[0].clientX
-  offSet.value = tempOffSet.value + (currentPosition - startPosition.value)
+
+// 移动端切换
+function nextPage() {
+  x.value += sliderRef.value!.getBoundingClientRect().width
 }
-// 抬起
-const onTouchEnd = throttle((e: TouchEvent) => {
-  setDraggingFalse()
-  const currentPosition = e.changedTouches[0].clientX
-  offSet.value = tempOffSet.value
-  if (startPosition.value > currentPosition)
+
+function prevPage() {
+  const temp = x.value - sliderRef.value!.getBoundingClientRect().width
+  if (temp > 0)
+    x.value = temp
+  else
+    x.value = 0
+}
+
+function handleNext() {
+  if (isOver678.value)
     onNext()
-  else if (startPosition.value < currentPosition)
+
+  else
+    nextPage()
+}
+function handlePre() {
+  if (isOver678.value)
     onPrev()
-}, 1000, { leading: true, trailing: false })
+
+  else
+    prevPage()
+}
 
 watch(() => isSm.value, () => {
   if (isSm.value)
@@ -181,29 +183,25 @@ onMounted(() => {
     offSetNumber.value = Math.abs(
       Number((offSet.value / cardWidth.value).toFixed()))
   }, 0)
-  // 滑动
-  sliderRef.value?.addEventListener('touchstart', onTouchstart)
-  sliderRef.value?.addEventListener('touchmove', onTouchMove)
-  sliderRef.value?.addEventListener('touchend', onTouchEnd)
-})
-onUnmounted(() => {
-  sliderRef.value?.removeEventListener('touchstart', onTouchstart)
-  sliderRef.value?.removeEventListener('touchmove', onTouchMove)
-  sliderRef.value?.removeEventListener('touchend', onTouchEnd)
 })
 </script>
 
 <template>
   <div class="app-banner-unlimited">
     <div class="banner-wrap">
-      <div ref="sliderRef" class="slider-wrap">
+      <div class="slider-wrap">
         <div
+          ref="sliderRef"
           class="slider"
           :style="{
-            transform: `translate(${offSet}px, 0px)`,
-            width: `${sliderWidth}px`,
+            transform: isOver678 ? `translate(${offSet}px, 0px)` : '',
+            width: isOver678 ? `${sliderWidth}px` : '',
           }"
-          :class="{ 'is-transition': activeTransition }"
+          :class="{
+            'is-transition': activeTransition,
+            'hide-scrollbar': !isOver678,
+            'is-H5': !isOver678,
+          }"
         >
           <div
             v-for="item in mergeBannerData"
@@ -231,10 +229,10 @@ onUnmounted(() => {
           </div>
         </div>
         <div class="slider-btn">
-          <div class="button prev" @click="onPrev">
+          <div class="button prev" @click="handlePre">
             <BaseIcon name="uni-arrow-left" />
           </div>
-          <div class="button next" @click="onNext">
+          <div class="button next" @click="handleNext">
             <BaseIcon name="uni-arrow-right" />
           </div>
         </div>
@@ -257,12 +255,11 @@ onUnmounted(() => {
         display: flex;
         position: relative;
         overflow-x: auto;
-        // width: 6000px;
+
         &.is-transition {
           transition: all .8s;
         }
         .slider-item{
-          // width: 400px;
           min-height:430px;
           transform: scale(.85);
           transition: transform .7s ease,opacity 1s ease;
@@ -316,6 +313,14 @@ onUnmounted(() => {
             line-height: 1.5;
             text-align: center;
             color: var(--tg-text-lightgrey);
+          }
+        }
+
+        &.is-H5{
+          scroll-snap-type: x mandatory;
+          .slider-item{
+            flex-shrink: 0;
+            scroll-snap-align: start;
           }
         }
       }
