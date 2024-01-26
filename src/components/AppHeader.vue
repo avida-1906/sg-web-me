@@ -70,6 +70,7 @@ const userMenu = computed(() => ([
     icon: 'spt-secure',
     title: t('header_drop_down_menu_stake_safety', { site: companyData.value?.name }),
     name: 'stake-safety',
+    path: '/responsible-gambling/safe',
   },
   {
     id: 10,
