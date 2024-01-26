@@ -9,8 +9,8 @@ const { t } = useI18n()
 const router = useLocalRouter()
 const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
-const { updateUserInfo } = useAppStore()
 const { openService } = useService()
+const { isSetPayPwd, runMemberAuthConfig } = useBrandBaseDetail()
 const {
   value: oldPayPassword,
   errorMessage: oldPayPwdErrorMsg,
@@ -63,8 +63,8 @@ const {
       title: t('notify_title_success'),
       message: t('success_set_safepwd'),
     })
-    // 资金密码设置成功之后，刷新用户信息
-    updateUserInfo()
+    // 资金密码设置成功之后，刷新信息
+    runMemberAuthConfig()
     resetOldPayPwd()
     resetPayPassword()
     resetAginPayPassword()
@@ -100,13 +100,13 @@ const {
   },
 })
 
-const getPayPwdState = computed(() => {
-  return userInfo.value?.pay_password === '1'
-})
+// const getPayPwdState = computed(() => {
+//   return userInfo.value?.pay_password === '1'
+// })
 const getMailState = computed(() => {
   return userInfo.value?.email_check_state === 2
 })
-const isEmptyEmail = computed(() => (getPayPwdState.value ? oldPayPassword.value : true) && payPassword.value && aginPayPassword.value)
+const isEmptyEmail = computed(() => (isSetPayPwd.value ? oldPayPassword.value : true) && payPassword.value && aginPayPassword.value)
 const isEmptyInput = computed(() => [oldPayPassword.value, payPassword.value, aginPayPassword.value, emailCode.value])
 
 function fieldVerifyPayPwd(value: string) {
@@ -121,12 +121,12 @@ function fieldVerifyPayPwd(value: string) {
 }
 // 提交资金密码
 async function submitPayPwd() {
-  getPayPwdState.value && oldPwdRef.value.setTouchTrue()
+  isSetPayPwd.value && oldPwdRef.value.setTouchTrue()
   pwdRef.value.setTouchTrue()
   aginPwdRef.value.setTouchTrue()
   mailCodeRef.value.setTouchTrue()
   if (userInfo.value?.email_check_state === 1) {
-    getPayPwdState.value && valiOldPayPwd()
+    isSetPayPwd.value && valiOldPayPwd()
     await valiPayPwd()
     await valiAginPayPwd()
     await valiemailCode()
@@ -135,8 +135,8 @@ async function submitPayPwd() {
         || emailCodeErrorMsg.value
         || oldPayPwdErrorMsg.value)) {
       runMemberPayPasswordUpdate({
-        types: getPayPwdState.value ? 2 : 1,
-        old_pay_password: getPayPwdState.value ? oldPayPassword.value : '',
+        types: isSetPayPwd.value ? 2 : 1,
+        old_pay_password: isSetPayPwd.value ? oldPayPassword.value : '',
         pay_password: payPassword.value,
         code: emailCode.value,
       })
@@ -170,7 +170,7 @@ onUnmounted(() => {
   <div class="tg-settings-security">
     <!-- t('menu_title_settings_update_safepwd') -->
     <AppSettingsContentItem
-      :title="getPayPwdState ? t('edit_safe_pwd') : t('set_safe_pwd')"
+      :title="isSetPayPwd ? t('edit_safe_pwd') : t('set_safe_pwd')"
       last-one
       :btn-loading="payPasswordUpdateLoading"
       :verified="getMailState"
@@ -192,7 +192,7 @@ onUnmounted(() => {
         </BaseButton>
       </div>
       <template v-else>
-        <BaseLabel v-if="getPayPwdState" :label="t('old_safe_pwd')">
+        <BaseLabel v-if="isSetPayPwd" :label="t('old_safe_pwd')">
           <BaseInput
             ref="oldPwdRef"
             v-model="oldPayPassword"
@@ -204,7 +204,7 @@ onUnmounted(() => {
         </BaseLabel>
         <!-- t('menu_title_settings_update_safepwd') -->
         <BaseLabel
-          :label="getPayPwdState
+          :label="isSetPayPwd
             ? t('new_safe_pwd') : t('menu_title_settings_update_safepwd')"
         >
           <BaseInput
@@ -256,7 +256,7 @@ onUnmounted(() => {
             </BaseButton>
           </div>
         </BaseLabel>
-        <div v-if="getPayPwdState" class="forget-pwd">
+        <div v-if="isSetPayPwd" class="forget-pwd">
           {{ t('forget_safe_pwd') }}
           <BaseButton size="none" type="text" @click="openService">
             {{ t('connect_service') }}
