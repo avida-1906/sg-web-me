@@ -29,7 +29,7 @@ export const config: FloatingVueConfig = {
   // Shift on the cross axis to prevent the popper from overflowing
   shift: true,
   // Overflow padding (px)
-  overflowPadding: 10,
+  overflowPadding: 0,
   // Arrow padding (px)
   arrowPadding: 0,
   // Compute arrow overflow (useful to hide it)
