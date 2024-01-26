@@ -29,9 +29,9 @@ const {
 })
 // 获取二阶段验证密钥
 const {
-  data: authSecret,
-  run: runMemberAuthSecret,
-} = useRequest(ApiMemberAuthSecret, {
+  data: authQrcode,
+  run: runMemberAuthQrcode,
+} = useRequest(ApiMemberAuthQrcode, {
   onSuccess() {
   },
 })
@@ -66,10 +66,10 @@ const {
   },
 })
 
-const getQRcodeUrl = computed(() => {
-  if (userInfo.value)
-    return generateQRCodeUrl({ label: 'sg', email: userInfo.value.email, secret: authSecret.value ?? '' })
-})
+// const getQRcodeUrl = computed(() => {
+//   if (userInfo.value)
+//     return generateQRCodeUrl({ label: 'sg', email: userInfo.value.email, secret: authQrcode.value?.secret ?? '' })
+// })
 
 function fieldVerifyLoginPwd(value: string) {
   if (!value)
@@ -90,16 +90,16 @@ async function submitDoublePassword() {
     isSetAuth.value ? runMemberAuthClose(data) : runMemberAuthSet(data)
   }
 }
-function generateQRCodeUrl(params: {
-  /** appName */
-  label: string
-  /** email */
-  email: string
-  /** 密钥 */
-  secret: string
-}) {
-  return `otpauth://totp/${encodeURIComponent(params.label)}:${encodeURIComponent(params.email)}?secret=${params.secret}&issuer=${encodeURIComponent(params.label)}`
-}
+// function generateQRCodeUrl(params: {
+//   /** appName */
+//   label: string
+//   /** email */
+//   email: string
+//   /** 密钥 */
+//   secret: string
+// }) {
+//   return `otpauth://totp/${encodeURIComponent(params.label)}:${encodeURIComponent(params.email)}?secret=${params.secret}&issuer=${encodeURIComponent(params.label)}`
+// }
 function awaitHandle() {
   return new Promise((resolve) => {
     let timer: NodeJS.Timeout | null = setInterval(() => {
@@ -114,7 +114,7 @@ function awaitHandle() {
 
 watch(() => isSetAuth.value, (val) => {
   if (!val)
-    runMemberAuthSecret()
+    runMemberAuthQrcode()
 }, { immediate: true })
 
 await application.allSettled([awaitHandle()])
@@ -126,7 +126,7 @@ await application.allSettled([awaitHandle()])
       :title="isSetAuth ? t('close_verification') : t('two_step_verification') "
       last-one
       :btn-loading="loadMemberAuthSet || loadMemberAuthClose || loadingAuthConfig"
-      :depends-disabled="[!doublePassword && !doublePassword]"
+      :depends-disabled="[doublePassword, doublePassword]"
       :btn-text="isSetAuth ? 'close' : 'submit'"
       @submit="submitDoublePassword"
     >
@@ -138,13 +138,13 @@ await application.allSettled([awaitHandle()])
           <AppCopyLine
             v-if="userInfo"
             :label="t('copy_to_google')"
-            :msg="authSecret ?? ''"
+            :msg="authQrcode?.secret ?? ''"
           />
           <p class="tg-mt-16" style="line-height: 1.5;">
             {{ t('hide_from_others') }}
           </p>
-          <div v-if="getQRcodeUrl" class="qr-wrap">
-            <BaseQrcode :url="getQRcodeUrl" class="tg-mt-16" />
+          <div v-if="authQrcode" class="qr-wrap">
+            <BaseQrcode :url="authQrcode.qrcode" class="tg-mt-16" />
           </div>
         </template>
         <div>
