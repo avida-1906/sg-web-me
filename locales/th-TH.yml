@@ -891,7 +891,7 @@ sports_payment_amount: ยอดชำระ
 sports_single_bet: เดิมพันรายการเดี่ยว
 sports_multi_bet: เดิมพันรายการผสม
 sports_active: ยังไม่คำนวณ
-sports_settled: คำนวนเสร็จสิ้น
+sports_settled: คำนวณเสร็จสิ้น
 sports_accept_any_odds: ยอมรับการเปลี่ยนแปลงอัตราต่อรองทั้งหมด
 sports_accept_higher_odds: ยอมรับเฉพาะอัตราต่อรองที่ได้เปรียบ
 sports_accept_none_odds: จะไม่ยอมรับการเปลี่ยนแปลงอัตราต่อรอง
@@ -1169,7 +1169,7 @@ payee_info: ข้อมูลผู้รับเงิน
 transfer_amount_equal_order: จำนวนเงินโอนจะต้องตรงกับจำนวนการสั่งซื้อ
 cancel_deposit: ยกเลิกคำขอฝากเงิน
 already_deposit: ฉันได้ฝากเงินแล้ว
-confirm_transfer_ontime: โปรดตรวจสอบหลังจากโอนเงินสำเร็จ! มิฉะนั้นอาจทำให้การให้คะแนนล่าช้าได้!
+confirm_transfer_ontime: โปรดยืนยันจำนวนเงินตามที่อยู่รับเงิน (ไม่รวมค่าธรรมเนียม) มิฉะนั้นอาจส่งผลให้ไม่สามารถเพิ่มจำนวนเงินได้!
 bank_choose: เลือกธนาคาร
 channel_choose: เลือกช่องทาง
 choose_draw_bank: โปรดเลือกธนาคารชำระเงิน
@@ -2539,3 +2539,4 @@ pop_up_wallet_tap_card_deposit: ฝากเงิน
 pop_up_currency_exchange_button_confirm_pay: ยืนยันชำระ
 header_drop_down_menu_stake_safety: ความปลอดภัยบนMeibo
 pop_up_currency_exchange: แลกเปลี่ยน
+top_level_sport_item_live_upcoming_sport_in_coming: เดิมพันระหว่างแข่งขันและรายการที่กำลังจะเริ่มการแข่งขัน

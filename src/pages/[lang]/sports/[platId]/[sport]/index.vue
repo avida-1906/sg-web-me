@@ -31,7 +31,7 @@ const breadcrumb = computed(() => [
   },
 ])
 const tabs = computed(() => [
-  { value: '1', label: t('sport_in_coming') },
+  { value: '1', label: t('top_level_sport_item_live_upcoming_sport_in_coming') },
   { value: '2', label: t('champion_bet') },
   { value: '3', label: `${t('finance_other_tab_all')} ${sportName.value}` },
 ])
