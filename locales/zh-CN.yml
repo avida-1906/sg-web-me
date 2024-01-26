@@ -1408,7 +1408,7 @@ vip_club_tip_2: 解锁专属福利并获得无需任何附加条件即可立即�
 vip_club_tip_3: 成为 VIP 是个既简单又富有回报的过程
 vip_club_tip_4: 立即注册以开始在赌场或体育盘口上进行投注。
 vip_club_tip_5: 您的每笔赌注都会影响您 VIP 级别的进度。达到下个级别以解锁更多福利。
-vip_club_tip_6: 立即领取您的奖金。领取每日、周度和月度奖金的过程既简单又容易。
+vip_club_tip_6: 立即领取您的奖金。领取每日、每周和每月奖金的过程既简单又容易。
 vip_club_tip_7: '{site} 通过不间断送出的奖金提供了独特且无与伦比的体验'
 vip_club_tip_8: 每次升级都能获得更棒的奖励
 vip_club_tip_9: 联系我们屡获殊荣的支持团队
@@ -2144,3 +2144,7 @@ first_withdraw_money_need_pay_password: 您是首次提款,需要先设置资金
 confirm_withdrawal: 确认提款
 pop_up_wallet_withdraw_verify_title_email_address: 电邮地址
 pop_up_wallet_withdraw_verify_label_email_address: 电邮地址
+pop_up_wallet_tap_card_deposit: 存款
+pop_up_currency_exchange_button_confirm_pay: 确认支付
+header_drop_down_menu_stake_safety: '{site}安全'
+pop_up_currency_exchange: 兑换

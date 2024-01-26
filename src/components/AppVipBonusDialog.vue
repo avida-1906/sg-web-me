@@ -157,9 +157,9 @@ async function submitBonus() {
     amountRef.value.setTouchTrue()
   await valiAmount()
   if (!amountMsg.value) {
-    if (typeVal.value) {
+    if (typeVal.value !== '-1') {
       runAsyncVipBonusApply({
-        id: props.vipBonusId ?? (lvPromoBonus.value && lvPromoBonus.value[0].id) ?? '',
+        id: props.vipBonusId ? typeVal.value : ((lvPromoBonus.value && lvPromoBonus.value[0].id) ?? ''),
         cur: activeCurrency.value?.cur ?? '',
         amount: amount.value,
       }).then((data) => {

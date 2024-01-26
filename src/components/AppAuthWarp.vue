@@ -12,10 +12,11 @@ const { push } = useLocalRouter()
 
 // 获取安全验证配置
 const { isOpenVerify, isSetAuth } = useBrandBaseDetail()
+const { isEmailVerify } = useUserVerify()
 </script>
 
 <template>
-  <div v-if="isOpenVerify && !isSetAuth" class="safe-bottom" :style="{ 'padding-bottom': showMore ? '0' : '16px' }">
+  <div v-if="isEmailVerify && isOpenVerify && !isSetAuth" class="safe-bottom" :style="{ 'padding-bottom': showMore ? '0' : '16px' }">
     <div>
       {{ t('improve_safe_level') }}
     </div>

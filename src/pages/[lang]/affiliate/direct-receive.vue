@@ -58,7 +58,6 @@ const columns: Column[] = [
     dataIndex: 'commission_amount',
     align: 'center',
     isAmount: true,
-    showColor: true,
   },
 ]
 

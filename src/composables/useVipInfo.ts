@@ -28,7 +28,7 @@ export function useVipInfo() {
   const isMaxLevel = computed(() => nextLevel.value === undefined)
   const progress = computed(() => {
     if (nextLevel.value)
-      return floor(score.value / +nextLevel.value.score, 1)
+      return +toFixed((+score.value / +nextLevel.value.score), 4) * 100
     return 100
   })
   const scoreToNext = computed(() => {

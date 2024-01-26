@@ -48,6 +48,7 @@ declare global {
   const ApiMemberApplyVipBonus: typeof import('./apis/index')['ApiMemberApplyVipBonus']
   const ApiMemberAuthClose: typeof import('./apis/index')['ApiMemberAuthClose']
   const ApiMemberAuthConfig: typeof import('./apis/index')['ApiMemberAuthConfig']
+  const ApiMemberAuthQrcode: typeof import('./apis/index')['ApiMemberAuthQrcode']
   const ApiMemberAuthSecret: typeof import('./apis/index')['ApiMemberAuthSecret']
   const ApiMemberAuthSet: typeof import('./apis/index')['ApiMemberAuthSet']
   const ApiMemberBalance: typeof import('./apis/index')['ApiMemberBalance']
@@ -65,6 +66,7 @@ declare global {
   const ApiMemberBrandDetail: typeof import('./apis/index')['ApiMemberBrandDetail']
   const ApiMemberCasinoRecordList: typeof import('./apis/index')['ApiMemberCasinoRecordList']
   const ApiMemberCateState: typeof import('./apis/index')['ApiMemberCateState']
+  const ApiMemberCompetitionList: typeof import('./apis/index')['ApiMemberCompetitionList']
   const ApiMemberDetail: typeof import('./apis/index')['ApiMemberDetail']
   const ApiMemberDualVerify: typeof import('./apis/index')['ApiMemberDualVerify']
   const ApiMemberEmailCheck: typeof import('./apis/index')['ApiMemberEmailCheck']
@@ -749,7 +751,7 @@ declare module 'vue' {
     readonly ApiMemberApplyVipBonus: UnwrapRef<typeof import('./apis/index')['ApiMemberApplyVipBonus']>
     readonly ApiMemberAuthClose: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthClose']>
     readonly ApiMemberAuthConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthConfig']>
-    readonly ApiMemberAuthSecret: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthSecret']>
+    readonly ApiMemberAuthQrcode: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthQrcode']>
     readonly ApiMemberAuthSet: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthSet']>
     readonly ApiMemberBalance: UnwrapRef<typeof import('./apis/index')['ApiMemberBalance']>
     readonly ApiMemberBalanceAgency: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceAgency']>
@@ -766,6 +768,7 @@ declare module 'vue' {
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
     readonly ApiMemberCasinoRecordList: UnwrapRef<typeof import('./apis/index')['ApiMemberCasinoRecordList']>
     readonly ApiMemberCateState: UnwrapRef<typeof import('./apis/index')['ApiMemberCateState']>
+    readonly ApiMemberCompetitionList: UnwrapRef<typeof import('./apis/index')['ApiMemberCompetitionList']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
     readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
     readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
@@ -1443,7 +1446,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberApplyVipBonus: UnwrapRef<typeof import('./apis/index')['ApiMemberApplyVipBonus']>
     readonly ApiMemberAuthClose: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthClose']>
     readonly ApiMemberAuthConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthConfig']>
-    readonly ApiMemberAuthSecret: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthSecret']>
+    readonly ApiMemberAuthQrcode: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthQrcode']>
     readonly ApiMemberAuthSet: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthSet']>
     readonly ApiMemberBalance: UnwrapRef<typeof import('./apis/index')['ApiMemberBalance']>
     readonly ApiMemberBalanceAgency: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceAgency']>
@@ -1460,6 +1463,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
     readonly ApiMemberCasinoRecordList: UnwrapRef<typeof import('./apis/index')['ApiMemberCasinoRecordList']>
     readonly ApiMemberCateState: UnwrapRef<typeof import('./apis/index')['ApiMemberCateState']>
+    readonly ApiMemberCompetitionList: UnwrapRef<typeof import('./apis/index')['ApiMemberCompetitionList']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
     readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
     readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>

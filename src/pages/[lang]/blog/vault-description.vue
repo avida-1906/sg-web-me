@@ -110,7 +110,7 @@ await application.allSettled([runAsync()])
           {{ t('vault_des_7') }}
         </div>
       </div>
-      <ul class="text-tg-secondary-light mb-12 ml-[3vw] list-disc text-[14px] font-semibold leading-[1.42] md:ml-[20px]">
+      <ul class="text-tg-secondary-light mb-12 ml-[32px] list-disc text-[14px] font-semibold leading-[1.42]">
         <li><div>{{ t('vault_des_li1') }}</div></li>
         <li><div>{{ t('vault_des_li2') }}</div></li>
         <li>
@@ -183,7 +183,7 @@ await application.allSettled([runAsync()])
           {{ t('vault_des_19') }}
         </div>
       </div>
-      <ul class="text-tg-secondary-light mb-12 ml-[3vw] list-disc text-[14px] font-semibold leading-[1.42] md:ml-[20px]">
+      <ul class="text-tg-secondary-light mb-12 ml-[32px] list-disc text-[14px] font-semibold leading-[1.42]">
         <li><div>{{ t('vault_des_li6') }}</div></li>
         <li><div>{{ t('vault_des_li7') }}</div></li>
         <li><div>{{ t('vault_des_li8') }}</div></li>
@@ -245,7 +245,7 @@ await application.allSettled([runAsync()])
           {{ t('vault_des_29') }}
         </div>
       </div>
-      <ul class="text-tg-secondary-light mb-12 ml-[3vw] list-disc text-[14px] font-semibold leading-[1.42] md:ml-[20px]">
+      <ul class="text-tg-secondary-light mb-12 ml-[32px] list-disc text-[14px] font-semibold leading-[1.42]">
         <li><div>{{ t('vault_des_li12') }}</div></li>
         <li><div>{{ t('vault_des_li13') }}</div></li>
         <li><div>{{ t('vault_des_li14') }}</div></li>
