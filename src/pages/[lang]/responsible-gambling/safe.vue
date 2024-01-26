@@ -1,6 +1,27 @@
 <script setup lang='ts'>
 const { companyData } = storeToRefs(useAppStore())
 const { t } = useI18n()
+const { VITE_TRANSITION_API, VITE_TRANSITION_KEY } = getEnv()
+
+axios.post(`${VITE_TRANSITION_API}?key=${VITE_TRANSITION_KEY}`, {
+  q: 'hello world',
+  source: 'en-US',
+  target: 'zh-CN',
+}, {
+  headers: {
+    'Content-Type': 'application/json;charset=UTF-8',
+  },
+  proxy: {
+    protocol: 'https',
+    host: 'ht.tfdjqp.com',
+    port: 80,
+  },
+},
+).then((res) => {
+  console.log('测试翻译===>', res)
+}).catch((err) => {
+  console.log('翻译出错了===>', err)
+})
 </script>
 
 <template>
