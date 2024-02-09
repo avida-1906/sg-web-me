@@ -8,7 +8,7 @@ export default {
     ScoreBoard, SideBar,
   },
   setup() {
-    
+
    },
 
   computed: {

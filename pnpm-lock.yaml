@@ -20,6 +20,9 @@ dependencies:
   pixi.js:
     specifier: ^7.3.2
     version: 7.3.3
+  pnpm:
+    specifier: ^8.15.1
+    version: 8.15.1
   vue:
     specifier: ^3.3.4
     version: 3.4.4(typescript@5.1.6)
@@ -816,7 +819,7 @@ packages:
       '@types/web-bluetooth': 0.0.20
       '@vueuse/metadata': 10.7.2
       '@vueuse/shared': 10.7.2(vue@3.4.4)
-      vue-demi: 0.14.6(vue@3.4.4)
+      vue-demi: 0.14.7(vue@3.4.4)
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -829,7 +832,7 @@ packages:
   /@vueuse/shared@10.7.2(vue@3.4.4):
     resolution: {integrity: sha512-qFbXoxS44pi2FkgFjPvF4h7c9oMDutpyBdcJdMYIMg9XyXli2meFMuaKn+UMgsClo//Th6+beeCgqweT/79BVA==}
     dependencies:
-      vue-demi: 0.14.6(vue@3.4.4)
+      vue-demi: 0.14.7(vue@3.4.4)
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -1101,6 +1104,12 @@ packages:
       '@pixi/text': 7.3.3(@pixi/core@7.3.3)(@pixi/sprite@7.3.3)
       '@pixi/text-bitmap': 7.3.3(@pixi/assets@7.3.3)(@pixi/core@7.3.3)(@pixi/display@7.3.3)(@pixi/mesh@7.3.3)(@pixi/text@7.3.3)
       '@pixi/text-html': 7.3.3(@pixi/core@7.3.3)(@pixi/display@7.3.3)(@pixi/sprite@7.3.3)(@pixi/text@7.3.3)
+    dev: false
+
+  /pnpm@8.15.1:
+    resolution: {integrity: sha512-gxz0xfi4N0r3FSHU0VPbSdcIbeYVwq98tenX64umMN2sRv6kldZD5VLvLmijqpmj5en77oaWcClnUE31xZyycw==}
+    engines: {node: '>=16.14'}
+    hasBin: true
     dev: false
 
   /postcss@8.4.33:
