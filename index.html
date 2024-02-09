@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN" translate="no" style="touch-action: none;">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="google" content="notranslate" />
+  <link rel="stylesheet" href="https://use.typekit.net/aba0ebl.css" />
+  <link rel="apple-touch-icon" href="/pwa-192x192.png">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#00aba9">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#00aba9" />
+  <meta name="application-name" content="" />
+  <meta name="theme-color" content="#1a2c38">
+  <link rel="manifest" href="/manifest.json">
+  <style type="text/css">
+    * {
+      touch-action: manipulation;
+    }
+
+    #full-loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #1A2C38;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    #full-loading img {
+      width: 7.8rem;
+      font-weight: bold;
+      color: #00aba9;
+      text-transform: uppercase;
+    }
+  </style>
+  <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie"], ttq.setAndDefer = function (t, e) {t[e] = function () {t.push([e].concat(Array.prototype.slice.call(arguments, 0)))}}; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) {for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e}, ttq.load = function (e, n) {var i = "https://analytics.tiktok.com/i18n/pixel/events.js"; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = i, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; var o = document.createElement("script"); o.type = "text/javascript", o.async = !0, o.src = i + "?sdkid=" + e + "&lib=" + t; var a = document.getElementsByTagName("script")[0]; a.parentNode.insertBefore(o, a)};
+
+      ttq.load('CKUAT3JC77UD28E1FL1G');
+      ttq.page();
+    }(window, document, 'ttq');
+  </script>
+  <script>
+    // 阻止双指放大
+    document.addEventListener('gesturestart', (event) => {
+      event.preventDefault()
+    }, false)
+
+    // 阻止双击放大
+    document.addEventListener('touchstart', (event) => {
+      event.preventDefault()
+    })
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+      let now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+
+    let drags = new Set() //set of all active drags
+    document.addEventListener("touchmove", function (event) {
+      if (!event.isTrusted) return //don't react to fake touches
+      Array.from(event.changedTouches).forEach(function (touch) {
+        drags.add(touch.identifier) //mark this touch as a drag
+      })
+    })
+    document.addEventListener("touchend", function (event) {
+      if (!event.isTrusted) return
+      let isDrag = false
+      Array.from(event.changedTouches).forEach(function (touch) {
+        if (drags.has(touch.identifier)) {
+          isDrag = true
+        }
+        drags.delete(touch.identifier) //touch ended, so delete it
+      })
+      if (!isDrag && document.activeElement == document.body) {
+        //note that double-tap only happens when the body is active
+        event.preventDefault() //don't zoom
+        event.stopPropagation() //don't relay event
+        event.target.focus() //in case it's an input element
+        event.target.click() //in case it has a click handler
+        event.target.dispatchEvent(new TouchEvent("touchend", event))
+        //dispatch a copy of this event (for other touch handlers)
+      }
+    })
+  </script>
+</head>
+
+<body class="font-sans">
+  <div id="app"></div>
+  <div id="full-loading">
+    <img src="/webp/loading.webp" onerror="this.src = ''" />
+  </div>
+  <div data-portal="true"></div>
+  <script type="module" src="/src/main.ts"></script>
+  <noscript>This website requires JavaScript to function properly. Please enable JavaScript to continue.</noscript>
+
+  <script>
+      (function (document) {
+        var checkCount = 0,
+
+          formatFound = false;
+
+        function setHTMLClass(height, className) {
+          checkCount++;
+          if (height == 2) {
+            formatFound = true;
+            document.documentElement.className += " " + className;
+          } else {
+            document.documentElement.className += " not" + className;
+            if (checkCount == 4 && !formatFound) {
+              if (
+                document.implementation.hasFeature(
+                  "http://www.w3.org/TR/SVG11/feature#Image",
+                  "1.1"
+                )
+              ) {
+                document.documentElement.className += " svg";
+              } else {
+                document.documentElement.className += " notsvg png";
+              }
+            }
+          }
+        }
+
+        var JXL = new Image();
+        JXL.onload = JXL.onerror = function () {
+          setHTMLClass(JXL.height, "jxl");
+        };
+        JXL.src =
+          "data:image/jxl;base64,/woIELASCAgQAFwASxLFgkWAHL0xqnCBCV0qDp901Te/5QM=";
+
+        var AVIF = new Image();
+        AVIF.onload = AVIF.onerror = function () {
+          setHTMLClass(AVIF.height, "avif");
+        };
+        AVIF.src =
+          "data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=";
+
+        var WebP = new Image();
+        WebP.onload = WebP.onerror = function () {
+          setHTMLClass(WebP.height, "webp");
+        };
+        WebP.src =
+          "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA";
+
+        var JPX = new Image();
+        JPX.onload = JPX.onerror = function () {
+          setHTMLClass(JPX.height, "jpx");
+        };
+        JPX.src =
+          "data:image/vnd.ms-photo;base64,SUm8AQgAAAAFAAG8AQAQAAAASgAAAIC8BAABAAAAAQAAAIG8BAABAAAAAgAAAMC8BAABAAAAWgAAAMG8BAABAAAARgAAAAAAAAAkw91vA07+S7GFPXd2jckQV01QSE9UTwAZAMFxAAAAATAAoAAKAACgAAAQgCAIAAAEb/8AAQAAAQDCPwCAAAAAAAAAAAAAAAAAjkI/AIAAAAAAAAABIAA=";
+
+        var JP2 = new Image();
+        JP2.onload = JP2.onerror = function () {
+          setHTMLClass(JP2.height, "jp2");
+        };
+        JP2.src =
+          "data:image/jp2;base64,/0//UQAyAAAAAAABAAAAAgAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAEBwEBBwEBBwEBBwEB/1IADAAAAAEAAAQEAAH/XAAEQED/ZAAlAAFDcmVhdGVkIGJ5IE9wZW5KUEVHIHZlcnNpb24gMi4wLjD/kAAKAAAAAABYAAH/UwAJAQAABAQAAf9dAAUBQED/UwAJAgAABAQAAf9dAAUCQED/UwAJAwAABAQAAf9dAAUDQED/k8+kEAGvz6QQAa/PpBABr994EAk//9k=";
+      })(
+        (window.sandboxApi &&
+          window.sandboxApi.parentWindow &&
+          window.sandboxApi.parentWindow.document) ||
+        document
+      );
+  </script>
+  <script>
+    /*! AnimEvent v1.0.17 (c) anseki https://github.com/anseki/anim-event */
+    var AnimEvent = function (n) {var e = {}; function t(r) {if (e[r]) return e[r].exports; var o = e[r] = {i: r, l: !1, exports: {}}; return n[r].call(o.exports, o, o.exports, t), o.l = !0, o.exports} return t.m = n, t.c = e, t.d = function (n, e, r) {t.o(n, e) || Object.defineProperty(n, e, {enumerable: !0, get: r})}, t.r = function (n) {"undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(n, Symbol.toStringTag, {value: "Module"}), Object.defineProperty(n, "__esModule", {value: !0})}, t.t = function (n, e) {if (1 & e && (n = t(n)), 8 & e) return n; if (4 & e && "object" == typeof n && n && n.__esModule) return n; var r = Object.create(null); if (t.r(r), Object.defineProperty(r, "default", {enumerable: !0, value: n}), 2 & e && "string" != typeof n) for (var o in n) t.d(r, o, function (e) {return n[e]}.bind(null, o)); return r}, t.n = function (n) {var e = n && n.__esModule ? function () {return n.default} : function () {return n}; return t.d(e, "a", e), e}, t.o = function (n, e) {return Object.prototype.hasOwnProperty.call(n, e)}, t.p = "", t(t.s = 0)}([function (n, e, t) {"use strict"; t.r(e); var r, o = [], i = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (n) {return setTimeout(n, 1e3 / 60)}, u = window.cancelAnimationFrame || window.mozCancelAnimationFrame || window.webkitCancelAnimationFrame || window.msCancelAnimationFrame || function (n) {return clearTimeout(n)}, a = Date.now(); function l() {var n, e; r && (u.call(window, r), r = null), o.forEach((function (e) {var t; (t = e.event) && (e.event = null, e.listener(t), n = !0)})), n ? (a = Date.now(), e = !0) : Date.now() - a < 500 && (e = !0), e && (r = i.call(window, l))} function c(n) {var e = -1; return o.some((function (t, r) {return t.listener === n && (e = r, !0)})), e} var f = {add: function (n) {var e; return -1 === c(n) ? (o.push(e = {listener: n}), function (n) {e.event = n, r || l()}) : null}, remove: function (n) {var e; (e = c(n)) > -1 && (o.splice(e, 1), !o.length && r && (u.call(window, r), r = null))}}; e.default = f}]).default;
+  </script>
+  <!-- <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+  <script>
+    // VConsole will be exported to `window.VConsole` by default.
+    var vConsole = new window.VConsole();
+  </script> -->
+</body>
+
+</html>

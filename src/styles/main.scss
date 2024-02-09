@@ -1,0 +1,683 @@
+:root {
+  /* 主色&辅色 */
+  --tg-primary-main: #1a2c38;
+  --tg-secondary-main: #2F4553;
+  --tg-secondary-light: #b1bad3;
+  --tg-secondary-grey: #213743;
+  --tg-secondary-dark: #0F212E;
+  --tg-secondary-deepdark: #071824;
+  --tg-primary-success: #1FFF20;
+  --tg-primary-fail: #E91134;
+  --tg-button-secondary-main: #e9113c;
+  --tg-bet-slip-error: #5D0718;
+  --tg-bet-button-deepblue: #082f5a;
+  // --tg-
+  /* 点缀色 */
+  --tg-sub-info: #008A01;
+  --tg-sub-deepblue: #105EB5;
+  --tg-sub-blue: #1f8bff;
+  --tg-sub-lightblue: #72ACED;
+  --tg-sub-green: #0FCD13;
+  --tg-sub-green-deep: #034704;
+  --tg-sub-green-light: #57FF5A;
+  /* 文字颜色 */
+  --tg-text-white: #ffffff;
+  --tg-text-black: #000000;
+  --tg-text-black-secondary: #222222;
+  --tg-text-error: #ed4163;
+  --tg-text-error-sub: #F2708A;
+  --tg-text-warn: #FF9800;
+  --tg-text-warn-sub: #ff9d00;
+  --tg-text-green: #00E701;
+  --tg-text-green-light: #69E244;
+  --tg-text-pink:#FFB1FB;
+  --tg-text-blue: #1475E1;
+  --tg-text-lightblue: #4391e7;
+  --tg-text-dark: #05080a;
+  --tg-text-grey-deep: #071d2a;
+  --tg-text-grey: #557086;
+  --tg-text-grey-light: #d5dceb;
+  --tg-text-grey-lighter: #D9D9D9;
+  --tg-text-grey-secondary: #979AA7;
+  --tg-text-placeholder: #566671;
+  --tg-text-green-deep: #00b801;
+  --tg-text-purple: #962eff;
+
+  --tg-text-lightgrey: var(--tg-secondary-light);
+  --tg-text-secondary-main: var(--tg-secondary-main);
+
+  --tg-text-grey-button: var(--tg-secondary-light);
+  /* 透明色 */
+  --tg-color-black-rgb: 0, 0, 0;
+  --tg-color-white-rgb: 255, 255, 255;
+  --tg-color-grey-rgb: 14, 18, 36;
+  --tg-color-blue-rgb: 26, 46, 56;
+  --tg-color-green-rgb: 0, 231, 1;
+  /* 边框颜色 */
+  --tg-border-color-grey: var(--tg-text-grey-light);
+  --tg-secondary-border-color-grey: var(--tg-secondary-grey);
+  --tg-border-color-deep-grey: var(--tg-text-grey);
+  --tg-border-color-main: var(--tg-secondary-main);
+  /* popper 背景 字体色 */
+  --tg-popper-bg: var(--tg-text-white);
+  --tg-popper-bg-deep: var(--tg-primary-main);
+  --tg-popper-color-default: var(--tg-secondary-main);
+  --tg-popper-hover-color-default: var(--tg-text-blue);
+  --tg-popper-color-bright: var(--tg-text-white);
+  --tg-popper-color-icon-default: var(--tg-secondary-main);
+  /** 骨架屏颜色 */
+  --tg-skeleton-color1: #738299;
+  --tg-skeleton-color2: #aeb8d6;
+}
+
+:root {
+  // 字体大小
+  --tg-font-size-xs: 12px;
+  --tg-font-size-default: 14px;
+  --tg-font-size-base: 16px;
+  --tg-font-size-md: 18px;
+  --tg-font-size-lg: 20px;
+  --tg-font-size-xl: 24px;
+  --tg-font-size-2xl: 28px;
+  --tg-font-size-3xl: 32px;
+  --tg-font-size-4xl: 40px;
+  --tg-font-size-5xl: 54px;
+  --tg-font-size-6xl: 58px;
+
+  // 缺省图icon
+  --tg-empty-icon-size: 80px;
+
+  // 字体粗细
+  --tg-font-weight-normal: 400;
+  --tg-font-weight-semibold: 600;
+  --tg-font-weight-bold: 700;
+
+  // 按钮 padding size 水平方向
+  --tg-spacing-button-padding-horizontal-none: 0;
+  --tg-spacing-button-padding-horizontal-s: 8px;
+  --tg-spacing-button-padding-horizontal-xs: 12px;
+  --tg-spacing-button-padding-horizontal-sm: 16px;
+  --tg-spacing-button-padding-horizontal-md: 20px;
+  --tg-spacing-button-padding-horizontal-lg: 24px;
+  --tg-spacing-button-padding-horizontal-xl: 28px;
+  // 垂直方向
+  --tg-spacing-button-padding-vertical-none: 0;
+  --tg-spacing-button-padding-vertical-s: 8px;
+  --tg-spacing-button-padding-vertical-xs: 12px;
+  --tg-spacing-button-padding-vertical-sm: 13px;
+  --tg-spacing-button-padding-vertical-md: 15px;
+  --tg-spacing-button-padding-vertical-lg: 16px;
+  --tg-spacing-button-padding-vertical-xl: 18px;
+  --tg-spacing-button-padding-vertical-2xl: 20px;
+
+  --tg-spacing-input-padding-horizontal: 14px;
+  --tg-spacing-input-padding-vertical: 8px;
+
+  // 圆角
+  --tg-radius-none: 0;
+  --tg-radius-sm: 2px;
+  --tg-radius-default: 4px;
+  --tg-radius-xs: 6px;
+  --tg-radius-md: 8px;
+  --tg-radius-lg: 10px;
+  --tg-radius-xl: 12px;
+  --tg-radius-2xl: 14px;
+  --tg-radius-3xl: 16px;
+  --tg-radius-full: 64px;
+
+  // 头部高度
+  --tg-header-height: 60px;
+  --tg-header-height-n: -60px;
+  //footerbar高度
+  --tg-footerbar-height: 68px;
+  // 滚动条
+  --tg-scrollbar-size: 6px;
+
+  // 边框宽度
+  --tg-border-width-none: 0;
+  --tg-border-width-default: 1px;
+  --tg-border-width-sm: 2px;
+  --tg-border-width-md: 4px;
+
+  // z-index
+  --tg-z-index-0: 0;
+  --tg-z-index-10: 10;
+  --tg-z-index-20: 20;
+  --tg-z-index-30: 30;
+  --tg-z-index-40: 40;
+  --tg-z-index-50: 50;
+  --tg-z-index-secondary: 8888;
+  --tg-z-index-top: 9999;
+
+  // 间距
+  @for $i from 1 through 100 {
+    --tg-spacing-#{$i}: #{$i}px;
+  }
+
+  // 阴影
+  --tg-box-shadow: 0 1px 3px 0 #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.2)},
+  0 1px 2px 0 #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.122)};
+  --tg-box-shadow-lg: 0 10px 15px -3px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.2)},
+  0 4px 6px -2px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)};
+  --tg-text-shadow:0 1px 2px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.12)},
+  0 1px 3px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.2)};
+  --tg-header-shadow:  0 4px 6px -1px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.2)},
+   0 2px 4px -1px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.122)};
+  --tg-drop-shadow:0 0 5px rgba(25, 25, 25, .25);
+  --tg-shadow-inset: inset 0 1px #{rgba($color: var(--tg-color-white-rgb), $alpha: 0.04)};
+
+  // 基础过度
+  --tg-transition: all ease .25s;
+}
+
+// 大小菜单的宽度
+:root {
+  --tg-sidebar-width-lg: 240px;
+  --tg-sidebar-width-sm: 60px;
+  --tg-sidebar-width-lg-n: -240px;
+  --tg-sidebar-width-sm-n: -60px;
+  --tg-sidebar-top-height-sm: 60px;
+  --tg-sidebar-top-height-lg: 180px;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: var(--tg-primary-main);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-size: var(--tg-font-size-base);
+  --tg-icon-color: var(--tg-text-lightgrey);
+}
+
+@for $i from 1 through 100 {
+  .mgt#{$i} {
+    margin-top: #{$i}px;
+  }
+  .mgb#{$i} {
+    margin-bottom: #{$i}px;
+  }
+}
+
+
+.tg-popup-parent--hidden {
+  overflow: hidden;
+}
+
+.tg-popup-parent--hidden--safari {
+  // position: fixed;
+  // height: 100%;
+  // width: 100%;
+  overflow: hidden;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.w-min-100 {
+  min-width: 100%;
+}
+
+.h-min-100 {
+  min-height: 100%;
+}
+
+.page-content {
+  width: 100%;
+  padding: 0 3vw;
+}
+
+img.error {
+  opacity: 0;
+}
+
+.loading-content-height {
+  height: calc(100vh - var(--tg-header-height));
+}
+
+.home-container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.scrollable {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  flex: 1
+}
+
+.scroll-y {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scroll: touch;
+  scrollbar-width: thin
+}
+
+.scroll-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+  -moz-transform: none !important;
+  scrollbar-width: thin
+}
+
+.scroll-x::-webkit-scrollbar-thumb {
+  border-radius: var(--tg-radius-lg);
+}
+
+.scroll-y::-webkit-scrollbar-thumb,
+.scroll-x::-webkit-scrollbar-thumb {
+  border-radius: var(--tg-radius-lg);
+  background: var(--tg-secondary-main);
+}
+
+.scroll-x::-webkit-scrollbar {
+  height: var(--tg-scrollbar-size)
+}
+
+.hide-scrollbar {
+  scrollbar-width: none
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none
+}
+
+.scroll-y::-webkit-scrollbar {
+  width: var(--tg-scrollbar-size)
+}
+
+.scroll-contain {
+  overscroll-behavior: contain;
+}
+
+.dropdown-scroll-content {
+  display: flex;
+  flex-direction: column;
+  padding: var(--tg-spacing-4) 0;
+  max-width: 100vw;
+  max-height: inherit;
+}
+
+.hoverable {
+  cursor: help;
+  display: inline-flex;
+}
+
+.notification-list {
+  display: grid;
+  grid-auto-flow: row;
+  gap: var(--tg-spacing-12);
+  position: fixed;
+  top: 5rem;
+  left: 1rem;
+  z-index: var(--tg-z-index-top);
+}
+
+.select-none {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// stack 布局
+.stack {
+  display: grid;
+  position: relative;
+
+  &.stretch {
+    width: 100%;
+  }
+
+  &.direction-horizontal {
+    grid-auto-flow: column;
+  }
+
+  &.direction-vertical {
+    grid-auto-flow: row;
+  }
+
+  &.x-stretch {
+    justify-content: stretch;
+  }
+
+  &.x-flex-start {
+    justify-content: flex-start;
+  }
+
+  &.x-space-between {
+    justify-content: space-between;
+  }
+
+  &.x-center {
+    justify-content: center;
+  }
+
+  &.y-flex-start {
+    align-items: flex-start;
+  }
+
+  &.y-center {
+    align-items: center;
+  }
+
+  &.gap-larger {
+    gap: var(--tg-spacing-24);
+  }
+
+  &.gap-big {
+    gap: var(--tg-spacing-16);
+  }
+
+  &.gap-medium {
+    gap: var(--tg-spacing-12);
+  }
+
+  &.gap-small {
+    gap: var(--tg-spacing-8);
+  }
+
+  &.padding-none {
+    padding: 0;
+  }
+
+  &.padding-bottom-medium {
+    padding-bottom: var(--tg-spacing-12);
+  }
+
+  &.padding-bottom-small {
+    padding-bottom: var(--tg-spacing-8);
+  }
+
+  &.padding-bottom-smaller {
+    padding-bottom: var(--tg-spacing-4);
+  }
+
+  &.padding-top-medium {
+    padding-top: var(--tg-spacing-12);
+  }
+
+  &.padding-left-large {
+    padding-left: var(--tg-spacing-16);
+  }
+
+  &.padding-right-medium {
+    padding-right: var(--tg-spacing-12);
+  }
+}
+
+// 页面垂直布局
+.layout-spacing {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &:not(.reset) {
+    padding-bottom: var(--tg-spacing-24);
+  }
+  &:not(.reset).variant-normal>*+* {
+    margin-top: var(--tg-spacing-24);
+  }
+  &:not(.reset).variant-normal {
+    padding-bottom: var(--tg-spacing-32);
+  }
+  &:not(.reset).no-bottom-spacing {
+    padding-bottom: unset;
+  }
+  &.gap-medium {
+    gap: var(--tg-spacing-24);
+  }
+}
+
+.tg-mt-24 {
+  margin-top: var(--tg-spacing-24);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-help {
+  cursor: help;
+}
+
+.page-stack-wrap {
+  font-size: var(--tg-font-size-default);
+  color: var(--tg-text-white);
+  opacity: 0.5;
+}
+
+// 设置 VDropdown VTooltip VTooltip 圆角 阴影
+.v-popper--theme-tg-popper-outer, .v-popper--theme-tg-popper-outer-deep {
+  &.v-popper--theme-dropdown {
+    .v-popper__inner {
+      border-radius: var(--tg-radius-default);
+      background: var(--tg-popper-bg);
+      color: var(--tg-popper-color-default);
+      border: 0;
+      box-shadow: var(--tg-box-shadow-lg);
+
+      .need-pad-y {
+        padding: var(--tg-spacing-4) 0;
+      }
+    }
+    .v-popper__arrow-inner, .v-popper__arrow-outer {
+      border-color: var(--tg-popper-bg);
+    }
+  }
+}
+.v-popper--theme-tg-popper-outer {
+  &.v-popper--theme-tooltip {
+    .v-popper__inner {
+      border-radius: var(--tg-radius-default);
+      padding: 0;
+      background: var(--tg-popper-bg);
+      color: var(--tg-popper-color-default);
+      border: 0;
+      box-shadow: var(--tg-box-shadow-lg);
+    }
+    .v-popper__arrow-inner, .v-popper__arrow-outer {
+      border-color: var(--tg-popper-bg);
+    }
+  }
+}
+
+// 鼠标悬停气泡提示提示
+.tiny-menu-item-title {
+  color: var(--tg-popper-color-default);
+  font-size: var(--tg-font-size-default);
+  font-weight: var(--tg-font-weight-semibold);
+  padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
+  text-align: center;
+  min-width: var(--tg-sidebar-width-sm);
+}
+
+// 气泡下拉选项
+.popper-option {
+  cursor: pointer;
+  padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
+  font-size: var(--tg-font-size-default);
+  color: var(--tg-popper-color-default);
+}
+
+.semibold {
+  font-weight: var(--tg-font-weight-semibold);
+}
+
+.bold {
+  font-weight: var(--tg-font-weight-bold);
+}
+
+// 供应商slider
+.provider-item-wrap {
+  border-radius: var(--tg-radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+// 游戏列表页顶部样式
+.group-banner-wrap {
+  position: relative;
+
+  .group-banner-bg {
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    left: -100%;
+    width: 300%;
+    background: rgb(33, 55, 67);
+  }
+
+  .banner-wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    grid-gap: var(--tg-spacing-button-padding-horizontal-sm);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    line-height: 1;
+
+    .banner {
+      width: 100%;
+      height: 115px;
+      display: flex;
+      overflow: hidden;
+      justify-content: space-between;
+      position: relative;
+
+      .left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
+
+        h1 {
+          font-weight: 600;
+          font-size: var(--tg-font-size-lg);
+          color: var(--tg-text-white);
+        }
+      }
+
+      .right{
+        width: 214.59px;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        overflow: hidden;
+      }
+    }
+  }
+
+  &.less-than-700 {
+    .banner-wrap {
+      .banner {
+        height: 80px;
+        .right{
+          width: 149.28px;
+        }
+      }
+    }
+  }
+}
+
+// 体育页面title
+.sports-page-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+
+  .left {
+    display: flex;
+    align-items: center;
+    font-size: var(--tg-font-size-md);
+    color: var(--tg-text-white);
+    font-weight: var(--tg-font-weight-semibold);
+    gap: var(--tg-spacing-8);
+    line-height: 1.5;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.dialog-loading-height {
+  min-height: 200px;
+}
+
+.red-circle {
+  display: block;
+  width: 0.4rem;
+  height: 0.4rem;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.accordion-badge-wrap {
+  --tg-badge-font-size: 12px;
+  margin-right: 16px;
+  display: flex;
+}
+
+.margin-auto {
+  margin: 0 auto;
+}
+
+#app {
+  position: relative;
+}
+@media screen and (min-width: 1280px) {
+// 游戏列表页顶部样式
+.group-banner-wrap {
+
+  .banner-wrap {
+
+    .banner {
+
+      .left {
+
+        h1 {
+          font-size: var(--tg-font-size-xl);
+        }
+      }
+    }
+  }
+}
+}
+
+@media screen and (min-width: 768px) {
+  #app {
+    height: 1px;
+    min-height: 100%;
+    width: 100%;
+    padding-top: 0;
+    padding-bottom: 0
+  }
+}
+
+.scroll-light::-webkit-scrollbar-thumb {
+  background: var(--tg-secondary-light);
+}

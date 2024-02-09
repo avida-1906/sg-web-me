@@ -1,0 +1,24 @@
+{
+  "extends": [
+    "@antfu",
+    "@unocss"
+  ],
+  "ignorePatterns": [
+    "**/*.css",
+    "**/*.scss",
+    "**/*.vsix",
+    "**/*.sh",
+    "**/*.svg",
+    "**/*.yml",
+    "**/*.html",
+    "**/*.json",
+    "**/*.py",
+    "**/*.xlsx"
+  ],
+  "rules": {
+    "no-console": "off",
+    "prefer-const": 1,
+    "no-void": "off",
+    "no-new":"off"
+  }
+}

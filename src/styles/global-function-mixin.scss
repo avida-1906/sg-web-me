@@ -1,0 +1,11 @@
+// @function scalePixelValue($value, $idealViewportWidth: 1600, $min: 770px, $max: 1200px) {
+//   @return calc(#{$value} * (clamp(#{$min}, 100vw, #{$max}) / #{$idealViewportWidth}))
+// }
+
+@mixin getBackgroundImage($image) {
+  background-image: url('/png' + $image + '.png');
+
+  @at-root .webp & {
+    background-image: url('/webp' + $image + '.webp');
+  }
+}
