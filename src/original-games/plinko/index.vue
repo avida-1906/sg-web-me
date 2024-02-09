@@ -7,7 +7,9 @@ export default {
   components: {
     ScoreBoard, SideBar,
   },
-  setup() { },
+  setup() {
+    
+   },
 
   computed: {
     appWidth() {
