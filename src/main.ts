@@ -11,6 +11,7 @@ import { install } from './modules'
 import 'virtual:svg-icons-register'
 import './modules/vue-request'
 
+
 const app = createApp(App)
 install(app)
 
