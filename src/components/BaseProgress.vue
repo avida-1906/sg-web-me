@@ -15,7 +15,7 @@ interface Props {
   type?: 'line' | 'circle' // 进度条类型
 }
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {  //withDefaults给props提供默认值
   width: '100%',
   percent: 0,
   strokeColor: '#1f8bff',
@@ -113,7 +113,7 @@ const lineColor = computed(() => {
 </template>
 
 <style lang="scss">
-:root{
+:root{  //:root指的是html标签,var()是css里边的一个函数。自定义属性变量必须写在:root花括号里边。
  --tg-base-progress-inner-bg: var(--tg-secondary-light);
  --tg-base-progress-active-bg: var(--tg-sub-blue);
 }
